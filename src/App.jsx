@@ -110,9 +110,9 @@ function App() {
   </Route>
   <Route path="/find-a-tutor" element={<FindTutor/>} />
   <Route path="/courses" element={<Courses />}>
-    <Route path="web-dev" element={<WebDev />} />
-    <Route path="data-science" element={<DataScience />} />
-    <Route path="ui-ux" element={<UxUi />} />
+    <Route path="/courses/web-dev" element={<WebDev />} />
+    <Route path="/courses/data-science" element={<DataScience />} />
+    <Route path="/courses/ui-ux" element={<UxUi />} />
   </Route>
   <Route path="/calendar" element={<Calendar />} />
   <Route path="/user-home-page" element={<User/>} >
