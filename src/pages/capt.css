@@ -1,0 +1,70 @@
+
+.heading {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: green;
+    font-style: oblique;
+    text-decoration: double !important;
+}
+.main{
+    position: relative;
+    border: 1px solid;
+  margin-bottom: 50px;
+}
+
+.wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    margin: 1em 0;
+ 
+}
+
+canvas {
+    border-radius: 10px;
+    /* background: #dee5eb; */
+}
+
+button#reload-button {
+    font-size: 18px;
+    width: 2em;
+    position: absolute;
+    left: 67px;
+    top: 65px;
+    background: linear-gradient(to right, #5ca9fb 0%, #6373ff33 100%) !important;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4em;
+    color: #059200;
+}
+
+button#reload-button:hover {
+    background-color: rgb(46, 153, 46);
+}
+
+#user-input {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    width: 50%;
+    padding: 16px;
+    border: 1px dotted crimson;
+    border-radius: 20px;
+}
+
+button#submit-button {
+    width: 50%;
+    color: #ffffff;
+    font-size: 1.5em;
+    border: none;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 0.2em 0;
+    border-radius: 0.4em;
+    background: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%) !important;
+    cursor: pointer;
+}
+
+button#submit-button:hover {
+    background: linear-gradient(to right, #5ca9fb 50%, #6372ff 100%) !important;
+}

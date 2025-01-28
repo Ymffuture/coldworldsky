@@ -1,0 +1,587 @@
+import React, { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import Loader from "./Loader";
+import Badge from "react-bootstrap/Badge";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import "./Navigation.css";
+import ChatBot from './ChatBot'
+import {
+  FaSearch,
+  FaToolbox,
+  FaCalendarCheck,
+  FaBookOpen,
+  FaFacebook,
+  FaHome,
+  FaInfoCircle,
+  FaCogs,
+  FaChalkboardTeacher,
+  FaLaptopCode,
+  FaDatabase,
+  FaPaintBrush,
+  FaAddressBook,
+  FaInstagram,
+  FaGithub,
+  FaLink,
+  FaRegAddressBook,
+  FaSignInAlt,
+  FaBookReader,
+  FaTimes,
+} from "react-icons/fa";
+
+const Navigation = () => {
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [navbar, setNavBar] = useState(false);
+  const [show, setShow] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [showIcon, setShowIcon] = useState("");
+  const sidemenuRef = useRef();
+
+  const navLinks = [
+    { path: "/", label: "Home", icon: <FaHome /> },
+    { path: "/about", label: "About", icon: <FaInfoCircle /> },
+    { path: "/services", label: "Services", icon: <FaCogs /> },
+    { path: "/tutoring", label: "Tutoring", icon: <FaChalkboardTeacher /> },
+    {
+      path: "/courses",
+      label: `Courses`,
+      icon: <FaBookReader />,
+      submenu: [
+        {
+          path: "/courses/web-dev",
+          label: "Web Development",
+          icon: <FaLaptopCode />,
+        },
+        {
+          path: "/courses/data-science",
+          label: "Data Science",
+          icon: <FaDatabase />,
+        },
+        {
+          path: "/courses/ui-ux",
+          label: "UI/UX Design",
+          icon: <FaPaintBrush />,
+        },
+      ],
+    },
+    { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
+  ];
+
+  const buttonLinks = [
+    {
+      path: "/calendar",
+      label: "Calendar",
+      icon: <FaCalendarCheck className="icon-bottom" />,
+    },
+    {
+      path: "#",
+      label: "ToolBox",
+      icon: <FaToolbox className="icon-bottom" />,
+    },
+    {
+      path: "#",
+      label: "Register",
+      icon: <FaRegAddressBook className="icon-bottom" />,
+    },
+    {
+      path: "#",
+      label: "Books/question papers",
+      icon: <FaBookOpen className="icon-bottom" />,
+    },
+    {
+      path: "/user-home-page/sign-in",
+      label: "SignIn",
+      icon: <FaSignInAlt className="icon-bottom" />,
+    },
+  ];
+
+  const demoSearchData = [
+    {
+      searchname: "Mathematics Course",
+      pathlink: "/tutoring",
+      Badge: <Badge bg="success">Available</Badge>,
+    },
+    {
+      searchname: "Physical Sciences",
+      pathlink: "/tutoring/subjects/Physical-science",
+      Badge: <Badge bg="success">Available</Badge>,
+    },
+    {
+      searchname: "Life Sciences",
+      pathlink: "/tutoring",
+      Badge: <Badge bg="success">Available</Badge>,
+    },
+    {
+      searchname: "Online Tutoring",
+      pathlink: "/tutoring",
+      Badge: <Badge bg="danger">Not available</Badge>,
+    },
+    {
+      searchname: "Affordable Bursaries",
+      pathlink: "/tutoring",
+      Badge: <Badge bg="success">Available</Badge>,
+    },
+    {
+      searchname: "Career Guidance",
+      pathlink: "/find-a-tutor",
+      Badge: <Badge bg="success">Available</Badge>,
+    },
+  ];
+
+  const closeSearch = ()=>{
+    setSearchResults([])
+    searchResults('')
+    searchQuery('')
+  }
+  useEffect(() => {
+    function updateConnectionStatus() {
+      if (navigator.onLine) {
+        setIsOnline(true);
+        setStatusMessage("Online");
+        setTimeout(() => {
+          setStatusMessage("");
+        }, 8000);
+
+        setTimeout(() => {
+          toast.success("You are back Online!", {
+            position: "bottom-left",
+            duration: 8000,
+            style: {
+              background: "#333",
+              borderRadius: "8px",
+              color: "whitesmoke",
+            },
+          });
+        }, 5000);
+      } else {
+        setIsOnline(false);
+        toast.error("Connection error");
+
+        setTimeout(() => {
+          toast.loading("Reconnecting attempt::1", {
+            duration: 2000,
+            style: {
+              background: "#f6f6f675",
+              borderRadius: "8px",
+              color: "black",
+            },
+            position: "bottom-center",
+          });
+        }, 5000);
+
+        setTimeout(() => {
+          toast.loading("Reconnecting attempt::2.", {
+            duration: 4200,
+            style: {
+              background: "#f6f6f675",
+              borderRadius: "8px",
+              color: "black",
+            },
+            position: "bottom-center",
+          });
+        }, 8500);
+
+        setTimeout(() => {
+          toast.error("Failed to conntect.", {
+            duration: 3000,
+            style: {
+              background: "#333",
+              borderRadius: "8px",
+              color: "whitesmoke",
+            },
+            position: "top-left",
+          });
+        }, 20000);
+
+        setTimeout(() => {
+          const buttonStyle = {
+            backgroundColor: "#ff3838",
+            color: "whitesmoke",
+
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            marginLeft: "8px",
+            fontWeight: 800,
+            padding: "5px 10px",
+          };
+          const pageStyle = {
+            cursor: "pointer",
+          };
+          const page = () => {
+            window.location.reload();
+          };
+          toast(
+            (t) => (
+              <span className="text-light d-flex ">
+                <span onClick={page} style={pageStyle} title="Reload the page.">
+                  You can browse offline with some limited features.
+                </span>
+                <button style={buttonStyle} onClick={() => toast.dismiss(t.id)}>
+                  Dismiss
+                </button>
+              </span>
+            ),
+            {
+              duration: 20000,
+              style: {
+                background: "#333",
+                borderRadius: "7px",
+                color: "whitesmoke",
+              },
+              position: "bottom-right",
+            }
+          );
+        }, 30000);
+      }
+    }
+
+    // Initial check
+    updateConnectionStatus();
+
+    // Add event listeners
+    window.addEventListener("online", updateConnectionStatus);
+    window.addEventListener("offline", updateConnectionStatus);
+
+    // Cleanup on component unmount
+    return () => {
+      window.removeEventListener("online", updateConnectionStatus);
+      window.removeEventListener("offline", updateConnectionStatus);
+    };
+  }, []); // Empty dependency array ensures this runs only on mount/unmount
+  const notWorkingBtn = () => {
+    toast.loading("This feature is under constraction.", {
+      duration: 5000,
+      style: {
+        borderRadius: "50px",
+        background: "#fff34b",
+        opacity: 0.6,
+        boxShadow: "1px 4px 6px gray",
+      },
+      position: "bottom-center",
+    });
+  };
+  // notwoking
+  useEffect(() => {
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 8000);
+  }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setNavBar(true);
+    }, 5000);
+  }, []);
+
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+    setShowIcon((view) => !view);
+  };
+  // search code here
+  const handleSearch = () => {
+    const results = demoSearchData.filter((item) =>
+      item.searchname.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(results);
+
+    if (results.length === 0) {
+      toast.error("No results found!", {
+        duration: 3000,
+        position: "top-left",
+      });
+    } else {
+      toast.success("Search results updated!", {
+        duration: 3000,
+        position: "top-left",
+      });
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (searchQuery !== "") {
+        const results = demoSearchData.filter((item) =>
+          item.searchname.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setSearchResults(results);
+      }
+    }, 1000);
+  }, [searchQuery]);
+
+  // search end here...
+
+  const handleThemeToggle = () => {
+    setDarkMode(!darkMode);
+    document.body.className = darkMode ? "light" : "dark";
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSearchResults("");
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setNavBar(true);
+    }, 5000);
+  }, []);
+
+  useEffect(() => {
+    const closesidebar = (e) => {
+      if (!sidemenuRef.current.contains(e.target)) {
+        setIsSidebarOpen(false);
+        setShowIcon("");
+      }
+    };
+
+    document.addEventListener("mousedown", closesidebar);
+    return () => {
+      document.removeEventListener("mousedown", closesidebar);
+    };
+  });
+
+  return (
+    <>
+      {/* Sidebar */}
+      <div
+        ref={sidemenuRef}
+        className={`sidebar ${isSidebarOpen ? "open" : ""}`}
+      >
+        <div className="sidebar-header">
+          <div className="d-flex">
+            <button
+              data-tooltip-id="my-tooltip-dm"
+              data-tooltip-content="Close"
+              onClick={handleToggleSidebar}
+              className="close-btn"
+            >
+              <div className="lines">
+                <div className="line-1"></div>
+                <div className="line-2"></div>
+              </div>
+            </button>
+            <Tooltip id="my-tooltip-dm" />
+          </div>
+        </div>
+        {navbar ? (
+          <>
+            <p
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content={
+                statusMessage ||
+                (isOnline ? "Status: Online" : "Status: Offline")
+              }
+              id="status"
+              style={{
+                backgroundColor: isOnline
+                  ? statusMessage
+                    ? "green"
+                    : ""
+                  : "#ff6161",
+                color: isOnline ? "white" : "white",
+              }}
+              className="text-center card-header d-flex g-2"
+            >
+              {isTransitioning && (
+                <>
+                  <div
+                    className="transition-animation-connect connect"
+                    title="Loading..."
+                  ></div>
+                  <div className="transition-animation2-connect">
+                    <span className="">
+                      <i className="fa fa-signal"></i> {""}
+                      <i className="fa fa-refresh"></i> {""}
+                    </span>
+                  </div>
+                </>
+              )}
+              {""}
+              {""} {statusMessage || (isOnline ? "Online" : "Offline")}
+            </p>
+            {/* Search Section */}
+            <div className="search-section">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input form-control"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+              />
+              {searchQuery === '' ? <button
+               data-tooltip-id="my-tooltip-dm"
+              data-tooltip-content="Search"
+                onClick={handleSearch}
+                className="search-btn btn btn-info m-1"
+              >
+                <FaSearch />
+              </button>:<button
+            
+                onClick={closeSearch}
+                className="search-btn btn btn-info m-1"
+              >
+               <FaTimes />
+              </button>}
+               
+              
+              {searchResults.length > 0 && (
+                <div className="search-results">
+                  <ul>
+                    {searchResults.map((result, index) => (
+                      <li key={index} title={result.searchname}>
+                        <Link
+                          to={result.pathlink}
+                          onClick={() => setSearchQuery("")}
+                        >
+                          <FaLink className="linkIcon" /> {result.searchname}
+                        </Link>
+                        {result.Badge}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Navigation Links */}
+            <ul className="sidebar-links">
+              {navLinks.map((link, index) => (
+                <li key={index}>
+                  <Link to={link.path}>
+                    <span
+                      className={`myicons ${showIcon ? "" : "show"}`}
+                      data-tip={link.label}
+                      data-tooltip-id="closesidebar"
+                      data-tooltip-content={link.label}
+                    >
+                      {link.icon}
+                    </span>{" "}
+                    {link.label}
+                  </Link>
+                  {link.submenu && (
+                    <ul className="submenu">
+                      {link.submenu.map((sub, idx) => (
+                        <li key={idx}>
+                          <Link to={sub.path}>
+                            {" "}
+                            <span
+                              data-tooltip-id="closesidebar"
+                              data-tooltip-content={sub.label}
+                              className={`myicons ${showIcon ? "" : "show"}`}
+                              data-tip={link.label}
+                            >
+                              {sub.icon}
+                            </span>{" "}
+                            {sub.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+
+              <div className="d-flex bg-dark-subtle rounded bottom-icons">
+                {buttonLinks.map((base, index) => (
+                  <li onClick={notWorkingBtn}>
+                    <Link
+                      data-tooltip-id="tooltip-base"
+                      data-tooltip-content={base.label}
+                      to={base.path}
+                      className="icon-body"
+                      onClick={handleToggleSidebar}
+                      key={index}
+                    >
+                      {base.icon}
+                    </Link>
+                  </li>
+                ))}
+                <Tooltip id="tooltip-base" />
+              </div>
+            </ul>
+
+            {/* Social Media Icons */}
+            <div className="social-media d-flex justify-content-around mt-2">
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="Facebook"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tip="Facebook"
+              >
+                <FaFacebook className="sideIcons" />
+              </a>
+              <Tooltip id="my-tooltip" />
+
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="Github"
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tip="Github"
+              >
+                <FaGithub className="sideIcons" />
+              </a>
+              <a
+                data-tooltip-id="my-tooltip"
+                data-tooltip-content="instagram"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tip="Instagram"
+              >
+                <FaInstagram className="sideIcons" />
+              </a>
+            </div>
+
+            {/* Theme Toggle */}
+            <div className="theme-toggle mt-4 p-4">
+              <button
+                className="btn btn-dark"
+                data-tooltip-id="my-theme-menu"
+                data-tooltip-content={`Theme set to: ${darkMode ? "Light Mode" : "Dark Mode"}`}
+                onClick={handleThemeToggle}
+              >
+                {darkMode ? "Light Mode" : "Dark Mode"}
+                <Tooltip id="my-theme-menu" />
+              </button>
+            </div>
+          </>
+        ) : (
+          <Loader />
+        )}
+      </div>
+      <Tooltip id="closesidebar" />
+      {/* Sidebar Toggle Button */}
+      <button
+        className={`sidebar-toggle-btn ${isSidebarOpen ? "" : "open"}`}
+        onClick={handleToggleSidebar}
+        data-tooltip-id="my-tooltip-menu"
+        data-tooltip-content="Menu"
+      >
+        <div className="lines">
+          <div className="line-1"></div>
+          <div className="line-2"></div>
+        </div>
+        <Tooltip id="my-tooltip-menu" />
+      </button>
+      <ChatBot/>
+    </>
+  );
+};
+
+export default Navigation;
