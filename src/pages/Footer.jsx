@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import Chatbot from '../componets/ChatBot';
 const Footer = (props) => {
   
   const notWorkingBtn = ()=>{
@@ -190,7 +189,7 @@ const Footer = (props) => {
               Privacy Policy
             </Link>
           </p>
-         <Chatbot/>
+         
         </div>
   )
 }

@@ -132,8 +132,9 @@ function App() {
             </Routes>
                 <Toaster/>
             </div>
-            <Chatbot/>
+           
            <Footer/>
+           <Chatbot/>
         </Router>
     );
     
