@@ -1,5 +1,5 @@
 import React, { useEffect , useState} from "react";
-import { BrowserRouter as Router, Routes, Route,Navigate, Link  } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./componets/ProtectedRoute";
 import './index.css';
 import "./App.css";
@@ -24,10 +24,9 @@ import Calendar from "./pages/Calendar";
 import DataScience from "./pages/courses/DataScience";
 import UxUi from "./pages/courses/UxUi";
 import WebDev from "./pages/courses/WebDev";
-// import Contact from "./componets/contact";
+import Contact from "./pages/contact";
 import FindTutor from './pages/FindTutor';
 import User from './pages/loginform/UserPage';
-import Chatbot from "./componets/ChatBot";
 import SignIn from './componets/SignIn'
 import SignUp from './componets/SignUp';
 import RecoverPassword from './componets/RecoverPassword'
@@ -98,6 +97,7 @@ function App() {
             <Routes>
             <Route path="/" element={<LandingPage /> } /> 
   <Route path="/about" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><About /></ProtectedRoute>} />
+  <Route path="/contact" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Contact/> </ProtectedRoute>} />
   <Route path="/quotes" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Quotes /> </ProtectedRoute>} />
   <Route path="/services" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Services />  </ProtectedRoute>} />
   <Route path="/tutoring" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><Tutoring /></ProtectedRoute> } >
@@ -134,7 +134,6 @@ function App() {
             </div>
            
            <Footer/>
-           <Chatbot/>
         </Router>
     );
     

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import About from '../componets/about';
-// import Contact from '../componets/contact';
 import Features from '../componets/features';
 import Tutor from '../componets/tutor';
 import Header from '../componets/header';
@@ -9,6 +8,7 @@ import Team from '../componets/Team';
 import Testimonials from '../componets/testimonials';
 import JsonData from '../data/data.json';
 import SmoothScroll from "smooth-scroll";
+import Chatbot from "../componets/ChatBot";
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 2000,
   speedAsDuration: true,
@@ -32,7 +32,7 @@ const LandingPage = () => {
       <Tutor data={landingPageData.Tutor} /> 
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
-       {/* <Contact data={landingPageData.Contact} /> */}
+       <Chatbot/>
     </div>
   )
 }
