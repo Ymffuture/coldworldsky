@@ -24,7 +24,7 @@ const SignIn = ({ setIsAuthenticated }) => {
         setIsdisabled(false)
         setInText('Sign in')
         setFinalText('No internet connection:code:500')
-      },60000)
+      },5000)
     }
     // Call the backend login API
     const response = await fetch("http://localhost:7411/api/auth/user-home-page/sign-in", {
