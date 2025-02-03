@@ -74,7 +74,7 @@ const Calendar = () => {
           </div>
         </div>
       </header>
-
+<div className='calendar-main container'>
       {/* Alert Section */}
       <Alert show={show} variant="info" className="my-3">
         <Alert.Heading>Don't Miss Out on the Next Intake for 2025!</Alert.Heading>
@@ -141,7 +141,8 @@ const Calendar = () => {
             </DropdownButton>
           ))}
         </div>
-        <p className="p-4 mt-4 bg-success-subtle text-capitalize">
+        
+        <p className="p-4 mt-4 bg-success-subtle text-capitalize container">
                 school Events
                 <ul className="p-4 mb-4 m-4 bg-body-secondary">
                   <il>
@@ -165,7 +166,16 @@ const Calendar = () => {
                   </ul>
                 </ul>
                 </p>
-        <div className="col-md-6">
+                <Card style={{ width: "18rem" }} className="">
+              {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+              <FaMoneyCheckAlt className="sc object-fit-lg-scale" />
+              <Card.Body>
+                <Card.Title>PAYMENT</Card.Title>
+                <Card.Text>We have a flexable payment methods</Card.Text>
+                <Button variant="primary">Payment method</Button>
+              </Card.Body>
+            </Card>
+        <div className="col-md-6 container">
         <div class="calendar">
               <div class="calendar-header"> Febuary 2025</div>
               <div class="calendar-days">
@@ -185,7 +195,7 @@ const Calendar = () => {
               
               </div>
             </div>
-            <div class="calendar">
+            <div class="calendar container">
               <div class="calendar-header">March 2025</div>
               <div class="calendar-days">
               <div className="text-bg-danger">Sun</div>
@@ -203,20 +213,14 @@ const Calendar = () => {
               
               </div>
             </div>
-            <Card style={{ width: "40rem" }} className='cardflow'>
+            
+            <Card style={{ width: "20rem" }} className='cardflow mb-5 container'>
           {/* <Card.Img variant="top" style={{ width: "9rem" }} src="/img/about.jpg" /> */}
+          
           <Card.Body>
             <Card.Title>Openning of the school</Card.Title>
             <Card.Text>
-            <Card style={{ width: "30rem" }}>
-              {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-              <FaMoneyCheckAlt className="sc object-fit-lg-scale" />
-              <Card.Body>
-                <Card.Title>PAYMENT</Card.Title>
-                <Card.Text>We have a flexable payment methods</Card.Text>
-                <Button variant="primary">Payment method</Button>
-              </Card.Body>
-            </Card>
+           
               We oparate from Feb due to planning that will help us to get those
               results no less than 100%.
             </Card.Text>
@@ -249,7 +253,7 @@ const Calendar = () => {
           </div> */}
         </div>
       </div>
-
+      </div>
       {/* Modal */}
       <Modal show={showEmail} onHide={handleClose}>
         <Modal.Header closeButton>

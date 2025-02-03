@@ -1,5 +1,5 @@
 import React from "react";
-import {Link ,Outlet} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import { useSpring, animated } from "@react-spring/web";
 // import Team from "../componets/Team";
 

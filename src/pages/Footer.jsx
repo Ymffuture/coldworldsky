@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import Chatbot from '../componets/ChatBot';
 const Footer = (props) => {
   
   const notWorkingBtn = ()=>{
@@ -32,7 +33,7 @@ const Footer = (props) => {
             <tbody id="recordsTable" className='p-4'>
               <tr>
                 <td className='py-1' onClick={notWorkingBtn}> <Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
@@ -40,7 +41,7 @@ const Footer = (props) => {
             </Link></td>
                 <td>
                 <Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
@@ -48,7 +49,7 @@ const Footer = (props) => {
             </Link>
                 </td>
                 <td><Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
@@ -58,21 +59,21 @@ const Footer = (props) => {
               </tr>
               <tr>
                 <td className='py-1'><Link
-              to="http://www.templatewire.com"
+              to="/games-tic-toc-toe-play"
               rel="nofollow"
               className="text-white"
             >
             Skyford Games
             </Link></td>
                 <td><Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
             Advanced Mathematics
             </Link></td>
                 <td><Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
@@ -90,14 +91,14 @@ const Footer = (props) => {
            
             </Link></td>
             <td className='py-1'> <Link
-              to="http://www.templatewire.com"
+              to="https://webpy-7tcd.onrender.com/views/contact"
               rel="nofollow"
               className="text-white"
             >
             About Online classes
             </Link></td>
                 <td> <Link
-              to="http://www.templatewire.com"
+              to="##"
               rel="nofollow"
               className="text-white"
             >
@@ -182,14 +183,14 @@ const Footer = (props) => {
           <p className=''>
             Copyright &copy; 2021 - {new Date().getFullYear()} @SkyfordCCI&reg;, All Rights Reserved.{" "}
             <Link
-              to="http://www.templatewire.com"
+              to="https://webpy-7tcd.onrender.com/views/Privacy-Policy"
               rel="nofollow"
               className="text-white"
             >
               Privacy Policy
             </Link>
           </p>
-         
+         <Chatbot/>
         </div>
   )
 }

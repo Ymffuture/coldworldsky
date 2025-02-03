@@ -1,64 +1,69 @@
-.cont-top{
-    text-align: center;
-
-}
-
-.boxes{
+.tic-tac-toe-container {
     display: flex;
-    height: 100px;
-    width: 100px;
-    background: transparent;
-    border: 4px solid #000000;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.A{
-    border-left: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-}
-.B{
-    border-right: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-}
-.C{
-    border-top: 4px solid transparent;
-    border-left: 4px solid transparent;
-}
-.D{
-    border-left: 4px solid transparent;
-}
-.E{
-    border-top: 4px solid transparent;
-}
-.G{
-    border-bottom: 4px solid transparent;
-}
-.H{
-    border-top: 4px solid transparent;
-    border-right: 4px solid transparent;
-}
-.I{
-    border-right: 4px solid transparent;
-}
-.board{
-    height: 320px;
-    width: 564px;
-    display: flex;
-    margin: auto;
-}
-
-.boxes .fa-css5{
-    font-size: 5.5em;
-    text-align: center;
-    justify-content: center;
-    color: rgb(0, 60, 255) !important;
+    flex-direction: column;
     align-items: center;
-}
-.boxes .fa-css3{
-    font-size: 5.5em;
-    text-align: center;
+    padding: 2rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .game-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cell {
+    width: 100px;
+    height: 100px;
+    background: #f4f4f4;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    color: rgb(255, 60, 0);
-    
-}
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .cell:hover {
+    background: #e9e9e9;
+    transform: scale(1.05);
+  }
+  
+  .winner-message {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #2ecc71;
+  }
+  
+  .reset-button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .reset-button:hover {
+    background: #0056b3;
+  }
+  
+  /* Optionally, style the react-icons if needed */
+  .fa-css3 {
+    color: #264de4; /* Blue shade for player 1 */
+  }
+  
+  .fa-css5 {
+    color: #f06529; /* Orange shade for player 2 */
+  }
+  

@@ -31,100 +31,19 @@
   <meta name="description" content="SK Website" />
   <meta name="author" content="@SK" />
 </head>
-<style>
-
- body{
-
-  margin: 0;
-  padding: 0;
- }
-
-
-  #root .img{
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 40%;
-  }
-.size img{
-  
-  width: 25%;
-}
-  
-.transition-animationhtml {
-  animation: awesomeTransition 1.2s ease-in-out forwards;
-  transform-origin: center;
-  will-change: opacity, transform;
-}
-
-@keyframes awesomeTransition {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) rotate(-10deg);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.05) rotate(5deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-.transition-animation-html {
-  position: relative;
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  border: 5px solid transparent;
-  border-top: 1px solid #ff00bf;
-  border-bottom: 1px solid #0ebd08;
-  border-left: 1px solid #ff0000;
-  border-right: 1px solid #0b0c0c;
-  border-radius: 50%;
-  animation: spinCirclehtml 2.8s linear infinite;
-  left: 40%;
-  top: 50%;
-  margin: 20px;
-  display: flex;
-  
-}
-
-
-@keyframes spinCirclehtml {
- from{
- 
-  transform: rotateZ(0deg);
-  border-top: 15px solid #002b27; 
-  opacity: 1;
- }
- to{
-  transform: rotateZ(360deg);
-  border-top: 15px solid #1500ce; 
-  opacity: 1;
- }
-}
-.preload{
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-}
-</style>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
   <!-- Root Element -->
   <div id="root">
 
-    <div class="container">
+    <div class="container center justify-content-center text-center load">
 
       <div class="transition-animation-html"></div>
       <div class="transition-animationhtml">
   
   
-        <!-- <p class='g-3 center justify-content-center text-center'>
+         <p class='center justify-content-center text-center'>
           <i class="text-red fa fa-info"></i>
-         Oops! Seems like we have a problem Loading the page.</p> -->
+         Oops! Seems like we have a problem Loading the page.</p> 
   
   
           <p class='g-3 center fw-bolder justify-content-center text-center
@@ -134,16 +53,7 @@
           </p>
       </div>
     </div>
-   
-  
   </div>
-  <script type="module">
-    import RefreshRuntime from "/@react-refresh"
-    RefreshRuntime.injectIntoGlobalHook(window)
-    window.$RefreshReg$ = () => {}
-    window.$RefreshSig$ = () => (type) => type
-    window.__vite_plugin_react_preamble_installed__ = true
-    </script>
   <!-- JavaScript -->
   <script src="./src/assets/js/jquery.1.11.1.js"></script>
   <script src="./src/assets/js/bootstrap.js"></script>

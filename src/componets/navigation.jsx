@@ -6,7 +6,8 @@ import Badge from "react-bootstrap/Badge";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
-import ChatBot from './ChatBot'
+import Modal from "react-bootstrap/Modal";
+
 import {
   FaSearch,
   FaToolbox,
@@ -28,6 +29,7 @@ import {
   FaSignInAlt,
   FaBookReader,
   FaTimes,
+  FaSignOutAlt,
 } from "react-icons/fa";
 
 const Navigation = () => {
@@ -36,13 +38,57 @@ const Navigation = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [navbar, setNavBar] = useState(false);
-  const [show, setShow] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showIcon, setShowIcon] = useState("");
+  const [show, setShow] = useState(false);
+  const [userQuery , setUserQuery] = useState()
+const [openGoogle ,setOpenGoogle] = useState('')
   const sidemenuRef = useRef();
 
+  const serachUserQuery =()=>{
+      window.open(`https://google.com/search?q=${userQuery}`)
+
+      setOpenGoogle(`https://google.com/search?q=${userQuery}`)
+  }
+
+  // have to fix this 
+ const Siginpage =()=>{
+      window.open(`https://skyfordcci.vercel.app/user-home-page/sign-in`)
+
+  }
+
+  // scroll down effect
+  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrollingDown = currentScrollPos > prevScrollPos;
+  
+      setIsSidebarVisible(!isScrollingDown);
+      setPrevScrollPos(currentScrollPos);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+  
+  // end here
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // true if token exists
+  }, []);
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
     { path: "/about", label: "About", icon: <FaInfoCircle /> },
@@ -68,9 +114,14 @@ const Navigation = () => {
           label: "UI/UX Design",
           icon: <FaPaintBrush />,
         },
+        
       ],
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
+    { path: "/", label: isAuthenticated? 'SignOut':'SignIn', icon: isAuthenticated? <FaSignOutAlt className="text text-danger"  onClick={() => {
+      localStorage.removeItem("token"); // Clear token
+      setIsAuthenticated(false);
+    }} />:<FaSignInAlt className=" text-success" onClick={Siginpage}/> },
   ];
 
   const buttonLinks = [
@@ -87,7 +138,7 @@ const Navigation = () => {
     {
       path: "#",
       label: "Register",
-      icon: <FaRegAddressBook className="icon-bottom" />,
+      icon: <FaRegAddressBook className="icon-bottom" onClick={handleShow}/>,
     },
     {
       path: "#",
@@ -345,20 +396,20 @@ const Navigation = () => {
     return () => {
       document.removeEventListener("mousedown", closesidebar);
     };
-  });
+  },[sidemenuRef]);
 
   return (
     <>
       {/* Sidebar */}
       <div
-        ref={sidemenuRef}
-        className={`sidebar ${isSidebarOpen ? "open" : ""}`}
-      >
+  ref={sidemenuRef}
+  className={`sidebar ${isSidebarOpen ? "open" : ""}`}
+>
         <div className="sidebar-header">
           <div className="d-flex">
             <button
               data-tooltip-id="my-tooltip-dm"
-              data-tooltip-content="Close"
+              data-tooltip-content="Close Sidebar"
               onClick={handleToggleSidebar}
               className="close-btn"
             >
@@ -456,12 +507,15 @@ const Navigation = () => {
             </div>
 
             {/* Navigation Links */}
+
             <ul className="sidebar-links">
               {navLinks.map((link, index) => (
                 <li key={index}>
                   <Link to={link.path}>
                     <span
-                      className={`myicons ${showIcon ? "" : "show"}`}
+                      className={`myicon ${showIcon ? "" : "show"} ${
+                        isSidebarVisible ? "visible" : "hidden"
+                      }`}
                       data-tip={link.label}
                       data-tooltip-id="closesidebar"
                       data-tooltip-content={link.label}
@@ -471,15 +525,18 @@ const Navigation = () => {
                     {link.label}
                   </Link>
                   {link.submenu && (
-                    <ul className="submenu">
-                      {link.submenu.map((sub, idx) => (
-                        <li key={idx}>
+                    <ul className={`submenu`}>
+                      {link.submenu.map((sub, index) => (
+                        <li key={index}>
                           <Link to={sub.path}>
                             {" "}
                             <span
+                            
                               data-tooltip-id="closesidebar"
                               data-tooltip-content={sub.label}
-                              className={`myicons ${showIcon ? "" : "show"}`}
+                              className={`myicon ${showIcon ? "" : "show"}  ${
+                      isSidebarVisible ? "visible" : "hidden"
+                    }`}
                               data-tip={link.label}
                             >
                               {sub.icon}
@@ -495,14 +552,14 @@ const Navigation = () => {
 
               <div className="d-flex bg-dark-subtle rounded bottom-icons">
                 {buttonLinks.map((base, index) => (
-                  <li onClick={notWorkingBtn}>
+                  <li onClick={notWorkingBtn}  key={index}>
                     <Link
                       data-tooltip-id="tooltip-base"
                       data-tooltip-content={base.label}
                       to={base.path}
                       className="icon-body"
                       onClick={handleToggleSidebar}
-                      key={index}
+                     
                     >
                       {base.icon}
                     </Link>
@@ -579,7 +636,23 @@ const Navigation = () => {
         </div>
         <Tooltip id="my-tooltip-menu" />
       </button>
-      <ChatBot/>
+
+
+       <Modal show={show} onHide={handleClose} className='bg-danger-subtle'>
+       <Modal.Header closeButton>
+         <Modal.Title><i className='fa fa-google-plus-square'></i>Google</Modal.Title>
+       </Modal.Header>
+       <Modal.Body>
+       <div className='d-flex mt-4 bg-warning-subtle p-3'>
+<input className='form-control' type='text' placeholder='Google Search...' value={userQuery} onChange={(e)=>{setUserQuery(e.target.value)}}/>
+<button className='btn btn-outline-info m-2' onClick={serachUserQuery}><FaSearch/></button>
+    </div>
+       </Modal.Body>
+       <Modal.Footer>
+        <span><i className='fa fa-link'></i> {''} {openGoogle}</span>
+        <p className='bg text-bg-success fw-bolder p-2'>Open GOOGLE</p>
+       </Modal.Footer>
+     </Modal>
     </>
   );
 };

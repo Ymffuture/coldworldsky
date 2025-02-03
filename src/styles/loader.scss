@@ -9,7 +9,7 @@
     min-height: 100%;
     background: transparent;
     border-radius: 50px;
-    zoom: 50%;
+    zoom: 40%;
 img{
     width: 50px;
     position: relative;
@@ -37,7 +37,7 @@ img{
         height: 100%;
         stroke-width: 10;
         fill: none;
-        stroke: #928802cc;
+        stroke: #504b01;
         stroke-linecap: round;
         stroke-dasharray: 280;
         stroke-dashoffset: 580;
@@ -59,15 +59,15 @@ img{
     0%{
         stroke-dashoffset: 600;
         animation-delay: 1s;
-        stroke: #006909b0;
+        stroke: #006909be;
     }
     50%{
         stroke-dashoffset: 0;
-        stroke: #0044ffb2;
+        stroke: #0044ffc0;
     }
     50.1%{
-        stroke-dashoffset: 980;
-        stroke: #fc8a8ac9;
+        stroke-dashoffset: 999;
+        stroke: #000000c9;
     }
 }
 @keyframes rotate {

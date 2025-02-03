@@ -1,6 +1,9 @@
 import React from "react";
 import Loader from "./Loader";
-import Accordion from "react-bootstrap/Accordion";
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+import Tab from 'react-bootstrap/Tab';
 
 const Team = (props) => {
   return (
@@ -15,34 +18,15 @@ const Team = (props) => {
         </div>
 
         {/* Accordion Section */}
-        <div className="mb- mb-5">
-          <Accordion defaultActiveKey="0" flush>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>
-                <strong>Mission</strong>
-              </Accordion.Header>
-              <Accordion.Body className="text-bg-info rounded shadow-sm z-3">
-                Our mission is to empower individuals with cutting-edge coding skills, enabling them to transform their futures. Through mentorship, accessible resources, and innovative learning approaches, we aim to foster a world where technology creates equal opportunities for all.
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>
-                <strong>2026 Goal</strong>
-              </Accordion.Header>
-              <Accordion.Body className="bg-light p-4 mt-2 rounded shadow-sm">
-                By 2026, our goal is to have trained over <span className="fw-bold text-success">10,000 students</span> worldwide, equipping them with job-ready coding expertise. We plan to establish <span className="fw-bold text-primary">5 global hubs</span> for coding mentorship, offering affordable courses and career guidance to underserved communities.
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </div>
+     
 
         {/* Team Section */}
-        {/* <div id="row" className="row g-2 mb-5 mt-5">
+        <div id="row" className="row g-2 mb-5 mt-5">
           {props.data ? (
             props.data.map((d, i) => (
               <div
                 key={`${d.name}-${i}`}
-                className="col-lg-4 col-md-6"
+                className="col-lg-10 col-md-6"
               >
                 <div className="team-card border rounded-3 shadow-sm p-3">
                   <div className="thumbnail">
@@ -65,7 +49,29 @@ const Team = (props) => {
           ) : (
             <Loader />
           )}
-        </div> */}
+        </div>
+
+        <Tab.Container id="list-group-tabs-example" defaultActiveKey="#Mission" className='container'>
+      <Row>
+        <Col sm={12}>
+          <ListGroup>
+            <ListGroup.Item action href="#Mission">
+              <strong>Mission</strong>
+            </ListGroup.Item>
+            <ListGroup.Item action href="#2026-Goal">
+              <strong>2026 Goal</strong>
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col sm={12}>
+          <Tab.Content>
+            <Tab.Pane eventKey="#Mission">Our mission is to empower individuals with cutting-edge coding skills, enabling them to transform their futures. Through mentorship, accessible resources, and innovative learning approaches, we aim to foster a world where technology creates equal opportunities for all.</Tab.Pane>
+            <Tab.Pane eventKey="#2026-Goal">By 2026, our goal is to have trained over <span className="fw-bold text-success">10,000 students</span> worldwide, equipping them with job-ready coding expertise. We plan to establish <span className="fw-bold text-primary">5 global hubs</span> for coding mentorship, offering affordable courses and career guidance to underserved communities.
+            </Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
       </div>
     </div>
   );

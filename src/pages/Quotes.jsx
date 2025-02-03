@@ -131,7 +131,7 @@ const timer = new Date().getSeconds();
      
      
     </div>
-    {!timer>50 ? <div className="content">
+    {timer>50 ? <div className="content">
 
       
 {moreData.map((type, index) => (

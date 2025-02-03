@@ -1,9 +1,8 @@
 import Image from "./image";
 import React, { useEffect, useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
 import Loader from "./Loader";
 import Subjects from "../pages/Subjects";
-import { FaChalkboardTeacher, FaMoneyBillWave, FaExclamationTriangle, FaUniversity, FaBook } from "react-icons/fa";
+import { FaExclamationTriangle, FaUniversity} from "react-icons/fa";
 
 const Tutor = (props) => {
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -54,7 +53,7 @@ const Tutor = (props) => {
             <FaUniversity className="me-2" />
             We assist with bursaries and university applications for current learners. 
             <br />
-            **FREE** assistance for up to **TWO school applications**.
+            <b>FREE </b>assistance for up to <b>TWO school applications</b>.
           </p>
           <div className="portfolio-items">
             <h3 className="text-primary mb-4">

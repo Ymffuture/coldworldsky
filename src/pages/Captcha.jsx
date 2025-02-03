@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import './capt.css';
 import toast from "react-hot-toast";
-import { FaLaptopCode, FaBookReader, FaChalkboardTeacher, FaGlobe, FaResolving, FaRedo } from "react-icons/fa";
+import {FaRedo } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 const Captcha = () => {

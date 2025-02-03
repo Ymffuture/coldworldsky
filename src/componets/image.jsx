@@ -2,36 +2,23 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
-import React, {useState} from "react";
 
-
-const ImageDisplay = ({ title, largeImage, smallImage,num,id }) => {
-
-const [index, setIndex] = useState(0);
-
-  const handleSelect = (selectedIndex) => {
-    setIndex(selectedIndex);
-  };
-
-
+function ShapeExample() {
   return (
-    <Container activeIndex={index} onSelect={handleSelect}>
-      <Row >
+    <Container>
+      <Row>
         <Col xs={6} md={4}>
-<div className="hover-bg-oo">
-          <Image src={largeImage} title={title}  rounded />
-      <div className="hover-text-oo">
-          
-        <h4> {id} - {title}</h4>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.
-          
-        </p>
-              </div>
-</div>
+          <Image width="100%" src="../img/about-bg.jpg" rounded />
+        </Col>
+        <Col xs={6} md={8}>
+          <Image width="100%"  src="../img/about-03.jpg" roundedCircle />
+        </Col>
+        <Col xs={6} md={4}>
+          <Image width="100%"  src="../img/intro.jpg" thumbnail />
         </Col>
       </Row>
     </Container>
   );
 }
 
-export  default ImageDisplay;
+export default ShapeExample;

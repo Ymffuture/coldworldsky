@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import React, { useState} from "react";
+// import {Link} from 'react-router-dom';
 import { useSpring, animated } from "@react-spring/web";
 import Loader from "./Loader";
 import Modal from "react-bootstrap/Modal";
@@ -25,14 +25,14 @@ const mydata = ['1','2','3']
             <div className="row ">
               <div className="col-md-8 col-md-offset-2 intro-text ">
                 <h1 >
-                  {props.data ? props.data.title : <p id='p'>
+                  {props.data ? props.data.title : <span id='p'>
       SkyfordCCI
-     </p>}
+     </span>}
                   <sup className="reg-icon">&reg;</sup>
                 </h1>
                 <p >{props.data ? props.data.paragraph : <Loader/>}</p>
                 <animated.a style={fadeIn} 
-                  to="#features"
+                  href="#features"
                   className="btn btn-custom btn-lg page-scroll"
                   onClick={handleShow}
                 >

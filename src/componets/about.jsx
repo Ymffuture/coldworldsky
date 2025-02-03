@@ -40,7 +40,7 @@ observer.observe(myRef.current)
               <p>{props.data ? props.data.paragraph : 'loading...'}</p>
 
              
-              <h3 ref={myRef}>Why Choose Us? </h3>
+              <h3 ref={myRef}>☰ Why Choose Us? </h3>
                 <animated.div 
               style={fadeIn}
               className="list-style" >

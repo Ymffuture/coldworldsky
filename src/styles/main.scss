@@ -346,6 +346,29 @@ input[type='range']::-webkit-slider-thumb{
     background: red;
     color: whitesmoke;
 }
+#ribbon-1{
+    width: 100px;
+    font-size: 12px;
+    padding: 1px;
+    position: absolute;
+    left: -35px;
+    top: -12px;
+    text-align: center;
+    border-radius: 25px;
+    transform: rotate(-20deg);
+    background: rgb(0, 0, 0);
+    color: whitesmoke;
+    animation: shake 10s linear infinite;
+}
+
+@keyframes shake {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
 
 .TutorImg{
     width: 70%;
@@ -358,3 +381,106 @@ input[type='range']::-webkit-slider-thumb{
         font-size: 30px;
     }
 }
+.formreg{
+    position:relative;
+    
+}
+.reg-load{
+    color:red;
+    background:transparent;
+    position: absolute;
+    top:10%;
+    right:22%;
+    width:60%;
+    height: 100vh;
+    z-index: 99999;
+
+}
+.subject-page {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .subject-page h1 {
+    font-weight: 700;
+  }
+  
+  .overview, .topics {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .topic {
+    padding: 15px;
+    transition: background 0.3s;
+  }
+  
+  .topic:hover {
+    background: #e9e9e9;
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
+  .courses-home {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .course-link {
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .course-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .course-icon {
+    color: #007bff;
+  }
+
+  
+  .services-page {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.service-list .service-item {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-list .service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.icon-container {
+  flex-shrink: 0;
+}
+
+.service-icon {
+  color: #007bff;
+}
+
+.hero-section {
+    background: url('../img/about-bg.jpg') no-repeat center center/cover;
+    height: 80vh;
+    position: relative;
+    color: #000;
+  }
+  
+  .values-list {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    font-size: 1.1rem;
+    
+  }
+  .lead, .display-3{
+    color: #000;
+  }
+  .display-3{
+    font-weight: 700;
+
+  }

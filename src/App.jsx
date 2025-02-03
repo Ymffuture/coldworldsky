@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect , useState} from "react";
+import { BrowserRouter as Router, Routes, Route,Navigate, Link  } from "react-router-dom";
+import ProtectedRoute from "./componets/ProtectedRoute";
 import './index.css';
 import "./App.css";
 import { Toaster, toast } from "react-hot-toast";
-import { FaInfoCircle} from "react-icons/fa";
+// import { FaInfoCircle} from "react-icons/fa";
 import Subjects from "./pages/Subjects";
 import LifeSciences from "./pages/LifeSciences";
 import Mathematics from "./pages/Mathematics";
@@ -25,18 +26,26 @@ import UxUi from "./pages/courses/UxUi";
 import WebDev from "./pages/courses/WebDev";
 // import Contact from "./componets/contact";
 import FindTutor from './pages/FindTutor';
-import Login from "./pages/loginform/Login";
-import Logout from "./pages/loginform/Logout";
 import User from './pages/loginform/UserPage';
-
-
+import Chatbot from "./componets/ChatBot";
+import SignIn from './componets/SignIn'
+import SignUp from './componets/SignUp';
+import RecoverPassword from './componets/RecoverPassword'
+import TicTacToe from "./pages/games/tictactoe/TicTacToe";
 function App() {
    
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if the user is authenticated (e.g., using localStorage or a token)
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // true if token exists
+  }, []);
     
   useEffect(()=>{
     const App_KEY_UNI02 = crypto.randomUUID()
     const setClock = new Date().getSeconds()
-    const APPKEY = setClock <30 ? "App_KEY_UNI03": App_KEY_UNI02
+    const APPKEY = setClock <30 ? "App_KEY_UNI04": App_KEY_UNI02
     const APP_KEY = APPKEY ;
     console.log(APP_KEY)
     if(localStorage.getItem(APP_KEY)){
@@ -73,28 +82,26 @@ function App() {
       };
     return (
         <Router>
+
+
             <div className="mobile-message d-flex g-2 position-absolute m-4">
-           
             {/* <FaInfoCircle className="cl-MB"/> */}
             {/* <p>Only for Desktop view </p> */}
-                
                  </div>
                  <div className="error">
                  <ErrorPage/>
                  </div>
             <div className="container-fluid error-con">
+           
             <TimeoutPopup/>
             <Navigation/>
-            
             <Routes>
-  <Route path="/" element={<LandingPage />} /> 
-  <Route path="/about" element={<About />} />
-  <Route path="/quotes" element={<Quotes />} />
-  <Route path="/services" element={<Services />} />
-
-
-  <Route path="/tutoring" element={<Tutoring />} >
-  <Route path="/tutoring/subjects" element={<Subjects />}>
+            <Route path="/" element={<LandingPage /> } /> 
+  <Route path="/about" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><About /></ProtectedRoute>} />
+  <Route path="/quotes" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Quotes /> </ProtectedRoute>} />
+  <Route path="/services" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Services />  </ProtectedRoute>} />
+  <Route path="/tutoring" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><Tutoring /></ProtectedRoute> } >
+  <Route path="/tutoring/subjects" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /> </ProtectedRoute>}>
   <Route path="/tutoring/subjects/Life-sciences" element={<LifeSciences />} >
   <Route path="/tutoring/subjects/Life-sciences/find-a-tutor" element={ <FindTutor/>} />
   </Route>
@@ -108,23 +115,24 @@ function App() {
   
   </Route>
   </Route>
-  <Route path="/find-a-tutor" element={<FindTutor/>} />
+  <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor/></ProtectedRoute>} />
   <Route path="/courses" element={<Courses />}>
-    <Route path="web-dev" element={<WebDev />} />
-    <Route path="data-science" element={<DataScience />} />
-    <Route path="ui-ux" element={<UxUi />} />
+    <Route path="/courses/web-dev" element={<WebDev />} />
+    <Route path="/courses/data-science" element={<DataScience />} />
+    <Route path="/courses/ui-ux" element={<UxUi />} />
   </Route>
-  <Route path="/calendar" element={<Calendar />} />
+  <Route path="/calendar" element={<Calendar /> } />
   <Route path="/user-home-page" element={<User/>} >
-  <Route path="/user-home-page/sign-in" element={<Login/>} />
-  <Route path="/user-home-page/sign-up" element={<Logout/>} />
+  <Route path="/user-home-page/sign-in" element={<SignIn setIsAuthenticated={setIsAuthenticated}/>} />
+  <Route path="/user-home-page/sign-up" element={<SignUp/>} />
+  <Route path="/user-home-page/recover-password-getcode-page" element={<RecoverPassword/>} />
   </Route>
+  <Route path='/games-tic-toc-toe-play' element={<TicTacToe/>}/>
   
-  
-</Routes>
+            </Routes>
                 <Toaster/>
             </div>
-            
+            <Chatbot/>
            <Footer/>
         </Router>
     );

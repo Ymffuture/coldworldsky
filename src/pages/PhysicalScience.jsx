@@ -1,69 +1,56 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import err from '../assets/404.png'
-import preloadpage from "../assets/preloader.gif";
+import React from "react";
+import { Container } from "react-bootstrap";
 
-
-const Movies = () => {
-  const [movieData, setMovieData] = useState(null);
-  const [error, setError] = useState(null);
-  const movieTitle = 'Incep'; // Change this to any movie title you want to search for
-
-  useEffect(() => {
-    const fetchMovieData = async () => {
-      const options = {
-        method: 'GET',
-        url: `https://moviedatabase8.p.rapidapi.com/Search/${movieTitle}`,
-        headers: {
-          'x-rapidapi-key': 'c86cea8bf3msh9e31c9a867bd02cp1fb593jsn7c8b37c42184',
-          'x-rapidapi-host': 'moviedatabase8.p.rapidapi.com'
-        }
-      };
-
-      try {
-        const response = await axios.request(options);
-        setMovieData(response.data);
-      } catch (error) {
-        setError(error);
-        console.error(error);
-      }
-    };
-
-    fetchMovieData();
-  }, [movieTitle]);
-
-  if (error) return <div className='load-dm'> <div class="transition-animation-html preload"></div>
-  <div class="transition-animationhtml preload">
-    <p class='g-3 center justify-content-center text-center'>
-    Connection error: Connect to internet</p>
-      <p class='g-3 center fw-bolder justify-content-center text-center
-      size
-      '>
-      </p>
-  </div>
-  </div>;
-  if (!movieData) return  <div className='load-dm'> <div class="transition-animation-html preload"></div>
-  <div class="transition-animationhtml preload">
-    <p class='g-3 center justify-content-center text-center'>
-     No movies found</p>
-      <p class='g-3 center fw-bolder justify-content-center text-center
-      size
-      '>
-      </p>
-  </div>
-  </div>;
-
+const PhysicalScience = () => {
   return (
-    <div>
-      <h1>Movie Search Results</h1>
-      {movieData.results && movieData.results.map(movie => (
-        <div key={movie.id}>
-          <h2>{movie.title}</h2>
-          <p>{movie.overview}</p>
+    <Container className="py-5 subject-page physical-science">
+      <h1 className="text-center mb-4 text-primary">Physical Sciences</h1>
+      <section className="overview mb-5">
+        <h2>Overview</h2>
+        <p>
+          Physical Sciences cover the study of physics, chemistry, and earth sciences. Learn about the fundamental laws of nature, chemical reactions, and cosmic phenomena through interactive content and hands-on experiments.
+        </p>
+        <a
+          href="https://www.khanacademy.org/science/physics"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+        >
+          Explore Khan Academy Physics
+        </a>
+      </section>
+      <section className="topics">
+        <div className="topic mb-4">
+          <h3>Chemistry</h3>
+          <p>
+            Understand the composition of matter, chemical bonds, and reaction dynamics with engaging tutorials.
+          </p>
+          <a
+            href="https://www.chemcollective.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline-primary"
+          >
+            Visit ChemCollective
+          </a>
         </div>
-      ))}
-    </div>
+        <div className="topic mb-4">
+          <h3>Physics & Astronomy</h3>
+          <p>
+            Discover the wonders of the universe, from fundamental physics concepts to the exploration of distant galaxies.
+          </p>
+          <a
+            href="https://www.nasa.gov/audience/forstudents/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline-primary"
+          >
+            Visit NASA Education
+          </a>
+        </div>
+      </section>
+    </Container>
   );
 };
 
-export default Movies;
+export default PhysicalScience;

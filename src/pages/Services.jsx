@@ -1,63 +1,64 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { FaLaptopCode, FaBookReader, FaChalkboardTeacher, FaGlobe } from "react-icons/fa";
-import Service from '../componets/services'
-const Services = (props) => {
-  return (
-<>
-<Service {...props}/>
-<Container className="py-5">
-     
-      <Row>
-        <Col md={6} lg={4} className="mb-4">
-          <Card className="shadow h-100">
-            <Card.Body className="text-center">
-              <FaLaptopCode size={50} className="text-info mb-3" />
-              <Card.Title>Coding Classes</Card.Title>
-              <Card.Text>
-                Comprehensive coding courses designed to teach programming languages and web development.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} lg={4} className="mb-4">
-          <Card className="shadow h-100">
-            <Card.Body className="text-center">
-              <FaBookReader size={50} className="text-success mb-3" />
-              <Card.Title>Academic Tutoring</Card.Title>
-              <Card.Text>
-                Personalized tutoring sessions to help students excel in mathematics, science, and languages.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} lg={4} className="mb-4">
-          <Card className="shadow h-100">
-            <Card.Body className="text-center">
-              <FaChalkboardTeacher size={50} className="text-warning mb-3" />
-              <Card.Title>Workshops</Card.Title>
-              <Card.Text>
-                Interactive workshops on leadership, entrepreneurship, and personal development.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={6} lg={4} className="mb-4">
-          <Card className="shadow h-100">
-            <Card.Body className="text-center">
-              <FaGlobe size={50} className="text-primary mb-3" />
-              <Card.Title>Online Resources</Card.Title>
-              <Card.Text>
-                Access to a wide range of online materials, tutorials, and e-learning tools for self-paced learning.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-</>
 
-   
+
+const Services = () => {
+  return (
+    <div className="services-page">
+      <Container className="py-5">
+        <h1 className="text-center mb-4 text-primary">Our Services</h1>
+        <p className="text-center lead mb-5">
+          At SkyfordCCI, we offer a range of services to empower both learners and educators. Our approach blends innovative technology with expert guidance.
+        </p>
+        <Row className="service-list">
+          <Col md={6} className="service-item d-flex align-items-center mb-4">
+            <div className="icon-container me-3">
+              <FaLaptopCode size={60} className="service-icon" />
+            </div>
+            <div className="service-content">
+              <h3>Coding Classes</h3>
+              <p>
+                Comprehensive courses designed to build modern programming skills for the digital age.
+              </p>
+            </div>
+          </Col>
+          <Col md={6} className="service-item d-flex align-items-center mb-4">
+            <div className="icon-container me-3">
+              <FaBookReader size={60} className="service-icon" />
+            </div>
+            <div className="service-content">
+              <h3>Academic Tutoring</h3>
+              <p>
+                Personalized tutoring sessions that help students excel in subjects ranging from math to science.
+              </p>
+            </div>
+          </Col>
+          <Col md={6} className="service-item d-flex align-items-center mb-4">
+            <div className="icon-container me-3">
+              <FaChalkboardTeacher size={60} className="service-icon" />
+            </div>
+            <div className="service-content">
+              <h3>Workshops & Seminars</h3>
+              <p>
+                Interactive sessions focused on skill development, leadership, and innovation.
+              </p>
+            </div>
+          </Col>
+          <Col md={6} className="service-item d-flex align-items-center mb-4">
+            <div className="icon-container me-3">
+              <FaGlobe size={60} className="service-icon" />
+            </div>
+            <div className="service-content">
+              <h3>Online Resources</h3>
+              <p>
+                A vast collection of digital resources, tutorials, and e-learning tools available anytime.
+              </p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

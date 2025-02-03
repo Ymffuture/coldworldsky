@@ -1,6 +1,6 @@
 import React from "react";
 import {Link ,Outlet} from 'react-router-dom';
-import { FaArrowRight, FaBacterium, FaBrain, FaCalculator, FaDoorOpen, FaPercentage, FaStar} from 'react-icons/fa';
+import { FaArrowRight, FaBacterium, FaBrain, FaCalculator, FaDoorOpen, FaStar} from 'react-icons/fa';
 
 const Subjects = () => {
     const previousWork = [
@@ -23,7 +23,9 @@ const Subjects = () => {
                     </div>
                 ))}
             </div>
-            <p className="text-bg-warning rounded mt-4">Note that the tutor will retire 2026 so that will cost for each class for 1hr.</p>
+            <p className="text-bg-warning rounded mt-4 p-4 position-relative">Note that the tutor will retire <em>2026</em> so that will cost for each class for 1hr.
+            <span id='ribbon-1'>Valid till Nov.</span>
+            </p>
             <ul className="fa fa-angle-double-down">
             <li className="fa-arrow-circle-right">Mathematics</li>
             <li className="bg-gray alert fa-arrow-circle-right">Sciences</li>

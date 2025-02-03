@@ -1,71 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loader from '../componets/Loader';
-
-
+import React from "react";
+import { Container } from "react-bootstrap";
 
 const Mathematics = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const options = {
-        method: 'GET',
-        url: 'https://spotify23.p.rapidapi.com/search/',
-        params: {
-          type: 'multi',
-          offset: '0',
-          limit: '10',
-          numberOfTopResults: '5'
-        },
-        headers: {
-          'x-rapidapi-key': 'c86cea8bf3msh9e31c9a867bd02cp1fb593jsn7c8b37c42184',
-          'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-        }
-      };
-
-      try {
-        const response = await axios.request(options);
-        setData(response.data);
-      } catch (error) {
-        setError(error);
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (error) return <div className='load-dm'>
-    <div class="transition-animation-html preload"></div>
-  <div class="transition-animationhtml preload">
-    <p class='g-3 center justify-content-center text-center'>
-     Connection error: Connect to internet</p>
-      <p class='g-3 center fw-bolder justify-content-center text-center
-      size
-      '>
-      </p>
-  </div>
-  </div>;;
-  if (!data) return <div className='load-dm'>
-     
-     <Loader/>
-  <div class="transition-animationhtml preload">
-    <p class='g-3 center justify-content-center text-center'>
-     Loading... Please wait it might take a while.</p>
-      <p class='g-3 center fw-bolder justify-content-center text-center
-      size
-      '>
-      </p>
-  </div>
-  </div>;;
-
   return (
-    <div>
-      {/* Render your data here */}
-      {JSON.stringify(data)}
-    </div>
+    <Container className="py-5 subject-page mathematics">
+      <h1 className="text-center mb-4 text-primary">Mathematics</h1>
+      <section className="overview mb-5">
+        <h2>Overview</h2>
+        <p>
+          Mathematics is the cornerstone of science and technology. It develops logical thinking, problem-solving, and analytical skills. Our curriculum covers a wide range of topics from basic arithmetic and algebra to advanced calculus and statistics.
+        </p>
+        <a
+          href="https://www.khanacademy.org/math"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+        >
+          Explore Khan Academy Math
+        </a>
+      </section>
+      <section className="topics">
+        <div className="topic mb-4">
+          <h3>Algebra & Calculus</h3>
+          <p>
+            Dive into the fundamentals of algebra and calculus with interactive lessons and practical problems.
+          </p>
+          <a
+            href="https://www.wolframalpha.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline-primary"
+          >
+            Visit WolframAlpha
+          </a>
+        </div>
+        <div className="topic mb-4">
+          <h3>Statistics & Probability</h3>
+          <p>
+            Understand key concepts in statistics and probability essential for data analysis and scientific research.
+          </p>
+          <a
+            href="https://www.statisticshowto.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-outline-primary"
+          >
+            Learn More
+          </a>
+        </div>
+      </section>
+    </Container>
   );
 };
 
