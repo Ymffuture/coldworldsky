@@ -46,7 +46,7 @@ function Register() {
       <h3 className=' text-bg-info p-2 rounded-1'>Create an acount to get more features.</h3>
 
       <h6 className=' text-bg-danger p-3 rounded-1'>
-      <FaSignal/>'Check your connection</h6>
+      <FaSignal/>Server not working at this moment. </h6>
 
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: ".8rem" }}>
