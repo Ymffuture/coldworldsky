@@ -96,12 +96,12 @@ function App() {
             <Navigation/>
             <Routes>
             <Route path="/" element={<LandingPage /> } /> 
-  <Route path="/about" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><About /></ProtectedRoute>} />
-  <Route path="/contact" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Contact/> </ProtectedRoute>} />
+  <Route path="/about" element={ <About />} />
+  <Route path="/contact" element={<Contact/>} />
   <Route path="/quotes" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Quotes /> </ProtectedRoute>} />
-  <Route path="/services" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Services />  </ProtectedRoute>} />
-  <Route path="/tutoring" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><Tutoring /></ProtectedRoute> } >
-  <Route path="/tutoring/subjects" element={ <ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /> </ProtectedRoute>}>
+  <Route path="/services" element={<Services />} />
+  <Route path="/tutoring" element={ <Tutoring />} >
+  <Route path="/tutoring/subjects" element={ <Subjects /> }>
   <Route path="/tutoring/subjects/Life-sciences" element={<LifeSciences />} >
   <Route path="/tutoring/subjects/Life-sciences/find-a-tutor" element={ <FindTutor/>} />
   </Route>
