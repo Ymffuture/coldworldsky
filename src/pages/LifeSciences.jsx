@@ -1,10 +1,11 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-
+import { Container,Breadcrumb } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
+import { FaList, FaPlayCircle } from "react-icons/fa";
 const LifeScience = () => {
   return (
     <Container className="py-5 subject-page life-science">
-      <h1 className="text-center mb-4 text-primary">Life Sciences</h1>
+      <h1 className="text-center mb-4 text-primary ">Life Sciences</h1>
       <section className="overview mb-5">
         <h2>Overview</h2>
         <p>
@@ -48,7 +49,24 @@ const LifeScience = () => {
             National Geographic Education
           </a>
         </div>
+        <Link to='/tutoring/subjects/Life-sciences/clip-overview'
+        className="text-decoration"
+        ><FaPlayCircle/> Clip</Link> <hr/>
+
+<details>
+          <summary>
+          <FaList/> Clip list
+          </summary>
+          <em> DNA Molecules</em>
+        </details>
+        
       </section>
+      <Outlet/>
+      <Breadcrumb className="my-4">
+        <Breadcrumb.Item ><Link to="/tutoring/subjects/Mathematics">Mathematics</Link></Breadcrumb.Item>
+        <Breadcrumb.Item active >Life Sciences</Breadcrumb.Item>
+        <Breadcrumb.Item > <Link to='/tutoring/subjects/Physical-science'>Physical Science</Link></Breadcrumb.Item>
+      </Breadcrumb>
     </Container>
   );
 };

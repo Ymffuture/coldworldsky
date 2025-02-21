@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
+import LoadCycle from '../assets/css/nivo-lightbox/loading.gif'
 import { FaRedo } from "react-icons/fa";
 const RecoverPassword = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const RecoverPassword = () => {
     const handleLogin = async (e) => {
       e.preventDefault();
       setIsdisabled(true)
-      setInText(<Loader/>)
+      setInText(<img src={LoadCycle} />)
       setTimeout(()=>{
         setIsdisabled(false)
         setInText('Get the Code')
@@ -50,21 +51,22 @@ const RecoverPassword = () => {
        <div style={{maxWidth:'600px',margin:'auto',height:'120vh',padding:'1rem',textAlign:'center'}} className='signin container'>
     
     <form onSubmit={handleLogin}>
-    <img src='/img/logosk.jpg' width='30%' alt='LOGO' className=" rounded-4 opacity-50"  />
-    <h3 className=' text-bg-info p-2 rounded-1'> Recovey your password.</h3>
+    {/* <img src='/img/logosk.jpg' width='30%' alt='LOGO' className=" rounded-4 opacity-50"  /> */}
+    <h3 className=' text-bg-primary p-2 rounded-1'> Recovey your password.</h3>
       
-      <div style={{marginBottom:'.8rem'}}>
+      <div style={{marginBottom:'.8rem'}} className="form-group">
         <input
           type="email"
-          placeholder="Email"
+          placeholder=""
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={{padding:'.5rem',width:'100%'}}
           className=" form-control"
         />
+         <label for="email">Email</label>
       </div>
       
-      <button className="btn btn-success px-4 mb-3" style={{padding:'.5rem 1rem', width:'100%'}} type="submit" disabled={isdisabled}>{inText}</button>
+      <button className="btn btn-primary px-4 mb-3" style={{padding:'.5rem 1rem', width:'100%'}} type="submit" disabled={isdisabled}>{inText}</button>
     </form>
     <div className="text">
         Remember Your password? <span className=" text-info"> <Link to="/user-home-page/sign-in">Sign In</Link></span>

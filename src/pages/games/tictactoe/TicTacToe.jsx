@@ -43,6 +43,7 @@ const TicTacToe = () => {
       setLock(true);
       setWinner(win);
     }
+    
   };
 
   // Reset the game.
@@ -62,6 +63,8 @@ const TicTacToe = () => {
     }
     return null;
   };
+
+
 
   return (
     <div className="tic-tac-toe-container">

@@ -24,6 +24,7 @@ const mydata = ['1','2','3']
           <div className="container">
             <div className="row ">
               <div className="col-md-8 col-md-offset-2 intro-text ">
+                
                 <h1 >
                   {props.data ? props.data.title : <span id='p'>
       SkyfordCCI
@@ -41,13 +42,14 @@ const mydata = ['1','2','3']
                 </animated.a>{" "}
               </div>
 
-              {/* <li className="d-flex p-4">
-          <button className="btn-reg" onClick={handleShow}>
-            Register
-            <span id="ribbon">25% Off</span>
-          </button>
-        </li> */}
-
+        <div className="container table-responsive">
+        <div className="laptop">
+  <div className="content-laptop">
+    <img src="img/intro-bg.jpg"/>
+  </div>
+</div>
+        </div>
+ 
             </div>
           </div>
         </div>

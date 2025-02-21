@@ -1,69 +1,78 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { useSpring, animated } from "@react-spring/web";
-import Loader from './Loader'
+import Loader from "./Loader";
+
 const TimeoutPopup = () => {
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
   const [showPopup, setShowPopup] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(65); 
-  const [ads,setAds] = useState();
-  const [volume, setVolume] = useState(1)
-const phoneNumber = '+27634414863';
-const textMessage = 'Hello there , I want to know more about  the classes and the prices.';
-const appLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(textMessage)}`;
+  const [timeLeft, setTimeLeft] = useState(65);
+  const [ads, setAds] = useState();
+  const [volume, setVolume] = useState(1);
+
+  const phoneNumber = "+27634414863";
+  const textMessage =
+    "Hello there, I want to know more about the classes and the prices.";
+  const appLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    textMessage
+  )}`;
+  const vidRef = useRef();
+
   useEffect(() => {
-    const setTimeRandom = Math.floor(Math.random()* (180000/2 - 60000 + 1 )) + 60000;
-    // Start the timer for showing the popup
+    const setTimeRandom = Math.floor(
+      Math.random() * (180000 / 2 - 60000 + 1) + 60000
+    );
     const popupTimeout = setTimeout(() => {
       setShowPopup(true);
-    }, setTimeRandom); // Show popup after 5 seconds (adjust as needed)
+    }, setTimeRandom);
 
-    return () => clearTimeout(popupTimeout); // Cleanup on component unmount
+    return () => clearTimeout(popupTimeout);
   }, []);
 
   useEffect(() => {
     if (showPopup && timeLeft > 0) {
-      // Countdown timer for "Leave" action
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
 
-      return () => clearInterval(timer); 
+      return () => clearInterval(timer);
     } else if (timeLeft === 0) {
-      // Automatically refresh the page if the timer runs out
-      // window.location.reload();
       setShowPopup(false);
-      toast('Flexable online classes now available.',{
-        position:'top-right',
-        duration:20000,
-       
-      })
+      toast.success("Hey great news Flexible online classes now available. Contact us for more info", {
+        position: "top-right",
+        duration: 20000,
+        icon:'👋',
+        style:{
+          background:'#61D345',
+          color:'whitesmoke'
+        }
+      });
     }
   }, [showPopup, timeLeft]);
 
   const handleStay = () => {
-    setShowPopup(false); // Close popup if the user chooses to stay
-    setTimeLeft(20); // Reset the timer (optional)
+    setShowPopup(false);
+    setTimeLeft(20);
   };
 
   const handleLeave = () => {
-    window.location.href = 'https://google.com'; 
+    window.location.href = "https://google.com";
   };
-  const vidRef=useRef()
-  const controlVideo = ()=>{
-   if(vidRef.current.play()){
-    vidRef.current.pause()
-    setAds('Pause')
-   }
 
-  }
-const handleVolumeChange = (event)=>{
-  const newVolume = event.target.value
-  setVolume(newVolume);
-  if(vidRef.current){
-    vidRef.current.volume = newVolume
-  }
-}
+  const controlVideo = () => {
+    if (vidRef.current?.play()) {
+      vidRef.current.pause();
+      setAds("Paused");
+    }
+  };
+
+  const handleVolumeChange = (event) => {
+    const newVolume = event.target.value;
+    setVolume(newVolume);
+    if (vidRef.current) {
+      vidRef.current.volume = newVolume;
+    }
+  };
 
   return (
     <animated.div style={fadeIn}  className="container">
@@ -97,7 +106,7 @@ const handleVolumeChange = (event)=>{
           title={appLink}
           target="_blank" rel="noopener noreferrer"><i className='fa fa-whatsapp p-3 flex-lg-wrap alert-dismissable glyphicon-text-size'></i></a></p>
           {timeLeft<49 ? <div>
- 0
+            <span>Volume: {volume}</span>
           <input 
           className='range '
             min='0'
@@ -107,8 +116,7 @@ const handleVolumeChange = (event)=>{
             value={volume}
             onChange={handleVolumeChange}
             type="range"/>
-10
-          </div>:<><Loader/> Loading volume </>}
+          </div>:<><Loader/>  </>}
          
          
         </div>
@@ -153,7 +161,6 @@ const popupStyles = {
 
 const buttonStyles = {
   margin: "10px",
-  fontSize: "16px",
   cursor: "pointer",
   textTransform: "uppercase",
   color: "#fff",
@@ -177,7 +184,6 @@ const buttonStylesNT = {
   background:"transparent",
   padding:" 12px 25px",
   letterSpacing: "2px",
-  fontSize: "15px",
   fontWeight: 800,
   borderRadius: "14px",
   transition: "all 0.5s linear",

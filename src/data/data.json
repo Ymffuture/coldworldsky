@@ -66,6 +66,7 @@
       "text": "\"Joining SKYFORDCCI was the best decision of my life. The instructors are fantastic, and the hands-on projects prepared me for a career in tech!\"",
       "name": "React js"
     },
+
     {
       "img": "img/portfolio/python.png",
       "text": "\"Grencodien's bootcamps gave me the confidence to switch careers. Now, I’m a full-stack developer working on exciting projects.\"",
@@ -89,17 +90,7 @@
       "job": "Founder & CEO"
     }
   ],
-  "Contact": {
-    "address": "2354 Drieziek 4, Orange Farm, Johannesburg South, 1841",
-    "phone": "+27 63 441 4863",
-    "email": "info@skyfordCCI.com",
-    "facebook": "https://facebook.com/skyfordCCI",
-    "twitter": "https://twitter.com/skyfordCCI",
-    "youtube": "https://youtube.com/skyfordCCI",
-    "Whatsapp": "https://facebook.com/skyfordCCI",
-    "Github": "https://twitter.com/skyfordCCI",
-    "linkedin": "https://youtube.com/skyfordCCI"
-  },
+
   "Features": [
     {
       "icon": "fa fa-graduation-cap",

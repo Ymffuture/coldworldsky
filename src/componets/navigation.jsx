@@ -7,10 +7,8 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
 import Modal from "react-bootstrap/Modal";
-
 import {
   FaSearch,
-  FaToolbox,
   FaCalendarCheck,
   FaBookOpen,
   FaFacebook,
@@ -22,16 +20,23 @@ import {
   FaDatabase,
   FaPaintBrush,
   FaAddressBook,
-  FaInstagram,
   FaGithub,
   FaLink,
-  FaRegAddressBook,
+
   FaSignInAlt,
   FaBookReader,
   FaTimes,
   FaSignOutAlt,
-} from "react-icons/fa";
+  FaWhatsapp,
+  FaCog,
+  FaRegAddressCard,
 
+  FaShareAlt,
+  FaShare,
+  FaRegCopy,
+  FaLocationArrow,
+} from "react-icons/fa";
+import imgLoad from '../assets/css/nivo-lightbox/loading.gif'
 const Navigation = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,42 +49,45 @@ const Navigation = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showIcon, setShowIcon] = useState("");
   const [show, setShow] = useState(false);
-  const [userQuery , setUserQuery] = useState()
-const [openGoogle ,setOpenGoogle] = useState('')
+  const [userQuery, setUserQuery] = useState()
+  const [openGoogle, setOpenGoogle] = useState('')
   const sidemenuRef = useRef();
 
-  const serachUserQuery =()=>{
-      window.open(`https://google.com/search?q=${userQuery}`)
+  const serachUserQuery = () => {
+    window.open(`https://google.com/search?q=${userQuery}`)
 
-      setOpenGoogle(`https://google.com/search?q=${userQuery}`)
+    setOpenGoogle(`https://google.com/search?q=${userQuery}`)
   }
 
   // have to fix this 
- const Siginpage =()=>{
-      window.open(`https://skyfordcci.vercel.app/user-home-page/sign-in`)
+  const Siginpage = () => {
+    window.open(`https://skyfordcci.vercel.app/user-home-page/sign-in`)
 
   }
+
+  const toastId = crypto.randomUUID().slice(0, 24);
+
 
   // scroll down effect
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
       const isScrollingDown = currentScrollPos > prevScrollPos;
-  
+
       setIsSidebarVisible(!isScrollingDown);
       setPrevScrollPos(currentScrollPos);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPos]);
-  
+
   // end here
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -87,58 +95,88 @@ const [openGoogle ,setOpenGoogle] = useState('')
   }, []);
 
 
+  const copyText = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        toast.custom(<div className="text-bg-success p-3 rounded"> <FaRegCopy /> LINK: <Link className=' text-light'>{window.location.href}</Link></div>, {
+          duration: 5000,
+          position: 'center',
+          style: {
+            background: '#1E2227',
+            color: 'white',
+          }
+        });
+
+      })
+      .catch((err) => {
+        toast.error("Fail to copy a text.", {
+          duration: 5000,
+          position: 'center',
+          style: {
+            background: '#1E2227',
+            color: 'red'
+          }
+        });
+
+      });
+  };
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
-    { path: "/about", label: "About", icon: <FaInfoCircle /> },
-    { path: "/services", label: "Services", icon: <FaCogs /> },
-    { path: "/tutoring", label: "Tutoring", icon: <FaChalkboardTeacher /> },
+    { path: "/about/", label: "About", icon: <FaInfoCircle /> },
+    { path: "/services/", label: "Services", icon: <FaCogs /> },
+    { path: "/tutoring/", label: "Tutoring", icon: <FaChalkboardTeacher />, applytobeatutor: <Badge><Link to='/tutoring/ApplicationForm-for-a-tutor/'></Link></Badge> },
     {
-      path: "/courses",
+      path: "/courses/",
       label: `Courses`,
       icon: <FaBookReader />,
       submenu: [
         {
-          path: "/courses/web-dev",
+          path: "/courses/web-dev/",
           label: "Web Development",
           icon: <FaLaptopCode />,
         },
         {
-          path: "/courses/data-science",
+          path: "/courses/data-science/",
           label: "Data Science",
           icon: <FaDatabase />,
         },
         {
-          path: "/courses/ui-ux",
+          path: "/courses/ui-ux/",
           label: "UI/UX Design",
           icon: <FaPaintBrush />,
         },
-        
+
       ],
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
-    { path: "/", label: isAuthenticated? 'SignOut':'SignIn', icon: isAuthenticated? <FaSignOutAlt className="text text-danger"  onClick={() => {
-      localStorage.removeItem("token"); // Clear token
-      setIsAuthenticated(false);
-    }} />:<FaSignInAlt className=" text-success" onClick={Siginpage}/> },
+    {
+      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text text-danger" onClick={() => {
+        localStorage.removeItem("token"); // Clear token
+        setIsAuthenticated(false);
+      }} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
+    },
   ];
 
   const buttonLinks = [
     {
-      path: "/calendar",
+      path: "/calendar/",
       label: "Calendar",
       icon: <FaCalendarCheck className="icon-bottom" />,
     },
     {
-      path: "#",
-      label: "ToolBox",
-      icon: <FaToolbox className="icon-bottom" />,
+      path: "/location/",
+      label: "Loction",
+      icon: <FaLocationArrow className="icon-bottom" />,
     },
     {
-      path: "#",
-      label: "Register",
-      icon: <FaRegAddressBook className="icon-bottom" onClick={handleShow}/>,
+      path: "/tutoring/ApplicationForm-for-a-tutor/",
+      label: "Apply to be a Tutor",
+      icon: <FaRegAddressCard className="icon-bottom" />,
     },
     {
       path: "#",
@@ -185,7 +223,7 @@ const [openGoogle ,setOpenGoogle] = useState('')
     },
   ];
 
-  const closeSearch = ()=>{
+  const closeSearch = () => {
     setSearchResults([])
     searchResults('')
     searchQuery('')
@@ -203,8 +241,10 @@ const [openGoogle ,setOpenGoogle] = useState('')
           toast.success("You are back Online!", {
             position: "bottom-left",
             duration: 8000,
+            icon: null,
+            toastId: toastId,
             style: {
-              background: "#333",
+              background: "#1E2227",
               borderRadius: "8px",
               color: "whitesmoke",
             },
@@ -212,13 +252,22 @@ const [openGoogle ,setOpenGoogle] = useState('')
         }, 5000);
       } else {
         setIsOnline(false);
-        toast.error("Connection error");
+        toast.custom(<div className=" text-bg-secondary p-3 rounded">No Connection Try <b onClick={()=>window.location.reload}>REFRESH</b></div>, {
+          position: "top-center",
+          duration: 3000,
+          icon: null,
+          toastId: toastId,
+          style: {
+            background: '#1E2227',
+            color: 'whitesmoke'
+          }
+        });
 
         setTimeout(() => {
-          toast.loading("Reconnecting attempt::1", {
+          toast.custom(<div ><img width='25%' src={imgLoad} alt='Loading...' /></div>, {
             duration: 2000,
             style: {
-              background: "#f6f6f675",
+              background: "white",
               borderRadius: "8px",
               color: "black",
             },
@@ -226,72 +275,75 @@ const [openGoogle ,setOpenGoogle] = useState('')
           });
         }, 5000);
 
-        setTimeout(() => {
-          toast.loading("Reconnecting attempt::2.", {
-            duration: 4200,
-            style: {
-              background: "#f6f6f675",
-              borderRadius: "8px",
-              color: "black",
-            },
-            position: "bottom-center",
-          });
-        }, 8500);
+        // setTimeout(() => {
+        //   toast.loading("Reconnecting attempt::2.", {
+        //     duration: 4200,
+        //     style: {
+        //       background: "#f6f6f675",
+        //       borderRadius: "8px",
+        //       color: "black",
+        //     },
+        //     position: "bottom-center",
+        //   });
+        // }, 8500);
 
         setTimeout(() => {
-          toast.error("Failed to conntect.", {
+          toast.error("Failed to conntect to Internet.", {
             duration: 3000,
+            icon: null,
+            toastId: toastId,
             style: {
-              background: "#333",
+              background: "#1E2227",
               borderRadius: "8px",
               color: "whitesmoke",
             },
-            position: "top-left",
+            position: "bottom-left",
           });
         }, 20000);
 
-        setTimeout(() => {
-          const buttonStyle = {
-            backgroundColor: "#ff3838",
-            color: "whitesmoke",
+        // setTimeout(() => {
+        //   const buttonStyle = {
+        //     backgroundColor: "#ff3838",
+        //     color: "whitesmoke",
 
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginLeft: "8px",
-            fontWeight: 800,
-            padding: "5px 10px",
-          };
-          const pageStyle = {
-            cursor: "pointer",
-          };
-          const page = () => {
-            window.location.reload();
-          };
-          toast(
-            (t) => (
-              <span className="text-light d-flex ">
-                <span onClick={page} style={pageStyle} title="Reload the page.">
-                  You can browse offline with some limited features.
-                </span>
-                <button style={buttonStyle} onClick={() => toast.dismiss(t.id)}>
-                  Dismiss
-                </button>
-              </span>
-            ),
-            {
-              duration: 20000,
-              style: {
-                background: "#333",
-                borderRadius: "7px",
-                color: "whitesmoke",
-              },
-              position: "bottom-right",
-            }
-          );
-        }, 30000);
+        //     border: "none",
+        //     borderRadius: "4px",
+        //     cursor: "pointer",
+        //     marginLeft: "8px",
+        //     fontWeight: 800,
+        //     padding: "5px 10px",
+        //   };
+        //   const pageStyle = {
+        //     cursor: "pointer",
+        //   };
+        //   const page = () => {
+        //     window.location.reload();
+        //   };
+        //   toast(
+        //     (t) => (
+        //       <span className="text-light d-flex ">
+        //         <span onClick={page} style={pageStyle} title="Reload the page.">
+        //           You can browse offline with some limited features.
+        //         </span>
+        //         <button style={buttonStyle} onClick={() => toast.dismiss(t.id)}>
+        //           Dismiss
+        //         </button>
+        //       </span>
+        //     ),
+        //     {
+        //       duration: 20000,
+        //       style: {
+        //         background: "#333",
+        //         borderRadius: "7px",
+        //         color: "whitesmoke",
+        //       },
+        //       position: "bottom-right",
+        //     }
+        //   );
+        // }, 30000);
       }
     }
+    
 
     // Initial check
     updateConnectionStatus();
@@ -340,16 +392,26 @@ const [openGoogle ,setOpenGoogle] = useState('')
       item.searchname.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setSearchResults(results);
-
+    //#FF4B4B
     if (results.length === 0) {
       toast.error("No results found!", {
+        position: "top-center",
         duration: 3000,
-        position: "top-left",
+        icon: null,
+        style: {
+          background: '#1E2227',
+          color: 'whitesmoke'
+        }
       });
     } else {
       toast.success("Search results updated!", {
+        position: "top-center",
         duration: 3000,
-        position: "top-left",
+        icon: null,
+        style: {
+          background: '#1E2227',
+          color: 'whitesmoke'
+        }
       });
     }
   };
@@ -396,15 +458,17 @@ const [openGoogle ,setOpenGoogle] = useState('')
     return () => {
       document.removeEventListener("mousedown", closesidebar);
     };
-  },[sidemenuRef]);
+  }, [sidemenuRef]);
+
 
   return (
     <>
       {/* Sidebar */}
       <div
-  ref={sidemenuRef}
-  className={`sidebar ${isSidebarOpen ? "open" : ""}`}
->
+        ref={sidemenuRef}
+        className={`sidebar ${isSidebarOpen ? "open" : ""} ${darkMode ? "dark" : "light"}`}
+      >
+
         <div className="sidebar-header">
           <div className="d-flex">
             <button
@@ -471,22 +535,24 @@ const [openGoogle ,setOpenGoogle] = useState('')
                   }
                 }}
               />
+              
               {searchQuery === '' ? <button
-               data-tooltip-id="my-tooltip-dm"
-              data-tooltip-content="Search"
+                data-tooltip-id="my-tooltip-dm"
+                data-tooltip-content="Search"
                 onClick={handleSearch}
                 className="search-btn btn btn-info m-1"
               >
                 <FaSearch />
-              </button>:<button
-            
+              </button> : <button
+                data-tooltip-id="my-tooltip-dm"
+                data-tooltip-content="Close search results"
                 onClick={closeSearch}
                 className="search-btn btn btn-info m-1"
               >
-               <FaTimes />
+                <FaTimes />
               </button>}
-               
-              
+
+
               {searchResults.length > 0 && (
                 <div className="search-results">
                   <ul>
@@ -506,16 +572,17 @@ const [openGoogle ,setOpenGoogle] = useState('')
               )}
             </div>
 
+
+
             {/* Navigation Links */}
 
-            <ul className="sidebar-links">
+            <ul className={`sidebar-links`}>
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.path}>
+                  <Link to={link.path} className={`${darkMode ? "dark" : "light"}`}>
                     <span
-                      className={`myicon ${showIcon ? "" : "show"} ${
-                        isSidebarVisible ? "visible" : "hidden"
-                      }`}
+                      className={`myicon ${showIcon ? "" : "show"} ${isSidebarVisible ? "visible" : "hidden"
+                        } ${darkMode ? "dark" : "light"}`}
                       data-tip={link.label}
                       data-tooltip-id="closesidebar"
                       data-tooltip-content={link.label}
@@ -525,18 +592,17 @@ const [openGoogle ,setOpenGoogle] = useState('')
                     {link.label}
                   </Link>
                   {link.submenu && (
-                    <ul className={`submenu`}>
+                    <ul className={`submenu `}>
                       {link.submenu.map((sub, index) => (
                         <li key={index}>
-                          <Link to={sub.path}>
+                          <Link to={sub.path} className={`${darkMode ? "dark" : "light"}`}>
                             {" "}
                             <span
-                            
+
                               data-tooltip-id="closesidebar"
                               data-tooltip-content={sub.label}
-                              className={`myicon ${showIcon ? "" : "show"}  ${
-                      isSidebarVisible ? "visible" : "hidden"
-                    }`}
+                              className={`myicon ${showIcon ? "" : "show"}  ${isSidebarVisible ? "visible" : "hidden"
+                                } ${darkMode ? "dark" : "light"}`}
                               data-tip={link.label}
                             >
                               {sub.icon}
@@ -552,14 +618,14 @@ const [openGoogle ,setOpenGoogle] = useState('')
 
               <div className="d-flex bg-dark-subtle rounded bottom-icons">
                 {buttonLinks.map((base, index) => (
-                  <li onClick={notWorkingBtn}  key={index}>
+                  <li onClick={notWorkingBtn} key={index}>
                     <Link
                       data-tooltip-id="tooltip-base"
                       data-tooltip-content={base.label}
                       to={base.path}
                       className="icon-body"
                       onClick={handleToggleSidebar}
-                     
+
                     >
                       {base.icon}
                     </Link>
@@ -572,19 +638,18 @@ const [openGoogle ,setOpenGoogle] = useState('')
             {/* Social Media Icons */}
             <div className="social-media d-flex justify-content-around mt-2">
               <a
-                data-tooltip-id="my-tooltip"
+                data-tooltip-id="Facebook"
                 data-tooltip-content="Facebook"
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-tip="Facebook"
               >
-                <FaFacebook className="sideIcons" />
+                <FaFacebook className="sideIcons facebook" />
               </a>
-              <Tooltip id="my-tooltip" />
 
               <a
-                data-tooltip-id="my-tooltip"
+                data-tooltip-id="GitHub"
                 data-tooltip-content="Github"
                 href="https://github.com"
                 target="_blank"
@@ -594,37 +659,52 @@ const [openGoogle ,setOpenGoogle] = useState('')
                 <FaGithub className="sideIcons" />
               </a>
               <a
-                data-tooltip-id="my-tooltip"
-                data-tooltip-content="instagram"
-                href="https://instagram.com"
+                data-tooltip-id="Whatsapp"
+                data-tooltip-content="Whatsapp"
+                href="https://Whatsapp.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                data-tip="Instagram"
+                data-tip="Whatsapp"
               >
-                <FaInstagram className="sideIcons" />
+                <FaWhatsapp className="sideIcons inst" />
               </a>
+              <Tooltip id="Facebook" />
+              <Tooltip id="Whatsapp" />
+              <Tooltip id="GitHub" />
+
+
             </div>
 
             {/* Theme Toggle */}
-            <div className="theme-toggle mt-4 p-4">
-              <button
-                className="btn btn-dark"
-                data-tooltip-id="my-theme-menu"
-                data-tooltip-content={`Theme set to: ${darkMode ? "Light Mode" : "Dark Mode"}`}
-                onClick={handleThemeToggle}
-              >
-                {darkMode ? "Light Mode" : "Dark Mode"}
+            <div className="theme-toggle mt-1 p-4 mb-4 d-flex">
+              <label class="switch">
+
+                <input
+                  className="input"
+                  type="checkbox"
+
+                />
+                <span
+                  class="slider round"
+                  data-tooltip-id="my-theme-menu"
+                  data-tooltip-content={`Theme set to: ${darkMode ? "Light Mode" : "Dark Mode"}`}
+                  onClick={handleThemeToggle}
+                ></span>
                 <Tooltip id="my-theme-menu" />
-              </button>
+              </label>
+              
             </div>
+
           </>
         ) : (
           <Loader />
         )}
       </div>
+
+
       <Tooltip id="closesidebar" />
       {/* Sidebar Toggle Button */}
-      <button
+      {isSidebarOpen ? '' : <button
         className={`sidebar-toggle-btn ${isSidebarOpen ? "" : "open"}`}
         onClick={handleToggleSidebar}
         data-tooltip-id="my-tooltip-menu"
@@ -635,24 +715,25 @@ const [openGoogle ,setOpenGoogle] = useState('')
           <div className="line-2"></div>
         </div>
         <Tooltip id="my-tooltip-menu" />
-      </button>
+      </button>}
 
 
-       <Modal show={show} onHide={handleClose} className='bg-danger-subtle'>
-       <Modal.Header closeButton>
-         <Modal.Title><i className='fa fa-google-plus-square'></i>Google</Modal.Title>
-       </Modal.Header>
-       <Modal.Body>
-       <div className='d-flex mt-4 bg-warning-subtle p-3'>
-<input className='form-control' type='text' placeholder='Google Search...' value={userQuery} onChange={(e)=>{setUserQuery(e.target.value)}}/>
-<button className='btn btn-outline-info m-2' onClick={serachUserQuery}><FaSearch/></button>
-    </div>
-       </Modal.Body>
-       <Modal.Footer>
-        <span><i className='fa fa-link'></i> {''} {openGoogle}</span>
-        <p className='bg text-bg-success fw-bolder p-2'>Open GOOGLE</p>
-       </Modal.Footer>
-     </Modal>
+
+      <Modal show={show} onHide={handleClose} className='bg-danger-subtle'>
+        <Modal.Header closeButton>
+          <Modal.Title><i className='fa fa-google-plus-square'></i>Google</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='d-flex mt-4 bg-warning-subtle p-3'>
+            <input className='form-control' type='text' placeholder='Google Search...' value={userQuery} onChange={(e) => { setUserQuery(e.target.value) }} />
+            <button className='btn btn-outline-info m-2' onClick={serachUserQuery}><FaSearch /></button>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <span><i className='fa fa-link'></i> {''} {openGoogle}</span>
+          <p className='bg text-bg-success fw-bolder p-2'>Open GOOGLE</p>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

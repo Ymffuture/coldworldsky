@@ -1,0 +1,15 @@
+import React from 'react'
+import VideoA from '../../assets/vidmp4/PHYS/Understanding_Einsteins_Special_Theory_of_Relativity.mp4';
+
+const VidPhys = () => {
+  return (
+    <div className='container clip'>
+   
+      <video controls style={{ width: 400, height: 'auto' }}  aspectRatio="16by9" > 
+        <source src={VideoA} />
+      </video>
+    </div>
+  )
+}
+
+export default VidPhys;

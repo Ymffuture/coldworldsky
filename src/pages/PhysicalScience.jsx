@@ -1,5 +1,7 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container,Breadcrumb } from "react-bootstrap";
+import { Link, Outlet } from "react-router-dom";
+import { FaList, FaPlayCircle } from "react-icons/fa";
 
 const PhysicalScience = () => {
   return (
@@ -48,7 +50,24 @@ const PhysicalScience = () => {
             Visit NASA Education
           </a>
         </div>
+        <Link to='/tutoring/subjects/Physical-science/clip-overview'
+        className="text-decoration"
+        ><FaPlayCircle/> Clip</Link> <hr/>
+
+<details>
+          <summary>
+          <FaList/> Clip list
+          </summary>
+          <em>Theory_of_Relativity</em>
+        </details>
+      
       </section>
+      <Outlet/>
+      <Breadcrumb className="my-4">
+        <Breadcrumb.Item ><Link to="/tutoring/subjects/Mathematics">Mathematics</Link> </Breadcrumb.Item>
+        <Breadcrumb.Item to="/tutoring/subjects/Life-sciences"><Link to="/tutoring/subjects/Life-sciences">Life Sciences</Link></Breadcrumb.Item>
+        <Breadcrumb.Item active>Physical Science</Breadcrumb.Item>
+      </Breadcrumb>
     </Container>
   );
 };

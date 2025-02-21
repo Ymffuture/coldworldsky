@@ -1,7 +1,7 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSpring, animated} from "@react-spring/web";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { FaCopy } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loader from "../componets/Loader";
@@ -118,6 +118,7 @@ const timer = new Date().getSeconds();
       {lessData.map((type, index) => (
         <code className="code" key={index} title={type.author}> *** {""}
           {type.quote} - (author: {type.author}) {""}
+          
           
           <a onClick={() => copyText(type.quote)} title="Copy a text">
             <FaCopy className="copy" />

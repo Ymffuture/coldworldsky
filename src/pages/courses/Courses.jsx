@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaLaptopCode, FaDatabase, FaPaintBrush } from "react-icons/fa";
 
-
 const Courses = () => {
   return (
     <Container className="py-5 courses-home">

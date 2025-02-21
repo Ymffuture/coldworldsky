@@ -2,8 +2,31 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-const Footer = (props) => {
+import Counter from './Counter';
+import { FaCat, FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter, FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
+const Footer = () => {
   
+  const social = [
+    {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
+    />},
+
+    {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
+    className='fa-yahoo fa fs-4'
+    />},
+
+    {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
+    className='fa-youtube fa fs-4 '
+    />},
+    {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
+    className='fa-github fa fs-4'
+    />},
+    {openlink:'https://linkedin.com/ymffuture' , label:'Linkedin' , icon:<FaLinkedinIn
+    className='fa-linkedin fa fs-4'
+    />},
+    {openlink:'https://whatsapp.com/ymffuture' , label:'Whatsapp' , icon:<FaWhatsapp
+    className='fa-whatsapp fa fs-4'
+    />},
+  ]
   const notWorkingBtn = ()=>{
     toast.loading('This feature is under constraction.',{
     duration:5000,
@@ -18,8 +41,9 @@ const Footer = (props) => {
     }
   return (
      <div className="text-center " id='footer'>
-    
 
+    {[...Array(5)].map((e,index)=><div className='mainer' key={index}></div>)}
+<div><FaCat className='text-light h2'/></div>
     <table className='col-md-12 alert-link table-responsive-lg' id='LinksTable'>
             <thead>
               <tr >
@@ -97,7 +121,7 @@ const Footer = (props) => {
             About Online classes
             </Link></td>
                 <td> <Link
-              to="##"
+              to="/cbp-current-students/table-prices"
               rel="nofollow"
               className="text-white"
             >
@@ -118,69 +142,40 @@ const Footer = (props) => {
     </table>
     
     <div id="contact" className='id'>
-    <p id='p'>
+    {/* <p id='p'>
       SkyfordCCI
-     </p>
+     </p> */}
     <div className="mt-5">
           <div className="col-lg-12 text-center">
             <div className="social">
-              <ul className="list-inline">
-
-                <li className="list-inline-item " >
-                  <a 
-                  data-tooltip-id="my-tooltip" data-tooltip-content="Facebook"
-                  href={props.data ? props.data.facebook : "/"}>
-                    <i className="fa fa-facebook text-primary fs-4"></i>
-                  </a>
-                </li>
-
-                {/* <li className="list-inline-item" title="X">
-                  <a href={props.data ? props.data.twitter : "/"}>
-                    <i className="fa fa-twitter text-primary fs-4"></i>
-                  </a>
-                </li> */}
-
-
-                {/* <li className="list-inline-item" title="YouTube">
-                  <a href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-youtube text-primary fs-4"></i>
-                  </a>
-                </li> */}
-
-
-
-                <li className="list-inline-item">
-                  <a 
-                  data-tooltip-id="my-tooltip" data-tooltip-content='Whatsapp'
-                  href={props.data ? props.data.whatsapp : "/"}>
-                    <i className="fa fa-whatsapp text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a 
-                    data-tooltip-id="my-tooltip" data-tooltip-content="Linkedin"
-                  href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-linkedin text-primary fs-4"></i>
-                  </a>
-                </li>
-               
-                <li className="list-inline-item">
-               
-                  <a 
-                      data-tooltip-id="my-tooltip" data-tooltip-content="Github"
-                  href={props.data ? props.data.youtube : "/"}>
-                  
-                    <i className="fa fa-github text-primary fs-4"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
+              <FaVials   data-tooltip-id="my-tooltip-icons-socials" data-tooltip-content={`? Number of people visited this website a day per user/visitor`}/>
+            <Counter/>
+<ul className='list-inline'>
+{social.map((iconLink, index)=>(
+  <li key={index} className='list-inline-items'><Link 
+      data-tooltip-id={iconLink.label}
+      data-tooltip-content={iconLink.label}
+  to={iconLink.openlink}
+  >
+  {iconLink.icon}
+  </Link></li>
+  
+))}
+<Tooltip id="Facebook" />
+<Tooltip id="YouTube" />
+<Tooltip id="Yahoo" />
+<Tooltip id="Whatsapp" />
+<Tooltip id="GitHub" />
+<Tooltip id="Linkedin" />
+<Tooltip id="my-tooltip-icons-socials" />
+</ul>
+     </div>
           </div>
-          <Tooltip id="my-tooltip" />
+          
         </div>
           </div>
           <p className=''>
-            Copyright &copy; 2021 - {new Date().getFullYear()} @SkyfordCCI&reg;, All Rights Reserved.{" "}
+            Copyright &copy; 2021 - {new Date().getFullYear()} @SkyfordCCI, All Rights Reserved.{" "}
             <Link
               to="https://webpy-7tcd.onrender.com/views/Privacy-Policy"
               rel="nofollow"
@@ -189,7 +184,9 @@ const Footer = (props) => {
               Privacy Policy
             </Link>
           </p>
-         
+  <div className='moon'>
+    <div className='moon2'></div>
+  </div>
         </div>
   )
 }

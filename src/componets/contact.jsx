@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import emailjs from "emailjs-com";
-import { Toaster, toast } from "react-hot-toast";
+import toast  from "react-hot-toast";
+import Loader from "./Loader";
+import { FaTimesCircle, FaUserClock } from "react-icons/fa";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 // Validation schema using Yup
@@ -40,6 +42,7 @@ const schema = yup.object({
   const [selectedOption, setSelectedOption] = useState("");
   const [customSubject, setCustomSubject] = useState("");
 
+
   const {
     register,
     handleSubmit,
@@ -63,8 +66,8 @@ const schema = yup.object({
           console.info(result.text());
           toast.success("Message sent successfully!",{
             duration: 10000,
-            position: "top-right",
-            progress: true,
+            position: "bottom-left",
+            icon:null,
             style:{
               color:'whitesmoke',
               background:'green',
@@ -77,10 +80,10 @@ const schema = yup.object({
         },
         (error) => {
           console.log(error);
-          toast.error(`Opps! Send message error. Please check your internet connection and try again.`, {
+          toast.error(`Opps! Send message ERROR. Please check your internet connection and try again.`, {
             duration: 10000,
-            position: "top-left",
-            progress: true,
+            position: "bottom-left",
+            icon:<FaTimesCircle className="text-danger"/>,
             style:{
               background:'#333',
               borderRadius:'8px',
@@ -92,7 +95,7 @@ const schema = yup.object({
         }
       );
   };
-  const year = new Date().getFullYear();
+
   const oppStyle = {
     resize: "none",
   };
@@ -133,7 +136,7 @@ const schema = yup.object({
   }
 
   return (
-    <div id="contact" className="bg-light py-5">
+    <div id="contactAB" className="bg-light py-5">
       <div className="container">
         <div className="row">
           {/* Form Section */}
@@ -157,9 +160,10 @@ const schema = yup.object({
                         className={`form-control ${
                           errors.name ? "is-invalid" : ""
                         }`}
-                        placeholder="Name"
+                        placeholder=""
                         {...register("name")}
                       />
+                        <label for="email">Name</label>
                       {errors.name && (
                         <div className="invalid-feedback">
                           {errors.name.message}
@@ -169,6 +173,7 @@ const schema = yup.object({
                   </div>
                   <div className="col-md-6">
                     <div className="form-group mb-3">
+                   
                       <input
                         type="email"
                         id="email"
@@ -176,9 +181,10 @@ const schema = yup.object({
                         className={`form-control ${
                           errors.email ? "is-invalid" : ""
                         }`}
-                        placeholder="Email"
+                        placeholder=""
                         {...register("email")}
                       />
+                       <label for="email">Email</label>
                       {errors.email && (
                         <div className="invalid-feedback">
                           {errors.email.message}
@@ -189,6 +195,7 @@ const schema = yup.object({
                 </div>
                 {/* cell number */}
                 <div className="form-group mb-3">
+              
                       <input
                         type="number"
                         id="number"
@@ -196,9 +203,10 @@ const schema = yup.object({
                         className={`form-control ${
                           errors.number ? "is-invalid" : ""
                         }`}
-                        placeholder="Mobile number (+27)"
+                        placeholder=""
                         {...register("number")}
                       />
+                      <label for="email">Mobile number (+27)</label>
                       {errors.number && (
                         <div className="invalid-feedback">
                           {errors.number.message}
@@ -218,11 +226,12 @@ const schema = yup.object({
                       }`}
                       {...register("subject")}
                     >
+                      
                       <option
-                        className="b bg-success-subtle "
+                        className="selectedOption text-bg-primary"
                         value={selectedOption}
                       >
-                        Select a subject
+                        <span>Select a subject</span>
                       </option>
                       <option value="Science and Math full year 2025 classes(10mon)">
                         Science and Math full year 2025 classes (10mons)
@@ -250,20 +259,23 @@ const schema = yup.object({
                 {selectedOption !== "other" ? null : (
                   <div className={`col-md-6`}>
                     <div class="form-group other">
-                      <label for="name" className="mb-1 m-2 ">
-                        Please specify
-                      </label>
+                    
                       <textarea
                         type="text"
                         id="message"
                         onChange={handleCustomSubjectChange}
                         style={oppStyle}
-                        placeholder="Enter your costom subject"
+                        placeholder="Enter your subject"
                         className={`form-control mb-2 rounded ${
                           errors.message ? "is-invalid" : ""
                         }`}
                         {...register("costomizedSubject")}
-                      ></textarea>
+                      >
+                       
+                      </textarea>
+                      <label for="name" className="mb-1 m-2 text-danger ">
+                        Please specify*
+                      </label>
                       {/* {errors.costomizedSubject && (
                         <div className="invalid-feedback mb-2">
                           {errors.costomizedSubject.message}
@@ -305,7 +317,7 @@ const schema = yup.object({
                 <span>
                   <i className="fa fa-map-marker text-primary me-2"></i>
                 </span>
-                {props.data ? props.data.address : "loading"}
+                {props.data ? props.data.address : <Loader/>}
               </p>
             </div>
             <div className="contact-item mb-3">
@@ -313,7 +325,7 @@ const schema = yup.object({
                 <span>
                   <i className="fa fa-phone text-primary me-2"></i>
                 </span>{" "}
-                {props.data ? props.data.phone : "loading"}
+                {props.data ? <Loader/>  : '+27 63 441 4863'}
               </p>
             </div>
             <div className="contact-item mb-3">
@@ -321,105 +333,14 @@ const schema = yup.object({
                 <span>
                   <i className="fa fa-envelope-o text-primary me-2"></i>
                 </span>{" "}
-                {props.data ? props.data.email : "loading"}
+                {props.data ? <Loader/> : "skyfordcciacademy@gmail.com"}
               </p>
             </div>
           </div>
         </div>
-
-        {/* Social Links Section */}
-        <div className="row mt-5">
-          <div className="col-md-12 text-center">
-            <div className="social">
-              <ul className="list-inline">
-
-                <li className="list-inline-item" title="Facebook">
-                  <a href={props.data ? props.data.facebook : "/"}>
-                    <i className="fa fa-facebook text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item" title="X">
-                  <a href={props.data ? props.data.twitter : "/"}>
-                    <i className="fa fa-twitter text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item" title="YouTube">
-                  <a href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-youtube text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item" title="Whatsapp">
-                  <a href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-whatsapp text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item" title="Linkedin">
-                  <a href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-linkedin text-primary fs-4"></i>
-                  </a>
-                </li>
-                <li className="list-inline-item" title="Github">
-                  <a href={props.data ? props.data.youtube : "/"}>
-                    <i className="fa fa-github text-primary fs-4"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-      {/* Footer Section */}
-      <div id="footer" className="bg-dark text-black py-3 mt-5">
-      <ul className="container rounded">
-          <li className="fa  font-monospace">{" "}
-            <i className="fa fa-location-arrow"></i>
-            Find Our Center
-          </li>
-          <br />
-          <li className="fa  font-monospace">{" "}
-            <i className="fa fa-user"></i>{" "}
-            
-            <a href='#'>About house call tutor</a>
-          </li>
-          <li className="font-monospace">
-            What we offer on DoE:
-            <ul>
-              <li onClick={notWorkingBtn}>
-              <i className="fa fa-arrow-right"></i>{" "}
-                <a href="#/">
-                 Mathematics
-                </a>
-              </li>
-              <li onClick={notWorkingBtn}>
-              <i className="fa fa-arrow-right"></i>{" "}
-              <a href="#/">
-                 Life sciences
-                </a>{" "}
-              </li>
-              <li onClick={notWorkingBtn}>
-              <i className="fa fa-arrow-right"></i>{" "}
-              <a href="#/">
-                  Physical science
-                </a>{" "}
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <div className="container text-center">
-          <p>
-            Copyright &copy; 2023 - {year} @SK, All Rights Reserved.{" "}
-            <a
-              href="http://www.templatewire.com"
-              rel="nofollow"
-              className="text-white"
-            >
-              Privacy Policy
-            </a>
-          </p>
-        </div>
-      </div>
-      <Toaster />
-      User Id: {userId}
+
+      <FaUserClock/>: {userId}
     </div>
   );
 };

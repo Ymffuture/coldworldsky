@@ -4,18 +4,12 @@ import {
   Badge,
   Breadcrumb,
   Button,
-  Card,
-  Alert,
-  ButtonGroup,
-  Dropdown,
-  DropdownButton,
   Form,
   Modal,
 } from "react-bootstrap";
-import { FaMoneyCheckAlt, FaSignInAlt } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 
 const Calendar = () => {
-  const [show, setShow] = useState(true);
   const [showEmail, setShowEmail] = useState(false);
   const [showDate, setShowDate] = useState("");
   const [showDate2, setShowDate2] = useState("");
@@ -24,7 +18,6 @@ const Calendar = () => {
   const formattedDate = currentDate.toDateString();
 
   const handleClose = () => setShowEmail(false);
-  const handleShow = () => setShowEmail(true);
   const handleRegister = () => {
     window.location.href = "https://www.myformabc.com";
   };
@@ -68,7 +61,7 @@ const Calendar = () => {
                 Register
               </Button>
               <Button variant="success" size="lg">
-                Assessment <Badge bg="success">Completed</Badge>
+                Assessment
               </Button>
             </div>
           </div>
@@ -76,20 +69,9 @@ const Calendar = () => {
       </header>
 <div className='calendar-main container'>
       {/* Alert Section */}
-      <Alert show={show} variant="info" className="my-3">
-        <Alert.Heading>Don't Miss Out on the Next Intake for 2025!</Alert.Heading>
-        <p className="bg-light p-4 text-black fw-bold">
-          New intake for 2025 opens on the 5th.
-        </p>
-        <div className="d-flex justify-content-end">
-          <Button onClick={() => setShow(false)} variant="outline-info">
-            Close
-          </Button>
-        </div>
-      </Alert>
 
       {/* Breadcrumb */}
-      <Breadcrumb className="my-4">
+      <Breadcrumb className="my-4-4">
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/about">About</Breadcrumb.Item>
         <Breadcrumb.Item active>School Calendar</Breadcrumb.Item>
@@ -116,30 +98,7 @@ const Calendar = () => {
           </div>
 
           {/* Dropdown for Grades */}
-          {["Grade 11", "Grade 12"].map((grade) => (
-            <DropdownButton
-              as={ButtonGroup}
-              key={grade}
-              title={grade}
-              className="mt-3"
-            >
-              <Dropdown.Item eventKey="1" disabled>
-                Maths <Badge bg="danger">Closed</Badge>
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="2" disabled>
-                Sciences <Badge bg="danger">Closed</Badge>
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="3" disabled>
-                Grades <Badge bg="danger">Closed</Badge>
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">
-                <Button variant="link" onClick={handleShow}>
-                  Track Applications
-                </Button>
-              </Dropdown.Item>
-            </DropdownButton>
-          ))}
+        
         </div>
         
         <p className="p-4 mt-4 bg-success-subtle text-capitalize container">
@@ -166,16 +125,8 @@ const Calendar = () => {
                   </ul>
                 </ul>
                 </p>
-                <Card style={{ width: "18rem" }} className="">
-              {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-              <FaMoneyCheckAlt className="sc object-fit-lg-scale" />
-              <Card.Body>
-                <Card.Title>PAYMENT</Card.Title>
-                <Card.Text>We have a flexable payment methods</Card.Text>
-                <Button variant="primary">Payment method</Button>
-              </Card.Body>
-            </Card>
-        <div className="col-md-6 container">
+              
+        <div className="container main-calendar">
         <div class="calendar">
               <div class="calendar-header"> Febuary 2025</div>
               <div class="calendar-days">
@@ -213,27 +164,24 @@ const Calendar = () => {
               
               </div>
             </div>
-            
-            <Card style={{ width: "20rem" }} className='cardflow mb-5 container'>
-          {/* <Card.Img variant="top" style={{ width: "9rem" }} src="/img/about.jpg" /> */}
-          
-          <Card.Body>
-            <Card.Title>Openning of the school</Card.Title>
-            <Card.Text>
-           
-              We oparate from Feb due to planning that will help us to get those
-              results no less than 100%.
-            </Card.Text>
-            <Button variant="none">
-              {" "}
-              {!show && (
-                <Button variant="info" onClick={() => setShow(true)}>
-                  Show update
-                </Button>
-              )}
-            </Button>
-          </Card.Body>
-        </Card>
+            <div class="calendar container">
+              <div class="calendar-header">April 2025</div>
+              <div class="calendar-days">
+              <div className="text-bg-danger">Sun</div>
+                {['Mon' ,'Tue' , 'Wed', 'Thu', 'Fri'].map((weekdays)=>(
+                  <>
+                  <div key={weekdays}>{weekdays}</div>
+                  </>
+                ))}
+              <div className="text-bg-danger">Sat</div>
+              </div>
+              <div class="calendar-dates">
+                {['','','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'].map((days)=>(
+                  <div className="days-March">{days}</div>
+                ))}
+              
+              </div>
+            </div>
           {/* Calendar */}
 
           {/* <div className="calendar bg-light p-3 rounded shadow">

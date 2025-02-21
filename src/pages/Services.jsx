@@ -1,11 +1,20 @@
-import React from "react";
+import React,{useState , useEffect} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaLaptopCode, FaBookReader, FaChalkboardTeacher, FaGlobe } from "react-icons/fa";
-
+import axios from 'axios'
 
 const Services = () => {
+const [data ,setData] = useState(null)
+useEffect(()=>{
+  const fetchData = async ()=>{
+    const results = await axios.get('http://localhost:7411/server/api/data');
+    setData(results.data)
+  }
+  fetchData();
+},[])
   return (
     <div className="services-page">
+      {/* <h6>Data from server: {data && <div>{JSON.stringify(data)}</div>}</h6> */}
       <Container className="py-5">
         <h1 className="text-center mb-4 text-primary">Our Services</h1>
         <p className="text-center lead mb-5">

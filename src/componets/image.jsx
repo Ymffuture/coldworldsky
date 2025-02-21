@@ -8,15 +8,14 @@ function ShapeExample() {
     <Container>
       <Row>
         <Col xs={6} md={4}>
-          <Image width="100%" src="../img/about-bg.jpg" rounded />
+          <Image width="100%" src="../img/unisa.jpg" rounded />
         </Col>
-        <Col xs={6} md={8}>
-          <Image width="100%"  src="../img/about-03.jpg" roundedCircle />
+        <Col xs={4} md={2}>
+          <Image width="100%"  src="../img/uj-1.jpg" roundedCircle />
         </Col>
-        <Col xs={6} md={4}>
-          <Image width="100%"  src="../img/intro.jpg" thumbnail />
-        </Col>
+   
       </Row>
+      
     </Container>
   );
 }
