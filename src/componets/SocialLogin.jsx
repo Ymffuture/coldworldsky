@@ -13,10 +13,10 @@ const handleSuccess = async (response) =>{
   console.log(res.data)
 }
  return (
-  <>
-  <button onClick={logOut} className='btn btn-primary'>Logout</button>
+  <div className='container  p-4'>
+  {/* <button onClick={logOut} className='btn btn-primary'>Logout</button> */}
   <GoogleLogin onSuccess={handleSuccess} onError={()=>console.log('failed..')}/>
-  </>
+  </div>
 
  );
 }
