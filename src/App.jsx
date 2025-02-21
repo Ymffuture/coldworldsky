@@ -48,6 +48,7 @@ import Location from "./pages/Location";
 
 
 const  App = ()=> {
+  
 const {id} =useParams()
 const [show ,setShow] =useState(false);
 const Error = (props)=>{
@@ -68,8 +69,11 @@ useEffect(()=>{
   useEffect(() => {
     const App_KEY_UNI02 = crypto.randomUUID()
     const setClock = new Date().getSeconds()
-    const APPKEY = setClock < 30 ? "App_KEY_UNI04" : App_KEY_UNI02
+
+    const APPKEY = App_KEY_UNI02
     const APP_KEY = APPKEY;
+
+
     console.log(APP_KEY)
     if (localStorage.getItem(APP_KEY)) {
       toast((t) => (

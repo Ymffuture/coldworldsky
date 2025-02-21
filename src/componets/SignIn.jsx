@@ -32,7 +32,12 @@ const SignIn = ({ setIsAuthenticated }) => {
       
       setTimeout(()=>{
         setIsdisabled(false)
+<<<<<<< HEAD
         setFinalText(<p className=' text-bg-danger p-3 rounded-1'>No internet connection:code:500</p>)
+=======
+        setInText('Sign in')
+        setFinalText('Failed to connect to server :code:500')
+>>>>>>> 6f6fc3430d7d0196e351606dbfad142b5fb5019b
       },5000)
     }
     // Call the backend login API

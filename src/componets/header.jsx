@@ -24,7 +24,11 @@ const mydata = ['1','2','3']
           <div className="container">
             <div className="row ">
               <div className="col-md-8 col-md-offset-2 intro-text ">
+<<<<<<< HEAD
                 
+=======
+                <p className="text-bg-warning p-4 m-4 position-relative top-0" >This website is under construction please wait while we upgrading our website </p>
+>>>>>>> 6f6fc3430d7d0196e351606dbfad142b5fb5019b
                 <h1 >
                   {props.data ? props.data.title : <span id='p'>
       SkyfordCCI
