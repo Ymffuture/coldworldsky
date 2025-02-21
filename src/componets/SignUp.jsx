@@ -108,13 +108,6 @@ setIsCapsLockOn(true)
         {/* <img src='/img/logosk.jpg' width='20%' alt='LOGO' className=" rounded-4 opacity-50 p-2"  /> */}
       <h3 className=' text-bg-primary p-2 rounded-1'>Create an acount to get more features.</h3>
 
-<<<<<<< HEAD
-     
-=======
-      <h6 className=' text-bg-danger p-3 rounded-1'>
-      <FaSignal/>Server not working at this moment. </h6>
->>>>>>> 6f6fc3430d7d0196e351606dbfad142b5fb5019b
-
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: ".8rem" }}  className="form-group">
           <input
