@@ -24,7 +24,6 @@ const mydata = ['1','2','3']
           <div className="container">
             <div className="row ">
               <div className="col-md-8 col-md-offset-2 intro-text ">
-
                 <h1 >
                   {props.data ? props.data.title : <span id='p'>
       SkyfordCCI
