@@ -15,7 +15,7 @@ import PhysicalScience from "./pages/PhysicalScience";
 import LandingPage from "./pages/LandingPage";
 import About from "./pages/About";
 import Footer from "./pages/Footer";
-import TimeoutPopup from './componets/TimeoutPopup';
+// import TimeoutPopup from './componets/TimeoutPopup';
 import Greet from './componets/Greet';
 import Navigation from "./componets/navigation";
 import ErrorPage from "./pages/ErrorPage";
@@ -49,7 +49,6 @@ import ResetPassword from './pages/ResetPassword';
 
 
 const  App = ()=> {
-  
 const {id} =useParams()
 const [show ,setShow] =useState(false);
 const Error = (props)=>{
@@ -69,11 +68,8 @@ useEffect(()=>{
 
   useEffect(() => {
     const App_KEY_UNI02 = crypto.randomUUID()
-    const setClock = new Date().getSeconds()
-
     const APPKEY = App_KEY_UNI02
     const APP_KEY = APPKEY;
-
 
     console.log(APP_KEY)
     if (localStorage.getItem(APP_KEY)) {
@@ -110,12 +106,10 @@ useEffect(()=>{
     cursor: "pointer",
   };
 
-
-
   return (
+
+    
     <Router>
-
-
       <div className="mobile-message d-flex g-2 position-absolute m-4">
         {/* <FaInfoCircle className="cl-MB"/> */}
         {/* <p>Only for Desktop view </p> */}

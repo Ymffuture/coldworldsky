@@ -20,17 +20,6 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
         }
       })
     return <Navigate to="/user-home-page/sign-in" />;
-  }else{
-    toast.success('Welcome Back!', {
-      position: "top-center",
-      duration: 3000,
-      icon:<FaCheckDouble className="text-success"/>,
-      style:{
-        background:'#1E2227',
-            borderRadius:'8px',
-            color:'whitesmoke',
-      }
-    });
   }
   return children;
 };
