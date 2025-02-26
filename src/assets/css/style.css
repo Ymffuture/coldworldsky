@@ -12,7 +12,12 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
   /* -ms-user-select: none; */
   user-select: none;
 }
-
+.other{
+  left: 32% !important;
+  top:10px;
+  color: rgb(134, 12, 12) !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 .light {
   color: #191919 !important;
   font-weight: 400 !important;
@@ -891,6 +896,17 @@ select:hover {
   background: #ff0000 !important;
 }
 
+#contact .fa-instagram {
+  
+  color: #a8a8a8 !important;
+}
+
+#contact .fa-instagram:hover {
+  color: #FFFFFF  !important;
+ background: #57012c !important;
+ 
+}
+
 #contact .fa-github:hover {
   color: #FFFFFF  !important;
   background: #000000 !important;
@@ -1064,7 +1080,7 @@ select:hover {
 }
 
 .transition-animation {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -1240,20 +1256,19 @@ select:hover {
   position: relative;
 }
 .transition-animation-html {
-  width: 80px;
-  height: 80px;
-  border: 3px solid transparent;
-  border-top: 3px solid #ff00bf;
-  border-bottom: 20px solid #171817;
-  border-left: 3px solid #ff0000;
-  border-right: 3px solid #058b00;
+  width: 50px;
+  height: 50px;
+  border: 1px solid transparent;
+  border-top: 1px solid #ff00bf;
+  border-bottom: 3px solid #171817;
+  border-left: 1px solid #ff0000;
+  border-right: 1px solid #058b00;
   border-radius: 50%;
-  animation: spinCirclehtml 6.8s linear infinite;
-  margin: 20px;
+  animation: spinCirclehtml 8.8s linear infinite;
   display: flex;
   position: absolute;
-  top: 150%;
-  right: 38%;
+  top: 0;
+  right: 0% !important;
 }
 .outer{
   font-size: 12px;
@@ -1267,13 +1282,13 @@ select:hover {
 @keyframes spinCirclehtml {
   from {
     transform: rotateZ(0deg);
-    border-top: 20px solid #002b27;
-    opacity: 1;
+    border-top: 14px solid #002b27;
+    opacity: .9;
   }
   to {
-    transform: rotateZ(360deg);
-    border-top: 20px solid #1500ce;
-    opacity: 1;
+    transform: rotateZ(-360deg);
+    border-top: 14px solid #0c0269;
+    opacity: .8;
   }
 }
 .preload {

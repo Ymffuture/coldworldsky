@@ -7,6 +7,7 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
 import Modal from "react-bootstrap/Modal";
+import GoogleAuth from "./SocialLogin"; 
 import {
   FaSearch,
   FaCalendarCheck,
@@ -692,7 +693,10 @@ const Navigation = () => {
                 ></span>
                 <Tooltip id="my-theme-menu" />
               </label>
-              
+              <div className="sidegoogle"   data-tooltip-id="my-theme-menu"
+                  data-tooltip-content='Sign In with Google'>
+<GoogleAuth/>
+</div>
             </div>
 
           </>
@@ -716,6 +720,7 @@ const Navigation = () => {
         </div>
         <Tooltip id="my-tooltip-menu" />
       </button>}
+
 
 
 

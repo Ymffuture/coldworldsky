@@ -459,8 +459,20 @@ p{
 #Linkedin{
   background: #0077B5 !important;
 }
+#Instagram{
+  background: #57012c;
+}
 
+.bot{
+  position: sticky;
+  bottom: 15px;
+  left: 20px !important;
+  // background: rgb(255, 255, 255);
+  width: 8%;
+  margin: 3px;
+  border-radius: 14px;
 
+}
 
   .form-group {
     position: relative;

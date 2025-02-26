@@ -32,7 +32,7 @@ const LandingPage = () => {
       <Tutor data={landingPageData.Tutor} /> 
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
-       <Chatbot/>
+       <Chatbot className='bot'/>
     </div>
   )
 }

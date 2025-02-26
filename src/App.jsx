@@ -44,7 +44,8 @@ import TrackApplication from "./pages/TrackApplication";
 import ErrorPageTwo from "./pages/ErrorPageTwo";
 import Post from "./pages/Post";
 import Location from "./pages/Location";
-
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 
 const  App = ()=> {
@@ -125,13 +126,15 @@ useEffect(()=>{
       <div className="container-fluid error-con">
       {/* <TimeoutPopup /> */}
         {show&&<Navigation />}
-        
+   
+
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about/" element={<About/>} />
           <Route path="/post_ads/" element={<Post/>} />
           <Route path="/location/" element={<Location/>} />
-
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/track-Application/" element={<TrackApplication/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quotes/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Quotes /> </ProtectedRoute>} />
@@ -169,8 +172,8 @@ useEffect(()=>{
           <Route path='/cbp-current-students' element={<CBP />} >
           <Route path='/cbp-current-students/table-prices' element={<TableExample/>}/>
           </Route>
-          <Route path='/path-err-Or-PageNotFound' element={<Error handleHeaderFooterShow={(res)=>setShow(false)}/>}/>
-          <Route path='*' element={<Navigate to='/path-err-Or-PageNotFound/'/>}/>
+          <Route path='/path_ERROR_page_not_found' element={<Error handleHeaderFooterShow={(res)=>setShow(false)}/>}/>
+          <Route path='*' element={<Navigate to='/path_ERROR_page_not_found/'/>}/>
         </Routes>
         <ToastContainer/>
         <Toaster />

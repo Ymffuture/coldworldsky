@@ -152,7 +152,7 @@ if(!isCapsLockOn){
         Do not have an account? <span className=" text-info"> <Link to="/user-home-page/sign-up">Register</Link></span>
         </div>
         <div className="text2">
-       Forgot? <span className=" text-info"> <Link to="/user-home-page/recover-password-getcode-page">Password</Link></span>
+       Forgot? <span className=" text-info"> <Link to="/forgot-password">Password</Link></span>
         </div>
 
     </div>

@@ -1,66 +1,81 @@
-import React from "react";
-import {Outlet} from 'react-router-dom';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { useSpring, animated } from "@react-spring/web";
-// import Team from "../componets/Team";
-
+import {
+  Box,
+  Heading,
+  Text,
+  Image,
+  SimpleGrid,
+  Card,
+  CardBody,
+  Stack,
+  Button,
+} from "@chakra-ui/react";
 
 const FindTutor = () => {
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
 
-  const upcomingItems = [
+  const tutors = [
     {
-      type: "Future",
-      title: "Kgomotso Nkosi",
-      description: "Sciences and Math",
+      name: "Kgomotso Nkosi",
+      subjects: "Sciences and Math",
+      description: "Experienced in Physics, Chemistry, and Advanced Math.",
       img: "img/logosk.jpg",
     },
     {
-      type: "Future",
-      title: "Kgomotso Nkosi",
-      description: "Sciences and Math",
-      img: "img/logosk.jpg",
+      name: "Jane Doe",
+      subjects: "English and Literature",
+      description: "Expert in grammar, writing, and classical literature.",
+      img: "img/tutor2.jpg",
     },
     {
-      type: "Future",
-      title: "Kgomotso Nkosi",
-      description: "Sciences and Math",
-      img: "img/logosk.jpg",
+      name: "John Smith",
+      subjects: "Computer Science",
+      description: "Specialist in programming and algorithms.",
+      img: "img/tutor3.jpg",
     },
   ];
 
+  const [selectedTutor, setSelectedTutor] = useState(null);
+
   return (
-    <div className="home container mb-5">
-      <div className="hero-section">
-        <h1>Find our Tutors for limited subjects.</h1>
-        <p>Stay updated with the latest entertainment and immerse yourself in a world of creativity.</p>
-      </div>
-      
-      <animated.div style={fadeIn} className="upcoming-section">
-        <h2>List of our BEST tutors</h2>
-        <div className="card-container">
-          {upcomingItems.map((item, index) => (
-            <div className="card" key={index}>
-              <img src={item.img} alt={`${item.type} thumbnail`} className="card-image resp rounded" />
-              <div className="card-content">
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <p className="item-type">{item.type}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <Outlet/>
-      </animated.div>
-   
-    </div>
+    <Box p={8}>
+      <Heading textAlign="center" mb={4}>
+        Find Our Best Tutors
+      </Heading>
+      <Text textAlign="center" mb={8}>
+        Select a tutor to view details about their expertise.
+      </Text>
+
+      <SimpleGrid columns={[1, 2, 3]} spacing={6}>
+        {tutors.map((tutor, index) => (
+          <Card key={index} onClick={() => setSelectedTutor(tutor)} cursor="pointer">
+            <Image src={tutor.img} alt={tutor.name} borderRadius="md" />
+            <CardBody>
+              <Stack>
+                <Heading size="md">{tutor.name}</Heading>
+                <Text fontWeight="bold">Subjects: {tutor.subjects}</Text>
+              </Stack>
+            </CardBody>
+          </Card>
+        ))}
+      </SimpleGrid>
+
+      {selectedTutor && (
+        <Box mt={10} p={6} borderWidth="1px" borderRadius="lg" boxShadow="md">
+          <Heading size="lg" mb={2}>{selectedTutor.name}</Heading>
+          <Text fontWeight="bold" mb={2}>Subjects: {selectedTutor.subjects}</Text>
+          <Text>{selectedTutor.description}</Text>
+          <Button mt={4} colorScheme="blue" onClick={() => setSelectedTutor(null)}>
+            Close
+          </Button>
+        </Box>
+      )}
+
+      <Outlet />
+    </Box>
   );
 };
 
 export default FindTutor;
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import Counter from './Counter';
-import { FaCat, FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter, FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
+import { FaCat, FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaMobile, FaTwitter, FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
 const Footer = () => {
   
   const social = [
@@ -26,6 +26,9 @@ const Footer = () => {
     {openlink:'https://whatsapp.com/ymffuture' , label:'Whatsapp' , icon:<FaWhatsapp
     className='fa-whatsapp fa fs-4'
     />},
+    {openlink:'https://Instagram.com/ymffuture' , label:'Instagram' , icon:<FaInstagram
+      className='fa-instagram fa fs-4'
+      />},
   ]
   const notWorkingBtn = ()=>{
     toast.loading('This feature is under constraction.',{
@@ -161,6 +164,8 @@ const Footer = () => {
   </Link></li>
   
 ))}
+
+<Tooltip id="Instagram" />
 <Tooltip id="Facebook" />
 <Tooltip id="YouTube" />
 <Tooltip id="Yahoo" />

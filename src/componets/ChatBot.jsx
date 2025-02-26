@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { FaRobot } from 'react-icons/fa';
 
 const Chatbot = () => {
   useEffect(() => {
@@ -25,8 +26,8 @@ const Chatbot = () => {
   }, []); // Empty dependency array ensures this effect runs only once when the component mounts
 
   return (
-    <div>
-      {/* Any content related to your chatbot can be here */}
+    <div className='bg-auto bot p-3'>
+      <FaRobot className='fs-4'/> Skii
     </div>
   );
 };
