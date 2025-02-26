@@ -108,7 +108,7 @@ useEffect(()=>{
 
   return (
 
-    
+
     <Router>
       <div className="mobile-message d-flex g-2 position-absolute m-4">
         {/* <FaInfoCircle className="cl-MB"/> */}
@@ -121,6 +121,7 @@ useEffect(()=>{
       {/* <TimeoutPopup /> */}
         {show&&<Navigation />}
    
+
 
         <Routes>
           <Route path="/" element={<LandingPage />} />
