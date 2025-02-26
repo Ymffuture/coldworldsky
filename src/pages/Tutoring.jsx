@@ -9,7 +9,7 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedDark, solarizedLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-
+import ChatBot from '../componets/ChatBot'
 const Tutoring = () => {
   const [onLoading, setOnLoading] = useState(true);
   const [copyNow, setCopyNow] = useState(<FaCopy data-tooltip-id="tooltip"
@@ -296,7 +296,7 @@ export default Navbar;
           <Breadcrumb.Item ><Link to="/tutoring/subjects"><FaBookReader /> Subjects</Link> </Breadcrumb.Item>
           <Breadcrumb.Item ><Link to="/cbp-current-students/table-prices"><FaTable /> Table price</Link></Breadcrumb.Item>
           <Breadcrumb.Item ><Link to="/tutoring/"><FaBackward /> Back</Link></Breadcrumb.Item>
-          <span id='ribbon' className="text-bg-warning">SAVE R250</span>
+          {/* <span id='ribbon' className="text-bg-warning">SAVE R250</span> */}
 
         </Breadcrumb>
 
@@ -305,6 +305,7 @@ export default Navbar;
         {onLoading ? <Loader /> : <Outlet className='position-sticky' />}
 
       </div>
+      <ChatBot/>
       <ToastContainer />
     </>
 

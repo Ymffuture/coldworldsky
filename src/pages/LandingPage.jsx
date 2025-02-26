@@ -8,9 +8,8 @@ import Team from '../componets/Team';
 import Testimonials from '../componets/testimonials';
 import JsonData from '../data/data.json';
 import SmoothScroll from "smooth-scroll";
-import Chatbot from "../componets/ChatBot";
-export const scroll = new SmoothScroll('a[href*="#"]', {
-  speed: 2000,
+export const scroll = new SmoothScroll('a[href*="/"]', {
+  speed: 500,
   speedAsDuration: true,
 });
 const LandingPage = () => {
@@ -23,7 +22,7 @@ const LandingPage = () => {
     
   }, []);
   return (
-    <div className="container-not-set">
+    <div className="container-fluid w-100 all">
       
       <Header data={landingPageData.Header} />
       <Features data={landingPageData.Features} />
@@ -32,7 +31,6 @@ const LandingPage = () => {
       <Tutor data={landingPageData.Tutor} /> 
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
-       <Chatbot className='bot'/>
     </div>
   )
 }

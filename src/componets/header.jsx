@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
   const handleShow = () => setShow(true);
 const mydata = ['1','2','3']
   return (
-    <header id="header "className="text-center position-relative">
+    <header id="header" className="text-center position-relative">
       <div className="intro">
         <div className="overlay d-flex justify-content-center align-items-center vh-100">
           <div className="container">
@@ -40,7 +40,6 @@ const mydata = ['1','2','3']
                 <span id="ribbon">25% Off</span>
                 </animated.a>{" "}
               </div>
-
         <div className="container table-responsive">
         <div className="laptop">
   <div className="content-laptop">

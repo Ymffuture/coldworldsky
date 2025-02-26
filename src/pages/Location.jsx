@@ -1,35 +1,20 @@
-import React from 'react'
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useState } from "react";
 
-const Location = () => {
-  return (
-    <div className='map container fw-bold text-center'>
-        <p> Google Map</p>
-     <em>Not available::Tjovitjo phase 2 not found</em>
+const GoogleMapComponent = () => {
+    const [center, setCenter] = useState({ lat: -26.2041, lng: 28.0473 }); // Johannesburg, South Africa
 
-<br/>
-<div className='btn-group lowbtn mb-4'>
+    return (
+        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+            <GoogleMap
+                mapContainerStyle={{ width: "100%", height: "500px"}}
+                center={center}
+                zoom={12}
+            >
+                <Marker position={center} />
+            </GoogleMap>
+        </LoadScript>
+    );
+};
 
-<button className='btn' type='button'><img width='10%' src='/img/logosk.jpg' alt='logo'/> SkyfordCCI App</button>
-<button className='btn ' type='button'>Google Maps</button>
-<div className='btn-group lowbtn'>
-<button className='btn btn-2 dropdown-toggle' data-toggle='dropdown' type='button'>Back to <span className='caret'></span></button>
-<ul className='dropdown-menu' role='menu'>
-   <li><a href='#'>Home</a></li> 
-   <li>About locaction</li>
-   <li>Contact Us</li>
-</ul>
-</div>
-</div>
-     <div className='progress '>
-        <div className='progress-bar progress-bar-success progress-bar-striped activebar' role='progressbar' aria-valuenow='83' aria-valuemin='0'
-        aria-valuemax='100' style={{width:'83%'}}>
-     loading buttuns
-        </div>
-     </div>
-
-
-    </div>
-  )
-}
-
-export default Location;
+export default GoogleMapComponent;

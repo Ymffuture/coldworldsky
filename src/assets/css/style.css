@@ -7,9 +7,9 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased !important;
   color: #1E2227 !important;
   font-weight: 400;
-  background: white !important;
-  /* -webkit-user-select: none; */
-  /* -ms-user-select: none; */
+  background: #F8F9FA !important;
+   -webkit-user-select: none; 
+   -ms-user-select: none; 
   user-select: none;
 }
 .other{
@@ -997,6 +997,12 @@ select:hover {
   overflow: hidden;
   animation: glow 6s infinite;
 }
+.all{
+  padding: 0px;
+  position: relative;
+  width: 100%;
+}
+
 #footer {
   background: #1E2227 !important;
   padding: 30px;
