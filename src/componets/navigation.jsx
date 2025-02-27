@@ -156,7 +156,7 @@ const Navigation = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
-      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text text-danger" onClick={() => {
+      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={() => {
         localStorage.removeItem("token"); // Clear token
         setIsAuthenticated(false);
       }} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
