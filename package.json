@@ -25,6 +25,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^1.7.4",
     "bootstrap": "^5.3.3",
+    "date-fns": "^4.1.0",
     "emailjs-com": "^2.6.4",
     "framer-motion": "^11.18.2",
     "jest": "^27.5.1",

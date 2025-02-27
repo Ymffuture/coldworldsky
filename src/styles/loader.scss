@@ -23,7 +23,7 @@ img{
     position: relative;
     width: 150px;
     height: 150px;
-    animation: rotate 2s infinite;
+    animation: rotate 3s infinite;
    
     image{
     position: absolute;
@@ -44,7 +44,7 @@ img{
         stroke-dasharray: 280;
         stroke-dashoffset: 580;
         transform: translate(5px,5px);
-        animation: animate 4s linear infinite;
+        animation: animate 4s ease-in-out infinite;
         
     }
     }
@@ -68,7 +68,7 @@ img{
         stroke: #71727c;
     }
     51%{
-        stroke-dashoffset: 1088;
+        stroke-dashoffset: 800;
         stroke: #121518;
     }
 }

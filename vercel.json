@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/page-not-foundErr" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }

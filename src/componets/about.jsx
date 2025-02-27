@@ -1,7 +1,7 @@
 import React, {useRef,useEffect, useState } from "react";
 import { useSpring, animated} from "@react-spring/web";
-import Loader from './Loader'
-
+// import Loader from './Loader'
+// import { Button } from "@chakra-ui/react";
 const About = (props) => {
   const [isVisible ,setIsvisible] = useState()
   const myRef = useRef()
@@ -31,13 +31,21 @@ observer.observe(myRef.current)
         <div className="row">
           <div  className="col-xs-12 col-md-6">
             {" "}
-            {isVisible? <animated.img style={fadeIn}  src="img/about-01.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />:<animated.img style={fadeIn} src="img/intro.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />}
+            {isVisible?<animated.img style={fadeIn}  src="img/about-01.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />:<animated.img style={fadeIn} src="img/intro.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />}
             {" "}
           </div>
           <div className="col-xs-12 col-md-6">
             <div className="about-text">
+           
+         
               <h2 >About Us</h2>
-              
+              {/* <Button
+      colorScheme="teal"
+      size={{ base: "sm", md: "lg" }} // Small on mobile, large on desktop
+      width={{ base: "100%", md: "auto" }} // Full width on mobile
+    >
+      Responsive Button
+    </Button> */}
               <p>{props.data ? props.data.paragraph : 'loading...'}</p>
 
              

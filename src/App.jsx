@@ -124,7 +124,7 @@ useEffect(()=>{
 
 
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route exact path="/" element={<LandingPage />} />
           <Route path="/about/" element={<About/>} />
           <Route path="/post_ads/" element={<Post/>} />
           <Route path="/location/" element={<Location/>} />

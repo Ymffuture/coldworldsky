@@ -63,7 +63,7 @@ const schema = yup.object({
       )
       .then(
         (result) => {
-          console.info(result.text());
+          // console.info(result.text());
           toast.success("Message sent successfully!",{
             duration: 10000,
             position: "bottom-left",
@@ -257,7 +257,7 @@ const schema = yup.object({
                 </div>
 
                 {selectedOption !== "other" ? null : (
-                  <div className={`col-md-6`}>
+                  <div className={`col-md-6  `}>
                     <div class="form-group other">
                     
                       <textarea
@@ -317,7 +317,7 @@ const schema = yup.object({
                 <span>
                   <i className="fa fa-map-marker text-primary me-2"></i>
                 </span>
-                {props.data ? props.data.address : <Loader/>}
+                {props.data ? props.data.address : "Johannersbug south 1805 orange farm/ Tjovitjo"}
               </p>
             </div>
             <div className="contact-item mb-3">

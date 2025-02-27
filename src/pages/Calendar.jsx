@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addMonths, subMonths, addDays, isToday } from "date-fns";
 import { Link } from "react-router-dom";
 import {
   Badge,
-  Breadcrumb,
   Button,
-  Form,
-  Modal,
 } from "react-bootstrap";
-import { FaSignInAlt } from "react-icons/fa";
 
 const Calendar = () => {
-  const [showEmail, setShowEmail] = useState(false);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const monthStart = startOfMonth(currentDate);
+  const monthEnd = endOfMonth(monthStart);
+  const startDate = startOfWeek(monthStart);
+  const endDate = endOfWeek(monthEnd);
+
   const [showDate, setShowDate] = useState("");
   const [showDate2, setShowDate2] = useState("");
-  const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const formattedDate = currentDate.toDateString();
-
-  const handleClose = () => setShowEmail(false);
-  const handleRegister = () => {
-    window.location.href = "https://www.myformabc.com";
-  };
+  const currentDate_ = new Date();
+  const currentMonth = currentDate_.getMonth();
+  const formattedDate = currentDate_.toDateString();
 
   useEffect(() => {
     setShowDate(
@@ -44,9 +42,56 @@ const Calendar = () => {
 
   const registrationStatusClass = currentMonth < 2 ? "active" : "";
   const registrationStatusClass2 = currentMonth > 2 ? "active" : "";
+  const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
+  const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
+
+  const renderDays = () => {
+    const days = [];
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    for (let day of weekDays) {
+      days.push(
+        <th key={day} className="text-center p-2 bg-light border-2">
+          {day}
+        </th>
+      );
+    }
+
+    return <tr>{days}</tr>;
+  };
+
+  const renderCells = () => {
+    let day = startDate;
+    const rows = [];
+
+    while (day <= endDate) {
+      const cells = [];
+
+      for (let i = 0; i < 7; i++) {
+        const isCurrentMonth = day >= monthStart && day <= monthEnd;
+        const isTodayDate = isToday(day);
+if(isTodayDate ===27){
+cellClass = `bg-danger`
+}
+        const cellClass = `text-center p-3 border ${isCurrentMonth ? "text-primary" : "text-dark opacity-50"} ${isTodayDate ? "bg-success text-white rounded" : ""
+          }`;
+
+        cells.push(
+          <td key={day} className={`${cellClass} fw-bold`}>
+            {format(day, "d")}
+          </td>
+        );
+
+        day = addDays(day, 1);
+      }
+
+      rows.push(<tr key={day}>{cells}</tr>);
+    }
+
+    return rows;
+  };
+
   return (
-    <div  >
-      {/* Header Section */}
+    <div>
       <header id="header" className="text-center">
         <div className="intro d-flex justify-content-center align-items-center vh-100 bg-primary text-white">
           <div className="container">
@@ -57,7 +102,7 @@ const Calendar = () => {
             <i className="text-uppercase fw-bold">Registration Timeline</i>
             <p className="fs-4">School Calendar of Skyford</p>
             <div className="d-flex justify-content-center gap-3">
-              <Button variant="warning" size="lg" onClick={handleRegister}>
+              <Button variant="warning" size="lg" onClick={() => console.log('Clicked')}>
                 Register
               </Button>
               <Button variant="success" size="lg">
@@ -66,125 +111,36 @@ const Calendar = () => {
             </div>
           </div>
         </div>
-      </header>
-<div className='calendar-main container'>
-      {/* Alert Section */}
 
-      {/* Breadcrumb */}
-      <Breadcrumb className="my-4-4">
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/about">About</Breadcrumb.Item>
-        <Breadcrumb.Item active>School Calendar</Breadcrumb.Item>
-      </Breadcrumb>
-
-      {/* Main Content */}
-      <div className="row">
-        <div className="col-md-6">
-          <h2 className="text-danger-subtle fw-bold text-uppercase">
-            Opening Day for Intake 2024: CLOSED!
-          </h2>
-
-          {/* School Terms */}
-          <div className="bg-light p-4 rounded shadow">
-            <h4 className="mb-4">School Terms</h4>
-            <ul className="list-unstyled">
-              <li className={`mb-2 ${registrationStatusClass}`}>
-                Term 1: 15 January - 28 March {showDate}
-              </li>
-              <li className={`mb-2 ${registrationStatusClass2}`}>Term 2: 08 April - 27 June {showDate2}</li>
-              <li>Term 3: 22 July - 03 October</li>
-              <li>Term 4: 13 October - 12 December</li>
-            </ul>
-          </div>
-
-          {/* Dropdown for Grades */}
-        
+        <div className="bg-light p-4 rounded shadow">
+          <h4 className="mb-4">School Terms</h4>
+          <ul className="list-unstyled">
+            <li className={`mb-2 ${registrationStatusClass}`}>
+              Term 1: 15 January - 28 March {showDate}
+            </li>
+            <li className={`mb-2 ${registrationStatusClass2}`}>Term 2: 08 April - 27 June {showDate2}</li>
+            <li>Term 3: 22 July - 03 October</li>
+            <li>Term 4: 13 October - 12 December</li>
+          </ul>
         </div>
-        
-        <p className="p-4 mt-4 bg-success-subtle text-capitalize container">
-                school Events
-                <ul className="p-4 mb-4 m-4 bg-body-secondary">
-                  <il>
-                    28 MARCH <Badge bg="danger">Declined</Badge>
-                  </il>
+      </header>
 
-                  <ul>
-                    <il>
-                      08 APRIL <Badge bg="warning">Pendding</Badge>
-                    </il>
-                  </ul>
-                  <ul>
-                    <il>
-                      22 JULY 
-                    </il>
-                  </ul>
-                  <ul>
-                    <il>
-                      13 OCTOBER 
-                    </il>
-                  </ul>
-                </ul>
-                </p>
-              
-        <div className="container main-calendar">
-        <div class="calendar">
-              <div class="calendar-header"> Febuary 2025</div>
-              <div class="calendar-days">
-              <div className="text text-bg-danger">Sun</div>
-                {['Mon' ,'Tue' , 'Wed', 'Thu', 'Fri'].map((weekdays)=>(
-                  <>
-                  <div key={weekdays}>{weekdays}</div>
-                  </>
-                ))}
-              <div className="text text-bg-danger">Sat</div>
-              </div>
-             
-              <div class="calendar-dates">
-                {['','','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','',''].map((days)=>(
-                  <div className="days-feb">{days}</div>
-                ))}
-              
-              </div>
-            </div>
-            <div class="calendar container">
-              <div class="calendar-header">March 2025</div>
-              <div class="calendar-days">
-              <div className="text-bg-danger">Sun</div>
-                {['Mon' ,'Tue' , 'Wed', 'Thu', 'Fri'].map((weekdays)=>(
-                  <>
-                  <div key={weekdays}>{weekdays}</div>
-                  </>
-                ))}
-              <div className="text-bg-danger">Sat</div>
-              </div>
-              <div class="calendar-dates">
-                {['','','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'].map((days)=>(
-                  <div className="days-March">{days}</div>
-                ))}
-              
-              </div>
-            </div>
-            <div class="calendar container">
-              <div class="calendar-header">April 2025</div>
-              <div class="calendar-days">
-              <div className="text-bg-danger">Sun</div>
-                {['Mon' ,'Tue' , 'Wed', 'Thu', 'Fri'].map((weekdays)=>(
-                  <>
-                  <div key={weekdays}>{weekdays}</div>
-                  </>
-                ))}
-              <div className="text-bg-danger">Sat</div>
-              </div>
-              <div class="calendar-dates">
-                {['','','','','','','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'].map((days)=>(
-                  <div className="days-March">{days}</div>
-                ))}
-              
-              </div>
-            </div>
-          {/* Calendar */}
+      <div className="container mt-5">
+        <div className="card-none shadow">
+          <div className="card-header d-flex justify-content-between align-items-center">
+            <button onClick={handlePrevMonth} className="btn btn-outline-secondary">&lt;</button>
+            <h3 className="mb-0">{format(currentDate, "MMMM yyyy")}</h3>
+            <button onClick={handleNextMonth} className="btn btn-outline-secondary m-3">&gt;</button>
+          </div>
+          <div className="card-body">
+            <table className="table table-bordered" >
+              <thead className='text-bt-info'>{renderDays()}</thead>
+              <tbody>{renderCells()}</tbody>
+            </table>
+          </div>
+        </div>
 
-          {/* <div className="calendar bg-light p-3 rounded shadow">
+        {/* <div className="calendar bg-light p-3 rounded shadow">
             <h4 className="text-center">February 2025</h4>
             <div className="">
               <div>Sun</div>
@@ -199,47 +155,9 @@ const Calendar = () => {
               ))}
             </div>
           </div> */}
-        </div>
       </div>
-      </div>
-      {/* Modal */}
-      <Modal show={showEmail} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login Info</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                required
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="password"
-                required
-              />
-            </Form.Group>
-            <Button variant="success" type="submit">
-              Login <FaSignInAlt />
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <p>Not registered yet?</p>
-          <Link to="/form" className="btn btn-primary">
-            Register Now
-          </Link>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
-};
+}
 
 export default Calendar;
