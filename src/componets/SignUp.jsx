@@ -40,7 +40,7 @@ function Register() {
     },15000)
    try {
       // Send the registration data to the backend
-      const response = await axios.post("http://localhost:7411/api/auth/user-home-page/sign-up", {
+      const response = await axios.post("https://skyserver-d2yx.onrender.com/api/auth/user-home-page/sign-up", {
         email,
         password,
       });
