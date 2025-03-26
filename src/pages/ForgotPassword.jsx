@@ -5,16 +5,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {Link} from 'react-router-dom'
-import { FaTimesCircle } from "react-icons/fa";
-
+import {URL_BACKEND_HTTP} from '../../Urls'
+import IconCloud from "../custom/IconCloud/IconCloud";
+import Spinner from "../componets/Spinner";
 // Validation Schema using Yup
 const schema = yup.object().shape({
-  email: yup.string().email("Invalid email format").required("Email is required"),
+  email: yup.string().email("Invalid email format").required("Email is required, eg: yourname@gmail.com"),
 });
 
 const ForgotPassword = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [readOnly,setReadOnly] = useState(false)
+const [border , setBorder]=useState('')
 
   // React Hook Form setup
   const {
@@ -27,18 +30,23 @@ const ForgotPassword = () => {
   });
 
   const onSubmit = async (data) => {
+  setBorder('border-green')
     setMessage("");
     setError("");
+  setReadOnly(true)
 
     try {
-      const res = await axios.post("http://localhost:7411/api/auth/forgot-password", {
+      const res = await axios.post(`${URL_BACKEND_HTTP}/api/auth/forgot-password`, {
         email: data.email,
       });
       setMessage(res.data.message);
       reset(); // Clear input after submission
+      
     } catch (err) {
-      setError(err.response?.data?.message || <div><FaTimesCircle className='fs-4'/> Something went wrong while Sending Reset Link, resC:535</div>);
+      setError(err.response?.data?.message || <div><IconCloud/> Error Creating reset Link</div>);
+     
     }
+ 
   };
 
   return (
@@ -55,20 +63,23 @@ const ForgotPassword = () => {
 
           <Form onSubmit={handleSubmit(onSubmit)} className="p-4 border rounded shadow-sm bg-white">
             <Form.Group className="mb-3">
-              <Form.Label>Email Address</Form.Label>
+              {/* <Form.Label>Email Address</Form.Label> */}
               <Form.Control
                 type="email"
                 {...register("email")}
                 isInvalid={!!errors.email}
-                placeholder="Enter your email"
+                placeholder="Enter your registered email"
+                readOnly={readOnly}
+                className={`${border}`}
               />
               <Form.Control.Feedback type="invalid">
                 {errors.email?.message}
               </Form.Control.Feedback>
+            
             </Form.Group>
 
             <Button type="submit" variant="primary" className="w-100" disabled={isSubmitting}>
-              {isSubmitting ? <div className="spinner"></div> : "Send Reset Link"}
+              {isSubmitting ? <Spinner/> : "Send Reset Link"}
             </Button>
           </Form>
           <div className="text">

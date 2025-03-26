@@ -49,7 +49,7 @@ const Tutor = (props) => {
 
         {/* Bursary & Application Section */}
         <div className="mt-5">
-          <p className="text-bg-info p-4 shadow-sm rounded">
+          <p className="text-bg-primary p-4 shadow-sm rounded">
             <FaUniversity className="me-2" />
             We assist with bursaries and university applications for current learners. 
             <br />

@@ -47,7 +47,6 @@ import Location from "./pages/Location";
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
-
 const  App = ()=> {
 const {id} =useParams()
 const [show ,setShow] =useState(false);
@@ -106,9 +105,9 @@ useEffect(()=>{
     cursor: "pointer",
   };
 
+
+  
   return (
-
-
     <Router>
       <div className="mobile-message d-flex g-2 position-absolute m-4">
         {/* <FaInfoCircle className="cl-MB"/> */}
@@ -132,7 +131,7 @@ useEffect(()=>{
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/track-Application/" element={<TrackApplication/>} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/quotes/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Quotes /> </ProtectedRoute>} />
+          <Route path="/quotes/" element={<Quotes /> }/>
           <Route path="/services/" element={<Services/>} />
           <Route path="/tutoring/" element={<Tutoring/>} >
           <Route path="/tutoring/ApplicationForm-for-a-tutor/" element={<TutorApplyForm/>} >
@@ -151,7 +150,11 @@ useEffect(()=>{
 
             </Route>
           </Route>
-          <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor /></ProtectedRoute>} />
+
+
+  <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor /></ProtectedRoute>} />
+
+
           <Route path="/courses/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Courses/></ProtectedRoute>}>
             <Route path="/courses/web-dev/" element={<WebDev />} />
             <Route path="/courses/data-science/" element={<DataScience />} />
@@ -173,7 +176,7 @@ useEffect(()=>{
         <ToastContainer/>
         <Toaster />
       </div>
-      {show&&  <Footer />}
+      {show&&  <Footer/>}
      
     </Router>
   );

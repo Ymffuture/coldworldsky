@@ -1,0 +1,23 @@
+.cloud-slash{
+    position: relative;
+    display: inline-block;
+    width: em;
+    height: 4.8em;
+    color: #cacaca;
+    zoom: 40%;
+}
+.cloud-slash .bi-cloud{
+    font-size: 3.3em;
+}
+.cloud-slash .fa-slash{
+    content: '';
+    background: #cacaca;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+    font-size: 4em;
+    height: .9em;
+    width: 4px;
+    border-radius: 10%;
+}

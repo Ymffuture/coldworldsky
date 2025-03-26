@@ -5,9 +5,9 @@ html {
 font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  color: #1E2227 !important;
+  color: #23272E !important;
   font-weight: 400;
-  background: #F8F9FA !important;
+  background: whitesmoke!important;
    -webkit-user-select: none; 
    -ms-user-select: none; 
   user-select: none;
@@ -26,7 +26,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .dark {
   color: whitesmoke !important;
   font-weight: 400 !important;
-  background: #23272E !important;
+  background: #000000 !important;
 
 }
 
@@ -49,6 +49,7 @@ h4 {
     -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  
 }
 
 h2 {
@@ -56,7 +57,7 @@ h2 {
   margin: 0 0 20px !important;
   font-weight: 800 !important;
   font-size: 36px !important;
-  color: #333 !important;
+  color:#FF5001 !important;
 }
 
 h3 {
@@ -200,7 +201,7 @@ hr {
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
   color: #fff !important;
-  background-color: #5ca9fb !important;
+  background-color: #FF5001 !important;
   background-image: linear-gradient(
     to right,
     #5ca9fb 0%,
@@ -211,7 +212,7 @@ hr {
   margin: 0;
   font-size: 15px;
   font-weight: 500;
-  border-radius: 25px;
+  border-radius: 8px;
   transition: all 0.5s linear;
   border: 0;
   position: relative;
@@ -224,7 +225,7 @@ hr {
 .btn-custom.active {
   color: #fff !important;
   background-image: none !important;
-  background-color: #11142b !important;
+  background-color: #000000 !important;
 }
 
 .btn:active,
@@ -247,18 +248,19 @@ a:focus,
 }
 
 /* Header Section */
+
 .intro {
   display: grid;
   width: 100% !important;
   padding: 0;
   background: url("../img/about-bg.jpg") no-repeat center center fixed;
-  /* Fixed positioning */
   background-color: whitesmoke !important;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   position: relative;
+ 
 }
 
 .vid {
@@ -276,12 +278,13 @@ a:focus,
 }
 
 .intro .overlay {
-  background: linear-gradient(to right, #0000005e 0%, #ffffff4d 100%);
+  background: linear-gradient(-117deg, #000 0%, #0e1013bb 100%);
+  /* background: #23272E ; */
 }
 
 .intro h1 {
   /* font-family: "Raleway", sans-serif; */
-  background: linear-gradient(to right, #434eb1 0%, #010e1d 100%);
+  background: #ff5101d5;
   -webkit-background-clip: text !important;
   color: transparent !important;
   font-size: 50px;
@@ -304,7 +307,7 @@ a:focus,
 }
 
 .intro p {
-  color: #300a33;
+  color: whitesmoke;
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
@@ -353,9 +356,11 @@ header .intro-text {
 
 /* Features Section */
 #features {
-  background: #f6f6f6;
+  background: #eff1f3 !important;
   width: 100%;
   padding: 50px 0;
+  margin-top: 5px;
+  /* color: whitesmoke !important; */
 }
 
 #features i.fa:hover {
@@ -372,13 +377,19 @@ header .intro-text {
   height: 100px;
   padding: 30px 0;
   border-radius: 50%;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background:#FF5001;
   box-shadow: 10px 10px 10px #0000001e;
 }
 
 #features h2 {
   text-align: center;
   justify-content: center;
+  
+}
+#features h3 {
+  text-align: center;
+  justify-content: center;
+  color: #FF5001;
 }
 
 /* About Section */
@@ -439,7 +450,7 @@ header .intro-text {
 /* Services Section */
 #services {
   padding: 100px 0;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: #743BBC;
   color: #fff !important;
   border-radius: 7px;
 }
@@ -468,7 +479,7 @@ header .intro-text {
   width: 120px;
   height: 120px;
   padding: 40px 0;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background:#FF5001;
   border-radius: 50%;
   color: #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
@@ -930,6 +941,15 @@ select:hover {
   border-radius: 5px;
   cursor: pointer;
 }
+.myerr{
+  color: red;
+  background: rgb(252, 106, 106);
+  padding: 4px;
+  position: relative;
+  top: 7px;
+  left: 40%;
+  
+}
 
 @media (max-width: 798px) {
   #contact .fa {
@@ -1028,11 +1048,12 @@ select:hover {
 }
 
 #footer a {
-  color: #608dfd !important;
+  color: #608dfd  !important;
+  text-decoration: none;
 }
 
 #footer a:hover {
-  border-bottom: 2px solid #608dfd !important;
+  color: #FF5001  !important;
 }
 
 #footer ul {
@@ -1121,104 +1142,17 @@ select:hover {
   }
 }
 
-#recordsTable tr td a {
-  text-decoration: none;
-}
 
-#LinksTable th {
-  font-size: 22px;
+#LinksTable .th {
+  font-size: 30px;
   opacity: 0.6;
-  background: radial-gradient(#6184f8, #ffffff, #fa0c0c);
+  background: radial-gradient(#ffffff, #FF5001, #fffefe);
   -webkit-background-clip: text;
   color: transparent;
   text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.425);
 }
-.days-March:nth-child(30) {
-  background: red;
-  color: whitesmoke;
-}
-.days-March:nth-child(30):hover {
-  background: whitesmoke;
-  color: red;
-}
-.days-feb:nth-child(11) {
-  font-weight: bold;
-  position: relative;
-}
-
-.days-feb:nth-child(11)::after {
-  content: "";
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  background: #ff000070;
-  left: 29%;
-  top: 32%;
-  border-radius: 50px;
-}
-.main-calendar{
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  zoom: 50%;
-}
-.calendar {
-  transition: 0.6s ease-in-out;
-
-}
-@media (max-width:789px) {
-  .main-calendar{
-    display: grid;
-    grid-template-columns: repeat(1,1fr);
-  }
-}
-.calendar:hover {
-  position: relative;
-  left: 0;
-  top: 0;
-  transition: 0.6s ease-in-out;
-  background: #1f1d1d;
-  color: whitesmoke;
-}
-/* Calendar header styling */
-.calendar-header {
-  text-align: center;
-  background-color: #004381;
-  color: white;
-  padding: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 5px;
-}
-
-/* Days of the week styling */
-.calendar-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background: linear-gradient(#f8b261, #12291e, #605fa5);
-  color: white;
-}
-
-.calendar-days div {
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-.calendar-dates div:hover {
-  transform: scale(1.15);
-  background: #00fff2;
-  transition: 0.6s all;
-  color: #000000;
-}
-/* Date cells styling */
-.calendar-dates {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-}
-
-.calendar-dates div {
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #ddd;
+.tel a{
+  color: gray !important;
 }
 
 .active {
@@ -1353,3 +1287,8 @@ select:hover {
   -webkit-transform: rotateY(-1turn);
   transform: rotateY(-1turn);
 }
+.slide{
+  transition:.8s all;
+}
+
+

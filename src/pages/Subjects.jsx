@@ -19,7 +19,7 @@ const Subjects = () => {
     ];
 
     return (
-        <div className="content">
+        <div className="content card-bg">
             <div className="card-container">
                 {previousWork.map((page)=>(
                     <div key={page.id} className="card" title={page.name}>

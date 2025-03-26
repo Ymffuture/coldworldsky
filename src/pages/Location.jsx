@@ -1,11 +1,14 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useState } from "react";
+// import CssLoader from "./Cloader";
 
 const GoogleMapComponent = () => {
     const [center, setCenter] = useState({ lat: -26.2041, lng: 28.0473 }); // Johannesburg, South Africa
 
     return (
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+        <>
+        {/* <CssLoader/> */}
+          <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
             <GoogleMap
                 mapContainerStyle={{ width: "100%", height: "500px"}}
                 center={center}
@@ -14,6 +17,10 @@ const GoogleMapComponent = () => {
                 <Marker position={center} />
             </GoogleMap>
         </LoadScript>
+        
+        
+        </>
+      
     );
 };
 

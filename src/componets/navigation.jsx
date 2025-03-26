@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
 import Badge from "react-bootstrap/Badge";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
 import Modal from "react-bootstrap/Modal";
-import GoogleAuth from "./SocialLogin"; 
+import IconCloud  from "../custom/IconCloud/IconCloud";
 import {
   FaSearch,
   FaCalendarCheck,
@@ -36,8 +35,10 @@ import {
   FaShare,
   FaRegCopy,
   FaLocationArrow,
+  FaCloud,
 } from "react-icons/fa";
 import imgLoad from '../assets/css/nivo-lightbox/loading.gif'
+import CssLoader from "../pages/Cloader";
 const Navigation = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -242,7 +243,7 @@ const Navigation = () => {
           toast.success("You are back Online!", {
             position: "bottom-left",
             duration: 8000,
-            icon: null,
+            icon: <FaCloud/>,
             toastId: toastId,
             style: {
               background: "#1E2227",
@@ -251,9 +252,10 @@ const Navigation = () => {
             },
           });
         }, 5000);
+
       } else {
         setIsOnline(false);
-        toast.custom(<div className=" text-bg-secondary p-3 rounded">No Connection Try <b onClick={()=>window.location.reload}>REFRESH</b></div>, {
+        toast.custom(<div className=" text-bg-secondary p-3 rounded"> No Connection Try <b onClick={()=>window.location.reload}>REFRESH</b></div>, {
           position: "top-center",
           duration: 3000,
           icon: null,
@@ -265,7 +267,7 @@ const Navigation = () => {
         });
 
         setTimeout(() => {
-          toast.custom(<div ><img width='25%' src={imgLoad} alt='Loading...' /></div>, {
+          toast.custom(<div ><img width='45%' src={imgLoad} alt='Loading...' /></div>, {
             duration: 2000,
             style: {
               background: "white",
@@ -291,7 +293,7 @@ const Navigation = () => {
         setTimeout(() => {
           toast.error("Failed to conntect to Internet.", {
             duration: 3000,
-            icon: null,
+            icon: <IconCloud/>  ,
             toastId: toastId,
             style: {
               background: "#1E2227",
@@ -377,11 +379,8 @@ const Navigation = () => {
       setIsTransitioning(false);
     }, 8000);
   }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      setNavBar(true);
-    }, 5000);
-  }, []);
+
+
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -444,7 +443,7 @@ const Navigation = () => {
   useEffect(() => {
     setTimeout(() => {
       setNavBar(true);
-    }, 5000);
+    }, 10000);
   }, []);
 
   useEffect(() => {
@@ -469,6 +468,8 @@ const Navigation = () => {
         ref={sidemenuRef}
         className={`sidebar ${isSidebarOpen ? "open" : ""} ${darkMode ? "dark" : "light"}`}
       >
+
+
 
         <div className="sidebar-header">
           <div className="d-flex">
@@ -580,7 +581,7 @@ const Navigation = () => {
             <ul className={`sidebar-links`}>
               {navLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.path} className={`${darkMode ? "dark" : "light"}`}>
+                  <Link to={link.path}>
                     <span
                       className={`myicon ${showIcon ? "" : "show"} ${isSidebarVisible ? "visible" : "hidden"
                         } ${darkMode ? "dark" : "light"}`}
@@ -596,7 +597,7 @@ const Navigation = () => {
                     <ul className={`submenu `}>
                       {link.submenu.map((sub, index) => (
                         <li key={index}>
-                          <Link to={sub.path} className={`${darkMode ? "dark" : "light"}`}>
+                          <Link to={sub.path} >
                             {" "}
                             <span
 
@@ -693,15 +694,11 @@ const Navigation = () => {
                 ></span>
                 <Tooltip id="my-theme-menu" />
               </label>
-              <div className="sidegoogle"   data-tooltip-id="my-theme-menu"
-                  data-tooltip-content='Sign In with Google'>
-<GoogleAuth/>
-</div>
             </div>
 
           </>
         ) : (
-          <Loader />
+         <CssLoader/>
         )}
       </div>
 

@@ -1,10 +1,10 @@
 {
   "Header": {
-    "title": "SkyfordCCI",
-    "paragraph": "Unlock your coding potential with SkyfordCCI, the ultimate platform to learn, grow, and thrive in the tech industry. From foundational skills to advanced programming, we prepare you for a future filled with innovation."
+    "title": "",
+    "paragraph": "Unlock your coding potential with   Quorvex Institute, the ultimate platform to learn, grow, and thrive in the tech industry. From foundational skills to advanced programming, we prepare you for a future filled with innovation."
   },
   "About": {
-    "paragraph": "At SkyfordCCI, we are passionate about empowering individuals with cutting-edge coding knowledge and skills. Our mission is to bridge the gap between aspiration and achievement through practical, industry-relevant training. Join us on a journey to transform your passion for technology into a rewarding career.",
+    "paragraph": "At   Quorvex Institute, we are passionate about empowering individuals with cutting-edge coding knowledge and skills. Our mission is to bridge the gap between aspiration and achievement through practical, industry-relevant training. Join us on a journey to transform your passion for technology into a rewarding career.",
     "Why": [
       "Comprehensive coding curriculum",
       "Industry-expert instructors",
@@ -63,13 +63,13 @@
   "Testimonials": [
     {
       "img": "img/portfolio/react.png",
-      "text": "\"Joining SKYFORDCCI was the best decision of my life. The instructors are fantastic, and the hands-on projects prepared me for a career in tech!\"",
+      "text": "\"Joining  QUORVEX INSTITUTE was the best decision of my life. The instructors are fantastic, and the hands-on projects prepared me for a career in tech!\"",
       "name": "React js"
     },
 
     {
       "img": "img/portfolio/python.png",
-      "text": "\"Grencodien's bootcamps gave me the confidence to switch careers. Now, I’m a full-stack developer working on exciting projects.\"",
+      "text": "\"  Quorvex Institute's bootcamps gave me the confidence to switch careers. Now, I’m a full-stack developer working on exciting projects.\"",
       "name": "Python"
     }
   ],

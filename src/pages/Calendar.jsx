@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addMonths, subMonths, addDays, isToday } from "date-fns";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import { Link } from "react-router-dom";
 import {
   Badge,
   Button,
 } from "react-bootstrap";
-
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import  '../styles/__style.module.css';
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -22,7 +25,7 @@ const Calendar = () => {
 
   useEffect(() => {
     setShowDate(
-      currentMonth < 2 ? (
+      currentMonth <= 2 ? (
         <Badge bg="warning">In Progress</Badge>
       ) : (
         <Badge bg="success">Completed</Badge>
@@ -40,7 +43,7 @@ const Calendar = () => {
     );
   }, [currentMonth]);
 
-  const registrationStatusClass = currentMonth < 2 ? "active" : "";
+  const registrationStatusClass = currentMonth <= 2 ? "active" : "";
   const registrationStatusClass2 = currentMonth > 2 ? "active" : "";
   const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
   const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
@@ -50,7 +53,7 @@ const Calendar = () => {
     const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     for (let day of weekDays) {
       days.push(
-        <th key={day} className="text-center p-2 bg-light border-2">
+        <th key={day} className="text-center p-2 text-bg-secondary border-none">
           {day}
         </th>
       );
@@ -69,10 +72,8 @@ const Calendar = () => {
       for (let i = 0; i < 7; i++) {
         const isCurrentMonth = day >= monthStart && day <= monthEnd;
         const isTodayDate = isToday(day);
-if(isTodayDate ===27){
-cellClass = `bg-danger`
-}
-        const cellClass = `text-center p-3 border ${isCurrentMonth ? "text-primary" : "text-dark opacity-50"} ${isTodayDate ? "bg-success text-white rounded" : ""
+
+        const cellClass = `text-center p-2 border ${isCurrentMonth ? "text-danger" : "text-dark opacity-50 "} ${isTodayDate ? "text-bg-success text-white bi bi-check-circle-fill" : ""
           }`;
 
         cells.push(
@@ -98,9 +99,9 @@ cellClass = `bg-danger`
             <h1>
               Calendar<span>.</span>
             </h1>
-            <p className="fs-5">{formattedDate}</p>
+            <p className="fs-5 text-dark bg-white p-2 rounded">{formattedDate}</p>
             <i className="text-uppercase fw-bold">Registration Timeline</i>
-            <p className="fs-4">School Calendar of Skyford</p>
+            <p className="fs-4">School Calendar</p>
             <div className="d-flex justify-content-center gap-3">
               <Button variant="warning" size="lg" onClick={() => console.log('Clicked')}>
                 Register
@@ -126,11 +127,21 @@ cellClass = `bg-danger`
       </header>
 
       <div className="container mt-5">
-        <div className="card-none shadow">
+        <div className="card-none shadow m-2 mb-5 rounded">
           <div className="card-header d-flex justify-content-between align-items-center">
-            <button onClick={handlePrevMonth} className="btn btn-outline-secondary">&lt;</button>
-            <h3 className="mb-0">{format(currentDate, "MMMM yyyy")}</h3>
-            <button onClick={handleNextMonth} className="btn btn-outline-secondary m-3">&gt;</button>
+            <button onClick={handlePrevMonth} className="btn"><FaArrowAltCircleLeft className='fs-1 f arrow_'
+             data-tooltip-id='arrow'
+             data-tooltip-content='Previous Month'
+            /></button>
+            <h3 className="mb-0 p-2 rounded"
+             data-tooltip-id='arrow'
+             data-tooltip-content={formattedDate}
+            ><i className={currentDate? 'bi bi-calendar-fill':'bi bi-calendar'}></i> {format(currentDate, "MMMM yyyy")}</h3>
+            <button onClick={handleNextMonth} className="btn m-3"><FaArrowAltCircleRight className='fs-1 b arrow_'
+            data-tooltip-id='arrow'
+             data-tooltip-content='Next Month'
+            /></button>
+            <Tooltip id="arrow" />
           </div>
           <div className="card-body">
             <table className="table table-bordered" >

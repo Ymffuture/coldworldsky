@@ -1,11 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaSignal } from "react-icons/fa";
 import { FaTimesCircle} from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import SocialLogin from "./SocialLogin";
+import { URL_BACKEND_HTTP , URL_BACKEND_HTTPS } from "../../Urls";
+import IconCloud from "../custom/IconCloud/IconCloud";
+import Spinner from './Spinner'
 const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,25 +21,46 @@ const SignIn = ({ setIsAuthenticated }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 
-    if(!email || !password){
+    if(!password || !emailRegex.test(email)){
       toast.dark('Both input field are required.', {
         position: "top-center",
         duration: 3000,
         icon:<FaTimesCircle className="text-danger"/>,
        
       })
-    }else{
+    }
+    if(!emailRegex.test(email)){
+      toast.dark('Email input field are required.', {
+        position: "top-center",
+        duration: 3000,
+        icon:<FaTimesCircle className="text-danger"/>,
+       
+      })
+    }
+    
+    if(!password && !emailRegex.test(email)){
+      toast.dark('Password input field are required.', {
+        position: "top-center",
+        duration: 3000,
+        icon:<FaTimesCircle className="text-danger"/>,
+       
+      })
+     
+    }
+    if(password && emailRegex.test(email)){
       setIsdisabled(true)
-      
       setTimeout(()=>{
         setIsdisabled(false)
         setFinalText(<p className=' text-bg-danger p-3 rounded-1'>No internet connection:code:500</p>)
-        setInText('Sign in')
-      },5000)
+      },10000)
+    }else{
+    
+    pass
     }
     // Call the backend login API
-    const response = await fetch("http://localhost:7411/api/auth/user-home-page/sign-in", {
+    const response = await fetch(`${URL_BACKEND_HTTP}/api/auth/user-home-page/sign-in`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -52,10 +75,10 @@ const SignIn = ({ setIsAuthenticated }) => {
       navigate("/");
     } else {
       
-      toast.error(data.error || "Login failed!", {
+      toast.error(data.error || "No internet Connection", {
         position: "top-center",
-        duration: 3000,
-        icon:<FaTimesCircle className="text-danger"/>,
+        duration: 8000,
+        icon:<IconCloud/>,
        
         style:{
           background:'#1E2227',
@@ -102,7 +125,9 @@ if(!isCapsLockOn){
     
     <form onSubmit={handleLogin}>
     {/* <img src='/img/logosk.jpg' width='20%' alt='LOGO' className=" rounded-4 p-2"  /> */}
-    <h3 className=' text-bg-primary p-2 rounded-1'>Sign In with your Email to get more features.</h3>
+    <h3 className=' text-bg-dark p-2 rounded-1'>
+    <i className={!password? "bi bi-lock-fill text-danger":"bi bi-unlock-fill text-success slide"}></i> {""}
+      Sign In with your Email to get more features.</h3>
       <h6>
         {finalText}</h6>
 
@@ -118,8 +143,9 @@ if(!isCapsLockOn){
           onChange={(e) => setEmail(e.target.value)}
           style={{padding:'.5rem',width:'100%'}}
           className="form-control"
+          autocomplete='on'
         />
-          <label for="email">Email</label>
+          <label for="email"><i className={!email? 'bi bi-envelope-open' :"bi bi-envelope"}></i> Email</label>
       </div>
       <div style={{marginBottom:'1rem'}}
        className="form-group"
@@ -134,8 +160,10 @@ if(!isCapsLockOn){
           className=" form-control"
           onKeyUp={handleKeyPress}
           // onKeyDown={handleChar}
+          maxLength='16'
+          autocomplete='on'
         />
-        <label for="email">Password</label>
+        <label for="email"><i className={!password? "bi bi-lock":"bi bi-unlock"}></i>Password</label>
       
         <span className="flex justify-content-around align-items-center eye" onClick={handleToggle}
             data-tooltip-id="passtooltip"
@@ -143,8 +171,8 @@ if(!isCapsLockOn){
            <i className={`fa ${icon} fa-${eye} position-absolute eye`}></i>
            </span>
       </div>
-      {isCapsLockOn && (<p className="p-2 text-bg-danger rounded mt-2">Warning: Caps Lock is ON</p>)}
-      <button className="btn btn-primary mb-3 px-4 position-relative" style={{padding:'.5rem 1rem', width:'100%'}} type="submit" disabled={isdisabled}> {!isdisabled? 'Sign In': <div className="spinner"></div>}</button>
+      {isCapsLockOn && (<p className="p-2 text-bg-danger rounded mt-2"><i className="bi bi-exclamation-circle fs-8"></i> Caps Lock is ON</p>)}
+      <button className="btn btn-primary mb-3 px-4 position-relative" style={{padding:'.5rem 1rem', width:'100%'}} type="submit" disabled={isdisabled}> {!isdisabled? 'Sign In': <Spinner/>}</button>
       <Tooltip id="passtooltip" />
     </form>
     <div className="text">
@@ -157,6 +185,8 @@ if(!isCapsLockOn){
 
     </div>
     <ToastContainer />
+    <br/>
+    <hr className='hr'/>
         <SocialLogin/>
     </div>
 

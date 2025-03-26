@@ -1,17 +1,34 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <div className="about-page">
       {/* Hero Section */}
-      <div className="hero-section text-center text-white d-flex align-items-center justify-content-center">
-        <Container>
-          <h1 className="display-3">About SkyfordCCI</h1>
-          <p className="lead">Empowering education through innovation and excellence.</p>
-        </Container>
-      </div>
+      <header id="header">
+        <div className="intro container-fluid ">
+          <div className="overlay d-flex justify-content-center align-items-center">
+            <div className="container">
+              <div className="row ">
+                <div className="col-md-8 col-md-offset-2 intro-text ">
+                <h1 className="display-3">About</h1>
+                <p className="lead">Empowering education through innovation and excellence.</p>
+
+                  <Link
+
+                    to='/find-a-tutor'
+                    className="btn btn-custom btn-lg page-scroll"
+                  >
+                    Find a Tutor
+                  </Link>{" "}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    
 
       <Container className="py-5 container">
         <Row className="align-items-center mb-5">

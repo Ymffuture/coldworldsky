@@ -7,7 +7,7 @@ const Loader = () => {
          
             <circle cx='70' cy='70' r='50'>Loader</circle>
         </svg>
-      {/* <img src='img/logosk.jpg' alt='' title='Loading...'/> */}
+      {/* <img src='./img/logoskblack.jpg' alt='logo' title='Loading, Please wait...'/> */}
       
     </div>
   )

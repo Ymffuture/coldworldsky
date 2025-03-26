@@ -8,11 +8,15 @@ import {
   FaArrowAltCircleRight 
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
  const Header = (props) => {
   const [show, setShow] = useState(false);
 
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } ,config:{duration:5000}});
-
+const style = {
+  background:"transparent",
+  border:"2px solid white"
+}
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,19 +30,30 @@ const mydata = ['1','2','3']
               <div className="col-md-8 col-md-offset-2 intro-text ">
                 <h1 >
                   {props.data ? props.data.title : <span id='p'>
-      SkyfordCCI
+      QUORVEXIN
+    
      </span>}
-                  <sup className="reg-icon">&reg;</sup>
+            
                 </h1>
                 <p >{props.data ? props.data.paragraph : <Loader/>}</p>
-                <animated.a style={fadeIn} 
+<div className="g-2 d-block">
+                {/* <animated.a style={fadeIn} 
                   href="#features"
                   className="btn btn-custom btn-lg page-scroll"
                   onClick={handleShow}
                 >
                 Register
-                <span id="ribbon">25% Off</span>
-                </animated.a>{" "}
+                <span id="ribbon">20% Off</span>
+                </animated.a> {" "} */}
+               <br/>
+                <Link style={style} 
+                  to="/user-home-page/sign-up"
+                  className="btn btn-lg page-scroll"
+                  onClick={handleShow}
+                >
+                Get Started
+                </Link>{" "}
+                </div>
               </div>
         <div className="container table-responsive">
         <div className="laptop">

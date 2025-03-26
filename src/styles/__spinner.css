@@ -1,0 +1,70 @@
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid red;
+    width: 20px;
+    height: 20px;
+    animation: spin 4s linear infinite, loader-fade 10s forwards;
+}
+.loader2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.78);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    width: 20px;
+    height: 20px;
+    animation: spin2 4s linear infinite, loader-fade 10s forwards;
+}
+.loader3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.586);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    border-top: 2px solid rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(255, 255, 255);
+    width: 20px;
+    height: 20px;
+    animation: spin3 4s linear infinite, loader-fade 10s forwards;
+}
+
+
+.spinner {
+    position: relative;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fdfdfd;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+@keyframes spin2 {
+    0% { transform: translate(-50%, -50%) scale(0.78) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) scale(0.78) rotate(-360deg); }
+}
+@keyframes spin3 {
+    0% { transform: translate(-50%, -50%) scale(0.586) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) scale(0.586) rotate(740deg); }
+}

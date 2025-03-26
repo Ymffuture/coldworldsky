@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TicTacToe.css";
+import W8 from "../../W8";
+import CssLoader from "../../Cloader";
+import Loader from "../../../componets/Loader";
 
 const TicTacToe = () => {
   // Initialize board as an array of 9 empty strings.
@@ -7,7 +10,7 @@ const TicTacToe = () => {
   const [count, setCount] = useState(0);
   const [lock, setLock] = useState(false);
   const [winner, setWinner] = useState(null);
-
+const [load, setLoad] =useState(true)
   // Winning combinations.
   const winningCombos = [
     [0, 1, 2],
@@ -64,10 +67,17 @@ const TicTacToe = () => {
     return null;
   };
 
+useEffect(()=>{
+  setTimeout(()=>{
 
+    setLoad(false)
+  },30000)
+},[])
 
   return (
-    <div className="tic-tac-toe-container">
+
+    <>
+    {load? <Loader/>: <div className="tic-tac-toe-container">
       <h1 className="game-title">Tic Tac Toe</h1>
       <div className="board">
         {board.map((cell, index) => (
@@ -84,7 +94,10 @@ const TicTacToe = () => {
       <button className="reset-button" onClick={resetGame}>
         Reset
       </button>
-    </div>
+    </div>}
+    
+    </>
+   
   );
 };
 

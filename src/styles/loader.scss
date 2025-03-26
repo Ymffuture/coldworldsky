@@ -39,12 +39,12 @@ img{
         height: 120%;
         stroke-width:10;
         fill: none;
-        stroke: #1E2227;
+        stroke: #F0C401;
         stroke-linecap: round;
-        stroke-dasharray: 280;
-        stroke-dashoffset: 580;
+        stroke-dasharray: 290;
+        stroke-dashoffset: 600;
         transform: translate(5px,5px);
-        animation: animate 4s ease-in-out infinite;
+        animation: animate 6s ease-in-out infinite;
         
     }
     }
@@ -59,17 +59,16 @@ img{
  }
 @keyframes animate {
     0%{
-        stroke-dashoffset: 600;
-        animation-delay: 1s;
-        stroke: #006909fb;
+        stroke-dashoffset: 620;
+        stroke: #FF5001;
     }
     50%{
         stroke-dashoffset: 0;
-        stroke: #71727c;
+        stroke: #ff002b;
     }
-    51%{
-        stroke-dashoffset: 800;
-        stroke: #121518;
+    50.1%{
+        stroke-dashoffset: 988;
+        stroke: #020003;
     }
 }
 @keyframes rotate {

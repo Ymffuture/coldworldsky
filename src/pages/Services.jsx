@@ -1,4 +1,5 @@
 import React,{useState , useEffect} from "react";
+import { Link, Outlet } from 'react-router-dom';
 import { Container, Row, Col } from "react-bootstrap";
 import { FaLaptopCode, FaBookReader, FaChalkboardTeacher, FaGlobe } from "react-icons/fa";
 import axios from 'axios'
@@ -15,6 +16,31 @@ useEffect(()=>{
   return (
     <div className="services-page">
       {/* <h6>Data from server: {data && <div>{JSON.stringify(data)}</div>}</h6> */}
+
+      <header id="header">
+        <div className="intro container-fluid ">
+          <div className="overlay d-flex justify-content-center align-items-center vh-20">
+            <div className="container">
+              <div className="row ">
+                <div className="col-md-8 col-md-offset-2 intro-text ">
+                <h1 className="display-3">services</h1>
+                <p className="lead">Empowering education through innovation and excellence.</p>
+
+                  <Link
+
+                    to='/find-a-tutor'
+                    className="btn btn-custom btn-lg page-scroll"
+                  >
+                    Find a Tutor
+                  </Link>{" "}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
       <Container className="py-5">
         <h1 className="text-center mb-4 text-primary">Our Services</h1>
         <p className="text-center lead mb-5">

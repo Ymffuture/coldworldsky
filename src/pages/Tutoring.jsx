@@ -9,7 +9,8 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedDark, solarizedLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import ChatBot from '../componets/ChatBot'
+import ChatBot from '../componets/ChatBot';
+
 const Tutoring = () => {
   const [onLoading, setOnLoading] = useState(true);
   const [copyNow, setCopyNow] = useState(<FaCopy data-tooltip-id="tooltip"
@@ -187,7 +188,7 @@ export default Navbar;
                 <div className="col-md-8 col-md-offset-2 intro-text ">
                   <h1 >
                     Tutoring
-                    <span> @SFCCI</span>
+                    <span> @QI</span>
                   </h1>
 
                   <Link

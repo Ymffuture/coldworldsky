@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { Link, Outlet } from 'react-router-dom';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import emailjs from "emailjs-com";
 import toast  from "react-hot-toast";
 import Loader from "./Loader";
-import { FaTimesCircle, FaUserClock } from "react-icons/fa";
+import { FaExclamationTriangle, FaTimesCircle, FaUserClock } from "react-icons/fa";
+import IconCloud from '../custom/IconCloud/IconCloud'
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 // Validation schema using Yup
@@ -41,6 +43,7 @@ const schema = yup.object({
   // State to track the selected option
   const [selectedOption, setSelectedOption] = useState("");
   const [customSubject, setCustomSubject] = useState("");
+  const [err, setErr] = useState(null)
 
 
   const {
@@ -79,11 +82,10 @@ const schema = yup.object({
           reset();
         },
         (error) => {
-          console.log(error);
-          toast.error(`Opps! Send message ERROR. Please check your internet connection and try again.`, {
+          toast.error(`Oops!. Please check your internet connection and try again.`, {
             duration: 10000,
             position: "bottom-left",
-            icon:<FaTimesCircle className="text-danger"/>,
+            icon:<IconCloud/>,
             style:{
               background:'#333',
               borderRadius:'8px',
@@ -92,6 +94,7 @@ const schema = yup.object({
             }
             
           });
+          setErr(error)
         }
       );
   };
@@ -122,21 +125,39 @@ const schema = yup.object({
     }
   }, []);
 
-  const notWorkingBtn = ()=>{
-  toast.loading('This feature is under constraction.',{
-  duration:5000,
-  style:{
-    borderRadius:'50px',
-    background:'#fff34b',
-    opacity:.6,
-    boxShadow:'1px 4px 6px gray',
-  },
-  position:'bottom-center'
-})
-  }
 
   return (
-    <div id="contactAB" className="bg-light py-5">
+
+<div>
+
+<header id="header">
+        <div className="intro container-fluid ">
+          <div className="overlay d-flex justify-content-center align-items-center vh-20">
+            <div className="container">
+              <div className="row ">
+                <div className="col-md-8 col-md-offset-2 intro-text ">
+              
+                <h1>
+              Contact Us<span>.</span>
+            </h1>
+
+                  <a
+
+                    href='#contactAB'
+                    className="btn btn-custom btn-lg page-scroll"
+                  >
+                   Contact
+                  </a>{" "}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+    <div id="contactAB" 
+    className="bg-light py-5">
+
       <div className="container">
         <div className="row">
           {/* Form Section */}
@@ -149,7 +170,7 @@ const schema = yup.object({
                   get back to you as soon as possible.
                 </p>
               </div>
-              <form name="sentMessage" onSubmit={handleSubmit(onSubmit)}>
+              <form name="sentMessage"   spellcheck='true' onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group mb-3">
@@ -163,7 +184,7 @@ const schema = yup.object({
                         placeholder=""
                         {...register("name")}
                       />
-                        <label for="email">Name</label>
+                        <label for="email"><i className='bi bi-person'></i>Name</label>
                       {errors.name && (
                         <div className="invalid-feedback">
                           {errors.name.message}
@@ -184,7 +205,7 @@ const schema = yup.object({
                         placeholder=""
                         {...register("email")}
                       />
-                       <label for="email">Email</label>
+                       <label for="email"><i className='bi bi-envelope'></i> Email</label>
                       {errors.email && (
                         <div className="invalid-feedback">
                           {errors.email.message}
@@ -206,7 +227,7 @@ const schema = yup.object({
                         placeholder=""
                         {...register("number")}
                       />
-                      <label for="email">Mobile number (+27)</label>
+                      <label for="email"><i className='bi bi-phone'></i>Mobile number (+27)</label>
                       {errors.number && (
                         <div className="invalid-feedback">
                           {errors.number.message}
@@ -228,10 +249,10 @@ const schema = yup.object({
                     >
                       
                       <option
-                        className="selectedOption text-bg-primary"
+                        className="selectedOption bg-text-primary w-full"
                         value={selectedOption}
                       >
-                        <span>Select a subject</span>
+                        <span className='text-danger'><i className="bi bi-person"></i>Select a subject</span>
                       </option>
                       <option value="Science and Math full year 2025 classes(10mon)">
                         Science and Math full year 2025 classes (10mons)
@@ -289,11 +310,12 @@ const schema = yup.object({
                   <textarea
                     name="message"
                     id="message"
+                    spellcheck='true'
                     className={`form-control rounded ${
                       errors.message ? "is-invalid" : ""
                     }`}
                     rows="4"
-                    placeholder="Message"
+                    placeholder={`Message`}
                     {...register("message")}
                   ></textarea>
                   {errors.message && (
@@ -305,6 +327,7 @@ const schema = yup.object({
                 <button type="submit" className="btn btn-custom btn-lg w-100">
                   Send Message
                 </button>
+                <span className="myerr">{err? <p className="myerr2"> <FaExclamationTriangle/> Error sending your message</p>:null}</span>
               </form>
             </div>
           </div>
@@ -341,6 +364,7 @@ const schema = yup.object({
         </div>
 
       <FaUserClock/>: {userId}
+    </div>
     </div>
   );
 };

@@ -1,11 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import Loader from "./Loader";
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Row from 'react-bootstrap/Row';
-import Tab from 'react-bootstrap/Tab';
 
 const Team = (props) => {
+
+  const [activeTab, setActiveTab] = useState("mission");
   return (
     <div id="team" className="text-center py-5 bg-light">
       <div className="container">
@@ -51,27 +49,45 @@ const Team = (props) => {
           )}
         </div>
 
-        <Tab.Container id="list-group-tabs-example" defaultActiveKey="#Mission" className='container'>
-      <Row>
-        <Col sm={12}>
-          <ListGroup>
-            <ListGroup.Item action href="#Mission">
-              <strong>Mission</strong>
-            </ListGroup.Item>
-            <ListGroup.Item action href="#2026-Goal">
-              <strong>2026 Goal</strong>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        <Col sm={12}>
-          <Tab.Content>
-            <Tab.Pane eventKey="#Mission">Our mission is to empower individuals with cutting-edge coding skills, enabling them to transform their futures. Through mentorship, accessible resources, and innovative learning approaches, we aim to foster a world where technology creates equal opportunities for all.</Tab.Pane>
-            <Tab.Pane eventKey="#2026-Goal">By 2026, our goal is to have trained over <span className="fw-bold text-success">10,000 students</span> worldwide, equipping them with job-ready coding expertise. We plan to establish <span className="fw-bold text-primary">5 global hubs</span> for coding mentorship, offering affordable courses and career guidance to underserved communities.
-            </Tab.Pane>
-          </Tab.Content>
-        </Col>
-      </Row>
-    </Tab.Container>
+        <div className="tab-container">
+      {/* Tab Navigation */}
+      <div className="tab-nav">
+        <button
+          className={`tab-button ${activeTab === "mission" ? "active" : ""}`}
+          onClick={() => setActiveTab("mission")}
+        >
+          <strong>Mission</strong>
+        </button>
+        <button
+          className={`tab-button ${activeTab === "goal" ? "active" : ""}`}
+          onClick={() => setActiveTab("goal")}
+        >
+          <strong>2026 Goal</strong>
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className="tab-content">
+        {activeTab === "mission" && (
+          <div className="tab-pane">
+            <p>
+              Our mission is to empower individuals with cutting-edge coding skills, enabling them to transform their futures.
+              Through mentorship, accessible resources, and innovative learning approaches, we aim to foster a world where technology creates equal opportunities for all.
+            </p>
+          </div>
+        )}
+
+        {activeTab === "goal" && (
+          <div className="tab-pane">
+            <p>
+              By 2026, our goal is to have trained over <span className="highlight">10,000 students</span> worldwide,
+              equipping them with job-ready coding expertise. We plan to establish <span className="highlight-primary">5 global hubs</span> for coding mentorship,
+              offering affordable courses and career guidance to underserved communities.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
       </div>
     </div>
   );

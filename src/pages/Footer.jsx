@@ -1,11 +1,16 @@
 import React from 'react'
+import toast from "react-hot-toast";
 import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import Counter from './Counter';
-import { FaCat, FaFacebookF, FaGithub, FaInstagram, FaLinkedinIn, FaMobile, FaTwitter, FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
+import { FaArrowCircleRight, FaCat, FaCogs, FaEnvelope, FaExclamationTriangle, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
+import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
+import logo from '../assets/img/logoskblack.jpg'
+import style_ from '../styles/__style.module.css'
 const Footer = () => {
   
+  // wait...
   const social = [
     {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
@@ -30,16 +35,43 @@ const Footer = () => {
     //   className='fa-instagram fa fs-4'
     //   />},
   ]
+  const copyText = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        toast.success('Email copied to clipboard',{
+          duration:5000,
+          position:'top-center',
+          transition:".6s all"
+  
+        });
+     
+      })
+      .catch((err) => {
+        toast.error("Fail to copy a text." ,{
+          duration:5000,
+          position:'center',
+          style:{
+            background:'black',
+            color:'red'
+          }
+        });
+        console.error(err);
+        
+      });
+  };
   const notWorkingBtn = ()=>{
-    toast.loading('This feature is under constraction.',{
-    duration:5000,
+    toast.error('This feature is under constraction.',{
+    duration:10000,
     style:{
       borderRadius:'50px',
       background:'#fff34b',
-      opacity:.6,
-      boxShadow:'1px 4px 6px gray',
+      opacity:1,
+      fontWeight:800,
+      
     },
-    position:'bottom-center'
+    position:'bottom-center',
+    icon:<FaCogs/>
   })
     }
   return (
@@ -47,107 +79,90 @@ const Footer = () => {
 
     {[...Array(5)].map((e,index)=><div className='mainer' key={index}></div>)}
 <div><FaCat className='text-light h2'/></div>
-    <table className='col-md-12 alert-link table-responsive-lg' id='LinksTable'>
-            <thead>
-              <tr >
-              <th className='py-4'>Important Links</th>
-              <th>Info</th>
-              <th>Open Links</th>
-              <th>Other Links</th>
-              </tr>
-            </thead>
-            <tbody id="recordsTable" className='p-4'>
-              <tr>
-                <td className='py-1' onClick={notWorkingBtn}> <Link
-              to="##"
+<Container fluid id='LinksTable'>
+<Row className='p-1'>
+  <Col className='mx-2'>
+  <Image
+    className='pic-footer'
+    src={logo}
+    alt='logo'
+    rounded
+    width={100}
+    height={100}
+    />
+    <h1 className='text-white'>Quorvex</h1>
+    <p>Code The Future. Together</p>
+  </Col>
+  <Col>
+  <Nav className='flex-column fs-6' >
+  <h1 className='th'>Quick Links</h1>
+  <Link
+              to="/"
+              
+              className={style_.a}
+            >
+             Home
+           
+            </Link>
+
+
+            <Link
+              to="/games-tic-toc-toe-play"
               rel="nofollow"
               className="text-white"
             >
-            Partnership with:
-            </Link></td>
-                <td>
-                <Link
-              to="##"
+         Game
+            </Link>
+            <Link
+            to="/calendar"
+              rel="nofollow"
+              className="text-white"
+            >
+          Calendar
+            </Link>
+           
+         
+            <Link
+             to="/quotes"
+              rel="nofollow"
+              className="text-white"
+            >
+           Quotes
+            </Link>
+            
+            <Link
+         to="/location"
               rel="nofollow"
               className="text-white"
             >
             Coverage radius
             </Link>
-                </td>
-                <td><Link
-              to="##"
-              rel="nofollow"
-              className="text-white"
-            >
-           Skyford Code school
-            </Link></td>
-                
-              </tr>
-              <tr>
-                <td className='py-1'><Link
-              to="/games-tic-toc-toe-play"
-              rel="nofollow"
-              className="text-white"
-            >
-            Skyford Games
-            </Link></td>
-                <td><Link
-              to="##"
-              rel="nofollow"
-              className="text-white"
-            >
-            Advanced Mathematics
-            </Link></td>
-                <td><Link
-              to="##"
-              rel="nofollow"
-              className="text-white"
-            >
-           Registered Learners
-            </Link></td>
-               
-              </tr>
-              <tr>
-                <td className='py-1'> <Link
-              to="/quotes"
-              
-              className="text-white"
-            >
-              Qoutes
-           
-            </Link></td>
-            <td className='py-1'> <Link
-              to="https://webpy-7tcd.onrender.com/views/contact"
-              rel="nofollow"
-              className="text-white"
-            >
-            About Online classes
-            </Link></td>
-                <td> <Link
+            <Link
               to="/cbp-current-students/table-prices"
               rel="nofollow"
               className="text-white"
             >
             Choose best prices
-            </Link></td>
-                <td> <Link
-              to="/calendar"
-              rel="nofollow"
-              className="text-white"
-            >
-            School calender
-            </Link></td>
-               
-              </tr>
-             
-            </tbody>
-            
-    </table>
-    
+            </Link>
+  </Nav>
+
+  </Col>
+  <Col>
+  <h1 className='th'>Contact Us</h1>
+  <p onClick={()=>copyText('quorvexinstitute@zohomail.com')}><FaEnvelope/> quorvexinstitute@zohomail.com</p>
+  <p className='tel'><FaPhoneAlt/><a  href='tel:+27634414863'> (+27) 63 441 4863</a> </p>
+  <p>OR</p>
+  <p>Message Us now <Link
+  to='/contact'
+  rel="nofollow"
+  >
+  <FaArrowCircleRight className='fs-5'/>
+  </Link></p>
+  </Col>
+</Row>
+</Container>
+
     <div id="contact" className='id'>
-    {/* <p id='p'>
-      SkyfordCCI
-     </p> */}
     <div className="mt-5">
           <div className="col-lg-12 text-center">
             <div className="social">
@@ -179,17 +194,20 @@ const Footer = () => {
           
         </div>
           </div>
+
+          
           <p className=''>
-            Copyright &copy; 2021 - {new Date().getFullYear()} @SkyfordCCI, All Rights Reserved.{" "}
+          &copy; {new Date().getFullYear()} Quorvex Institute. {" "} Powered by {''}
             <Link
               to="https://webpy-7tcd.onrender.com/views/Privacy-Policy"
               rel="nofollow"
               className="text-white"
             >
-              Privacy Policy
-            </Link>
+         Quorvex
+            </Link> {""}
+            
           </p>
-  <div className='moon'>
+  <div className='moon' onClick={notWorkingBtn}>
     <div className='moon2'></div>
   </div>
         </div>
