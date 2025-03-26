@@ -60,7 +60,7 @@ const SignIn = ({ setIsAuthenticated }) => {
     pass
     }
     // Call the backend login API
-    const response = await fetch(`${URL_BACKEND_HTTP}/api/auth/user-home-page/sign-in`, {
+    const response = await fetch("http://localhost:7411/api/auth/user-home-page/sign-in", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

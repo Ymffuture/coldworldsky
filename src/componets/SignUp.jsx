@@ -45,7 +45,9 @@ function Register() {
     },15000)
    try {
       // Send the registration data to the backend
+
       const response = await axios.post(`${URL_BACKEND_HTTP}/api/auth/user-home-page/sign-up`, {
+
         email,
         password,
       });
