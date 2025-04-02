@@ -1,6 +1,6 @@
-# SkyfordCCI
+# https://quorvexinstitute.vercel.app/
 
-SkyfordCCI is an innovative web platform that offers a comprehensive set of educational resources, tutoring services, and courses to support learners in mastering subjects like Life Sciences, Mathematics, Physical Science, Web Development, Data Science, UI/UX Design, and more. Designed with modern technologies and responsive design, SkyfordCCI ensures an engaging and seamless user experience for students and educators alike.
+Quorvex institute is an innovative web platform that offers a comprehensive set of educational resources, tutoring services, and courses to support learners in mastering subjects like Life Sciences, Mathematics, Physical Science, Web Development, Data Science, UI/UX Design, and more. Designed with modern technologies and responsive design, SkyfordCCI ensures an engaging and seamless user experience for students and educators alike.
 
 ---
 
