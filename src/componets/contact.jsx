@@ -327,7 +327,7 @@ const schema = yup.object({
                 <button type="submit" className="btn btn-custom btn-lg w-100">
                   Send Message
                 </button>
-                <span className="myerr">{err? <p className="myerr2"> <FaExclamationTriangle/> Error sending your message</p>:null}</span>
+                <span>{err? <p className="text-bg-danger"> <FaExclamationTriangle/> Error sending your message</p>:null}</span>
               </form>
             </div>
           </div>
@@ -356,7 +356,7 @@ const schema = yup.object({
                 <span>
                   <i className="fa fa-envelope-o text-primary me-2"></i>
                 </span>{" "}
-                {props.data ? <Loader/> : "skyfordcciacademy@gmail.com"}
+                {props.data ? <Loader/> : "quorvexinstitute@gmail.com"}
               </p>
             </div>
           </div>

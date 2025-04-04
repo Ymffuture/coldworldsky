@@ -21,6 +21,7 @@ const Counter = () => {
         }
       } catch (error) {
         console.error("Error updating counter:", error);
+        
       }
     };
 // npm install firebase
