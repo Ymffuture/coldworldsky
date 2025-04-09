@@ -28,7 +28,7 @@ const Footer = () => {
     {openlink:'https://www.linkedin.com/in/kgomotsonkosi-l' , label:'Linkedin' , icon:<FaLinkedinIn
     className='fa-linkedin fa fs-4'
     />},
-    {openlink:'Message Quorvex institute on WhatsApp. https://wa.me/27653935339' , label:'Whatsapp' , icon:<FaWhatsapp
+    {openlink:'https://wa.me/27653935339' , label:'Whatsapp' , icon:<FaWhatsapp
     className='fa-whatsapp fa fs-4'
     />},
     // {openlink:'https://Instagram.com/ymffuture' , label:'Instagram' , icon:<FaInstagram
