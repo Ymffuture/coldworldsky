@@ -12,7 +12,7 @@ const Footer = () => {
   
   // wait...
   const social = [
-    {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
+    {openlink:"https://www.facebook.com/QuorvexInstitute" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
 
   //  {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
