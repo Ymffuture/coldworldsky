@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {Link} from 'react-router-dom'
-import {URL_BACKEND_HTTP} from '../../Urls'
+import {URL_BACKEND_HTTPS} from '../../Urls'
 import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from "../componets/Spinner";
 // Validation Schema using Yup
@@ -36,7 +36,7 @@ const [border , setBorder]=useState('')
   setReadOnly(true)
 
     try {
-      const res = await axios.post(`${URL_BACKEND_HTTP}/api/auth/forgot-password`, {
+      const res = await axios.post(`${URL_BACKEND_HTTPS}/api/auth/forgot-password`, {
         email: data.email,
       });
       setMessage(res.data.message);
