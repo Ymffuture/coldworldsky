@@ -64,7 +64,7 @@ function Register() {
       }); // Success message from the backend
       navigate("/user-home-page/sign-in"); // Redirect to login page
     } catch (error) {
-      toast.error(error.response?.data?.error || "Registration failed. Please connect to internet and try again.", {
+      toast.error(error.response?.data?.error || "Registration failed. ⚠️ Server Error.", {
         position: "top-center",
         duration: 5000,
         icon:<FaExclamationCircle/>,
