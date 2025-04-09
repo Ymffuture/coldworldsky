@@ -15,20 +15,20 @@ const Footer = () => {
     {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
 
-    {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
-    className='fa-yahoo fa fs-4'
-    />},
+  //  {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
+  //  className='fa-yahoo fa fs-4'
+  //  />},
 
-    {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
-    className='fa-youtube fa fs-4 '
-    />},
+  //  {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
+  //  className='fa-youtube fa fs-4 '
+ //   />},
     {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
     className='fa-github fa fs-4'
     />},
-    {openlink:'https://linkedin.com/ymffuture' , label:'Linkedin' , icon:<FaLinkedinIn
+    {openlink:'https://www.linkedin.com/in/kgomotsonkosi-l' , label:'Linkedin' , icon:<FaLinkedinIn
     className='fa-linkedin fa fs-4'
     />},
-    {openlink:'https://whatsapp.com/ymffuture' , label:'Whatsapp' , icon:<FaWhatsapp
+    {openlink:'Message Quorvex institute on WhatsApp. https://wa.me/27653935339' , label:'Whatsapp' , icon:<FaWhatsapp
     className='fa-whatsapp fa fs-4'
     />},
     // {openlink:'https://Instagram.com/ymffuture' , label:'Instagram' , icon:<FaInstagram
