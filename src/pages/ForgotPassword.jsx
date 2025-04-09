@@ -61,6 +61,7 @@ const ForgotPassword = () => {
   theme: "colored",
       });
     }
+    setReadOnly(false);
   };
 
   return (
