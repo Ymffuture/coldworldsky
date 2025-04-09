@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Form, Button, Alert, Row, Col } from "react-bootstrap";
-import { URL_BACKEND_HTTP } from "../../Urls";
+import { URL_BACKEND_HTTPS } from "../../Urls";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -33,7 +33,7 @@ const ResetPassword = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        `${URL_BACKEND_HTTP}/api/auth/reset-password/${token}`,
+        `${URL_BACKEND_HTTPS}/api/auth/reset-password/${token}`,
         { newPassword: data.password }
       );
 
