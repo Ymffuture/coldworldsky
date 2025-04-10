@@ -130,7 +130,7 @@ const toggleSwitch = () => {
         localStorage.removeItem("token"); // Clear token
         setIsAuthenticated(false);
   setTimeout(() =>{
-    window.reload()
+    window.location.reload()
            },3000) 
       }
   const navLinks = [
