@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
  const Header = (props) => {
   const [show, setShow] = useState(false);
-
+const [isAuthenticated, setIsAuthenticated] = useState(false);
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } ,config:{duration:5000}});
 const style = {
   background:"transparent",
@@ -47,11 +47,12 @@ const mydata = ['1','2','3']
                 </animated.a> {" "} */}
                <br/>
                 <Link style={style} 
-                  to="/user-home-page/sign-up"
+                  to={isAuthenticated? "/about" :"/user-home-page/sign-up"} 
                   className="btn btn-lg page-scroll"
                   onClick={handleShow}
                 >
-                Get Started
+                  {isAuthenticated? "Learn more" :"Get Started"} 
+                
                 </Link>{" "}
                 </div>
               </div>
