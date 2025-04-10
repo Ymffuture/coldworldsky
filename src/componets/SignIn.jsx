@@ -54,7 +54,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       setTimeout(()=>{
         setIsdisabled(false)
         setFinalText(<p className=' text-bg-danger p-3 rounded-1'>No internet connection:code:500</p>)
-      },10000)
+      },30000)
     }else{
     
     pass
