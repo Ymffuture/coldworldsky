@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 // import {Link} from 'react-router-dom';
 import { useSpring, animated } from "@react-spring/web";
 import Loader from "./Loader";
@@ -12,6 +12,10 @@ import { Link } from "react-router-dom";
  const Header = (props) => {
   const [show, setShow] = useState(false);
 const [isAuthenticated, setIsAuthenticated] = useState(false);
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // true if token exists
+  }, []);
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } ,config:{duration:5000}});
 const style = {
   background:"transparent",
