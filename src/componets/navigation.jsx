@@ -126,7 +126,13 @@ const Navigation = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+const toggleSwitch = () => {
+        localStorage.removeItem("token"); // Clear token
+        setIsAuthenticated(false);
+  setTimeout(() =>{
+    window.reload()
+           },3000) 
+      }
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
     { path: "/about/", label: "About", icon: <FaInfoCircle /> },
@@ -157,10 +163,7 @@ const Navigation = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
-      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={() => {
-        localStorage.removeItem("token"); // Clear token
-        setIsAuthenticated(false);
-      }} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
+      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
     },
   ];
 
