@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db } from "./firebaseConfig";
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Counter = () => {
-  const [count, setCount] = useState(3991996);
+  const [count, setCount] = useState(null);
 
   useEffect(() => {
     const fetchCount = async () => {
@@ -15,23 +17,31 @@ const Counter = () => {
           const currentCount = counterSnap.data().count;
           setCount(currentCount + 1);
           await updateDoc(counterRef, { count: currentCount + 1 });
+          toast.success("Visitor count updated!");
         } else {
           await setDoc(counterRef, { count: 1 });
           setCount(1);
+          toast.info("Counter initialized for the first time!");
         }
       } catch (error) {
         console.error("Error updating counter:", error);
-        
+        toast.error("Failed to update visit counter.");
       }
     };
-// npm install firebase
 
     fetchCount();
   }, []);
 
   return (
     <div className="count">
-      This website has been visited <b>{count}</b> times.
+      <p>
+        {count !== null ? (
+          <>This website has been visited <b>{count}</b> times.</>
+        ) : (
+          <>Loading...</>
+        )}
+      </p>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };
