@@ -191,7 +191,7 @@ const toggleSwitch = () => {
     {
       path:isAuthenticated? "#" :"/user-home-page/sign-in" ,
       label:isAuthenticated? "Can't sign out here! " :"Sign in",
-      icon: isAuthenticated? <FaSignOutAlt className="text-danger" /> :<FaSignInAlt className="icon-bottom" />,
+      icon: isAuthenticated? <FaSignOutAlt className="text-danger icon-bottom" /> :<FaSignInAlt className="icon-bottom" />,
   ];
 
   const demoSearchData = [
