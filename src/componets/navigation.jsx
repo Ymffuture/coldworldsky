@@ -189,12 +189,9 @@ const toggleSwitch = () => {
       icon: <FaBookOpen className="icon-bottom" />,
     },
     {
-      path:{isAuthenticated? "#" :"/user-home-page/sign-in"
-    },
-      label:{isAuthenticated? "Can't sign out here! " :"Sign in"
-    },
-      icon: {isAuthenticated? <FaSignOutAlt className="text-danger" :<FaSignInAlt className="icon-bottom" />
-    },
+      path:isAuthenticated? "#" :"/user-home-page/sign-in" ,
+      label:isAuthenticated? "Can't sign out here! " :"Sign in",
+      icon: isAuthenticated? <FaSignOutAlt className="text-danger" :<FaSignInAlt className="icon-bottom" />,
   ];
 
   const demoSearchData = [
