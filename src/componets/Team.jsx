@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Loader from "./Loader";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Team = (props) => {
   const [activeTab, setActiveTab] = useState("mission");
