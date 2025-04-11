@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Loader from "./Loader";
 
-const Team = (props) => {
+const Team = () => {
 
   const [activeTab, setActiveTab] = useState("mission");
   return (
