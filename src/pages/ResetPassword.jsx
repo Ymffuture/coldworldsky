@@ -1,16 +1,28 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container, Form, Button, Row, Col, Toast, ToastContainer, InputGroup } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Row,
+  Col,
+  Toast,
+  ToastContainer,
+  InputGroup,
+} from "react-bootstrap";
 import { URL_BACKEND_HTTPS } from "../../Urls";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // React Icons
 
 // Yup validation schema
 const schema = yup.object().shape({
-  password: yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
@@ -57,6 +69,7 @@ const ResetPassword = () => {
           <h3 className="text-center text-primary mb-4">Reset Password</h3>
 
           <Form onSubmit={handleSubmit(onSubmit)} className="p-4 border rounded shadow-sm bg-white">
+            {/* Password */}
             <Form.Group className="mb-3">
               <Form.Label>New Password</Form.Label>
               <InputGroup>
@@ -66,7 +79,7 @@ const ResetPassword = () => {
                   isInvalid={!!errors.password}
                 />
                 <Button variant="outline-secondary" onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? <EyeSlash /> : <Eye />}
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </Button>
                 <Form.Control.Feedback type="invalid">
                   {errors.password?.message}
@@ -74,6 +87,7 @@ const ResetPassword = () => {
               </InputGroup>
             </Form.Group>
 
+            {/* Confirm Password */}
             <Form.Group className="mb-3">
               <Form.Label>Confirm Password</Form.Label>
               <InputGroup>
@@ -83,7 +97,7 @@ const ResetPassword = () => {
                   isInvalid={!!errors.confirmPassword}
                 />
                 <Button variant="outline-secondary" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                  {showConfirmPassword ? <EyeSlash /> : <Eye />}
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                 </Button>
                 <Form.Control.Feedback type="invalid">
                   {errors.confirmPassword?.message}
@@ -100,7 +114,13 @@ const ResetPassword = () => {
 
       {/* Toast Notification */}
       <ToastContainer position="top-end" className="p-3">
-        <Toast bg={toast.type} show={toast.show} onClose={() => setToast({ show: false })} delay={3500} autohide>
+        <Toast
+          bg={toast.type}
+          show={toast.show}
+          onClose={() => setToast({ show: false })}
+          delay={3500}
+          autohide
+        >
           <Toast.Header closeButton>
             <strong className="me-auto text-capitalize">{toast.type === "success" ? "Success" : "Error"}</strong>
           </Toast.Header>
@@ -112,4 +132,6 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
+
+
 
