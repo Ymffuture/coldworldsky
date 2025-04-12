@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // Validation schema
 const schema = Yup.object().shape({
@@ -51,53 +52,57 @@ const TutorApplyForm = () => {
 
   return (
     <div className="container mt-5">
-      <div className="box">
-        <h1 className="title is-3 has-text-centered has-text-primary">Tutor Application</h1>
-        <Link to="/track-application" className="button is-link is-light mb-4">Track Application</Link>
+      <div className="card shadow-lg p-4">
+        <h1 className="text-center text-primary mb-4">Tutor Application Form</h1>
+        <div className="text-end mb-3">
+          <Link to="/track-application" className="btn btn-outline-primary btn-sm">Track Application</Link>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="field">
-            <div className="control">
-              <input className="input" placeholder="First Name" {...register("firstName")} />
-            </div>
-            {errors.firstName && <p className="help is-danger">{errors.firstName.message}</p>}
+          <div className="mb-3">
+            <input
+              className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
+              placeholder="First Name"
+              {...register("firstName")}
+            />
+            <div className="invalid-feedback">{errors.firstName?.message}</div>
           </div>
 
-          <div className="field">
-            <div className="control">
-              <input className="input" placeholder="Last Name" {...register("lastName")} />
-            </div>
-            {errors.lastName && <p className="help is-danger">{errors.lastName.message}</p>}
+          <div className="mb-3">
+            <input
+              className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
+              placeholder="Last Name"
+              {...register("lastName")}
+            />
+            <div className="invalid-feedback">{errors.lastName?.message}</div>
           </div>
 
-          <div className="field">
-            <div className="control">
-              <input className="input" placeholder="Email" {...register("email")} />
-            </div>
-            {errors.email && <p className="help is-danger">{errors.email.message}</p>}
+          <div className="mb-3">
+            <input
+              className={`form-control ${errors.email ? "is-invalid" : ""}`}
+              placeholder="Email"
+              {...register("email")}
+            />
+            <div className="invalid-feedback">{errors.email?.message}</div>
           </div>
 
-          <div className="field">
-            <div className="control">
-              <div className="select is-fullwidth">
-                <select {...register("jobRole")}>
-                  <option value="">Select Job Role</option>
-                  <option value="frontend">Frontend Developer</option>
-                  <option value="backend">Backend Developer</option>
-                  <option value="physical_science">Physical Science</option>
-                  <option value="mathematics">Mathematics</option>
-                </select>
-              </div>
-            </div>
-            {errors.jobRole && <p className="help is-danger">{errors.jobRole.message}</p>}
+          <div className="mb-4">
+            <select
+              className={`form-select ${errors.jobRole ? "is-invalid" : ""}`}
+              {...register("jobRole")}
+            >
+              <option value="">Select Job Role</option>
+              <option value="frontend">Frontend Developer</option>
+              <option value="backend">Backend Developer</option>
+              <option value="physical_science">Physical Science</option>
+              <option value="mathematics">Mathematics</option>
+            </select>
+            <div className="invalid-feedback">{errors.jobRole?.message}</div>
           </div>
 
-          <hr />
-          <div className="control">
-            <button type="submit" className="button is-primary is-fullwidth">Apply Now</button>
-          </div>
+          <button type="submit" className="btn btn-primary w-100">Apply Now</button>
         </form>
-        <ToastContainer />
       </div>
+      <ToastContainer />
     </div>
   );
 };
