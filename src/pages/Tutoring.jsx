@@ -48,7 +48,7 @@ const Tutoring = () => {
   const onStyle = { borderRadius: '7px', padding: '4px', margin: '5px', fontSize: '8px', backgroundColor: 'whitesmoke', color: 'red', overflowX: 'auto', WebkitScrollSnapType: 'none' };
 
   const codeprint2 = `const handleSubmit = (event)=> {
-    event.prevantDefault()
+    event.preventDefault()
     const email = document.getElementById('email')
     const password = document.getElementById('password')
     
@@ -149,10 +149,10 @@ export default Navbar;
         </ul>
 
         <p className="container">
-          SkyfordCCI also offer HTML & CSS basic concepts and projets that you can impliment your skills
+          Quorvex also offer HTML & CSS basic concepts and projects that you can implement your skills
           <ul>
-            <li className=" fw-bold p-2">Last: JavaScripts ES6</li>
-            <li>Full stack Deloper: <b>6 months</b></li>
+            <li className=" fw-bold p-2">Last: JavaScript ES6</li>
+            <li>Full Stack Developer: <b>6 months</b></li>
             <li>Price: <animated.mark style={pricePulse} onClick={showToast}>R3799.00</animated.mark> <b>OR</b> Price:<mark>R650.00pm</mark></li>
           </ul>
         </p>
