@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 const GoogleAuth = () => {
     const [user, setUser] = useState(null);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownRef = useRef();
 
     const handleSuccess = (response) => {
         const decoded = jwtDecode(response.credential);
@@ -17,20 +19,59 @@ const GoogleAuth = () => {
     const handleLogout = () => {
         googleLogout();
         setUser(null);
+        setDropdownOpen(false);
     };
 
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
-        <div className="relative flex flex-col items-center p-3">
+        <div className="position-relative">
             {/* Google Sign-In Button */}
             {!user ? (
-                <GoogleLogin  className="absolute top-4 left-4 flex items-center space-x-3 bg-white p-2 rounded-lg shadow-md" onSuccess={handleSuccess} onError={() => console.log("Login Failed")} />
+                <div className="position-absolute top-0 end-0 p-3">
+                    <GoogleLogin
+                        onSuccess={handleSuccess}
+                        onError={() => console.log("Login Failed")}
+                        theme="outline"
+                        size="medium"
+                    />
+                </div>
             ) : (
-                <div className="absolute top-4 left-4 flex items-center space-x-3 bg-white p-3 rounded-lg shadow-md">
-                    <img src={user.picture} alt="User" className="w-10 h-10 rounded-full" />
-                    <span className="text-gray-800">{user.email}</span>
-                    <button onClick={handleLogout} className="bg-red-500 text-white px-3 py-1 rounded">
-                        Logout
-                    </button>
+                <div className="position-absolute top-0 end-0 p-3" ref={dropdownRef}>
+                    <img
+                        src={user.picture}
+                        alt="Profile"
+                        className="w-40px h-40px rounded-circle cursor-pointer border-2 border-primary hover:scale-105 transition-transform"
+                        onClick={() => setDropdownOpen((prev) => !prev)}
+                    />
+                    {dropdownOpen && (
+                        <div className="position-absolute mt-2 end-0 w-200px bg-white border border-secondary rounded-3 shadow-lg p-3">
+                            <div className="d-flex align-items-center mb-3">
+                                <img src={user.picture} alt="User" className="w-40px h-40px rounded-circle" />
+                                <div className="ms-2">
+                                    <p className="mb-0 fw-bold text-dark">{user.name}</p>
+                                    <p className="mb-0 text-muted">{user.email}</p>
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className="w-100 btn btn-danger btn-sm"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
         </div>
@@ -38,3 +79,4 @@ const GoogleAuth = () => {
 };
 
 export default GoogleAuth;
+
