@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // Validation schema
 const schema = Yup.object().shape({
