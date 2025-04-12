@@ -118,13 +118,13 @@ const ResetPassword = () => {
           bg={toast.type}
           show={toast.show}
           onClose={() => setToast({ show: false })}
-          delay={3500}
+          delay={5000}
           autohide
         >
           <Toast.Header closeButton>
             <strong className="me-auto text-capitalize">{toast.type === "success" ? "Success" : "Error"}</strong>
           </Toast.Header>
-          <Toast.Body className="text-white">{toast.message}</Toast.Body>
+          <Toast.Body className="text-dark">{toast.message}</Toast.Body>
         </Toast>
       </ToastContainer>
     </Container>
