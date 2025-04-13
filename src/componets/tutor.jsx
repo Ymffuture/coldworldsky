@@ -94,7 +94,7 @@ const Tutor = (props) => {
                     <div key={`${d.title}-${i}`} className="col-md-4">
                       <Image
                         title={d.title}
-                        largeImage={d.largeImage}
+                        
                         smallImage={d.smallImage}
                         id={d.id}
                       />
@@ -108,6 +108,7 @@ const Tutor = (props) => {
           </div>
 
           {/* FAQ Section */}
+          
           <div className="mt-5 text-start">
             <h4 className="text-primary mb-3">Frequently Asked Questions</h4>
             <Accordion>
