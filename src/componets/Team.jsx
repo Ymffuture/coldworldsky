@@ -14,7 +14,7 @@ const Team = (props) => {
         <div className="col-md-12 section-title mb-5">
           <h2 className="display-5 fw-bold text-primary">Our Company's Goal</h2>
           <p className="text-muted fs-5">
-            At <span className="fw-bold text-success">Skyford</span>, we strive to make coding accessible to everyone.
+            At <span className="fw-bold text-success">Quorvex</span>, we strive to make coding accessible to everyone.
           </p>
           <button className="btn btn-outline-primary mt-3" onClick={handleOpen}>
             Read Our Mission
