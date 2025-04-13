@@ -19,16 +19,6 @@ const Tutor = (props) => {
 
   const fade = useSpring({ opacity: isTransitioning ? 0 : 1, transform: isTransitioning ? "translateY(20px)" : "translateY(0)" });
 	
-useEffect(() => {
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.text = JSON.stringify(faqSchema);
-  document.head.appendChild(script);
-
-  return () => {
-    document.head.removeChild(script); // Cleanup on unmount
-  };
-}, []);
 
   const faqSchema = {
     "@context": "https://schema.org",
