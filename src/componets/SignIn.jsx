@@ -71,13 +71,17 @@ const SignIn = ({ setIsAuthenticated }) => {
       // Save token to localStorage
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
-      
+      window.location.reload()
+      toast.success('logged in ', {
+        position: "top-center",
+        duration: 3000,
       setTimeout(() =>{
-        window.location.reload()
+        const navigate = useNavigate();
+navigate("/courses");
+        
+        
        } ,2000) 
-      setTimeout(() =>{
-        navigate("/courses");
-       } ,4000) 
+      
     } else {
       
       toast.error(data.error || "No internet Connection", {
