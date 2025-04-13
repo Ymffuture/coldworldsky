@@ -72,13 +72,9 @@ const SignIn = ({ setIsAuthenticated }) => {
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
       navigate("/courses");
-      toast.success('logged in ', {
-        position: "top-center",
-        duration: 3000,
       setTimeout(() =>{
-      
         window.location.reload()
-        
+        toast('Logged in.')
        } ,300) 
       
     } else {
