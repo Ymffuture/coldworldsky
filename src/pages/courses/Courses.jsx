@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaLaptopCode, FaDatabase, FaPaintBrush } from "react-icons/fa";
+import axios from "axios";
 
 const Courses = () => {
+  const [images, setImages] = useState({
+    webDev: null,
+    dataScience: null,
+    uiUx: null,
+  });
+
+  // Fetch images from Unsplash API
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        // Web Development Image
+        const webDevImage = await axios.get(
+          "https://api.unsplash.com/photos/random?query=web+development&client_id=vKvUZ1Wv3ez0cdcjK-d9KMB8_wPVRLNQaC2P8FVssaw"
+        );
+
+        // Data Science Image
+        const dataScienceImage = await axios.get(
+          "https://api.unsplash.com/photos/random?query=data+science&client_id=vKvUZ1Wv3ez0cdcjK-d9KMB8_wPVRLNQaC2P8FVssaw"
+        );
+
+        // UI/UX Design Image
+        const uiUxImage = await axios.get(
+          "https://api.unsplash.com/photos/random?query=ui+ux+design&client_id=vKvUZ1Wv3ez0cdcjK-d9KMB8_wPVRLNQaC2P8FVssaw"
+        );
+
+        setImages({
+          webDev: webDevImage.data[0].urls.regular,
+          dataScience: dataScienceImage.data[0].urls.regular,
+          uiUx: uiUxImage.data[0].urls.regular,
+        });
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
   return (
     <div id="header">
       {/* Header Section */}
@@ -44,6 +83,9 @@ const Courses = () => {
           {/* Web Dev Course */}
           <Col md={4} className="text-center mb-4">
             <Link to="/courses/web-dev" className="course-link text-decoration-none">
+              {images.webDev && (
+                <Image src={images.webDev} alt="Web Development" fluid className="mb-3" />
+              )}
               <FaLaptopCode size={60} className="mb-3 course-icon text-info" />
               <h3>Web Development</h3>
               <p>Master front-end and back-end development using HTML, CSS, JavaScript, React, and more.</p>
@@ -53,6 +95,9 @@ const Courses = () => {
           {/* Data Science Course */}
           <Col md={4} className="text-center mb-4">
             <Link to="/courses/data-science" className="course-link text-decoration-none">
+              {images.dataScience && (
+                <Image src={images.dataScience} alt="Data Science" fluid className="mb-3" />
+              )}
               <FaDatabase size={60} className="mb-3 course-icon text-success" />
               <h3>Data Science</h3>
               <p>Gain practical skills in Python, data visualization, machine learning, and data analytics.</p>
@@ -62,6 +107,9 @@ const Courses = () => {
           {/* UI/UX Design Course */}
           <Col md={4} className="text-center mb-4">
             <Link to="/courses/ui-ux" className="course-link text-decoration-none">
+              {images.uiUx && (
+                <Image src={images.uiUx} alt="UI/UX Design" fluid className="mb-3" />
+              )}
               <FaPaintBrush size={60} className="mb-3 course-icon text-warning" />
               <h3>UI/UX Design</h3>
               <p>Learn the principles of user experience and interface design with modern tools like Figma and Adobe XD.</p>
@@ -77,4 +125,3 @@ const Courses = () => {
 };
 
 export default Courses;
-
