@@ -54,7 +54,7 @@ const Team = (props) => {
                           href="https://facebook.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary fs-5"
+                          className="text-primary fs-4"
                         >
                           <FaFacebookF />
                         </a>
@@ -62,7 +62,7 @@ const Team = (props) => {
                           href="https://linkedin.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-info fs-5"
+                          className="text-info fs-4"
                         >
                           <FaLinkedinIn />
                         </a>
@@ -70,7 +70,7 @@ const Team = (props) => {
                           href="https://wa.me/yourNumberHere"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-success fs-5"
+                          className="text-success fs-4"
                         >
                           <FaWhatsapp />
                         </a>
