@@ -7,7 +7,7 @@ const UserPage = () => {
   return (
     <div className="container">
       {/* Intro Section */}
-      <section className="intro mt-4">
+      <section className="mt-2">
         <p className="text-secondary p-4 mt-2 rounded">
           <FaInfoCircle className="me-2" />
           Your account is secure! However, please remember to use a strong and unique password for online safety. 
