@@ -1,80 +1,67 @@
-import React from 'react'; 
-import Table from 'react-bootstrap/Table'
-  
-  
-  
-const TableExample =()=> { 
-  return ( 
-    <> 
-  
-<h3>Prices from grade 10 to 12 for currect students </h3> 
-  
-<Table stripped bordered hover size="md" className='container' variant='dark'> 
-  <thead> 
-    <tr> 
-      <th width="1000" className='text-bg-warning'>Subjects</th> 
-      <th width="100">Reg.no</th> 
-      <th width="100">Sub.Code</th> 
-      <th width="150">Price (R)</th> 
-      <th width="150">Any 2 (R)</th> 
-  
-    </tr> 
-  </thead> 
-  <tbody> 
-    <tr> 
-      <td>Mathematics</td> 
-      <td>1427</td> 
-      <td>MAT</td> 
-      <td>150</td> 
-      <td>300</td> 
-  
-    </tr> 
-    <tr> 
-      <td>Physical Science</td> 
-      <td>1124</td> 
-      <td>PHYS</td> 
-      <td>150</td> 
-      <td>300</td> 
-  
-    </tr> 
-    <tr> 
-      <td>Life sciences</td> 
-      <td>1168</td> 
-      <td>LFS</td> 
-      <td>150</td> 
-      <td>250</td> 
-  
-    </tr> 
-    <tr> 
-      <td>Maths & sciences</td> 
-      <td>3485</td> 
-      <td>MAT?SCI</td> 
-      <td>350</td> 
-      <td>N/A</td> 
-  
-    </tr> 
-    {/* <tr> 
-      <td>Akbar sheikh</td> 
-      <td>1126</td> 
-      <td>Mechanical</td> 
-      <td>Indore</td> 
-      <td>96.5%</td> 
-  
-    </tr> 
-    <tr> 
-      <td>Sarita</td> 
-      <td>1127</td> 
-      <td>CSE</td> 
-      <td>Delhi</td> 
-      <td>96.9%</td> 
-  
-    </tr>  */}
-  
-  </tbody> 
-</Table> 
-  
-    </> 
-  ); 
-}
+import React from 'react';
+import Table from 'react-bootstrap/Table';
+
+const TableExample = () => {
+  return (
+    <section className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+      <div className="container">
+        <div className="text-center mb-4">
+          <h2 className="text-primary fw-bold">Tutoring Fees (Grades 10–12)</h2>
+          <p className="text-muted">
+            These prices apply to current high school learners. Choose any 2 subjects and enjoy a discounted rate.
+          </p>
+          <p className="text-danger small">
+            *Note: We do not issue certificates but prepare learners for any coding school or academic challenge.
+          </p>
+        </div>
+
+        <div className="table-responsive shadow rounded border">
+          <Table striped bordered hover responsive size="md" variant="light">
+            <thead className="table-warning text-dark">
+              <tr>
+                <th>Subjects</th>
+                <th>Reg. No</th>
+                <th>Sub. Code</th>
+                <th>Price (R)</th>
+                <th>Any 2 (R)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mathematics</td>
+                <td>1427</td>
+                <td>MAT</td>
+                <td>R150.00</td>
+                <td>R300.00</td>
+              </tr>
+              <tr>
+                <td>Physical Science</td>
+                <td>1124</td>
+                <td>PHYS</td>
+                <td>R150.00</td>
+                <td>R300.00</td>
+              </tr>
+              <tr>
+                <td>Life Sciences</td>
+                <td>1168</td>
+                <td>LFS</td>
+                <td>R150.00</td>
+                <td>R250.00</td>
+              </tr>
+              <tr>
+                <td>Maths & Sciences Combo</td>
+                <td>3485</td>
+                <td>MAT/SCI</td>
+                <td>R350.00</td>
+                <td>N/A</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default TableExample;
+
