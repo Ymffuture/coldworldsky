@@ -5,7 +5,6 @@ import Tutor from '../componets/tutor';
 import Header from '../componets/header';
 import Services from '../componets/services';
 import Team from '../componets/Team';
-import Testimonials from '../componets/testimonials';
 import JsonData from '../data/data.json';
 import SmoothScroll from "smooth-scroll";
 export const scroll = new SmoothScroll('a[href*="/"]', {
@@ -29,7 +28,6 @@ const LandingPage = () => {
       <About data={landingPageData.About} />
       <Services data={landingPageData.Services} />
       <Tutor data={landingPageData.Tutor} /> 
-      <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
     </div>
   )
