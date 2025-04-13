@@ -9,6 +9,7 @@ import Accordion from "react-bootstrap/Accordion";
 const Tutor = (props) => {
   const [isTransitioning, setIsTransitioning] = useState(true);
 
+	
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsTransitioning(false);
