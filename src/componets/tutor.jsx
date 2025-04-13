@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Subjects from "../pages/Subjects";
-import Image from "./image";
 import { useSpring, animated } from '@react-spring/web';
 import { FaExclamationTriangle, FaUniversity } from "react-icons/fa";
 import Accordion from "react-bootstrap/Accordion";
 
-const Tutor = (props) => {
+const Tutor = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
 
 	
@@ -101,23 +100,7 @@ useEffect(() => {
               <h3 className="text-primary mb-4">
                 Applications Open: June - August (Grade 11), September (Grade 12)
               </h3>
-              {props.data ? (
-                <div className="row g-4">
-                  {props.data.map((d, i) => (
-                    <div key={`${d.title}-${i}`} className="col-md-4">
-                      <Image
-                        title={d.title}
-                        
-                        smallImage={d.smallImage}
-                        id={d.id}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <Loader />
-              )}
-            </div>
+              
           </div>
 
           {/* FAQ Section */}
