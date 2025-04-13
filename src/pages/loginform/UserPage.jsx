@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Badge from "react-bootstrap/Badge";
 import { FaInfoCircle } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { FaInfoCircle } from "react-icons/fa";
 const UserPage = () => {
   return (
     <div className="container">
+      {/* Intro Section */}
       <section className="intro mt-4">
         <p className="text-secondary p-4 mt-2 rounded">
           <FaInfoCircle className="me-2" />
@@ -16,7 +17,7 @@ const UserPage = () => {
         </p>
       </section>
 
-      {/* User Details or Settings Section */}
+      {/* User Account Information Section */}
       <section className="account-info">
         <h2>Your Account Information</h2>
         <p>
@@ -37,7 +38,7 @@ const UserPage = () => {
         </div>
       </section>
 
-      {/* Additional User Information */}
+      {/* Additional User Information Section */}
       <section className="additional-info mt-4">
         <h3>Important Notes:</h3>
         <ul>
@@ -47,7 +48,7 @@ const UserPage = () => {
         </ul>
       </section>
 
-      {/* Link to password recovery and email update page */}
+      {/* Password Recovery Link */}
       <p className="text-center mt-3">
         <a
           href="/account/reset-password"
