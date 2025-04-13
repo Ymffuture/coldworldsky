@@ -13,7 +13,7 @@ const UserPage = () => {
           Your account is secure! However, please remember to use a strong and unique password for online safety. 
           For your own security, make sure your account's email address is up-to-date, as you will need it to recover your password if forgotten. 
           <strong>Never share your password with anyone.</strong>
-          <Badge bg="success">Last updated: 13 October 2025</Badge>
+          <Badge bg="success">Last updated: 13 March 2025</Badge>
         </p>
       </section>
 
@@ -49,15 +49,7 @@ const UserPage = () => {
       </section>
 
       {/* Password Recovery Link */}
-      <p className="text-center mt-3">
-        <a
-          href="/account/reset-password"
-          className="text-decoration-none"
-          aria-label="Reset your password"
-        >
-          Forgot your password? Reset here.
-        </a>
-      </p>
+      
 
       {/* Placeholder for child routes */}
       <Outlet />
