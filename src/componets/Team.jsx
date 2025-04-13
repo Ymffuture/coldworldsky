@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Loader from "./Loader";
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar } from "react-icons/fa";
 
 const Team = (props) => {
   const [activeTab, setActiveTab] = useState("mission");
@@ -25,7 +26,15 @@ const Team = (props) => {
           {props.data ? (
             props.data.map((d, i) => (
               <div key={`${d.name}-${i}`} className="col-lg-10 col-md-6 mx-auto">
-                <div className="team-card border rounded-3 shadow-sm p-3">
+                <div className="team-card border rounded-3 shadow-sm p-3 position-relative">
+
+                  {/* Star Rating - Top Left */}
+                  <div className="position-absolute top-0 start-0 m-2">
+                    <span className="text-warning d-flex align-items-center gap-1">
+                      <FaStar className="me-1" /> 4/5
+                    </span>
+                  </div>
+
                   <div className="thumbnail">
                     <img
                       src={d.img}
@@ -38,6 +47,34 @@ const Team = (props) => {
                       <p className="text-secondary small">
                         Passionate about coding and education (High school subjects), {d.name} brings a wealth of experience in {d.job.toLowerCase()} to drive Quorvex's mission forward.
                       </p>
+
+                      {/* Social Media Icons */}
+                      <div className="d-flex justify-content-center gap-3 mt-3">
+                        <a
+                          href="https://facebook.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary fs-5"
+                        >
+                          <FaFacebookF />
+                        </a>
+                        <a
+                          href="https://linkedin.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-info fs-5"
+                        >
+                          <FaLinkedinIn />
+                        </a>
+                        <a
+                          href="https://wa.me/yourNumberHere"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-success fs-5"
+                        >
+                          <FaWhatsapp />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
