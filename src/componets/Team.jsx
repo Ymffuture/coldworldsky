@@ -36,7 +36,7 @@ const Team = (props) => {
                       <h5 className="fw-bold">{d.name}</h5>
                       <p className="text-muted">{d.job}</p>
                       <p className="text-secondary small">
-                        Passionate about coding and education, {d.name} brings a wealth of experience in {d.job.toLowerCase()} to drive Skyford's mission forward.
+                        Passionate about coding and education (High school subjects), {d.name} brings a wealth of experience in {d.job.toLowerCase()} to drive Quorvex's mission forward.
                       </p>
                     </div>
                   </div>
