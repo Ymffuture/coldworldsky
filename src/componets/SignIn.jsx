@@ -72,10 +72,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
       navigate("/courses");
-      setTimeout(() =>{
-        window.location.reload()
-  
-       } ,300) 
+      
       
     } else {
       
