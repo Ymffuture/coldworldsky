@@ -1,3 +1,21 @@
-# https://www.robotstxt.org/robotstxt.html
+# Block ad bots from crawling sensitive pages
+User-agent: AdsBot-Google
+Disallow: /contact
+Disallow: /login
+Disallow: /signup
+Disallow: /navigate
+Disallow: /sidebar
+
+User-agent: facebookexternalhit
+Disallow: /contact
+Disallow: /login
+Disallow: /signup
+Disallow: /navigate
+Disallow: /sidebar
+
+# Allow everything else for normal search engines
 User-agent: *
 Disallow:
+
+Sitemap: https://quorvexinstitute.vercel.app/sitemap.xml
+
