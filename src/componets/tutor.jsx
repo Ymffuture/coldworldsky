@@ -136,7 +136,7 @@ const Tutor = (props) => {
       </div>
 
       {/* Inline JSON-LD schema for SEO */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {/*<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />*/} 
     </div>
   );
 };
