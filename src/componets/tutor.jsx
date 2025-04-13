@@ -8,19 +8,18 @@ import Accordion from "react-bootstrap/Accordion";
 const Tutor = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-	
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsTransitioning(false);
     }, 3000);
     return () => clearTimeout(timeout);
-	  
   }, []);
 
-  const fade = useSpring({ opacity: isTransitioning ? 0 : 1, transform: isTransitioning ? "translateY(20px)" : "translateY(0)" });
-	
+  const fade = useSpring({
+    opacity: isTransitioning ? 0 : 1,
+    transform: isTransitioning ? "translateY(20px)" : "translateY(0)",
+  });
 
-	
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -30,37 +29,39 @@ const Tutor = () => {
         "name": "How much does tutoring cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tutoring is R400.00 per month for two high school subjects."
-        }
+          "text": "Tutoring is R400.00 per month for two high school subjects.",
+        },
       },
       {
         "@type": "Question",
         "name": "Do you help with university applications?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we offer free help with up to two university applications."
-        }
+          "text": "Yes, we offer free help with up to two university applications.",
+        },
       },
       {
         "@type": "Question",
         "name": "When can I apply?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Applications open from June to August (Grade 11) and in September (Grade 12)."
-        }
-      }
-    ]
+          "text": "Applications open from June to August (Grade 11) and in September (Grade 12).",
+        },
+      },
+    ],
   };
-useEffect(() => {
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
-  script.text = JSON.stringify(faqSchema);
-  document.head.appendChild(script);
 
-  return () => {
-    document.head.removeChild(script); // Cleanup on unmount
-  };
-}, []);
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div id="tutor" className="text-center" role="region" aria-labelledby="tutor-section">
       <div className="container">
@@ -96,15 +97,25 @@ useEffect(() => {
               <strong>FREE</strong> assistance for up to <strong>TWO school applications</strong>.
             </p>
 
-            <div className="portfolio-items">
+            <div className="portfolio-items mt-4">
               <h3 className="text-primary mb-4">
                 Applications Open: June - August (Grade 11), September (Grade 12)
               </h3>
-              
+              <img
+                src="../img/unisa.jpg"
+                alt="UNISA"
+                className="img-fluid rounded shadow-sm"
+                style={{
+                  height: "300px",
+                  width: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              />
+            </div>
           </div>
 
           {/* FAQ Section */}
-          
           <div className="mt-5 text-start">
             <h4 className="text-primary mb-3">Frequently Asked Questions</h4>
             <Accordion>
@@ -130,9 +141,6 @@ useEffect(() => {
           </div>
         </animated.div>
       </div>
-
-      {/* Inline JSON-LD schema for SEO */}
-      {/*<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />*/} 
     </div>
   );
 };
