@@ -31,7 +31,7 @@ import { useSpring, animated } from "@react-spring/web";
 
         {isTransitioning && (
           <>
-            <div className="transition-animation"></div>
+            
             <div className="transition-animation2">
               <p>Please wait...</p>
             </div>
