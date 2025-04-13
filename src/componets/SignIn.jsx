@@ -71,16 +71,15 @@ const SignIn = ({ setIsAuthenticated }) => {
       // Save token to localStorage
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
-      window.location.reload()
+      navigate("/courses");
       toast.success('logged in ', {
         position: "top-center",
         duration: 3000,
       setTimeout(() =>{
-        const navigate = useNavigate();
-navigate("/courses");
+      
+        window.location.reload()
         
-        
-       } ,2000) 
+       } ,300) 
       
     } else {
       
