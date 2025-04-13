@@ -12,7 +12,6 @@ const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isdisabled , setIsdisabled] = useState(false);
-  const [finalText ,setFinalText] =useState('');
   const [type, setType] = useState('password');
   const [eye, setEye]= useState('');
   const [icon , setIcon] = useState('');
@@ -53,7 +52,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       setIsdisabled(true)
       setTimeout(()=>{
         setIsdisabled(false)
-        setFinalText(<p className=' text-bg-danger p-3 rounded-1'>No internet connection:code:500</p>)
+        
       },30000)
     }else{
     
@@ -131,8 +130,7 @@ if(!isCapsLockOn){
     <h3 className=' text-bg-dark p-2 rounded-1'>
     <i className={!password? "bi bi-lock-fill text-danger":"bi bi-unlock-fill text-success slide"}></i> {""}
       Sign In with your Email to get more features.</h3>
-      <h6>
-        {finalText}</h6>
+      
 
       <div style={{marginBottom:'.8rem'}} 
        className="form-group"
