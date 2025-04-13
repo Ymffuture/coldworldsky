@@ -1,21 +1,28 @@
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
+import React from 'react';
+import { Carousel, Container } from 'react-bootstrap';
 
 function ShapeExample() {
   return (
-    <Container>
-      <Row>
-        <Col xs={6} md={4}>
-          <Image width="100%" src="../img/unisa.jpg" rounded />
-        </Col>
-        <Col xs={4} md={2}>
-          <Image width="100%"  src="../img/uj-1.jpg" roundedCircle />
-        </Col>
-   
-      </Row>
-      
+    <Container className="py-5">
+      <Carousel fade interval={3000} controls={false} indicators={false}>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="../img/unisa.jpg"
+            alt="UNISA"
+            style={{ height: "300px", objectFit: "cover", borderRadius: "10px" }}
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="../img/uj-1.jpg"
+            alt="UJ"
+            style={{ height: "300px", objectFit: "cover", borderRadius: "50%" }}
+          />
+        </Carousel.Item>
+        {/* Add more slides as needed */}
+      </Carousel>
     </Container>
   );
 }
