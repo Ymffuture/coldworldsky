@@ -74,7 +74,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       navigate("/courses");
       setTimeout(() =>{
         window.location.reload()
-        toast('Logged in.')
+  
        } ,300) 
       
     } else {
