@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Subjects from "../pages/Subjects";
 import Image from "./image";
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated } from '@react-spring/web';
 import { FaExclamationTriangle, FaUniversity } from "react-icons/fa";
 import Accordion from "react-bootstrap/Accordion";
 
@@ -15,11 +15,13 @@ const Tutor = (props) => {
       setIsTransitioning(false);
     }, 3000);
     return () => clearTimeout(timeout);
+	  
   }, []);
 
   const fade = useSpring({ opacity: isTransitioning ? 0 : 1, transform: isTransitioning ? "translateY(20px)" : "translateY(0)" });
 	
 
+	
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -50,7 +52,16 @@ const Tutor = (props) => {
       }
     ]
   };
+useEffect(() => {
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.text = JSON.stringify(faqSchema);
+  document.head.appendChild(script);
 
+  return () => {
+    document.head.removeChild(script); // Cleanup on unmount
+  };
+}, []);
   return (
     <div id="tutor" className="text-center" role="region" aria-labelledby="tutor-section">
       <div className="container">
