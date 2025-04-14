@@ -915,3 +915,90 @@ text-decoration: none;
     transition: .6s all;
   }
 }
+.file{
+  .fa{
+    color: #ffffff;
+  }
+  .i_load{
+    &::after{
+      content: '';
+      width: 24px;
+     
+      background: #006b00;
+      position: absolute;
+      animation: load 60s linear infinite;
+      left: 84px;
+      bottom: 0;
+    }
+  }
+  position: absolute;
+  top:50px;
+  left: 50%;
+  
+display: flex;
+cursor: pointer;
+&::after{
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: rgb(1, 131, 1);
+  position: absolute;
+  // z-index: 999;
+  border-radius: 50%;
+}
+}
+.file2{
+  &::after{
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: rgb(1, 131, 1);
+    position: absolute;
+    // z-index: 999;
+    border-radius: 50%;
+  }
+ 
+}
+#arrow{
+  background: #0053fa;
+ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.arrow1{
+ 
+  animation: fade1 1s linear infinite;
+}
+.arrow2{
+  
+  animation: fade2 2s linear infinite;
+}
+.arrow3{
+  
+  animation: fade3 2s linear infinite;
+}
+
+@keyframes fade {
+  from{opacity: 0;}
+}
+@keyframes fade1 {
+  from{opacity: 0;}
+}
+@keyframes fade2 {
+  from{opacity: 0;}
+}
+@keyframes fade3 {
+  from{opacity: 0;}
+}
+@keyframes load {
+  0%{
+    height: 0;
+    background: yellowgreen;
+  }
+  50%{
+    height: 10px;
+    background: #ffe602;
+  }
+  100%{
+    height: 22px;
+    background: #006b00;
+  }
+}

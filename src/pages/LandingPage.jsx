@@ -8,6 +8,7 @@ import Team from '../componets/Team';
 import Testimonials from '../componets/testimonials';
 import JsonData from '../data/data.json';
 import SmoothScroll from "smooth-scroll";
+import SideButton from "./SideButton";
 export const scroll = new SmoothScroll('a[href*="/"]', {
   speed: 500,
   speedAsDuration: true,
@@ -31,6 +32,7 @@ const LandingPage = () => {
       <Tutor data={landingPageData.Tutor} /> 
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
+      <SideButton/>
     </div>
   )
 }

@@ -1,0 +1,42 @@
+.button_{
+   position: absolute;
+   right: 0;
+   top:50px;
+   
+   .blog{
+      color:#8d2038;
+      animation: shake .6s linear infinite;
+      &:hover{
+         color:#222;
+       
+         transition: .6s ease-out;
+       }
+   }
+   #id{
+      color:#ffffff;
+      background: #8d2038;
+   }
+   button{
+    position: sticky !important;
+    border: 2px solid transparent;
+    padding: 4px;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+    opacity: .6;
+    &:hover{
+      opacity: 1;
+      transition: .6s all;
+    }
+   }
+  
+}
+@keyframes shake {
+0%{
+  transform: translateX(10%)
+}
+50%{
+   transform: translateY(10%)
+}
+   
+
+}

@@ -6,8 +6,9 @@ import "react-tooltip/dist/react-tooltip.css";
 import Counter from './Counter';
 import { FaArrowCircleRight, FaCat, FaCogs, FaEnvelope, FaExclamationTriangle, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
 import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
-import logo from '../assets/img/logoskblack.jpg'
 import style_ from '../styles/__style.module.css'
+import Button from './button/Button';
+import Logo from './logo/Logo';
 const Footer = () => {
   
   // wait...
@@ -15,13 +16,13 @@ const Footer = () => {
     {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
 
-    {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
-    className='fa-yahoo fa fs-4'
-    />},
+    // {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
+    // className='fa-yahoo fa fs-4'
+    // />},
 
-    {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
-    className='fa-youtube fa fs-4 '
-    />},
+    // {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
+    // className='fa-youtube fa fs-4 '
+    // />},
     {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
     className='fa-github fa fs-4'
     />},
@@ -81,18 +82,11 @@ const Footer = () => {
 <div><FaCat className='text-light h2'/></div>
 <Container fluid id='LinksTable'>
 <Row className='p-1'>
-  <Col className='mx-2'>
-  <Image
-    className='pic-footer'
-    src={logo}
-    alt='logo'
-    rounded
-    width={100}
-    height={100}
-    />
-    <h1 className='text-white'>Quorvex</h1>
-    <p>Code The Future. Together</p>
+  
+  <Col>
+  <Logo/>
   </Col>
+ 
   <Col>
   <Nav className='flex-column fs-6' >
   <h1 className='th'>Quick Links</h1>
@@ -152,12 +146,7 @@ const Footer = () => {
   <p onClick={()=>copyText('quorvexinstitute@zohomail.com')}><FaEnvelope/> quorvexinstitute@zohomail.com</p>
   <p className='tel'><FaPhoneAlt/><a  href='tel:+27634414863'> (+27) 63 441 4863</a> </p>
   <p>OR</p>
-  <p>Message Us now <Link
-  to='/contact'
-  rel="nofollow"
-  >
-  <FaArrowCircleRight className='fs-5'/>
-  </Link></p>
+  <Button/>
   </Col>
 </Row>
 </Container>

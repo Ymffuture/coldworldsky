@@ -46,6 +46,7 @@ import Post from "./pages/Post";
 import Location from "./pages/Location";
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+// import Resume from "./componets/Resume";
 
 const  App = ()=> {
 const {id} =useParams()
@@ -129,6 +130,7 @@ useEffect(()=>{
           <Route path="/location/" element={<Location/>} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          {/* <Route path='/Resume_kgomotso_Nkosi_id_9603*******85' element={<Resume/>}/> */}
           <Route path="/track-Application/" element={<TrackApplication/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quotes/" element={<Quotes /> }/>

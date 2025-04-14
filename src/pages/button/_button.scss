@@ -1,0 +1,23 @@
+.app_download{
+    border: none;
+    padding:8px;
+    border-radius:8px;
+    font-weight: 500;
+    font-size: 14px;
+    background: linear-gradient(-117deg, #6372ff 0%, #5ca9fb 100%, gold 100%) !important;
+    color:whitesmoke;
+    opacity: .6;
+    .blink{
+        animation:blink 6s linear infinite;
+    }
+}
+@keyframes blink {
+    from{opacity: 0.6;color: #50e054;}
+}
+#app{
+    background:whitesmoke;
+    color:#333;
+}
+.o{
+    color:#fdf900;
+}

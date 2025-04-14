@@ -36,6 +36,8 @@ import {
   FaRegCopy,
   FaLocationArrow,
   FaCloud,
+  FaShareAltSquare,
+  FaLock,
 } from "react-icons/fa";
 import imgLoad from '../assets/css/nivo-lightbox/loading.gif'
 import CssLoader from "../pages/Cloader";
@@ -126,7 +128,13 @@ const Navigation = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+const toggleSwitch = () => {
+  localStorage.removeItem("token"); // Clear token
+  setIsAuthenticated(false);
+  setTimeout(() => {
+    window.reload()
+  }, 3000);
+}
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
     { path: "/about/", label: "About", icon: <FaInfoCircle /> },
@@ -134,7 +142,7 @@ const Navigation = () => {
     { path: "/tutoring/", label: "Tutoring", icon: <FaChalkboardTeacher />, applytobeatutor: <Badge><Link to='/tutoring/ApplicationForm-for-a-tutor/'></Link></Badge> },
     {
       path: "/courses/",
-      label: `Courses`,
+      label: `Courses `,
       icon: <FaBookReader />,
       submenu: [
         {
@@ -157,10 +165,7 @@ const Navigation = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
-      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={() => {
-        localStorage.removeItem("token"); // Clear token
-        setIsAuthenticated(false);
-      }} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
+      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShareAltSquare className="text-secondary" onClick={() => copyText(window.location.href)} />
     },
   ];
 
@@ -584,7 +589,7 @@ const Navigation = () => {
                   <Link to={link.path}>
                     <span
                       className={`myicon ${showIcon ? "" : "show"} ${isSidebarVisible ? "visible" : "hidden"
-                        } ${darkMode ? "dark" : "light"}`}
+                        } `}
                       data-tip={link.label}
                       data-tooltip-id="closesidebar"
                       data-tooltip-content={link.label}
@@ -604,12 +609,13 @@ const Navigation = () => {
                               data-tooltip-id="closesidebar"
                               data-tooltip-content={sub.label}
                               className={`myicon ${showIcon ? "" : "show"}  ${isSidebarVisible ? "visible" : "hidden"
-                                } ${darkMode ? "dark" : "light"}`}
+                                } `}
                               data-tip={link.label}
                             >
-                              {sub.icon}
+                              <i className={isAuthenticated? null : 'dropdown'} disabled>{sub.icon}</i>
                             </span>{" "}
-                            {sub.label}
+                           
+                            <span className={isAuthenticated? null : 'dropdown'}> {sub.label}</span> {""} {isAuthenticated? null : <FaLock className="fs-6 lockColor"/>}
                           </Link>
                         </li>
                       ))}
@@ -620,7 +626,7 @@ const Navigation = () => {
 
               <div className="d-flex bg-dark-subtle rounded bottom-icons">
                 {buttonLinks.map((base, index) => (
-                  <li onClick={notWorkingBtn} key={index}>
+                  <li key={index}>
                     <Link
                       data-tooltip-id="tooltip-base"
                       data-tooltip-content={base.label}

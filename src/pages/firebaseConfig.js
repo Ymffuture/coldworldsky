@@ -1,18 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { messagingSenderId,storageBucket,projectId,measurementId,appId,authDomain,apiKey} from "../../Urls";
 
 
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    projectId: process.env.projectId,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId,
-    appId: process.env. appId,
-    measurementId: process.env.measurementId
+    apiKey: apiKey,
+    authDomain: authDomain,
+    projectId: projectId,
+    storageBucket:storageBucket,
+    messagingSenderId: messagingSenderId,
+    appId:appId,
+    measurementId:measurementId
 };
 
 // Initialize Firebase

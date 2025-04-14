@@ -12,7 +12,7 @@ const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isdisabled , setIsdisabled] = useState(false);
-  const [finalText ,setFinalText] =useState('');
+  const [noneInput ,setNoneInput] =useState(false);
   const [type, setType] = useState('password');
   const [eye, setEye]= useState('');
   const [icon , setIcon] = useState('');
@@ -20,6 +20,7 @@ const SignIn = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 
@@ -51,9 +52,10 @@ const SignIn = ({ setIsAuthenticated }) => {
     }
     if(password && emailRegex.test(email)){
       setIsdisabled(true)
+      setNoneInput(true)
       setTimeout(()=>{
         setIsdisabled(false)
-        setFinalText(<p className=' text-bg-danger p-3 rounded-1'>No internet connection:code:500</p>)
+        setNoneInput(false)
       },10000)
     }else{
     
@@ -72,7 +74,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       // Save token to localStorage
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
-      navigate("/");
+      navigate("/courses");
     } else {
       
       toast.error(data.error || "No internet Connection", {
@@ -87,6 +89,7 @@ const SignIn = ({ setIsAuthenticated }) => {
         }
       });
     }
+   
   };
   const handleToggle=()=>{
   
@@ -128,8 +131,7 @@ if(!isCapsLockOn){
     <h3 className=' text-bg-dark p-2 rounded-1'>
     <i className={!password? "bi bi-lock-fill text-danger":"bi bi-unlock-fill text-success slide"}></i> {""}
       Sign In with your Email to get more features.</h3>
-      <h6>
-        {finalText}</h6>
+    
 
       <div style={{marginBottom:'.8rem'}} 
        className="form-group"
@@ -144,6 +146,7 @@ if(!isCapsLockOn){
           style={{padding:'.5rem',width:'100%'}}
           className="form-control"
           autocomplete='on'
+        readOnly={noneInput}
         />
           <label for="email"><i className={!email? 'bi bi-envelope-open' :"bi bi-envelope"}></i> Email</label>
       </div>
@@ -162,6 +165,7 @@ if(!isCapsLockOn){
           // onKeyDown={handleChar}
           maxLength='16'
           autocomplete='on'
+          readOnly={noneInput}
         />
         <label for="email"><i className={!password? "bi bi-lock":"bi bi-unlock"}></i>Password</label>
       

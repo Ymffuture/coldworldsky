@@ -60,19 +60,7 @@
       "text": "Learn to design and develop cross-platform mobile apps using React Native and Flutter."
     }
   ],
-  "Testimonials": [
-    {
-      "img": "img/portfolio/react.png",
-      "text": "\"Joining  QUORVEX INSTITUTE was the best decision of my life. The instructors are fantastic, and the hands-on projects prepared me for a career in tech!\"",
-      "name": "React js"
-    },
 
-    {
-      "img": "img/portfolio/python.png",
-      "text": "\"  Quorvex Institute's bootcamps gave me the confidence to switch careers. Now, I’m a full-stack developer working on exciting projects.\"",
-      "name": "Python"
-    }
-  ],
   "Team": [
     {
       "img": "img/team/Future Ymf.jpg",
@@ -80,12 +68,12 @@
       "job": "Founder & CEO"
     },
     {
-      "img": "img/team/Future Ymf.jpg",
+      "img": "img/team/02.jpg",
       "name": "Kgomotso Nkosi",
       "job": "Founder & CEO"
     },
     {
-      "img": "img/team/Future Ymf.jpg",
+      "img": "img/team/03.jpg",
       "name": "Kgomotso Nkosi",
       "job": "Founder & CEO"
     }

@@ -19,9 +19,9 @@
   position: absolute;
   width: 6.4px;
   height: 6.4px;
-  background: #FF5001;
+  background: #999999;
   border-radius: 50%;
-  animation: lds-default 1.5s linear infinite;
+  animation: lds-default 2s linear infinite;
 }
 .lds-default div:nth-child(1) {
   animation-delay: 0s;

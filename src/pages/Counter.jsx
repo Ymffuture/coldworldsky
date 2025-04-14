@@ -3,7 +3,7 @@ import { db } from "./firebaseConfig";
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 
 const Counter = () => {
-  const [count, setCount] = useState(3991996);
+  const [count, setCount] = useState(999);
 
   useEffect(() => {
     const fetchCount = async () => {

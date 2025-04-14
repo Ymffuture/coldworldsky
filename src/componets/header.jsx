@@ -1,17 +1,26 @@
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 // import {Link} from 'react-router-dom';
 import { useSpring, animated } from "@react-spring/web";
 import Loader from "./Loader";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import {
-  FaArrowAltCircleRight 
+  FaArrowAltCircleRight, 
+  FaArrowRight, 
+  FaFile, 
+  FaFileAlt
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
  const Header = (props) => {
   const [show, setShow] = useState(false);
-
+const [isAuthenticated, setIsAuthenticated] = useState(false);
+ useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // true if token exists
+  }, []);
   const fadeIn = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } ,config:{duration:5000}});
 const style = {
   background:"transparent",
@@ -36,6 +45,8 @@ const mydata = ['1','2','3']
             
                 </h1>
                 <p >{props.data ? props.data.paragraph : <Loader/>}</p>
+    
+            
 <div className="g-2 d-block">
                 {/* <animated.a style={fadeIn} 
                   href="#features"
@@ -47,11 +58,11 @@ const mydata = ['1','2','3']
                 </animated.a> {" "} */}
                <br/>
                 <Link style={style} 
-                  to="/user-home-page/sign-up"
+                  to={isAuthenticated? '/about':"/user-home-page/sign-up"}
                   className="btn btn-lg page-scroll"
                   onClick={handleShow}
                 >
-                Get Started
+                {isAuthenticated? 'Learn more':'Get started'}
                 </Link>{" "}
                 </div>
               </div>
