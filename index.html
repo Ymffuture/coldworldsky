@@ -6,6 +6,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2722864790738174">
+  <meta name="robots" content="noindex, nofollow" />
+
   <!-- Favicon -->
   <link rel="icon" href="img/Logo.jpg" type="image/x-icon" />
   
@@ -60,9 +62,12 @@
     </div>
   </div>
   <!-- JavaScript -->
+  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}></script>
+
   <script src="./src/assets/js/jquery.1.11.1.js"></script>
   <script src="./src/assets/js/bootstrap.js"></script>
   <script type="module" src="/src/main.jsx"></script>
+  
 </body>
 </html>
 

@@ -13,9 +13,10 @@ const Footer = () => {
   
   // wait...
   const social = [
-    {openlink:"https://facebook.com/skyfordCCI" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
+    {openlink:"https://www.facebook.com/QuorvexInstitute" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
 
+<<<<<<< HEAD
     // {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
     // className='fa-yahoo fa fs-4'
     // />},
@@ -23,13 +24,22 @@ const Footer = () => {
     // {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
     // className='fa-youtube fa fs-4 '
     // />},
+=======
+  //  {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
+  //  className='fa-yahoo fa fs-4'
+  //  />},
+
+  //  {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
+  //  className='fa-youtube fa fs-4 '
+ //   />},
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
     className='fa-github fa fs-4'
     />},
-    {openlink:'https://linkedin.com/ymffuture' , label:'Linkedin' , icon:<FaLinkedinIn
+    {openlink:'https://www.linkedin.com/in/kgomotsonkosi-l' , label:'Linkedin' , icon:<FaLinkedinIn
     className='fa-linkedin fa fs-4'
     />},
-    {openlink:'https://whatsapp.com/ymffuture' , label:'Whatsapp' , icon:<FaWhatsapp
+    {openlink:'https://wa.me/27653935339' , label:'Whatsapp' , icon:<FaWhatsapp
     className='fa-whatsapp fa fs-4'
     />},
     // {openlink:'https://Instagram.com/ymffuture' , label:'Instagram' , icon:<FaInstagram

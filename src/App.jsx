@@ -139,7 +139,7 @@ useEffect(()=>{
           <Route path="/tutoring/ApplicationForm-for-a-tutor/" element={<TutorApplyForm/>} >
           <Route path="/tutoring/ApplicationForm-for-a-tutor/track-Application/" element={<TrackApplication/>} />
           </Route>
-            <Route path="/tutoring/subjects" element={<Subjects/>}>
+            <Route path="/tutoring/subjects" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects/></ProtectedRoute>}>
               <Route path="/tutoring/subjects/Life-sciences" element={<LifeSciences />} >
                 <Route path="/tutoring/subjects/Life-sciences/clip-overview" element={<VidLfs />} />
               </Route>
@@ -154,7 +154,7 @@ useEffect(()=>{
           </Route>
 
 
-  <Route path="/find-a-tutor" element={<FindTutor />} />
+  <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor/></ProtectedRoute>} />
 
 
           <Route path="/courses/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Courses/></ProtectedRoute>}>

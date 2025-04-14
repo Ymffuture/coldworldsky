@@ -1,21 +1,26 @@
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image';
-import Row from 'react-bootstrap/Row';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function ShapeExample() {
   return (
-    <Container>
-      <Row>
-        <Col xs={6} md={4}>
-          <Image width="100%" src="../img/unisa.jpg" rounded />
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <div
+            style={{
+              backgroundImage: "url('../img/unisa.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              height: "350px",
+              borderRadius: "20px",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+            }}
+            role="img"
+            aria-label="University of South Africa (UNISA)"
+          />
         </Col>
-        <Col xs={4} md={2}>
-          <Image width="100%"  src="../img/uj-1.jpg" roundedCircle />
-        </Col>
-   
       </Row>
-      
     </Container>
   );
 }

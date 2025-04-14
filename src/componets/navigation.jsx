@@ -129,12 +129,21 @@ const Navigation = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 const toggleSwitch = () => {
+<<<<<<< HEAD
   localStorage.removeItem("token"); // Clear token
   setIsAuthenticated(false);
   setTimeout(() => {
     window.reload()
   }, 3000);
 }
+=======
+        localStorage.removeItem("token"); // Clear token
+        setIsAuthenticated(false);
+  setTimeout(() =>{
+    window.location.reload()
+           },3000) 
+      }
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
     { path: "/about/", label: "About", icon: <FaInfoCircle /> },
@@ -165,7 +174,11 @@ const toggleSwitch = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
+<<<<<<< HEAD
       path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShareAltSquare className="text-secondary" onClick={() => copyText(window.location.href)} />
+=======
+      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     },
   ];
 
@@ -191,10 +204,10 @@ const toggleSwitch = () => {
       icon: <FaBookOpen className="icon-bottom" />,
     },
     {
-      path: "/user-home-page/sign-in",
-      label: "SignIn",
-      icon: <FaSignInAlt className="icon-bottom" />,
-    },
+      path:isAuthenticated? "#" :"/user-home-page/sign-in" ,
+      label:isAuthenticated? "Can't sign out here! " :"Sign in",
+      icon: isAuthenticated? <FaSignOutAlt className="text-danger icon-bottom" /> :<FaSignInAlt className="icon-bottom" />,
+     } 
   ];
 
   const demoSearchData = [

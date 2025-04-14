@@ -12,7 +12,10 @@ const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isdisabled , setIsdisabled] = useState(false);
+<<<<<<< HEAD
   const [noneInput ,setNoneInput] =useState(false);
+=======
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
   const [type, setType] = useState('password');
   const [eye, setEye]= useState('');
   const [icon , setIcon] = useState('');
@@ -55,14 +58,19 @@ const SignIn = ({ setIsAuthenticated }) => {
       setNoneInput(true)
       setTimeout(()=>{
         setIsdisabled(false)
+<<<<<<< HEAD
         setNoneInput(false)
       },10000)
+=======
+        
+      },30000)
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     }else{
     
     pass
     }
     // Call the backend login API
-    const response = await fetch("http://localhost:7411/api/auth/user-home-page/sign-in", {
+    const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-in`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -75,6 +83,11 @@ const SignIn = ({ setIsAuthenticated }) => {
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
       navigate("/courses");
+<<<<<<< HEAD
+=======
+      
+      
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     } else {
       
       toast.error(data.error || "No internet Connection", {
@@ -131,7 +144,11 @@ if(!isCapsLockOn){
     <h3 className=' text-bg-dark p-2 rounded-1'>
     <i className={!password? "bi bi-lock-fill text-danger":"bi bi-unlock-fill text-success slide"}></i> {""}
       Sign In with your Email to get more features.</h3>
+<<<<<<< HEAD
     
+=======
+      
+>>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
 
       <div style={{marginBottom:'.8rem'}} 
        className="form-group"
