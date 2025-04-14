@@ -16,7 +16,6 @@ const Footer = () => {
     {openlink:"https://www.facebook.com/QuorvexInstitute" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
     />},
 
-<<<<<<< HEAD
     // {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
     // className='fa-yahoo fa fs-4'
     // />},
@@ -24,7 +23,6 @@ const Footer = () => {
     // {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
     // className='fa-youtube fa fs-4 '
     // />},
-=======
   //  {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
   //  className='fa-yahoo fa fs-4'
   //  />},
@@ -32,7 +30,6 @@ const Footer = () => {
   //  {openlink:"https://youtube.com/skyfordCCI" , label:'YouTube' , icon:<FaYoutube
   //  className='fa-youtube fa fs-4 '
  //   />},
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
     className='fa-github fa fs-4'
     />},
