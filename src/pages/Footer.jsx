@@ -6,6 +6,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import Counter from './Counter';
 import { FaArrowCircleRight, FaCat, FaCogs, FaEnvelope, FaExclamationTriangle, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
 import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
+import Subscription from './Subscription';
 import style_ from '../styles/__style.module.css'
 import Button from './button/Button';
 import Logo from './logo/Logo';
@@ -163,7 +164,8 @@ const Footer = () => {
           <div className="col-lg-12 text-center">
             <div className="social">
               <FaVials   data-tooltip-id="my-tooltip-icons-socials" data-tooltip-content={`? Number of people visited this website a day per user/visitor`}/>
-            <Counter/>
+            {/* <Counter/> */}
+            <Subscription/>
 <ul className='list-inline'>
 {social.map((iconLink, index)=>(
   <li key={index} className='list-inline-items'><Link 

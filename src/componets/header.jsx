@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState,useEffect} from "react";
-=======
 import React, { useState, useEffect} from "react";
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
 // import {Link} from 'react-router-dom';
 import { useSpring, animated } from "@react-spring/web";
 import Loader from "./Loader";
@@ -21,11 +17,7 @@ import "react-tooltip/dist/react-tooltip.css";
  const Header = (props) => {
   const [show, setShow] = useState(false);
 const [isAuthenticated, setIsAuthenticated] = useState(false);
-<<<<<<< HEAD
- useEffect(() => {
-=======
    useEffect(() => {
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token); // true if token exists
   }, []);
@@ -66,20 +58,12 @@ const mydata = ['1','2','3']
                 </animated.a> {" "} */}
                <br/>
                 <Link style={style} 
-<<<<<<< HEAD
-                  to={isAuthenticated? '/about':"/user-home-page/sign-up"}
-                  className="btn btn-lg page-scroll"
-                  onClick={handleShow}
-                >
-                {isAuthenticated? 'Learn more':'Get started'}
-=======
                   to={isAuthenticated? "/about" :"/user-home-page/sign-up"} 
                   className="btn btn-lg page-scroll"
                   onClick={handleShow}
                 >
                   {isAuthenticated? "Learn more" :"Get Started"} 
                 
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
                 </Link>{" "}
                 </div>
               </div>

@@ -68,25 +68,14 @@
       "job": "Founder & CEO"
     },
     {
-<<<<<<< HEAD
       "img": "img/team/02.jpg",
-      "name": "Kgomotso Nkosi",
-      "job": "Founder & CEO"
+      "name": "Karabo Luwenda",
+      "job": "Tutor & IT"
     },
     {
       "img": "img/team/03.jpg",
-      "name": "Kgomotso Nkosi",
-      "job": "Founder & CEO"
-=======
-      "img": "",
       "name": "Thato Motloung",
-      "job": "Tutor & Brand design"
-    },
-    {
-      "img": "",
-      "name": "Karabo Luwenda",
-      "job": "Tutor & IT"
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
+      "job": "Tutor & brand desgner"
     }
   ],
 

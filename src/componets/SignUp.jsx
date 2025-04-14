@@ -193,7 +193,7 @@ setIsCapsLockOn(true)
           className='form-check-input' 
           value={checked}
           disabled={isdisabled}
-          /> I agree to<span className="text-info"> <Link to="https://webpy-7tcd.onrender.com/views/" for='checkbox'> terms and conditions</Link></span>
+          /> I agree to<span className="text-info"> <Link to="/terms_of_services" for='checkbox'> terms and conditions</Link></span>
         </label>
 
         <button type="submit" 

@@ -5,11 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Counter = () => {
-<<<<<<< HEAD
-  const [count, setCount] = useState(999);
-=======
   const [count, setCount] = useState(null);
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
 
   useEffect(() => {
     const fetchCount = async () => {

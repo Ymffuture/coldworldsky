@@ -1,26 +1,28 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { useSpring, animated } from '@react-spring/web';
 const About = () => {
+   const introFade = useSpring({
+      from: { opacity: 0, transform: 'translateY(-30px)' },
+      to: { opacity: 1, transform: 'translateY(0px)' },
+      delay: 200,
+    });
   return (
     <main className="about-page">
       {/* Hero Section */}
-      <header id="header" className="bg-primary text-white py-5">
-        <Container className="text-center">
-          <h1 className="display-3 fw-bold">About Quorvex</h1>
-          <p className="lead">
-            Empowering education through innovation and excellence.
-          </p>
-          <Link
-            to="/find-a-tutor"
-            className="btn btn-light btn-lg mt-3"
-            aria-label="Find a tutor"
-          >
-            Find a Tutor
-          </Link>
-        </Container>
-      </header>
+     <header id="header">
+            <div className="intro container-fluid">
+              <div className="overlay d-flex justify-content-center align-items-center vh-100">
+                <div className="container text-center">
+                  <animated.h1 style={introFade} className="display-4 fw-bold">
+                    About <span className="text-primary">Us</span>
+                  </animated.h1>
+                  <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow">Find a Tutor</Link>
+                </div>
+              </div>
+            </div>
+          </header>
 
       {/* About Content */}
       <Container as="section" className="py-5">

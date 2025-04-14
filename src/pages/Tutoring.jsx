@@ -127,7 +127,7 @@ export default Navbar;`;
     <>
       <header id="header">
         <div className="intro container-fluid">
-          <div className="overlay d-flex justify-content-center align-items-center vh-20">
+          <div className="overlay d-flex justify-content-center align-items-center vh-100">
             <div className="container text-center">
               <animated.h1 style={introFade} className="display-4 fw-bold">
                 Tutoring <span className="text-primary">@QI</span>

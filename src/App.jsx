@@ -22,6 +22,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Services from "./pages/Services";
 import Tutoring from "./pages/Tutoring";
 import Courses from "./pages/courses/Courses";
+import Terms_of_service from './pages/Terms_of_service';
+import Privacy_policy from './pages/Privacy_policy';
 import Quotes from "./pages/Quotes";
 import Calendar from "./pages/Calendar";
 import DataScience from "./pages/courses/DataScience";
@@ -135,6 +137,9 @@ useEffect(()=>{
           <Route path="/contact" element={<Contact />} />
           <Route path="/quotes/" element={<Quotes /> }/>
           <Route path="/services/" element={<Services/>} />
+          <Route path="/privacy_policy" element={<Privacy_policy/>} />
+          <Route path="/terms_of_services" element={ <Terms_of_service/>} />
+
           <Route path="/tutoring/" element={<Tutoring/>} >
           <Route path="/tutoring/ApplicationForm-for-a-tutor/" element={<TutorApplyForm/>} >
           <Route path="/tutoring/ApplicationForm-for-a-tutor/track-Application/" element={<TrackApplication/>} />
@@ -174,6 +179,7 @@ useEffect(()=>{
           </Route>
           <Route path='/path_ERROR_page_not_found' element={<Error handleHeaderFooterShow={(res)=>setShow(false)}/>}/>
           <Route path='*' element={<Navigate to='/path_ERROR_page_not_found/'/>}/>
+
         </Routes>
         <ToastContainer/>
         <Toaster />

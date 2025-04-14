@@ -254,7 +254,7 @@ a:focus,
   display: grid;
   width: 100% !important;
   padding: 0;
-  background: url("../img/about-bg.jpg") no-repeat center center fixed;
+  background: url("../img/thum.jpg") no-repeat center center fixed;
   background-color: whitesmoke !important;
   -webkit-background-size: cover;
   -moz-background-size: cover;

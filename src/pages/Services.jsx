@@ -8,10 +8,16 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import axios from "axios";
+import { useSpring, animated } from '@react-spring/web';
+
 
 const Services = () => {
   const [data, setData] = useState(null);
-
+const introFade = useSpring({
+    from: { opacity: 0, transform: 'translateY(-30px)' },
+    to: { opacity: 1, transform: 'translateY(0px)' },
+    delay: 200,
+  });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,23 +31,20 @@ const Services = () => {
   }, []);
 
   return (
-    <main className="services-page">
+    <main className="services-page1">
       {/* Hero Section */}
-      <header id="header" className="bg-dark text-white py-5">
-        <Container className="text-center">
-          <h1 className="display-3 fw-bold text-capitalize">Our Services</h1>
-          <p className="lead">
-            Empowering education through innovation and excellence.
-          </p>
-          <Link
-            to="/find-a-tutor"
-            className="btn btn-warning btn-lg mt-3"
-            aria-label="Find a tutor"
-          >
-            Find a Tutor
-          </Link>
-        </Container>
-      </header>
+      <header id="header">
+                 <div className="intro container-fluid">
+                   <div className="overlay d-flex justify-content-center align-items-center vh-100">
+                     <div className="container text-center">
+                       <animated.h1 style={introFade} className="display-4 fw-bold">
+                         Our <span className="text-primary">Services</span>
+                       </animated.h1>
+                       <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow">Find a Tutor</Link>
+                     </div>
+                   </div>
+                 </div>
+               </header>
 
       {/* Services Section */}
       <Container as="section" className="py-5">

@@ -5,12 +5,12 @@ const PrivacyPolicy = () => {
   return (
     <Container className="py-5">
       <Row>
-        <Col md={8} className="mx-auto">
-          <Card className="border-0 shadow-lg">
-            <Card.Body>
-              <Card.Title className="text-center mb-4 text-primary">
+        <Col md={16} className="mx-auto">
+          <div className="border-0 shadow-lg p-4">
+            <div>
+              <h2 className="text-center mb-4 text-primary p-4">
                 Privacy Policy
-              </Card.Title>
+              </h2>
 
               <p>
                 At <strong>Quorvex</strong>, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data.
@@ -43,7 +43,12 @@ const PrivacyPolicy = () => {
                 <li>Request the deletion of your data under certain circumstances.</li>
               </ul>
 
-              <h4>Contact Us</h4>
+             
+            </div>
+          </div>
+        </Col>
+        <Col className='p-3'>
+        <h4>Contact Us</h4>
               <p>If you have any questions regarding this Privacy Policy, feel free to contact us at:</p>
               <p>Email: <a href="mailto:quorvexinstitute@gmail.com">quorvexinstitute@gmail.com</a></p>
               <p>Phone: 065-393-5339</p>
@@ -53,8 +58,6 @@ const PrivacyPolicy = () => {
                   Go Back to Homepage
                 </Button>
               </div>
-            </Card.Body>
-          </Card>
         </Col>
       </Row>
     </Container>

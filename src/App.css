@@ -64,26 +64,26 @@ animation: glow 2s infinite !important;
 
 .windows8 .wBall {
 	position: absolute;
-	width: 74px;
-	height: 74px;
+	width: 77px;
+	height: 77px;
 	opacity: 0;
 	transform: rotate(225deg);
 		-o-transform: rotate(225deg);
 		-ms-transform: rotate(225deg);
 		-webkit-transform: rotate(225deg);
 		-moz-transform: rotate(225deg);
-	animation: orbit 6.96s infinite;
-		-o-animation: orbit 6.96s infinite;
-		-ms-animation: orbit 6.96s infinite;
+	animation: orbit 20.96s infinite;
+		-o-animation: orbit 20.96s infinite;
+		-ms-animation: orbit 20.96s infinite;
 		-webkit-animation: orbit 6.96s infinite;
-		-moz-animation: orbit 6.96s infinite;
+		-moz-animation: orbit 8.96s infinite;
 }
 
 .windows8 .wBall .wInnerBall{
 	position: absolute;
 	width: 11px;
 	height: 11px;
-	background: #FF5001;
+	background: linear-gradient(-117deg,#87949c,rgb(194, 192, 192));
 	left:0px;
 	top:0px;
 	border-radius: 10px;

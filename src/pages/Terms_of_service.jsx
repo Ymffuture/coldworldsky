@@ -1,16 +1,16 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
+import {Link} from 'react-router-dom'
 const TermsOfService = () => {
   return (
     <Container className="py-5">
       <Row>
-        <Col md={8} className="mx-auto">
-          <Card className="border-0 shadow-lg">
-            <Card.Body>
-              <Card.Title className="text-center mb-4 text-primary">
+        <Col md={24} className="mx-auto p-4 ">
+          <div className="border-0 shadow-lg p-4">
+            <div>
+              <h2 className="text-center mb-4 text-primary p-4 ">
                 Terms of Service
-              </Card.Title>
+              </h2>
 
               <p>
                 Welcome to <strong>Quorvex</strong>. By accessing or using our platform, you agree to the following terms and conditions. Please read them carefully.
@@ -34,7 +34,7 @@ const TermsOfService = () => {
               <p>Quorvex shall not be held liable for any damages arising from the use of the website or the services provided.</p>
 
               <h4>5. Privacy and Data Protection</h4>
-              <p>Our privacy practices are outlined in our <a href="/privacy-policy">Privacy Policy</a>, which you agree to when using our services.</p>
+              <p>Our privacy practices are outlined in our <Link to="/privacy_policy">Privacy Policy</Link>, which you agree to when using our services.</p>
 
               <h4>6. Changes to Terms</h4>
               <p>We reserve the right to update or modify these terms at any time. You will be notified of significant changes, and continued use of the platform after changes indicates your acceptance of the new terms.</p>
@@ -42,18 +42,21 @@ const TermsOfService = () => {
               <h4>7. Termination</h4>
               <p>We may suspend or terminate your access to our services for violations of these Terms of Service.</p>
 
-              <h4>Contact Information</h4>
+             
+            </div>
+          </div>
+        </Col>
+        <Col>
+        <h4>Contact Information</h4>
               <p>If you have any questions regarding these Terms of Service, please contact us at:</p>
               <p>Email: <a href="mailto:quorvexinstitute@gmail.com">quorvexinstitute@gmail.com</a></p>
               <p>Phone: 065-393-5339</p>
 
               <div className="text-center mt-4">
-                <Button variant="primary" href="/">
+                <Button variant="primary" href="/user-home-page/sign-up">
                   Go Back to Homepage
                 </Button>
               </div>
-            </Card.Body>
-          </Card>
         </Col>
       </Row>
     </Container>
