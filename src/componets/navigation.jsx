@@ -166,11 +166,8 @@ const toggleSwitch = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
-<<<<<<< HEAD
       path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShareAltSquare className="text-secondary" onClick={() => copyText(window.location.href)} />
-=======
-      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShare className="text-secondary" onClick={() => copyText(window.location.href)} />
->>>>>>> 45631415fad04d8067dab84e8265c909714a9fc5
+
     },
   ];
 
