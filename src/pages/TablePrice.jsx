@@ -59,6 +59,14 @@ const TableExample = () => {
           </Table>
         </div>
       </div>
+      <amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-2722864790738174"
+     data-ad-slot="5846408375"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
     </section>
   );
 };
