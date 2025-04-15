@@ -151,9 +151,9 @@ const QuestionPapers = () => {
               <Button
                 href={doc.file}
                 target="_blank"
-                className="mt-2 btn btn-outline-success"
+                className="mt-2 btn"
               >
-                <FaDownload /> &nbsp;Download Paper
+                {error ? error.message : <><FaDownload /> &nbsp;Download Paper</>}
               </Button>
             </Col>
           ))}
