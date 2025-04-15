@@ -153,7 +153,7 @@ const Footer = () => {
   <h1 className='th'>Contact Us</h1>
   <p onClick={()=>copyText('quorvexinstitute@zohomail.com')}><FaEnvelope/> quorvexinstitute@zohomail.com</p>
   <p className='tel'><FaPhoneAlt/><a  href='tel:+27634414863'> (+27) 63 441 4863</a> </p>
-  <p>OR</p>
+  
   <Button/>
   </Col>
 </Row>
