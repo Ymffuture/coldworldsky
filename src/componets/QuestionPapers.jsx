@@ -7,6 +7,7 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen } from "react-icons/fa";
 import axios from "axios";
 import Loader from './Loader';
+import Spinner from './Spinner';
 import { useSpring, animated } from "@react-spring/web";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -21,7 +22,7 @@ const QuestionPapers = () => {
   const [yearFilter, setYearFilter] = useState("");
   const [topicFilter, setTopicFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(8);
-
+const [exchange ,setExchage]=useState(null)
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
@@ -61,6 +62,27 @@ const QuestionPapers = () => {
     delay: 200,
   });
 
+
+  const handleDownload = (doc) => {
+    const link = document.createElement('a');
+    link.href = doc.file;
+    setTimeout(()=>{
+      setExchage(null)
+    },3000)
+    setExchage(<Spinner className='position-absolute'/>)
+    // Build a custom file name
+    const safeName = doc.name.replace(/\s+/g, '_').toLowerCase();
+    const safeTopic = doc.topic.replace(/\s+/g, '_').toLowerCase();
+    const safeYear = doc.yr;
+  
+    link.download = `Quorvex_Institute-download_QuestionPaper__${safeName}_${safeTopic}_${safeYear}.pdf`;
+    link.target = "_blank";
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  
  
 
   return (
@@ -149,19 +171,22 @@ const QuestionPapers = () => {
                 <small><strong>📅 Year:</strong> {doc.yr}</small>
               </div>
               <Button
-                href={doc.file}
-                target="_blank"
-                className="mt-2 btn"
-              >
-                {error ? error.message : <><FaDownload /> &nbsp;Download Paper</>}
-              </Button>
+  variant="primary"
+  className="mt-2"
+  onClick={() => handleDownload(doc)}
+>
+<FaDownload /> &nbsp;Download Paper
+</Button>
+<small className="text-danger">{error ? error.message :null}</small>
+
             </Col>
           ))}
+          {exchange}
         </Row>
 
         {visibleCount < filteredData.length && (
           <div className="text-center mt-4">
-            <Button variant="primary" onClick={handleLoadMore}>
+            <Button variant="dark" onClick={handleLoadMore}>
               <FaBookOpen /> &nbsp;Load More
             </Button>
           </div>

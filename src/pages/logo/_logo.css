@@ -64,7 +64,19 @@ border-color: transparent transparent orange transparent;
       bottom:6px;
       border-top-left-radius: 100%;
   }
-  
+  .div4{
+    content: "";
+    height:10px;
+    width: 10px;
+    position: absolute;
+    background: transparent;
+    border-radius: 50%;
+    border: 8px solid #00b9af;
+    transform:rotate(45deg);
+    box-shadow: 0 0 9px #01cec4;
+    bottom: -5px;
+    right: 100px;
+  }
 .outer_logo{
   position: relative;
   
