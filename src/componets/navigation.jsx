@@ -187,7 +187,7 @@ const toggleSwitch = () => {
       icon: <FaRegAddressCard className="icon-bottom" />,
     },
     {
-      path: "#",
+      path: "/pmf_question_papers_gr10-12/",
       label: "Books/question papers",
       icon: <FaBookOpen className="icon-bottom" />,
     },

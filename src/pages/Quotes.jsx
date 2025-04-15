@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Loader from "../componets/Loader";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+
 const Quotes = () => {
   const [data, setData] = useState([]);
   const [visibleData , setVisibleData] = useState([])
@@ -24,7 +25,6 @@ const itemsPerClik =2;
     transform: 'translateX(0)',
   }
    const fadeIn = useSpring({ from: slideIn, to: slideOut ,config:{duration:1000}});
-
 
   useEffect(() => {
     const getData = async () => {
