@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen } from "react-icons/fa";
+import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
 import axios from "axios";
 import Loader from './Loader';
 import Spinner from './Spinner';
@@ -100,14 +100,20 @@ const [exchange ,setExchage]=useState(null)
             </div>
           </header>
 <h2 className="justify-content-center align-items-center p-4">Question Papers - For Only grade 10 , 11 and 12.</h2>
+
 <Container className="mt-5">
         <div className="alert alert-warning text-center shadow-sm rounded p-4">
-          <strong>Note:</strong> We do <strong>Time to upload new question papers</strong>. Our focus is on <strong>preparation for success</strong> at top coding schools, universities, and job-readiness programs, by trying to get unique files for you.
+          <strong><FaExclamationTriangle className='fs-4'/> Note:</strong> We do <strong>take time to upload new question papers</strong>. Our focus is on <strong>preparation for success</strong> at top coding schools, universities, and job-readiness programs, by trying to get unique files for you.
         </div>
       </Container>
       {loading? <Loader/>: <Container fluid className="QuestionPapers-section">
         <hr className='hr' />
-
+        <Container className="mt-5">
+        <div className="alert alert-danger text-center shadow-sm rounded p-2">
+          
+         <div><FaExclamationCircle className='fs-2'/> {""} <strong>Status:</strong> <small>1/42 file uploaded</small></div>
+        </div>
+      </Container>
         <Row className="mb-4">
           <Col md={3}>
             <InputGroup>
@@ -161,7 +167,7 @@ const [exchange ,setExchage]=useState(null)
         <Row>
           {filteredData.slice(0, visibleCount).map((doc, index) => (
             <Col key={index} xs={12} sm={6} md={3} className="mb-4 d-flex flex-column align-items-center">
-              <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name} - Grade: 10 -12</p>
+              <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
               <Document file={doc.file} className="d-flex justify-content-center">
                 <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
               </Document>
