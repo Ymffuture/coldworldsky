@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import pdf from '../assets/examquestions/post.pdf'
 import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
 import axios from "axios";
 import Loader from './Loader';
 import Spinner from './Spinner';
 import { useSpring, animated } from "@react-spring/web";
+// Use relative URL path (requires public folder copy)
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+
 
 const QuestionPapers = () => {
   const [width, setWidth] = useState(1200);
@@ -62,7 +66,6 @@ const [exchange ,setExchage]=useState(null)
     delay: 200,
   });
 
-
   const handleDownload = (doc) => {
     const link = document.createElement('a');
     link.href = doc.file;
@@ -81,10 +84,9 @@ const [exchange ,setExchage]=useState(null)
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    console.log(doc.file);
   };
   
- 
-
   return (
     <div>
        <header id="header">
@@ -100,7 +102,6 @@ const [exchange ,setExchage]=useState(null)
             </div>
           </header>
 <h2 className="justify-content-center align-items-center p-4">Question Papers - For Only grade 10 , 11 and 12.</h2>
-
 <Container className="mt-5">
         <div className="alert alert-warning text-center shadow-sm rounded p-4">
           <strong><FaExclamationTriangle className='fs-4'/> Note:</strong> We do <strong>take time to upload new question papers</strong>. Our focus is on <strong>preparation for success</strong> at top coding schools, universities, and job-readiness programs, by trying to get unique files for you.
@@ -110,7 +111,7 @@ const [exchange ,setExchage]=useState(null)
         <hr className='hr' />
         <Container className="mt-5">
         <div className="alert alert-danger text-center shadow-sm rounded p-2">
-          
+    
          <div><FaExclamationCircle className='fs-2'/> {""} <strong>Status:</strong> <small>1/42 file uploaded</small></div>
         </div>
       </Container>
@@ -168,9 +169,17 @@ const [exchange ,setExchage]=useState(null)
           {filteredData.slice(0, visibleCount).map((doc, index) => (
             <Col key={index} xs={12} sm={6} md={3} className="mb-4 d-flex flex-column align-items-center">
               <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
-              <Document file={doc.file} className="d-flex justify-content-center">
-                <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
-              </Document>
+              {doc.file && (
+  <Document
+  file={pdf}
+  className="d-flex justify-content-center"
+  onLoadError={(error) => console.error("Error loading PDF:", error)}
+>
+  <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
+</Document>
+
+)}
+
               <div className="mt-2 text-center">
                 <small><strong>📘 Topic:</strong> {doc.topic}</small><br />
                 <small><strong>🎓 Grade:</strong> {doc.grade}</small><br />
