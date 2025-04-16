@@ -1,42 +1,41 @@
 {
   "Header": {
-    "title": "",
-    "paragraph": "Unlock your coding potential with   Quorvex Institute, the ultimate platform to learn, grow, and thrive in the tech industry. From foundational skills to advanced programming, we prepare you for a future filled with innovation."
+    "title": "Welcome to Quorvex Institute",
+    "paragraph": "Unlock your coding potential with Quorvex Institute – the ultimate platform to learn, grow, and thrive in the ever-evolving tech industry. Whether you're just starting out or advancing your skills, we prepare you for a future driven by innovation."
   },
   "About": {
-    "paragraph": "At   Quorvex Institute, we are passionate about empowering individuals with cutting-edge coding knowledge and skills. Our mission is to bridge the gap between aspiration and achievement through practical, industry-relevant training. Join us on a journey to transform your passion for technology into a rewarding career.",
+    "paragraph": "At Quorvex Institute, we are committed to empowering individuals with world-class coding skills and digital knowledge. Our mission is to bridge the gap between ambition and achievement through practical, industry-relevant training. Embark on a journey to transform your passion for technology into a successful career.",
     "Why": [
-      "Comprehensive coding curriculum",
-      "Industry-expert instructors",
-      "Hands-on project-based learning",
-      "Career-ready certifications"
+      "Comprehensive and up-to-date coding curriculum",
+      "Expert instructors with real-world experience",
+      "Project-based learning for practical skills",
+      "Recognised career-ready certifications"
     ],
     "Why2": [
-      "Affordable and flexible programs",
-      "Networking with tech leaders",
-      "Job placement assistance",
-      "Lifetime access to resources"
+      "Affordable and flexible learning programmes",
+      "Opportunities to connect with industry professionals",
+      "Career guidance and job placement support",
+      "Lifetime access to learning materials and resources"
     ]
   },
   "Tutor": [
-   
     {
-      "id":"02",
-      "num":"fa fa-sliders",
+      "id": "02",
+      "num": "fa fa-sliders",
       "title": "Web Development Workshop",
       "largeImage": "img/portfolio/web.jpeg",
       "smallImage": "img/portfolio/web.jpeg"
     },
     {
-      "id":"03",
-      "num":"fa fa-sliders",
+      "id": "03",
+      "num": "fa fa-sliders",
       "title": "Hackathon Highlights",
       "largeImage": "img/portfolio/py.jpeg",
       "smallImage": "img/portfolio/py.jpeg"
     },
     {
-      "id":"04",
-      "num":"fa fa-sliders",
+      "id": "04",
+      "num": "fa fa-sliders",
       "title": "AI and Machine Learning Seminar",
       "largeImage": "img/portfolio/pic.jpeg",
       "smallImage": "img/portfolio/pic.jpeg"
@@ -46,21 +45,19 @@
     {
       "icon": "fa fa-code",
       "name": "Web Development",
-      "text": "Master the art of building modern, responsive websites with HTML, CSS, JavaScript, and the latest frameworks."
+      "text": "Master the art of creating responsive, user-friendly websites using HTML, CSS, JavaScript, and modern frameworks."
     },
     {
       "icon": "fa fa-database",
       "name": "Data Science",
-      "text": "Dive into data analysis, visualization, and machine learning with Python, R, and SQL."
+      "text": "Gain hands-on experience with data analysis, visualisation, and machine learning using Python, R, and SQL."
     },
-   
     {
       "icon": "fa fa-mobile",
       "name": "Mobile App Development",
-      "text": "Learn to design and develop cross-platform mobile apps using React Native and Flutter."
+      "text": "Learn to build powerful cross-platform mobile applications with React Native and Flutter."
     }
   ],
-
   "Team": [
     {
       "img": "img/team/Future Ymf.jpg",
@@ -70,35 +67,34 @@
     {
       "img": "img/team/02.jpg",
       "name": "Karabo Luwenda",
-      "job": "Tutor & IT"
+      "job": "Tutor & IT Specialist"
     },
     {
       "img": "img/team/03.jpg",
       "name": "Thato Motloung",
-      "job": "Tutor & brand desgner"
+      "job": "Tutor & Brand Designer"
     }
   ],
-
   "Features": [
     {
       "icon": "fa fa-graduation-cap",
       "title": "Learn by Doing",
-      "text": "Our practical approach ensures you gain real-world coding experience from day one."
+      "text": "Our hands-on approach ensures you build practical skills and confidence from the start."
     },
     {
       "icon": "fa fa-rocket",
-      "title": "Fast-Track Your Career",
-      "text": "Accelerate your journey to a high-paying tech job with our industry-aligned curriculum."
+      "title": "Accelerate Your Career",
+      "text": "Fast-track your career in tech with a curriculum designed to meet industry demands."
     },
     {
       "icon": "fa fa-users",
-      "title": "Community Support",
-      "text": "Become part of a vibrant tech community that supports your growth and celebrates your success."
+      "title": "Supportive Community",
+      "text": "Join a vibrant tech community that encourages growth, collaboration, and success."
     },
     {
       "icon": "fa fa-laptop",
-      "title": "State-of-the-Art Tools",
-      "text": "Access the latest software and technologies to stay ahead in the competitive tech industry."
+      "title": "Modern Learning Tools",
+      "text": "Utilise the latest technologies and platforms to stay ahead in the competitive digital world."
     }
   ]
 }
