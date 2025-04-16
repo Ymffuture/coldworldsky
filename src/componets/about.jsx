@@ -1,83 +1,73 @@
-import React, {useRef,useEffect, useState } from "react";
-import { useSpring, animated} from "@react-spring/web";
-// import Loader from './Loader'
-// import { Button } from "@chakra-ui/react";
-const About = (props) => {
-  const [isVisible ,setIsvisible] = useState()
-  const myRef = useRef()
+import React, { useRef, useEffect, useState } from "react";
+import { useSpring, animated } from "@react-spring/web";
 
-  useEffect(()=>{
-const observer = new IntersectionObserver((entries)=>{
-  const entry = entries[0]
-  setIsvisible(entry.isIntersecting)
-})
-observer.observe(myRef.current)
-  },[])
+const About = ({ data }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const myRef = useRef();
 
-  const slideIn ={
-    opacity: 0,
-    transform: 'translateX(-200%)',
-  }
-  const slideOut ={
-    opacity: 1,
-    transform: 'translateX(0)',
-  }
-   const fadeIn = useSpring({ from: slideIn, to: slideOut ,config:{duration:1000}});
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsVisible(entry.isIntersecting);
+    }, { threshold: 0.3 });
 
- 
+    if (myRef.current) observer.observe(myRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const slideAnim = useSpring({
+    from: { opacity: 0, transform: 'translateX(-30%)' },
+    to: isVisible
+      ? { opacity: 1, transform: 'translateX(0)' }
+      : { opacity: 0, transform: 'translateX(-30%)' },
+    config: { tension: 120, friction: 20 }
+  });
+
   return (
-    <div id="about">
+    <section id="about" role="region" aria-label="About Quorvex Institute" className="py-5 bg-light">
       <div className="container">
-        <div className="row">
-          <div  className="col-xs-12 col-md-6">
-            {" "}
-            {isVisible?<animated.img style={fadeIn}  src="img/about-01.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />:<animated.img style={fadeIn} src="img/intro.jpg" className="img-responsive rounded shadow-lg abimg" alt="" />}
-            {" "}
-          </div>
-          <div className="col-xs-12 col-md-6">
-            <div className="about-text">
-           
-         
-              <h2 >About Us</h2>
-              {/* <Button
-      colorScheme="teal"
-      size={{ base: "sm", md: "lg" }} // Small on mobile, large on desktop
-      width={{ base: "100%", md: "auto" }} // Full width on mobile
-    >
-      Responsive Button
-    </Button> */}
-              <p>{props.data ? props.data.paragraph : 'loading...'}</p>
+        <div className="row align-items-center">
 
-             
-              <h3 ref={myRef}>☰ Why Choose Us? </h3>
-                <animated.div 
-              style={fadeIn}
-              className="list-style" >
-                <div className="col-lg-6 col-sm-6 col-xs-12">
+          {/* Left Side Image */}
+          <div className="col-md-6 mb-4 mb-md-0">
+            <animated.img
+              style={slideAnim}
+              src={isVisible ? "img/about-01.jpg" : "img/intro.jpg"}
+              alt="Students at Quorvex Institute"
+              className="img-fluid rounded shadow abimg"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Right Side Content */}
+          <div className="col-md-6">
+            <div className="about-text" ref={myRef}>
+              <h2 className="fw-bold text-primary">About Us</h2>
+              <p className="lead">{data?.paragraph || "Loading..."}</p>
+
+              <h3 className="mt-4 text-success">☰ Why Choose Us?</h3>
+              <animated.div style={slideAnim} className="row list-style mt-3">
+                <div className="col-6">
                   <ul>
-                    {props.data
-                      ? props.data.Why.map((d, i) => (
-                          <li key={`${d}-${i}`}>{d}</li>
-                        ))
-                      :'loading...'}
+                    {data?.Why?.map((item, idx) => (
+                      <li key={`why1-${idx}`} className="mb-2">{item}</li>
+                    )) || <li>Loading...</li>}
                   </ul>
                 </div>
-                <div className="col-lg-6 col-sm-6 col-xs-12">
+                <div className="col-6">
                   <ul>
-                    {props.data
-                      ? props.data.Why2.map((d, i) => (
-                          <li key={`${d}-${i}`}> {d}</li>
-                        ))
-                      : 'loading....'}
+                    {data?.Why2?.map((item, idx) => (
+                      <li key={`why2-${idx}`} className="mb-2">{item}</li>
+                    )) || <li>Loading...</li>}
                   </ul>
                 </div>
               </animated.div>
-             
             </div>
           </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 };
-export  default About;
+
+export default About;
