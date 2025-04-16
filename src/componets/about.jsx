@@ -1,69 +1,67 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 
-const About = ({ data }) => {
+const About = (props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const myRef = useRef();
+  const myRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting);
     }, { threshold: 0.3 });
-
     if (myRef.current) observer.observe(myRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const slideAnim = useSpring({
-    from: { opacity: 0, transform: 'translateX(-30%)' },
-    to: isVisible
-      ? { opacity: 1, transform: 'translateX(0)' }
-      : { opacity: 0, transform: 'translateX(-30%)' },
-    config: { tension: 120, friction: 20 }
+  const fadeIn = useSpring({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateX(0)' : 'translateX(-100px)',
+    config: { tension: 170, friction: 26 },
   });
 
   return (
-    <section id="about" role="region" aria-label="About Quorvex Institute" className="py-5 bg-light">
+    <section id="about" className="py-5 bg-light" aria-labelledby="about-heading">
       <div className="container">
-        <div className="row align-items-center">
-
-          {/* Left Side Image */}
-          <div className="col-md-6 mb-4 mb-md-0">
+        <div className="row align-items-center g-4">
+          <div className="col-md-6">
             <animated.img
-              style={slideAnim}
+              style={fadeIn}
               src={isVisible ? "img/about-01.jpg" : "img/intro.jpg"}
-              alt="Students at Quorvex Institute"
-              className="img-fluid rounded shadow abimg"
+              className="img-fluid rounded-4 shadow-lg"
+              alt="Students learning coding at Quorvex"
               loading="lazy"
             />
           </div>
-
-          {/* Right Side Content */}
           <div className="col-md-6">
             <div className="about-text" ref={myRef}>
-              <h2 className="fw-bold text-primary">About Us</h2>
-              <p className="lead">{data?.paragraph || "Loading..."}</p>
+              <h2 id="about-heading" className="fw-bold text-primary mb-3">
+                About Us
+              </h2>
+              <p className="lead">{props.data?.paragraph || "Loading..."}</p>
 
-              <h3 className="mt-4 text-success">☰ Why Choose Us?</h3>
-              <animated.div style={slideAnim} className="row list-style mt-3">
-                <div className="col-6">
-                  <ul>
-                    {data?.Why?.map((item, idx) => (
-                      <li key={`why1-${idx}`} className="mb-2">{item}</li>
-                    )) || <li>Loading...</li>}
+              <h3 className="mt-4 mb-2 text-success fw-semibold">☰ Why Choose Us?</h3>
+              <animated.div style={fadeIn} className="row">
+                <div className="col-sm-6">
+                  <ul className="list-unstyled">
+                    {props.data?.Why.map((item, i) => (
+                      <li key={i} className="mb-2">
+                        <i className="fa fa-check-circle text-success me-2" aria-hidden="true"></i>{item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
-                <div className="col-6">
-                  <ul>
-                    {data?.Why2?.map((item, idx) => (
-                      <li key={`why2-${idx}`} className="mb-2">{item}</li>
-                    )) || <li>Loading...</li>}
+                <div className="col-sm-6">
+                  <ul className="list-unstyled">
+                    {props.data?.Why2.map((item, i) => (
+                      <li key={i} className="mb-2">
+                        <i className="fa fa-check-circle text-success me-2" aria-hidden="true"></i>{item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </animated.div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
