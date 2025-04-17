@@ -20,6 +20,12 @@ const Tutor = () => {
     transform: isTransitioning ? "translateY(20px)" : "translateY(0)",
   });
 
+  const cardSlide = useSpring({
+    from: { transform: 'translateX(100px)', opacity: 0 },
+    to: { transform: 'translateX(0px)', opacity: 1 },
+    config: { tension: 220, friction: 30 },
+  });
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -97,21 +103,45 @@ const Tutor = () => {
               <strong>FREE</strong> assistance for up to <strong>TWO school applications</strong>.
             </p>
 
-            <div className="portfolio-items mt-4">
+            {/* Animated Horizontal Cards */}
+            <div className="portfolio-items mt-4" role="region" aria-label="University Programs">
               <h3 className="text-primary mb-4">
                 Applications Open: June - August (Grade 11), September (Grade 12)
               </h3>
-              <img
-                src="../img/unisa.jpg"
-                alt="UNISA"
-                className="img-fluid rounded shadow-sm"
-                style={{
-                  height: "300px",
-                  width: "100%",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
-              />
+              <div
+                className="d-flex overflow-auto gap-4 pb-3"
+                style={{ scrollSnapType: "x mandatory" }}
+              >
+                {[1, 2, 3].map((item, index) => (
+                  <animated.div
+                    key={index}
+                    style={cardSlide}
+                    className="card shadow-sm"
+                    role="group"
+                    aria-label={`University promotion card ${index + 1}`}
+                    style={{
+                      minWidth: "300px",
+                      scrollSnapAlign: "start",
+                      flex: "0 0 auto",
+                      borderRadius: "1rem",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <img
+                      src={`../img/unisa.jpg`}
+                      alt="UNISA"
+                      className="img-fluid"
+                      style={{ height: "200px", objectFit: "cover" }}
+                    />
+                    <div className="card-body bg-light">
+                      <h5 className="card-title text-primary">UNISA Program</h5>
+                      <p className="card-text">
+                        Apply for affordable distance education programs with our help. We guide every step!
+                      </p>
+                    </div>
+                  </animated.div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -146,4 +176,3 @@ const Tutor = () => {
 };
 
 export default Tutor;
-
