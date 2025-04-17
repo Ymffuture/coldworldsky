@@ -100,15 +100,15 @@ const location = useLocation();
             <Route path="/location" element={<Location />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/question-papers" element={<QuestionPapers />} />
+            <Route path="/pmf_question_papers_gr10-12/" element={<QuestionPapers />} />
             <Route path="/track-application" element={<TrackApplication />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+            <Route path="/terms_of_service" element={<TermsOfService />} />
             <Route path="/tutoring" element={<Tutoring />}>
-              <Route path="application-form" element={<TutorApplyForm />} />
+              <Route path="application_form" element={<TutorApplyForm />} />
               <Route path="application-form/track-application" element={<TrackApplication />} />
               <Route
                 path="subjects"
