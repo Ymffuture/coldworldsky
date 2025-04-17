@@ -137,8 +137,8 @@ const toggleSwitch = () => {
       }
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
-    { path: "/about/", label: "About", icon: <FaInfoCircle /> },
-    { path: "/services/", label: "Services", icon: <FaCogs /> },
+    { path: "/about", label: "About", icon: <FaInfoCircle /> },
+    { path: "/services", label: "Services", icon: <FaCogs /> },
     { path: "/tutoring/", label: "Tutoring", icon: <FaChalkboardTeacher />, applytobeatutor: <Badge><Link to='/tutoring/ApplicationForm-for-a-tutor/'></Link></Badge> },
     {
       path: "/courses/",
@@ -146,17 +146,17 @@ const toggleSwitch = () => {
       icon: <FaBookReader />,
       submenu: [
         {
-          path: "/courses/web-dev/",
+          path: "/courses/web-dev",
           label: "Web Development",
           icon: <FaLaptopCode />,
         },
         {
-          path: "/courses/data-science/",
+          path: "/courses/data-science",
           label: "Data Science",
           icon: <FaDatabase />,
         },
         {
-          path: "/courses/ui-ux/",
+          path: "/courses/ui-ux",
           label: "UI/UX Design",
           icon: <FaPaintBrush />,
         },
@@ -172,22 +172,22 @@ const toggleSwitch = () => {
 
   const buttonLinks = [
     {
-      path: "/calendar/",
+      path: "/calendar",
       label: "Calendar",
       icon: <FaCalendarCheck className="icon-bottom" />,
     },
     {
-      path: "/location/",
+      path: "/location",
       label: "Loction",
       icon: <FaLocationArrow className="icon-bottom" />,
     },
     {
-      path: "/tutoring/ApplicationForm-for-a-tutor/",
+      path: "/tutoring/ApplicationForm-for-a-tutor",
       label: "Apply to be a Tutor",
       icon: <FaRegAddressCard className="icon-bottom" />,
     },
     {
-      path: "/pmf_question_papers_gr10-12/",
+      path: "/pmf_question_papers_gr10-12",
       label: "Books/question papers",
       icon: <FaBookOpen className="icon-bottom" />,
     },
