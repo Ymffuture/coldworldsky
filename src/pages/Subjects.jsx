@@ -125,7 +125,7 @@ const Subjects = () => {
       />
 
       {/* Scrollable Cards */}
-      <animated.div style={{ ...fadeSlide, ...scrollContainerStyle }} ref={scrollRef}>
+      <animated.div style={{ ...fadeSlide, ...scrollContainerStyle }} ref={scrollRef} className="x_card" >
         {previousWork.map((page) => (
           <div
             key={page.id}
