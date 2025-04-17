@@ -146,7 +146,7 @@ const toggleSwitch = () => {
       icon: <FaBookReader />,
       submenu: [
         {
-          path: "/courses/web-dev",
+          path: "/courses/web-dev/",
           label: "Web Development",
           icon: <FaLaptopCode />,
         },
@@ -156,7 +156,7 @@ const toggleSwitch = () => {
           icon: <FaDatabase />,
         },
         {
-          path: "/courses/ui-ux",
+          path: "/courses/ui-ux/",
           label: "UI/UX Design",
           icon: <FaPaintBrush />,
         },
@@ -172,7 +172,7 @@ const toggleSwitch = () => {
 
   const buttonLinks = [
     {
-      path: "/calendar",
+      path: "/calendar/",
       label: "Calendar",
       icon: <FaCalendarCheck className="icon-bottom" />,
     },
