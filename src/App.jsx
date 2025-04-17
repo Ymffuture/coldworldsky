@@ -48,6 +48,7 @@ const TableExample = lazy(() => import('./pages/TablePrice'));
 const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
 
 const App = () => {
+  const [show, setShow] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -85,8 +86,7 @@ const App = () => {
   return (
     <Router>
       <StructuredData />
-      
-      <Navigation />
+      {show && <Navigation />}
       <div className="container-fluid error-con">
         <Suspense fallback={<div className="loader">Loading...</div>}>
           <Routes>
@@ -96,16 +96,16 @@ const App = () => {
             <Route path="/location" element={<Location />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/pmf_question_papers_gr10-12" element={<QuestionPapers />} />
+            <Route path="/question-papers" element={<QuestionPapers />} />
             <Route path="/track-application" element={<TrackApplication />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/privacy_policy" element={<PrivacyPolicy />} />
-            <Route path="/terms_of_services" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/tutoring" element={<Tutoring />}>
-              <Route path="/ApplicationForm-for-a-tutor" element={<TutorApplyForm />} />
-              <Route path="/ApplicationForm-for-a-tutor/track-application" element={<TrackApplication />} />
+              <Route path="application-form" element={<TutorApplyForm />} />
+              <Route path="application-form/track-application" element={<TrackApplication />} />
               <Route
                 path="subjects"
                 element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /></ProtectedRoute>}
@@ -131,17 +131,17 @@ const App = () => {
               <Route path="recover-password" element={<RecoverPassword />} />
             </Route>
             <Route path="/tic-tac-toe" element={<TicTacToe />} />
-            <Route path="/cbp-current-students" element={<CBP />}>
-              <Route path="cbp-current-students/table-prices" element={<TableExample />} />
+            <Route path="/cbp" element={<CBP />}>
+              <Route path="pricing" element={<TableExample />} />
             </Route>
-            <Route path="/path_ERROR_page_not_found" element={<ErrorPageTwo />} />
-            <Route path="*" element={<Navigate to="/path_ERROR_page_not_found" />} />
+            <Route path="/not-found" element={<ErrorPageTwo />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
         </Suspense>
         <ToastContainer />
         <Toaster />
       </div>
-      <Footer />
+      {show && <Footer />}
     </Router>
   );
 };
