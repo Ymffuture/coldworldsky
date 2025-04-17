@@ -1,194 +1,184 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import ProtectedRoute from "./componets/ProtectedRoute";
-import './index.css';
-import "./App.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
-// import { FaInfoCircle} from "react-icons/fa";
-import Subjects from "./pages/Subjects";
-import LifeSciences from "./pages/LifeSciences";
-import Mathematics from "./pages/Mathematics";
-import PhysicalScience from "./pages/PhysicalScience";
-import LandingPage from "./pages/LandingPage";
-import About from "./pages/About";
-import Footer from "./pages/Footer";
-// import TimeoutPopup from './componets/TimeoutPopup';
-import Greet from './componets/Greet';
 import Navigation from "./componets/navigation";
-import ErrorPage from "./pages/ErrorPage";
-import Services from "./pages/Services";
-import Tutoring from "./pages/Tutoring";
-import Courses from "./pages/courses/Courses";
-import Terms_of_service from './pages/Terms_of_service';
-import Privacy_policy from './pages/Privacy_policy';
-import Quotes from "./pages/Quotes";
-import Calendar from "./pages/Calendar";
-import DataScience from "./pages/courses/DataScience";
-import UxUi from "./pages/courses/UxUi";
-import WebDev from "./pages/courses/WebDev";
-import Contact from './componets/contact'
-import FindTutor from './pages/FindTutor';
-import User from './pages/loginform/UserPage';
-import SignIn from './componets/SignIn'
-import SignUp from './componets/SignUp';
-import RecoverPassword from './componets/RecoverPassword'
-import TicTacToe from "./pages/games/tictactoe/TicTacToe";
-import CBP from "./pages/CBP";
-import TableExample from "./pages/TablePrice";
-import VidPhys from "./pages/vidcomponets/VidPhys";
-import VidLfs from "./pages/vidcomponets/VidLfs";
-import VidMath from "./pages/vidcomponets/VidMath";
-import TutorApplyForm from "./pages/TutorApplyForm";
-import TrackApplication from "./pages/TrackApplication";
-import ErrorPageTwo from "./pages/ErrorPageTwo";
-import Post from "./pages/Post";
-import Location from "./pages/Location";
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import QuestionPapers from "./componets/QuestionPapers";
+import Footer from "./pages/Footer";
+import ProtectedRoute from "./componets/ProtectedRoute";
+import Breadcrumbs from "./componets/Breadcrumbs";
+import Greet from './componets/Greet';
+import './index.css';
+import './App.css';
 
-const  App = ()=> {
-const {id} =useParams()
-const [show ,setShow] =useState(false);
-const Error = (props)=>{
-  useEffect(()=>props.handleHeaderFooterShow(false),[])
-  return <ErrorPageTwo/>
-}
-useEffect(()=>{
-  setShow(true)
-},[id])
+// Lazy-loaded Pages
+const LandingPage = lazy(() => import('./pages/LandingPage'));
+const About = lazy(() => import('./pages/About'));
+const Post = lazy(() => import('./pages/Post'));
+const Location = lazy(() => import('./pages/Location'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+const QuestionPapers = lazy(() => import('./componets/QuestionPapers'));
+const TrackApplication = lazy(() => import('./pages/TrackApplication'));
+const Contact = lazy(() => import('./componets/contact'));
+const Quotes = lazy(() => import('./pages/Quotes'));
+const Services = lazy(() => import('./pages/Services'));
+const PrivacyPolicy = lazy(() => import('./pages/Privacy_policy'));
+const TermsOfService = lazy(() => import('./pages/Terms_of_service'));
+const Tutoring = lazy(() => import('./pages/Tutoring'));
+const TutorApplyForm = lazy(() => import('./pages/TutorApplyForm'));
+const Subjects = lazy(() => import('./pages/Subjects'));
+const LifeSciences = lazy(() => import('./pages/LifeSciences'));
+const VidLfs = lazy(() => import('./pages/vidcomponets/VidLfs'));
+const PhysicalScience = lazy(() => import('./pages/PhysicalScience'));
+const VidPhys = lazy(() => import('./pages/vidcomponets/VidPhys'));
+const Mathematics = lazy(() => import('./pages/Mathematics'));
+const VidMath = lazy(() => import('./pages/vidcomponets/VidMath'));
+const FindTutor = lazy(() => import('./pages/FindTutor'));
+const Courses = lazy(() => import('./pages/courses/Courses'));
+const WebDev = lazy(() => import('./pages/courses/WebDev'));
+const DataScience = lazy(() => import('./pages/courses/DataScience'));
+const UxUi = lazy(() => import('./pages/courses/UxUi'));
+const Calendar = lazy(() => import('./pages/Calendar'));
+const User = lazy(() => import('./pages/loginform/UserPage'));
+const SignIn = lazy(() => import('./componets/SignIn'));
+const SignUp = lazy(() => import('./componets/SignUp'));
+const RecoverPassword = lazy(() => import('./componets/RecoverPassword'));
+const TicTacToe = lazy(() => import('./pages/games/tictactoe/TicTacToe'));
+const CBP = lazy(() => import('./pages/CBP'));
+const TableExample = lazy(() => import('./pages/TablePrice'));
+const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
+
+const App = () => {
+  const [show, setShow] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Check if the user is authenticated (e.g., using localStorage or a token)
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // true if token exists
+    setIsAuthenticated(!!token);
   }, []);
 
   useEffect(() => {
-    const App_KEY_UNI02 = crypto.randomUUID()
-    const APPKEY = App_KEY_UNI02
-    const APP_KEY = APPKEY;
-
-    console.log(APP_KEY)
+    const APP_KEY = crypto.randomUUID();
+    console.log(APP_KEY);
     if (localStorage.getItem(APP_KEY)) {
       toast((t) => (
         <span className="p-2 bg-warning-subtle">
           <Greet />
-          This application is already opened on the other tab. <br /> <b>Note:</b>This Tab will close automatically. <br /><br />
-          <button style={buttonStyle} onClick={() => toast.dismiss(t.id)}>OK</button>
+          This application is already opened on the other tab.<br />
+          <b>Note:</b> This Tab will close automatically.
+          <br /><br />
+          <button onClick={() => toast.dismiss(t.id)}>OK</button>
         </span>
-      ), {
-        duration: 10000,
-      });
+      ), { duration: 10000 });
+
       setTimeout(() => {
-        window.close()
-      }, 8000)
-
+        window.close();
+      }, 8000);
     } else {
-      localStorage.setItem(APP_KEY, 'open')
-      window.addEventListener('beforeunload', () => {
+      localStorage.setItem(APP_KEY, "open");
+      window.addEventListener("beforeunload", () => {
         localStorage.removeItem(APP_KEY);
-
       });
-    };
+    }
 
-    return () => localStorage.removeItem(APP_KEY)
-  }, [])
+    return () => localStorage.removeItem(APP_KEY);
+  }, []);
 
-  const buttonStyle = {
-    backgroundColor: "#4CAF50", // Green color
-    color: "white",
-    padding: "5px 10px",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-  };
-
-
-  
   return (
     <Router>
-      <div className="mobile-message d-flex g-2 position-absolute m-4">
-        {/* <FaInfoCircle className="cl-MB"/> */}
-        {/* <p>Only for Desktop view </p> */}
-      </div>
-      <div className="error">
-        <ErrorPage />
-      </div>
+      <StructuredData />
+      {show && <Navigation />}
       <div className="container-fluid error-con">
-      {/* <TimeoutPopup /> */}
-        {show&&<Navigation />}
-   
+        <Breadcrumbs />
 
-
-        <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/about/" element={<About/>} />
-          <Route path="/post_ads/" element={<Post/>} />
-          <Route path="/location/" element={<Location/>} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path='/pmf_question_papers_gr10-12/' element={<QuestionPapers/>}/>
-          <Route path="/track-Application/" element={<TrackApplication/>} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/quotes/" element={<Quotes /> }/>
-          <Route path="/services/" element={<Services/>} />
-          <Route path="/privacy_policy" element={<Privacy_policy/>} />
-          <Route path="/terms_of_services" element={ <Terms_of_service/>} />
-
-          <Route path="/tutoring/" element={<Tutoring/>} >
-          <Route path="/tutoring/ApplicationForm-for-a-tutor/" element={<TutorApplyForm/>} >
-          <Route path="/tutoring/ApplicationForm-for-a-tutor/track-Application/" element={<TrackApplication/>} />
-          </Route>
-            <Route path="/tutoring/subjects" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects/></ProtectedRoute>}>
-              <Route path="/tutoring/subjects/Life-sciences" element={<LifeSciences />} >
-                <Route path="/tutoring/subjects/Life-sciences/clip-overview" element={<VidLfs />} />
+        <Suspense fallback={<div className="loader">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/post-ads" element={<Post />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/question-papers" element={<QuestionPapers />} />
+            <Route path="/track-application" element={<TrackApplication />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/quotes" element={<Quotes />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/tutoring" element={<Tutoring />}>
+              <Route path="application-form" element={<TutorApplyForm />} />
+              <Route path="application-form/track-application" element={<TrackApplication />} />
+              <Route
+                path="subjects"
+                element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /></ProtectedRoute>}
+              >
+                <Route path="life-sciences" element={<LifeSciences />} />
+                <Route path="life-sciences/clip-overview" element={<VidLfs />} />
+                <Route path="physical-science" element={<PhysicalScience />} />
+                <Route path="physical-science/clip-overview" element={<VidPhys />} />
+                <Route path="mathematics" element={<Mathematics />} />
+                <Route path="mathematics/clip-overview" element={<VidMath />} />
               </Route>
-              <Route path="/tutoring/subjects/Physical-science" element={<PhysicalScience />} >
-                <Route path="/tutoring/subjects/Physical-science/clip-overview" element={<VidPhys />} />
-              </Route>
-              <Route path="/tutoring/subjects/Mathematics" element={<Mathematics />} >
-                <Route path="/tutoring/subjects/Mathematics/clip-overview" element={<VidMath />} />
-              </Route>
-
             </Route>
-          </Route>
+            <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor /></ProtectedRoute>} />
+            <Route path="/courses" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Courses /></ProtectedRoute>}>
+              <Route path="web-dev" element={<WebDev />} />
+              <Route path="data-science" element={<DataScience />} />
+              <Route path="ui-ux" element={<UxUi />} />
+            </Route>
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/user-home-page" element={<User />}>
+              <Route path="sign-in" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="recover-password" element={<RecoverPassword />} />
+            </Route>
+            <Route path="/tic-tac-toe" element={<TicTacToe />} />
+            <Route path="/cbp" element={<CBP />}>
+              <Route path="pricing" element={<TableExample />} />
+            </Route>
+            <Route path="/not-found" element={<ErrorPageTwo />} />
+            <Route path="*" element={<Navigate to="/not-found" />} />
+          </Routes>
+        </Suspense>
 
-
-  <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor/></ProtectedRoute>} />
-
-
-          <Route path="/courses/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Courses/></ProtectedRoute>}>
-            <Route path="/courses/web-dev/" element={<WebDev />} />
-            <Route path="/courses/data-science/" element={<DataScience />} />
-            <Route path="/courses/ui-ux/" element={<UxUi />} />
-          </Route>
-          <Route path="/calendar/" element={<Calendar />} />
-          <Route path="/user-home-page" element={<User />} >
-            <Route path="/user-home-page/sign-in" element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
-            <Route path="/user-home-page/sign-up" element={<SignUp />} />
-            <Route path="/user-home-page/recover-password-getcode-page" element={<RecoverPassword />} />
-          </Route>
-          <Route path='/games-tic-toc-toe-play' element={<TicTacToe />} />
-          <Route path='/cbp-current-students' element={<CBP />} >
-          <Route path='/cbp-current-students/table-prices' element={<TableExample/>}/>
-          </Route>
-          <Route path='/path_ERROR_page_not_found' element={<Error handleHeaderFooterShow={(res)=>setShow(false)}/>}/>
-          <Route path='*' element={<Navigate to='/path_ERROR_page_not_found/'/>}/>
-
-        </Routes>
-        <ToastContainer/>
+        <ToastContainer />
         <Toaster />
       </div>
-      {show&&  <Footer/>}
-     
+      {show && <Footer />}
     </Router>
   );
+};
 
-}
+// Structured data for SEO (JSON-LD)
+const StructuredData = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Quorvex Institute",
+      "url": "https://quorvexinstitute.vercel.app" + location.pathname,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://quorvexinstitute.vercel.app/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [location.pathname]);
+
+  return null;
+};
 
 export default App;
+
