@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import pdf from '../assets/examquestions/post.pdf'
 import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
 import axios from "axios";
 import Loader from './Loader';
@@ -171,7 +170,7 @@ const [exchange ,setExchage]=useState(null)
               <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
               {doc.file && (
   <Document
-  file={pdf}
+  file={docs.file}
   className="d-flex justify-content-center"
   onLoadError={(error) => console.error("Error loading PDF:", error)}
 >
