@@ -188,7 +188,7 @@ export default Navbar;`;
           <Breadcrumb.Item><Link to="/tutoring/"><FaBackward /> Back</Link></Breadcrumb.Item>
         </Breadcrumb>
 
-        {onLoading ? <Loader /> : <Outlet />}
+        {onLoading ? <Loader /> : <Outlet className="x_card"/>}
       </div>
 
       <ChatBot />
