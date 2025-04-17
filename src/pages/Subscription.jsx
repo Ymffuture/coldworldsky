@@ -34,7 +34,9 @@ const SubscribePage = () => {
             required
           />
         </Form.Group>
-        <Button type="submit" variant="primary">Subscribe</Button>
+        <Button type="submit" 
+        disabled
+        variant="primary">Subscribe</Button>
       </Form>
     </Container>
   );
