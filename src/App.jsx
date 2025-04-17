@@ -101,7 +101,7 @@ const App = () => {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/services" element={<Services />} />
             <Route path="/privacy_policy" element={<PrivacyPolicy />} />
-            <Route path="/terms_of_service" element={<TermsOfService />} />
+            <Route path="/terms_of_services" element={<TermsOfService />} />
             <Route path="/tutoring" element={<Tutoring />}>
               <Route path="/ApplicationForm-for-a-tutor" element={<TutorApplyForm />} />
               <Route path="/ApplicationForm-for-a-tutor/track-application" element={<TrackApplication />} />
@@ -130,11 +130,11 @@ const App = () => {
               <Route path="recover-password" element={<RecoverPassword />} />
             </Route>
             <Route path="/tic-tac-toe" element={<TicTacToe />} />
-            <Route path="/cbp" element={<CBP />}>
-              <Route path="pricing" element={<TableExample />} />
+            <Route path="/cbp-current-students" element={<CBP />}>
+              <Route path="cbp-current-students/table-prices" element={<TableExample />} />
             </Route>
-            <Route path="/not-found" element={<ErrorPageTwo />} />
-            <Route path="*" element={<Navigate to="/not-found" />} />
+            <Route path="/path_ERROR_page_not_found" element={<ErrorPageTwo />} />
+            <Route path="*" element={<Navigate to="/path_ERROR_page_not_found" />} />
           </Routes>
         </Suspense>
         <ToastContainer />
