@@ -49,7 +49,7 @@ const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+const [show , setShow] = useState(true);
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
