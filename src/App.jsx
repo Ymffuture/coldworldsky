@@ -48,7 +48,7 @@ const TableExample = lazy(() => import('./pages/TablePrice'));
 const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
 
 const App = () => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
