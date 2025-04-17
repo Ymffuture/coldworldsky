@@ -48,7 +48,6 @@ const TableExample = lazy(() => import('./pages/TablePrice'));
 const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
 
 const App = () => {
-  const [show, setShow] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -109,7 +108,7 @@ const location = useLocation();
             <Route path="/terms_of_service" element={<TermsOfService />} />
             <Route path="/tutoring" element={<Tutoring />}>
               <Route path="application_form" element={<TutorApplyForm />} />
-              <Route path="application-form/track-application" element={<TrackApplication />} />
+              <Route path="application_form/track-application" element={<TrackApplication />} />
               <Route
                 path="subjects"
                 element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /></ProtectedRoute>}
