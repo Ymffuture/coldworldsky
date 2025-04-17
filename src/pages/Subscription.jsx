@@ -1,4 +1,3 @@
-// src/pages/SubscribePage.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
