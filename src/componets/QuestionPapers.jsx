@@ -169,15 +169,15 @@ const [exchange ,setExchage]=useState(null)
             <Col key={index} xs={12} sm={6} md={3} className="mb-4 d-flex flex-column align-items-center">
               <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
               {doc.file && (
-  <Document
-  file={docs.file}
-  className="d-flex justify-content-center"
-  onLoadError={(error) => console.error("Error loading PDF:", error)}
->
-  <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
-</Document>
+        <Document
+          file={docs.file}
+          className="d-flex justify-content-center"
+          onLoadError={(error) => console.error("Error loading PDF:", error)}
+        >
+        <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
+       </Document>
 
-)}
+             )}
 
               <div className="mt-2 text-center">
                 <small><strong>📘 Topic:</strong> {doc.topic}</small><br />
