@@ -85,6 +85,7 @@ const App = () => {
   return (
     <Router>
       <StructuredData />
+      
       <Navigation />
       <div className="container-fluid error-con">
         <Suspense fallback={<div className="loader">Loading...</div>}>
