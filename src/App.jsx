@@ -49,7 +49,7 @@ const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-const [show , setShow] = useState(true);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsAuthenticated(!!token);
@@ -81,15 +81,11 @@ const [show , setShow] = useState(true);
 
     return () => localStorage.removeItem(APP_KEY);
   }, []);
-  
-const location = useLocation();
-  const hideNavRoutes = ["/user-home-page/sign-in", "/user-home-page/sign-up"];
-  const show = !hideNavRoutes.includes(location.pathname);
-  
+
   return (
     <Router>
       <StructuredData />
-      {show && <Navigation />}
+      <Navigation />
       <div className="container-fluid error-con">
         <Suspense fallback={<div className="loader">Loading...</div>}>
           <Routes>
@@ -144,7 +140,7 @@ const location = useLocation();
         <ToastContainer />
         <Toaster />
       </div>
-      {show && <Footer />}
+      <Footer />
     </Router>
   );
 };
