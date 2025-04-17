@@ -82,7 +82,11 @@ const App = () => {
 
     return () => localStorage.removeItem(APP_KEY);
   }, []);
-
+  
+const location = useLocation();
+  const hideNavRoutes = ["/user-home-page/sign-in", "/user-home-page/sign-up"];
+  const show = !hideNavRoutes.includes(location.pathname);
+  
   return (
     <Router>
       <StructuredData />
