@@ -5,7 +5,6 @@ import { Toaster } from "react-hot-toast";
 import Navigation from "./componets/navigation";
 import Footer from "./pages/Footer";
 import ProtectedRoute from "./componets/ProtectedRoute";
-import Breadcrumbs from "./componets/Breadcrumbs";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
@@ -89,8 +88,6 @@ const App = () => {
       <StructuredData />
       {show && <Navigation />}
       <div className="container-fluid error-con">
-        <Breadcrumbs />
-
         <Suspense fallback={<div className="loader">Loading...</div>}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -141,7 +138,6 @@ const App = () => {
             <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
         </Suspense>
-
         <ToastContainer />
         <Toaster />
       </div>
