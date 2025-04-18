@@ -13,6 +13,7 @@ const Services = ({ data }) => {
     fontSize: "2rem",
     fontWeight: "bold",
     marginBottom: "10px",
+    color:"#333333", 
   };
 
   const descStyle = {
@@ -34,7 +35,7 @@ const Services = ({ data }) => {
 
   const iconStyle = {
     fontSize: "2rem",
-    color: "#1e90ff",
+    color: "whitesmoke",
     marginBottom: "10px",
   };
 
