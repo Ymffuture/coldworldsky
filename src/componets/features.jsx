@@ -79,13 +79,7 @@ const Features = ({ data }) => {
             Quorvex Institute
           </a>
         </p>
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          style={buttonStyle}
-          aria-label="Toggle theme"
-        >
-          Toggle {darkMode ? "Light" : "Dark"} Mode
-        </button>
+        
       </div>
 
       {isTransitioning ? (
