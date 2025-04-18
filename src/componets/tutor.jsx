@@ -133,7 +133,7 @@ const Tutor = () => {
       backgroundColor: '#ffffff',
       padding: '15px',
       border: '1px solid #dcdcdc',
-      zIndex: 1000,
+      zIndex: 999999,
       position: 'relative',
     }}>
       Tutoring is R400.00 per month for two high school subjects.
@@ -154,7 +154,7 @@ const Tutor = () => {
       backgroundColor: '#ffffff',
       padding: '15px',
       border: '1px solid #dcdcdc',
-      zIndex: 1000,
+      zIndex: 99999,
       position: 'relative',
     }}>
       Yes, we offer free help with up to two university applications.
@@ -175,7 +175,7 @@ const Tutor = () => {
       backgroundColor: '#ffffff',
       padding: '15px',
       border: '1px solid #dcdcdc',
-      zIndex: 1000,
+      zIndex: 99999,
       position: 'relative',
     }}>
       Applications open from June to August (Grade 11) and in September (Grade 12).
