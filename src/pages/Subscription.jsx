@@ -33,13 +33,13 @@ const SubscribePage = () => {
   };
 
   return (
-    <Container className="p-4 mt-3 rounded shadow" style={{ backgroundColor: '#f0f8ff' }}>
+    <Container className="p-4 mt-3 rounded shadow" style={{ backgroundColor: 'transparent' }}>
       <ToastContainer position="top-right" autoClose={5000} />
-      <h4 className="mb-3 text-primary">Stay Updated with Quorvex</h4>
-      <p className="text-muted mb-4">Enter your email to receive our latest updates.</p>
+      <h4 className="mb-2 text-primary">Stay Updated with Quorvex</h4>
+      <p className="text-muted mb-2">Enter your email to receive our latest updates.</p>
 
       <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-2">
           <Form.Control
             type="email"
             placeholder="you@example.com"
