@@ -8,6 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
+import Load from "./componets/ScreenLoadn
 
 // Lazy-loaded Pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -88,7 +89,7 @@ const App = () => {
       <StructuredData />
       {show && <Navigation />}
       <div className="container-fluid error-con">
-        <Suspense fallback={<div className="loader">Loading...</div>}>
+        <Suspense fallback={<Load/>}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<About />} />
