@@ -102,7 +102,7 @@ const Features = ({ data }) => {
                   <h3 style={{ fontSize: "1.25rem", fontWeight: "500" }}>
                     {item.title}
                   </h3>
-                  <p style={{ fontSize: "0.95rem", color: darkMode ? "#ccc" : "#555" }}>
+                  <p style={{ fontSize: "0.95rem", color:"#555" }}>
                     {item.text}
                   </p>
                 </animated.div>
