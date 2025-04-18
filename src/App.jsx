@@ -8,7 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
-import Load from "./componets/ScreenLoadn
+import Load from "./componets/ScreenLoad";
 
 // Lazy-loaded Pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
