@@ -4,8 +4,7 @@ import { useSpring, animated } from "@react-spring/web";
 const Features = ({ data }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-
+  
   const fadeIn = useSpring({
     from: { opacity: 0, transform: "translateY(20px)" },
     to: { opacity: 1, transform: "translateY(0)" },
@@ -21,8 +20,8 @@ const Features = ({ data }) => {
   }, []);
 
   const containerStyle = {
-    background: darkMode ? "#111" : "#f0f8ff",
-    color: darkMode ? "#fff" : "#222",
+    background:  "#f0f8ff",
+    color: "#222",
     padding: "60px 20px",
     textAlign: "center",
     transition: "background 0.4s ease, color 0.4s ease",
@@ -54,12 +53,12 @@ const Features = ({ data }) => {
 
   const iconStyle = {
     fontSize: "2.5rem",
-    color: "#32cd32",
+    color: "whitesmoke",
     marginBottom: "12px",
   };
 
   const linkStyle = {
-    color: darkMode ? "#FFD700" : "#1e90ff",
+    color: "#1e90ff",
     textDecoration: "underline",
     fontWeight: "500",
   };
