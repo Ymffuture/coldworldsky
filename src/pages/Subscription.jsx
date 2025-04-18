@@ -19,7 +19,7 @@ const SubscribePage = () => {
   };
 
   return (
-    <Container>
+    <Container className='container'>
       <p>Enter your email to receive the latest updates from Quorvex.</p>
       {status && <Alert variant={status.type}>{status.message}</Alert>}
       <Form onSubmit={handleSubscribe}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import './_button.scss'
-import {FaDownload, FaGooglePlay } from 'react-icons/fa';
+import {FaDownload} from 'react-icons/fa';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 const Button = () => {

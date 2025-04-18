@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Loader from "./Loader";
-import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaWhatsapp, FaStar, FaCheckCircle } from "react-icons/fa";
 
 const Team = (props) => {
   const [activeTab, setActiveTab] = useState("mission");
@@ -41,8 +41,9 @@ const Team = (props) => {
                       alt={d.name}
                       className="team-img img-fluid rounded-circle mb-3"
                     />
+
                     <div className="caption text-center">
-                      <h5 className="fw-bold">{d.name}</h5>
+                      <h5 className="fw-bold">{d.name} <i className={d.icon} style={{color:"royalblue"}}></i></h5>
                       <p className="text-muted">{d.job}</p>
                       <p className="text-secondary small">
                         Passionate about coding and education (High school subjects), {d.name} brings a wealth of experience in {d.job.toLowerCase()} to drive Quorvex's mission forward.
@@ -83,7 +84,9 @@ const Team = (props) => {
           ) : (
             <Loader />
           )}
+       
         </div>
+        
       </div>
 
       {/* Mission Modal */}

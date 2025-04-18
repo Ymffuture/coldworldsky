@@ -170,7 +170,7 @@ const [exchange ,setExchage]=useState(null)
               <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
               {doc.file && (
         <Document
-          file={docs.file}
+          file={doc.file}
           className="d-flex justify-content-center"
           onLoadError={(error) => console.error("Error loading PDF:", error)}
         >

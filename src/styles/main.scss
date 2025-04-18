@@ -40,11 +40,6 @@
       }
     }
 }
-
-.abimg{
-  // width:50%;
-  zoom: 85%;
-}
 .code{
     background:transparent;
     margin: 8px;
@@ -213,8 +208,11 @@
   gap: 1rem;
   padding: 1rem 2rem;
   scroll-snap-type: x mandatory;
-}
 
+}
+.x_card::-webkit-scrollbar{
+  display:none;
+}
 .card {
   min-width: 250px;
   max-width: 300px;

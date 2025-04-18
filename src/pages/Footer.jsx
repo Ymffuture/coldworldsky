@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import Counter from './Counter';
-import { FaArrowCircleRight, FaCat, FaCogs, FaEnvelope, FaExclamationTriangle, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
+import {FaCat, FaCogs, FaEnvelope, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
 import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
 import Subscription from './Subscription';
 import style_ from '../styles/__style.module.css'
@@ -109,7 +109,7 @@ const Footer = () => {
 
 
             <Link
-              to="/games-tic-toc-toe-play"
+              to="/tic-tac-toe"
               rel="nofollow"
               className="text-white"
             >
@@ -140,7 +140,7 @@ const Footer = () => {
             Coverage radius
             </Link>
             <Link
-              to="/cbp-current-students/table-prices"
+              to="cbp/pricing"
               rel="nofollow"
               className="text-white"
             >

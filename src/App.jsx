@@ -1,14 +1,14 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import Navigation from "./componets/navigation";
 import Footer from "./pages/Footer";
 import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
-
+import Loader from './componets/PageLoader';
 // Lazy-loaded Pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const About = lazy(() => import('./pages/About'));
@@ -45,11 +45,11 @@ const RecoverPassword = lazy(() => import('./componets/RecoverPassword'));
 const TicTacToe = lazy(() => import('./pages/games/tictactoe/TicTacToe'));
 const CBP = lazy(() => import('./pages/CBP'));
 const TableExample = lazy(() => import('./pages/TablePrice'));
-const ErrorPageTwo = lazy(() => import('./pages/ErrorPageTwo'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const [show, setShow] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -82,13 +82,16 @@ const App = () => {
 
     return () => localStorage.removeItem(APP_KEY);
   }, []);
+const path = window.location.pathname;
+ const show= "/not-found";
 
   return (
     <Router>
+     {path ==! show ? "":<Navigation />}
       <StructuredData />
-      {show && <Navigation />}
+    
       <div className="container-fluid error-con">
-        <Suspense fallback={<div className="loader">Loading...</div>}>
+        <Suspense fallback={<Loader/>}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<About />} />
@@ -102,10 +105,10 @@ const App = () => {
             <Route path="/quotes" element={<Quotes />} />
             <Route path="/services" element={<Services />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/terms-of-services" element={<TermsOfService />} />
             <Route path="/tutoring" element={<Tutoring />}>
-              <Route path="application-form" element={<TutorApplyForm />} />
-              <Route path="application-form/track-application" element={<TrackApplication />} />
+              <Route path="applicationForm" element={<TutorApplyForm />} />
+              <Route path="applicationForm/track-application" element={<TrackApplication />} />
               <Route
                 path="subjects"
                 element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /></ProtectedRoute>}
@@ -134,14 +137,14 @@ const App = () => {
             <Route path="/cbp" element={<CBP />}>
               <Route path="pricing" element={<TableExample />} />
             </Route>
-            <Route path="/not-found" element={<ErrorPageTwo />} />
+            <Route path="/not-found" element={<NotFound/>} />
             <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
         </Suspense>
         <ToastContainer />
         <Toaster />
       </div>
-      {show && <Footer />}
+      <Footer />
     </Router>
   );
 };

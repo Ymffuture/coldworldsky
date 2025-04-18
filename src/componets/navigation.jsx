@@ -182,12 +182,12 @@ const toggleSwitch = () => {
       icon: <FaLocationArrow className="icon-bottom" />,
     },
     {
-      path: "/tutoring/ApplicationForm-for-a-tutor",
+      path: "/tutoring/ApplicationForm",
       label: "Apply to be a Tutor",
       icon: <FaRegAddressCard className="icon-bottom" />,
     },
     {
-      path: "/pmf_question_papers_gr10-12",
+      path: "/question-papers",
       label: "Books/question papers",
       icon: <FaBookOpen className="icon-bottom" />,
     },

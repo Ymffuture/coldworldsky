@@ -16,7 +16,7 @@ const Subjects = () => {
   const previousWork = [
     {
       id: "1",
-      name: "Mathematics / lit",
+      name: "Mathematics",
       link: "/tutoring/subjects/Mathematics",
       icon: <FaCalculator />,
       price: 340,
@@ -34,6 +34,27 @@ const Subjects = () => {
       link: "/tutoring/subjects/Life-sciences",
       icon: <FaBacterium />,
       price: 250,
+    },
+    {
+      id: "4",
+      name: "Geography",
+      link: "/tutoring/subjects/Geography",
+      icon: <FaBacterium />,
+      price: 200,
+    },
+    {
+      id: "5",
+      name: "Mathematics lit",
+      link: "/tutoring/subjects/Mathematics-lit",
+      icon: <FaBacterium />,
+      price: 280,
+    },
+    {
+      id: "6",
+      name: "History",
+      link: "/tutoring/subjects/History",
+      icon: <FaBacterium />,
+      price: 280,
     },
   ];
 
@@ -80,11 +101,11 @@ const Subjects = () => {
 
   const ribbonStyle = {
     position: "absolute",
-    top: "10px",
-    right: "15px",
+    top: "0px",
+    right: "-0px",
     backgroundColor: "#FFD700",
     color: "#000",
-    padding: "4px 10px",
+    padding: "2px 8px",
     borderRadius: "12px",
     fontSize: "0.75rem",
     fontWeight: "600",

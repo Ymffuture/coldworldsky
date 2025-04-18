@@ -62,17 +62,20 @@
     {
       "img": "img/team/Future Ymf.jpg",
       "name": "Kgomotso Nkosi",
-      "job": "Founder & CEO"
+      "job": "Founder & CEO",
+     "icon":"fa fa-check-circle"
     },
     {
       "img": "img/team/02.jpg",
       "name": "Karabo Luwenda",
-      "job": "Tutor & IT Specialist"
+      "job": "Tutor & IT Specialist",
+      "icon":"fa fa-check-circle"
     },
     {
       "img": "img/team/03.jpg",
       "name": "Thato Motloung",
-      "job": "Tutor & Brand Designer"
+      "job": "Tutor & Brand Designer",
+      "icon":"fa fa-check-circle"
     }
   ],
   "Features": [

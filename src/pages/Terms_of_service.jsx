@@ -34,7 +34,7 @@ const TermsOfService = () => {
               <p>Quorvex shall not be held liable for any damages arising from the use of the website or the services provided.</p>
 
               <h4>5. Privacy and Data Protection</h4>
-              <p>Our privacy practices are outlined in our <Link to="/privacy_policy">Privacy Policy</Link>, which you agree to when using our services.</p>
+              <p>Our privacy practices are outlined in our <Link to="/privacy-policy">Privacy Policy</Link>, which you agree to when using our services.</p>
 
               <h4>6. Changes to Terms</h4>
               <p>We reserve the right to update or modify these terms at any time. You will be notified of significant changes, and continued use of the platform after changes indicates your acceptance of the new terms.</p>
