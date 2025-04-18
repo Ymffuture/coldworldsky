@@ -1,176 +1,221 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FaCheckDouble, FaExclamationCircle } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import PasswordCheck from "react-password-check";
 import CssLoader from "../pages/Cloader";
-import { URL_BACKEND_HTTPS } from '../../Urls';
+import {URL_BACKEND_HTTP ,URL_BACKEND_HTTPS} from '../../Urls'
+import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from "./Spinner";
-
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [type, setType] = useState('password');
+  const [eye, setEye]= useState('');
+  const [icon , setIcon] = useState('')
+  const [iconConfirm , setIconConfirm] = useState('')
   const [typeConfirm, setTypeConfirm] = useState('password');
-  const [eye, setEye] = useState('eye-slash');
-  const [eyeConfirm, setEyeConfirm] = useState('eye-slash');
-  const [loading, setLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [isCapsLockOn, setIsCapsLockOn] = useState(false);
-  const [checked, setChecked] = useState(false);
+  const [eyeConfirm, setEyeConfirm]= useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading ,setLoading] = useState(false)
+  const [isdisabled , setIsdisabled] = useState(false);
+  const [isCapsLockOn ,setIsCapsLockOn] = useState(false);
+  const [handleError, setHandleError] =useState('')
+  const [color ,setColor] =useState('text-danger')
+  const [checked ,setChecked] =useState(false)
   const navigate = useNavigate();
-
-  const toggleEye = () => {
-    setType(type === 'password' ? 'text' : 'password');
-    setEye(eye === 'eye-slash' ? 'eye' : 'eye-slash');
-  };
-
-  const toggleEyeConfirm = () => {
-    setTypeConfirm(typeConfirm === 'password' ? 'text' : 'password');
-    setEyeConfirm(eyeConfirm === 'eye-slash' ? 'eye' : 'eye-slash');
-  };
-
-  const handleKeyPress = (event) => {
-    setIsCapsLockOn(event.getModifierState("CapsLock"));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Password confirmation check
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match!", { icon: "⚠️" });
-      return;
+      toast.custom(<div className='text-bg-warning p-2 rounded'><i class="text-red fa fa-warning text-bg-warning"></i> Passwords do not match!</div>);
+   
     }
+    if(confirmPassword===password && confirmPassword!=='' && password!==''){
+      setLoading(true)
+      setIsdisabled(true)
+      setColor('text-success')
+    }
+   
+    setTimeout(()=>{
+      setLoading(false)
+      setIsdisabled(false)
+    },15000)
+   try {
+      // Send the registration data to the backend
 
-    setLoading(true);
-    setIsDisabled(true);
-    try {
-      const response = await axios.post(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-up`, {
+      const response = await axios.post(`${ URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-up`, {
+
         email,
         password,
       });
 
       toast.success(response.data.message, {
-        icon: <FaCheckDouble />,
-        style: {
-          background: "#1E2227",
-          borderRadius: "8px",
-          color: "whitesmoke",
-        },
-      });
-
-      navigate("/user-home-page/sign-in");
+        position: "top-center",
+        duration: 3000,
+        icon:<FaCheckDouble className="text-success"/>,
+        style:{
+          background:'#1E2227',
+              borderRadius:'8px',
+              color:'whitesmoke',
+        }
+      }); // Success message from the backend
+      navigate("/user-home-page/sign-in"); // Redirect to login page
     } catch (error) {
-      toast.error(error.response?.data?.error || "Registration failed.", {
-        icon: <FaExclamationCircle />,
-        style: {
-          background: "#1E2227",
-          borderRadius: "8px",
-          color: "whitesmoke",
-        },
+      toast.error(error.response?.data?.error || "Registration failed. ⚠️ Server Error.", {
+        position: "top-center",
+        duration: 5000,
+        icon:<FaExclamationCircle/>,
+        style:{
+          background:'#1E2227',
+          borderRadius:'8px',
+          color:'whitesmoke',
+        }
       });
-    } finally {
-      setLoading(false);
-      setIsDisabled(false);
+      setHandleError(error.response?.data?.error)
+      setLoading(false)
+      setIsdisabled(false)
+      setColor('text-danger')
     }
+  
   };
+const handleToggle=()=>{
+  
+  if(type==='password'){
+    setIcon('')
+    setEye('eye')
+    setType('text')
+  }else{
+    setIcon('')
+    setEye('eye-slash')
+    setType('password')
+  }
+}
+const handleToggleConfirm=()=>{
+  
+  if(typeConfirm==='password'){
+    setEyeConfirm('eye')
+    setTypeConfirm('text')
+    setIconConfirm('')
+  }else{
+    setIconConfirm('')
+    setEyeConfirm('eye-slash')
+    setTypeConfirm('password')
+  }
+}
+const handleKeyPress =(event)=>{
+  if(event.getModifierState('CapsLock')){
+setIsCapsLockOn(true)
+  }
+  else{
+    setIsCapsLockOn(false)
+  }
+} 
 
   return (
-    <div className="container" style={{ maxWidth: 600, margin: "auto", padding: "1rem", textAlign: "center" }}>
-      <h3 className="text-bg-dark p-2 rounded">
-        <i className={password ? "bi bi-lock-fill text-danger" : "bi bi-unlock-fill text-success"}></i> Create an account and get more features.
-      </h3>
+    <div style={{maxWidth:'600px',margin:'auto',height:'130vh',padding:'1rem',textAlign:'center', overflowY:'hidden'} } className='container containerAB'>
+        {/* <img src='/img/logosk.jpg' width='20%' alt='LOGO' className=" rounded-4 opacity-50 p-2"  /> */}
+      <h3 className=' text-bg-dark p-2 rounded-1'>
+      <i className={password? "bi bi-lock-fill text-danger slide":"bi bi-unlock-fill text-success"}></i> {""}
+        Create an acount and get more features.</h3>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group mb-3 text-start">
-          <label>Email</label>
+        <div style={{ marginBottom: ".8rem" }}  className="form-group">
           <input
-            className="form-control"
+            className=" form-control"
             type="email"
+            placeholder=""
             value={email}
-            placeholder="you@example.com"
             onChange={(e) => setEmail(e.target.value)}
-            required
+          
+            style={{ padding: "0.5rem", width: "100%" }}
           />
+             <label for="email"><i className={!email? 'bi bi-envelope-open' :"bi bi-envelope"}></i> Email</label>
         </div>
-
-        <div className="form-group mb-3 text-start position-relative">
-          <label>Password</label>
+        <div style={{ marginBottom: "1rem" }} className="form-group">
           <input
-            className="form-control"
+            onKeyUp={handleKeyPress}
+          onClick={()=>setIcon('fa-eye-slash')}
             type={type}
+            placeholder=""
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            onKeyUp={handleKeyPress}
-            required
+              className=" form-control"
+            style={{ padding: "0.5rem", width: "100%" }}
+            autoComplete="current-password"
+            maxLength='16'
           />
-          <span className="position-absolute end-0 top-50 translate-middle-y px-3" onClick={toggleEye}>
-            <i className={`fa fa-${eye}`}></i>
-          </span>
+            <label for="email"><i className={password? "bi bi-lock":"bi bi-unlock"}></i>Password</label>
+           <span className="flex justify-content-around align-items-center eye" onClick={handleToggle}
+            data-tooltip-id="passtooltip"
+            data-tooltip-content={eye==='eye-slash'? 'show':'Hide'}>
+           <i className={`fa ${icon} fa-${eye} position-absolute eye`}></i>
+           </span>
+       
         </div>
-
-        <div className="form-group mb-3 text-start position-relative">
-          <label>Confirm Password</label>
+        <p className={`${color}`}>
+            {handleError? <p className="text-start"><i className="bi bi-info-circle-fill text-info"></i> <b className="text-info">Password requirements:</b>
+              <ul className="text-start">
+                <li><i className="bi bi-x"></i>Uppercase</li>
+                <li><i className="bi bi-x"></i>Lowercase</li>
+                <li><i className="bi bi-x"></i>Number</li>
+                <li><i className="bi bi-x"></i>Special character</li>
+                <li><i className="bi bi-x"></i>Minimum of 8 characters long.</li>
+              </ul>
+            </p>:null}
+          </p>
+        <div style={{ marginBottom: "1rem" }} className='formreg form-group' >
           <input
+          onClick={()=>setIconConfirm('fa-eye-slash')}
             className="form-control"
             type={typeConfirm}
+            placeholder=""
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            style={{ padding: "0.5rem", width: "100%" }}
             onKeyUp={handleKeyPress}
-            required
           />
-          <span className="position-absolute end-0 top-50 translate-middle-y px-3" onClick={toggleEyeConfirm}>
-            <i className={`fa fa-${eyeConfirm}`}></i>
-          </span>
+           <label for="email"><i className={password? "bi bi-lock":"bi bi-unlock"}></i>Password</label>
+           <span className="flex justify-content-around align-items-center eye" onClick={handleToggleConfirm}
+           data-tooltip-id="passtooltip"
+           data-tooltip-content={eyeConfirm==='eye-slash'? 'show':'Hide'}>
+           <i className={`fa ${iconConfirm} fa-${eyeConfirm} position-absolute eye`}></i>
+           </span>
         </div>
+        {isCapsLockOn && (<p className="p-2 text-bg-danger rounded mt-2"><i className="bi bi-exclamation-circle fs-8"></i> Caps Lock is ON</p>)}
 
-        {isCapsLockOn && (
-          <p className="text-danger text-start">
-            <i className="bi bi-exclamation-circle"></i> Caps Lock is ON
-          </p>
-        )}
+        <label className={`form-check ${color}`} for='checkbox'>
+          <input type="checkbox" 
+          required 
+          id="check1"
+          className='form-check-input' 
+          value={checked}
+          disabled={isdisabled}
+          /> I agree to<span className="text-info"> <Link to="/terms_of_services" for='checkbox'> terms and conditions</Link></span>
+        </label>
 
-        <div className="text-start mb-3">
-          <PasswordCheck
-            minLength={8}
-            capital={1}
-            specialChar={1}
-            number={1}
-            password={password}
-          />
-        </div>
-
-        <div className="form-check mb-3 text-start">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            required
-            disabled={isDisabled}
-            onChange={(e) => setChecked(e.target.checked)}
-          />
-          <label className="form-check-label">
-            I agree to <Link to="/terms_of_services" className="text-info">terms and conditions</Link>
-          </label>
-        </div>
-
-        <button className="btn btn-primary w-100" type="submit" disabled={isDisabled}>
-          {loading ? <Spinner /> : "Sign Up"}
+        <button type="submit" 
+        disabled={isdisabled}
+        className="btn btn-primary px-4" style={{padding:'.5rem 1rem', width:'100%'}}>
+          {!isdisabled ? 'Sign Up': <Spinner/>}
         </button>
-
-        {loading && <CssLoader />}
+       { loading ?  <div className='reg-load'>
+        <CssLoader/>
+{/* <Loader/> */}
+</div>:null}
+       
+<Tooltip id="passtooltip" />
       </form>
-
-      <div className="mt-3">
-        Already have an account? <Link to="/user-home-page/sign-in" className="text-info">Login</Link>
+      <div className="text mt-2"> {""}
+      <div className="text3">
+          Already have an account? <span className=" text-info"> <Link to="/user-home-page/sign-in">Login</Link></span>
+        </div>
       </div>
-
-      <Tooltip id="passtooltip" />
+    
     </div>
   );
 }
 
 export default Register;
-
