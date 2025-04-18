@@ -69,7 +69,7 @@ const Button = () => {
     const html = `
       <h1 id="title">Download Our Mobile App</h1>
       <p id="description">This APK is secure and maintained by <strong>Quorvex Institute</strong>.</p>
-      <p id="note">By downloading, you agree to our <a href="https://quorvexinstitute.vercel.app/terms_of_service" target="_blank" rel="noopener">Terms & Conditions</a>.</p>
+      <p id="note">By downloading, you agree to our <a href="https://quorvexinstitute.vercel.app/terms-of-services" target="_blank" rel="noopener">Terms & Conditions</a>.</p>
       <a id="downloadBtn" href="https://apk.e-droid.net/apk/app3508057-rvgu4n.apk?v=6" download>Download APK</a>
       <div id="loader">
         <div class="lds-default"><div></div></div>
