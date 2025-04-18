@@ -118,26 +118,71 @@ const Tutor = () => {
           {/* FAQ Section */}
           <div className="mt-5 text-start">
             <h4 className="text-primary mb-3">Frequently Asked Questions</h4>
-            <Accordion>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>How much does tutoring cost?</Accordion.Header>
-                <Accordion.Body>
-                  Tutoring is R400.00 per month for two high school subjects.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>Do you help with university applications?</Accordion.Header>
-                <Accordion.Body>
-                  Yes, we offer free help with up to two university applications.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="2">
-                <Accordion.Header>When can I apply?</Accordion.Header>
-                <Accordion.Body>
-                  Applications open from June to August (Grade 11) and in September (Grade 12).
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+            <Accordion className="shadow-sm rounded" alwaysOpen>
+  <Accordion.Item eventKey="0" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
+    <Accordion.Header style={{
+      fontWeight: 'bold',
+      backgroundColor: '#f0f8ff',
+      color: '#1e90ff',
+      borderBottom: '1px solid #dcdcdc',
+      padding: '10px',
+    }}>
+      How much does tutoring cost?
+    </Accordion.Header>
+    <Accordion.Body style={{
+      backgroundColor: '#ffffff',
+      padding: '15px',
+      border: '1px solid #dcdcdc',
+      zIndex: 999999,
+      position: 'relative',
+    }}>
+      Tutoring is R400.00 per month for two high school subjects.
+    </Accordion.Body>
+  </Accordion.Item>
+
+  <Accordion.Item eventKey="1" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
+    <Accordion.Header style={{
+      fontWeight: 'bold',
+      backgroundColor: '#f0f8ff',
+      color: '#1e90ff',
+      borderBottom: '1px solid #dcdcdc',
+      padding: '10px',
+    }}>
+      Do you help with university applications?
+    </Accordion.Header>
+    <Accordion.Body style={{
+      backgroundColor: '#ffffff',
+      padding: '15px',
+      border: '1px solid #dcdcdc',
+      zIndex: 99999,
+      position: 'relative',
+    }}>
+      Yes, we offer free help with up to two university applications.
+    </Accordion.Body>
+  </Accordion.Item>
+
+  <Accordion.Item eventKey="2" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
+    <Accordion.Header style={{
+      fontWeight: 'bold',
+      backgroundColor: '#f0f8ff',
+      color: '#1e90ff',
+      borderBottom: '1px solid #dcdcdc',
+      padding: '10px',
+    }}>
+      When can I apply?
+    </Accordion.Header>
+    <Accordion.Body style={{
+      backgroundColor: '#ffffff',
+      padding: '15px',
+      border: '1px solid #dcdcdc',
+      zIndex: 99999,
+      position: 'relative',
+    }}>
+      Applications open from June to August (Grade 11) and in September (Grade 12).
+    </Accordion.Body>
+  </Accordion.Item>
+</Accordion>
+
           </div>
         </animated.div>
       </div>

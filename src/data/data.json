@@ -42,22 +42,28 @@
     }
   ],
   "Services": [
-    {
-      "icon": "fa fa-code",
-      "name": "Web Development",
-      "text": "Master the art of creating responsive, user-friendly websites using HTML, CSS, JavaScript, and modern frameworks."
-    },
-    {
-      "icon": "fa fa-database",
-      "name": "Data Science",
-      "text": "Gain hands-on experience with data analysis, visualisation, and machine learning using Python, R, and SQL."
-    },
-    {
-      "icon": "fa fa-mobile",
-      "name": "Mobile App Development",
-      "text": "Learn to build powerful cross-platform mobile applications with React Native and Flutter."
-    }
-  ],
+  {
+    "icon": "fa fa-code",
+    "name": "Web Development",
+    "text": "Master the art of creating responsive, user-friendly websites using HTML, CSS, JavaScript, and modern frameworks."
+  },
+  {
+    "icon": "fa fa-database",
+    "name": "Data Science",
+    "text": "Gain hands-on experience with data analysis, visualisation, and machine learning using Python, R, and SQL."
+  },
+  {
+    "icon": "fa fa-calculator",
+    "name": "Mathematics",
+    "text": "Learn algebra, calculus, statistics, and advanced math concepts with applied real-world examples."
+  },
+  {
+    "icon": "fa fa-flask",
+    "name": "Science",
+    "text": "Explore physics, chemistry, and biology with interactive experiments and foundational theory."
+  }
+], 
+
   "Team": [
     {
       "img": "img/team/Future Ymf.jpg",

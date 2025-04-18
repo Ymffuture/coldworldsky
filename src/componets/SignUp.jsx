@@ -219,4 +219,3 @@ setIsCapsLockOn(true)
 }
 
 export default Register;
-

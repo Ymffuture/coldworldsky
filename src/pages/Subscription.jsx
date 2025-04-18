@@ -1,41 +1,57 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
-import {URL_BACKEND_HTTPS} from '../../Urls.js'
+import { Container, Form, Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { URL_BACKEND_HTTPS } from '../../Urls.js';
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email format').required('Email is required'),
+});
 
 const SubscribePage = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState("hi");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     try {
-      const res = await axios.post(`${URL_BACKEND_HTTPS}/api/auth/subscribe`, { email });
-      setStatus({ type: 'success', message: res.data.message });
-      setEmail('');
+      const res = await axios.post(`${URL_BACKEND_HTTPS}/api/auth/subscribe`, data);
+      toast.success(res.data.message || 'Subscribed successfully!');
+      reset();
     } catch (err) {
-      setStatus({ type: 'danger', message: err.response?.data?.message || 'Error occurred' });
+      toast.error(err.response?.data?.message || 'Subscription failed.');
     }
   };
 
   return (
-    <Container className='container'>
-      <p>Enter your email to receive the latest updates from Quorvex.</p>
-      {status && <Alert variant={status.type}>{status.message}</Alert>}
-      <Form onSubmit={handleSubscribe}>
-        <Form.Group className="mb-0">
+    <Container className="p-4 mt-3 rounded shadow" style={{ backgroundColor: 'transparent' }}>
+      <ToastContainer position="top-right" autoClose={5000} />
+      <h4 className="mb-2 text-light">Stay Updated with Quorvex</h4>
+      <p className="text-light opacity-50 mb-1">Enter your email to receive our latest updates.</p>
+
+      <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <Form.Group className="mb-2">
           <Form.Control
             type="email"
-            placeholder="Your Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control"
-            required
+            placeholder="you@example.com"
+            {...register('email')}
+            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
           />
+          <div className="invalid-feedback">{errors.email?.message}</div>
         </Form.Group>
-        <Button type="submit" 
-        disabled
-        variant="primary">Subscribe</Button>
+
+        <Button type="submit" variant="primary" disabled={isSubmitting}>
+          {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+        </Button>
       </Form>
     </Container>
   );
