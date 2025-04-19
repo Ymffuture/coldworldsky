@@ -49,7 +49,7 @@ const Courses = () => {
       </div>
 
       {/* Courses */}
-      <div className="container mt-6">
+      <div className="container mt-6" style={{ color: '#333333' }}>
         <h2 className="title is-3 has-text-centered has-text-link mb-5">Explore Our Courses</h2>
         <p className="has-text-centered mb-6">
           Discover tech-focused programs designed to equip you with practical, in-demand skills. Select a path below to begin your journey.
