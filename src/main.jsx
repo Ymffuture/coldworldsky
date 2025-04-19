@@ -5,6 +5,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import dotenv from 'dotenv';
 import {GOOGLE_CLIENT_Id} from '../Urls.js';
 import "../src/styles/main.scss";
+import 'bulma/css/bulma.min.css';
 
 
 createRoot(document.getElementById('root')).render(

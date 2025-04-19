@@ -184,7 +184,7 @@ export default Navbar;`;
 
         <Breadcrumb className="p-2 bg-light rounded">
           <Breadcrumb.Item><Link to="/tutoring/subjects"><FaBookReader /> Subjects</Link></Breadcrumb.Item>
-          <Breadcrumb.Item><Link to="/cbp-current-students/table-prices"><FaTable /> Table Price</Link></Breadcrumb.Item>
+          <Breadcrumb.Item><Link to="/cbp/pricing"><FaTable /> Table Price</Link></Breadcrumb.Item>
           <Breadcrumb.Item><Link to="/tutoring/"><FaBackward /> Back</Link></Breadcrumb.Item>
         </Breadcrumb>
 
