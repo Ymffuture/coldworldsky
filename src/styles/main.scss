@@ -972,6 +972,13 @@ text-decoration: none;
   }
 }
 .file{
+  position: absolute;
+  top:50px;
+  left: 50%;
+  
+display: flex;
+cursor: pointer;
+  
   .fa{
     color: #ffffff;
   }
@@ -987,12 +994,7 @@ text-decoration: none;
       bottom: 0;
     }
   }
-  position: absolute;
-  top:50px;
-  left: 50%;
-  
-display: flex;
-cursor: pointer;
+ 
 &::after{
   content: '';
   width: 10px;

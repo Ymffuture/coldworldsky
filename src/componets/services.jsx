@@ -13,7 +13,7 @@ const Services = ({ data }) => {
     fontSize: "2rem",
     fontWeight: "bold",
     marginBottom: "10px",
-    color:"#333333", 
+    color:"#33333", 
   };
 
   const descStyle = {

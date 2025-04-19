@@ -34,7 +34,7 @@ const About = (props) => {
           </div>
           <div className="col-md-6">
             <div className="about-text" ref={myRef}>
-              <h2 id="about-heading" className="fw-bold text-primary mb-3">
+              <h2 id="about-heading" className="fw-bold mb-3">
                 About Us
               </h2>
               <p className="lead">{props.data?.paragraph || "Loading..."}</p>
