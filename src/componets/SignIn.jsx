@@ -74,7 +74,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       // Save token to localStorage
       localStorage.setItem("token", data.token);
       setIsAuthenticated(true); 
-      navigate("/courses");
+      navigate("/");
       
       
     } else {
