@@ -111,7 +111,7 @@ const Courses = () => {
                 <Image src={images.uiUx} alt="UI/UX Design" fluid className="mb-3" />
               )}
               <FaPaintBrush size={60} className="mb-3 course-icon text-warning" />
-              <h3>UI/UX Design</h3>
+              <h3>UI/UX Design </h3>
               <p>Learn the principles of user experience and interface design with modern tools like Figma and Adobe XD.</p>
             </Link>
           </Col>
