@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { FaLaptopCode, FaDatabase, FaPaintBrush } from "react-icons/fa";
 import axios from "axios";
-
+import "bulma/css/bulma.min.css";
 const Courses = () => {
   const [images, setImages] = useState({
     webDev: null,
