@@ -31,7 +31,7 @@ const Courses = () => {
   }, []);
 
   return (
-    <div className="section">
+    <div className="section p-tags">
       {/* Hero */}
       <section className="hero is-info is-bold is-medium">
         <div className="hero-body has-text-centered">
