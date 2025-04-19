@@ -1,6 +1,10 @@
 @import "./_variables";
 
 @import './err.scss';
+
+.p-tags{
+    p{ color:#333333 !important;} 
+}
 .content{
     background: transparent;
     display: flex;
