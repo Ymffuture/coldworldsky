@@ -1,63 +1,89 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Badge from "react-bootstrap/Badge";
+import React, { useMemo } from "react";
+import { Outlet } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
+import Fuse from "fuse.js";
 
 const UserPage = () => {
-  const create =()=>{
-    window.open("https://gmail.com")
-  }
-  return (
-    <div className="container">
-      {/* Intro Section */}
-      <section className="mt-2">
-        <p className="text-secondary p-4 mt-2 rounded">
-          <FaInfoCircle className="me-2" />
-          Your account is secure! However, please remember to use a strong and unique password for online safety. 
-          For your own security, make sure your account's email address is up-to-date, as you will need it to recover your password if forgotten. 
-          <strong>Never share your password with anyone.</strong> {""}
-          <Badge bg="success">Last updated: 13 March 2025</Badge>
-        </p>
-      </section>
+  const create = () => {
+    window.open("https://gmail.com", "_blank", "noopener,noreferrer");
+  };
 
-      {/* User Account Information Section */}
-      <section className="account-info">
-        <h1 className='fw-bold fs-2 text-secondary'>Your Account Information</h1>
+  // Example Fuse.js setup for future email providers or security tips search
+  const tips = useMemo(() => [
+    { tip: "Use two-factor authentication (2FA)" },
+    { tip: "Never share your password" },
+    { tip: "Check your spam folder" },
+  ], []);
+  const fuse = new Fuse(tips, { keys: ["tip"] });
+
+  return (
+    <div className="container px-4 py-5">
+      {/* Intro Message */}
+      <motion.section
+        className="box has-background-light mb-5"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        role="alert"
+        aria-live="polite"
+      >
+        <p className="is-size-6 has-text-grey-dark">
+          <FaInfoCircle className="mr-2 has-text-info" />
+          <strong className="has-text-primary">Your account is secure!</strong> Please ensure your password is strong and your email address is up-to-date.
+          <br />
+          <span className="tag is-success is-light mt-2">Last updated: 13 March 2025</span>
+        </p>
+      </motion.section>
+
+      {/* Account Info */}
+      <motion.section
+        className="content"
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
+        <h1 className="title is-4 has-text-grey-dark">Your Account Information</h1>
         <p>
-         <i className='bi bi-exclamation fs-4'></i> Ensure your email address is current to receive important notifications, password reset links, and account updates.
+          <i className="bi bi-exclamation-triangle-fill has-text-warning"></i> Keep your email updated for notifications and password resets.
         </p>
         <p>
-          <strong>Tip:</strong> Always check your email address before logging in to ensure that you are receiving all critical communications.
+          <strong>Tip:</strong> Double-check your email before logging in.
         </p>
-<mark className='p-2'>Don`t have an email address?</mark>
-        {/* Action to Update Email */}
-        <div className="update-email">
-          <button
-            className="btn btn-primary"
+        <mark className="has-background-warning-light p-1 mt-2 mb-3 is-block">Don’t have an email address?</mark>
+
+        <div className="buttons">
+          <motion.button
+            className="button is-link is-rounded"
             onClick={create}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Create Email Address
-          </button>
+          </motion.button>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Additional User Information Section */}
-      <section className="additional-info mt-4">
-        <h3>Important Notes:</h3>
-        <ul>
-          <li>Be sure to log out after using shared or public devices.</li>
-          <li>Use two-factor <b>authentication (2FA)</b> to enhance account security.</li>
-          <li>Check your spam or junk folder if you don't see password reset emails.</li>
+      {/* Security Tips */}
+      <motion.section
+        className="box mt-5"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <h2 className="subtitle is-5 has-text-weight-bold">Important Notes:</h2>
+        <ul className="has-text-grey-darker">
+          <li>• Log out after using shared or public devices.</li>
+          <li>• Enable <strong>2FA</strong> for maximum security.</li>
+          <li>• Check spam/junk folders for password reset emails.</li>
         </ul>
-      </section>
+      </motion.section>
 
-      {/* Password Recovery Link */}
-      
-
-      {/* Placeholder for child routes */}
+      {/* Route Injection */}
       <Outlet />
     </div>
   );
 };
 
 export default UserPage;
+
