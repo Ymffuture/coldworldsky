@@ -1,68 +1,53 @@
+// Calendar.jsx
 import React, { useState, useEffect } from "react";
 import {
-  format,
-  startOfMonth,
-  endOfMonth,
-  startOfWeek,
-  endOfWeek,
-  addMonths,
-  subMonths,
-  addDays,
-  isToday,
+  format, startOfMonth, endOfMonth, startOfWeek, endOfWeek,
+  addMonths, subMonths, addDays, isToday, isSameDay
 } from "date-fns";
-import "bulma/css/bulma.min.css";
-import "./Calendar.css"; // custom styles if needed
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState([
+    { date: "2025-04-27", title: "Freedom Day Event", type: "Holiday" },
+    { date: "2025-04-30", title: "Assignment 1 Due", type: "Assignment" },
+    { date: "2025-05-01", title: "Worker's Day", type: "Holiday" },
+  ]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setEvents([
-        {
-          title: "Math Assignment Due",
-          date: "2025-04-25",
-          description: "Chapter 5 Exercises",
-        },
-        {
-          title: "Science Fair",
-          date: "2025-05-10",
-          description: "Annual school science exhibition",
-        },
-      ]);
+    const fetchHolidays = async () => {
+      setLoading(true);
+      try {
+        // Replace with real API call
+        const res = await fetch("/mock/holidays.json");
+        const data = await res.json();
+        setHolidays(data.holidays || []);
+      } catch (err) {
+        console.error("Failed to load holidays", err);
+      }
       setLoading(false);
-    }, 2000);
+    };
+    fetchHolidays();
   }, []);
-
-  const schoolTerms = [
-    { term: "Term 1", start: "15 January", end: "28 March" },
-    { term: "Term 2", start: "08 April", end: "27 June" },
-    { term: "Term 3", start: "22 July", end: "03 October" },
-    { term: "Term 4", start: "13 October", end: "12 December" },
-  ];
-
-  const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
-  const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
-  const renderDays = () => {
-    const days = [];
-    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    for (let day of weekDays) {
-      days.push(
-        <th key={day} className="has-text-centered has-background-info-light">
-          {day}
-        </th>
-      );
-    }
-    return <tr>{days}</tr>;
-  };
+  const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
+  const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
+
+  const renderDays = () => (
+    <tr>
+      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+        <th key={d} className="has-text-centered">{d}</th>
+      ))}
+    </tr>
+  );
 
   const renderCells = () => {
     let day = startDate;
@@ -70,86 +55,75 @@ const Calendar = () => {
 
     while (day <= endDate) {
       const cells = [];
-      for (let i = 0; i < 7; i++) {
-        const isCurrentMonth = day >= monthStart && day <= monthEnd;
-        const isTodayDate = isToday(day);
 
-        const cellClass = `
-          has-text-centered
-          ${isCurrentMonth ? "has-text-primary" : "has-text-grey-light"}
-          ${isTodayDate ? "has-background-success has-text-white" : ""}
-          px-1 py-2
-        `;
+      for (let i = 0; i < 7; i++) {
+        const dateStr = format(day, "yyyy-MM-dd");
+        const isHoliday = holidays.find(h => h.date === dateStr);
+        const isEvent = events.find(e => e.date === dateStr);
+        const today = isToday(day);
+
+        const classes = [
+          "box has-text-centered",
+          today && "has-background-success has-text-white",
+          !isSameDay(monthStart, day) && !isSameDay(monthEnd, day) ? "has-text-grey-light" : "",
+        ]
+          .filter(Boolean)
+          .join(" ");
 
         cells.push(
-          <td key={day} className={cellClass} style={{ minWidth: '2rem' }}>
-            {format(day, "d")}
+          <td key={day} className="p-2">
+            <div className={classes} data-tooltip-id="dayTooltip" data-tooltip-content={
+              `${isHoliday?.title || ""} ${isEvent?.title || ""}`
+            }>
+              {format(day, "d")}
+              {isHoliday && <span className="tag is-warning is-light is-small ml-1">H</span>}
+              {isEvent?.type === "Assignment" && <span className="tag is-info is-light is-small ml-1">A</span>}
+            </div>
           </td>
         );
+
         day = addDays(day, 1);
       }
-      rows.push(
-        <tr key={day.toString()} className="animate__animated animate__fadeIn">
-          {cells}
-        </tr>
-      );
+      rows.push(<tr key={day}>{cells}</tr>);
     }
     return rows;
   };
 
   return (
-    <div className="container p-4">
-      <section className="section">
-        <h1 className="title has-text-centered">School Calendar</h1>
-
-        <div className="buttons is-centered is-flex-wrap-wrap">
-          <button onClick={handlePrevMonth} className="button is-info m-2">
-            Previous
-          </button>
-          <h2 className="subtitle is-flex is-align-items-center m-2">
-            {format(currentDate, "MMMM yyyy")}
-          </h2>
-          <button onClick={handleNextMonth} className="button is-info m-2">
-            Next
-          </button>
-        </div>
-
-        <div className="box">
-          <div className="table-container">
-            <table className="table is-bordered is-striped is-fullwidth is-hoverable">
-              <thead>{renderDays()}</thead>
-              <tbody>{renderCells()}</tbody>
-            </table>
+    <div className="container">
+      <section className="hero is-info is-bold mb-5">
+        <div className="hero-body">
+          <p className="title">School Calendar</p>
+          <p className="subtitle">{format(currentDate, "MMMM yyyy")}</p>
+          <div className="buttons">
+            <button className="button is-light" onClick={handlePrevMonth}>Previous</button>
+            <button className="button is-light" onClick={handleNextMonth}>Next</button>
           </div>
         </div>
-
-        <div className="box animate__animated animate__fadeInUp">
-          <h2 className="subtitle">School Terms</h2>
-          <ul>
-            {schoolTerms.map(({ term, start, end }) => (
-              <li key={term}>
-                <strong>{term}:</strong> {start} - {end}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="box animate__animated animate__fadeInUp animate__delay-1s">
-          <h2 className="subtitle">Upcoming Events & Assignments</h2>
-          {loading ? (
-            <progress className="progress is-small is-info" max="100">Loading</progress>
-          ) : (
-            <ul>
-              {events.map((event) => (
-                <li key={event.title} className="mb-2">
-                  <strong>{event.title}</strong> - {event.date}
-                  <p>{event.description}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
       </section>
+
+      {loading ? (
+        <button className="button is-loading is-primary is-light">Loading calendar...</button>
+      ) : (
+        <div className="table-container">
+          <table className="table is-bordered is-striped is-hoverable is-fullwidth">
+            <thead>{renderDays()}</thead>
+            <tbody>{renderCells()}</tbody>
+          </table>
+        </div>
+      )}
+
+      <Tooltip id="dayTooltip" />
+      <div className="content mt-5">
+        <h3 className="title is-4">Upcoming Events</h3>
+        <ul>
+          {events.map((e, i) => (
+            <li key={i}>
+              <strong>{e.title}</strong> on <span className="tag is-info">{e.date}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
