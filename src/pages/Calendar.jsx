@@ -6,6 +6,7 @@ import {
 } from "date-fns";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -91,21 +92,23 @@ const Calendar = () => {
 
   return (
     <div className="container">
-      <section className="hero is-info is-bold mb-5">
-        <div className="hero-body">
-          <p className="title">School Calendar</p>
-          <p className="subtitle">{format(currentDate, "MMMM yyyy")}</p>
-          <div className="buttons">
-            <button className="button is-light" onClick={handlePrevMonth}>Previous</button>
-            <button className="button is-light" onClick={handleNextMonth}>Next</button>
+      <section className="hero is-info is-bold mb-5" style={{ backgroundImage: 'url(https://source.unsplash.com/1600x400/?school,education)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="hero-body has-text-centered has-background-dark-opacity">
+          <p className="title has-text-white">
+            <FaCalendarAlt className="mr-2" /> School Calendar
+          </p>
+          <p className="subtitle has-text-light">{format(currentDate, "MMMM yyyy")}</p>
+          <div className="buttons is-centered mt-3">
+            <button className="button is-light" onClick={handlePrevMonth}><FaArrowLeft className="mr-1" /> Previous</button>
+            <button className="button is-light" onClick={handleNextMonth}>Next <FaArrowRight className="ml-1" /></button>
           </div>
         </div>
       </section>
 
       {loading ? (
-        <button className="button is-loading is-primary is-light">Loading calendar...</button>
+        <progress className="progress is-primary is-small" max="100">Loading</progress>
       ) : (
-        <div className="table-container">
+        <div className="table-container animate__animated animate__fadeIn">
           <table className="table is-bordered is-striped is-hoverable is-fullwidth">
             <thead>{renderDays()}</thead>
             <tbody>{renderCells()}</tbody>
@@ -114,7 +117,8 @@ const Calendar = () => {
       )}
 
       <Tooltip id="dayTooltip" />
-      <div className="content mt-5">
+
+      <div className="content mt-5 animate__animated animate__fadeInUp">
         <h3 className="title is-4">Upcoming Events</h3>
         <ul>
           {events.map((e, i) => (
