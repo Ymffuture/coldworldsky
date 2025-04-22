@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
 
 const GoogleAuth = () => {
   const [user, setUser] = useState(null);
@@ -16,10 +17,7 @@ const GoogleAuth = () => {
       email: decoded.email,
       picture: decoded.picture,
     });
-
-    setTimeout(() => {
-      navigate("/"); // Redirect to homepage
-    }, 1000);
+    setTimeout(() => navigate("/"), 1000); // Redirect after 1 sec
   };
 
   const handleLogout = () => {
@@ -29,8 +27,8 @@ const GoogleAuth = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setDropdownOpen(false);
       }
     };
@@ -39,9 +37,9 @@ const GoogleAuth = () => {
   }, []);
 
   return (
-    <div className="section has-text-right">
+    <div className="section has-text-centered">
       {!user ? (
-        <div className="buttons is-right">
+        <div className="buttons is-centered is-flex is-justify-content-center is-flex-wrap-wrap">
           <GoogleLogin
             onSuccess={handleSuccess}
             onError={() => console.log("Login Failed")}
@@ -49,19 +47,30 @@ const GoogleAuth = () => {
             size="large"
           />
 
-          <button className="button is-light is-static" disabled>
+          <button className="button is-static is-light mx-1" disabled>
             <span className="icon">
-              <i className="fab fa-facebook"></i>
+              <FaFacebook />
             </span>
-            <span>Facebook (Soon)</span>
+            <span>Facebook (Coming Soon)</span>
           </button>
 
-          <button className="button is-light is-static" disabled>
+          <button className="button is-static is-light mx-1" disabled>
             <span className="icon">
-              <i className="fab fa-github"></i>
+              <FaGithub />
             </span>
-            <span>GitHub (Soon)</span>
+            <span>GitHub (Coming Soon)</span>
           </button>
+
+          <div className="is-fullwidth mt-3">
+            <a
+              href="https://support.google.com/accounts/answer/112802?hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="is-size-7 has-text-link"
+            >
+              Learn more about logging in with social media
+            </a>
+          </div>
         </div>
       ) : (
         <div ref={dropdownRef} className="dropdown is-right is-active">
