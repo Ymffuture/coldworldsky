@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from "react";
 import {
   format, startOfMonth, endOfMonth, startOfWeek, endOfWeek,
-  addMonths, subMonths, addDays, isToday, isSameDay
+  addMonths, subMonths, addDays, isToday, isSameMonth
 } from "date-fns";
 import { Tooltip } from "react-tooltip";
+import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "react-tooltip/dist/react-tooltip.css";
-import { FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
+import "bulma/css/bulma.min.css";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -22,7 +23,6 @@ const Calendar = () => {
     const fetchHolidays = async () => {
       setLoading(true);
       try {
-        // Replace with real API call
         const res = await fetch("/mock/holidays.json");
         const data = await res.json();
         setHolidays(data.holidays || []);
@@ -34,13 +34,13 @@ const Calendar = () => {
     fetchHolidays();
   }, []);
 
+  const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
+  const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
+
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
-
-  const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
-  const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
   const renderDays = () => (
     <tr>
@@ -64,51 +64,69 @@ const Calendar = () => {
         const today = isToday(day);
 
         const classes = [
-          "box has-text-centered",
+          "box has-text-centered p-2",
           today && "has-background-success has-text-white",
-          !isSameDay(monthStart, day) && !isSameDay(monthEnd, day) ? "has-text-grey-light" : "",
-        ]
-          .filter(Boolean)
-          .join(" ");
+          !isSameMonth(day, monthStart) ? "has-text-grey-light" : "",
+        ].filter(Boolean).join(" ");
 
         cells.push(
-          <td key={day} className="p-2">
-            <div className={classes} data-tooltip-id="dayTooltip" data-tooltip-content={
-              `${isHoliday?.title || ""} ${isEvent?.title || ""}`
-            }>
+          <td key={day}>
+            <div
+              className={classes}
+              data-tooltip-id="dayTooltip"
+              data-tooltip-content={`${isHoliday?.title || ""} ${isEvent?.title || ""}`}
+            >
               {format(day, "d")}
               {isHoliday && <span className="tag is-warning is-light is-small ml-1">H</span>}
-              {isEvent?.type === "Assignment" && <span className="tag is-info is-light is-small ml-1">A</span>}
+              {isEvent?.type === "Assignment" && (
+                <span className="tag is-info is-light is-small ml-1">A</span>
+              )}
             </div>
           </td>
         );
-
         day = addDays(day, 1);
       }
       rows.push(<tr key={day}>{cells}</tr>);
     }
+
     return rows;
   };
 
   return (
     <div className="container">
-      <section className="hero is-info is-bold mb-5" style={{ backgroundImage: 'url(https://source.unsplash.com/1600x400/?school,education)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="hero-body has-text-centered has-background-dark-opacity">
-          <p className="title has-text-white">
-            <FaCalendarAlt className="mr-2" /> School Calendar
-          </p>
-          <p className="subtitle has-text-light">{format(currentDate, "MMMM yyyy")}</p>
-          <div className="buttons is-centered mt-3">
-            <button className="button is-light" onClick={handlePrevMonth}><FaArrowLeft className="mr-1" /> Previous</button>
-            <button className="button is-light" onClick={handleNextMonth}>Next <FaArrowRight className="ml-1" /></button>
+      {/* Banner with Unsplash background */}
+      <section
+        className="hero is-medium is-primary is-bold mb-5"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1500&q=80")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="hero-body has-background-black-bis has-text-white" style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: "8px" }}>
+          <div className="container has-text-centered">
+            <h1 className="title is-2">
+              <FaCalendarAlt /> School Calendar
+            </h1>
+            <p className="subtitle is-4">{format(currentDate, "MMMM yyyy")}</p>
+            <div className="buttons is-centered mt-4">
+              <button className="button is-light" onClick={handlePrevMonth}>
+                <FaChevronLeft /> &nbsp; Prev
+              </button>
+              <button className="button is-light" onClick={handleNextMonth}>
+                Next &nbsp; <FaChevronRight />
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Calendar Table */}
       {loading ? (
-        <progress className="progress is-primary is-small" max="100">Loading</progress>
+        <button className="button is-loading is-primary is-light">Loading calendar...</button>
       ) : (
-        <div className="table-container animate__animated animate__fadeIn">
+        <div className="table-container">
           <table className="table is-bordered is-striped is-hoverable is-fullwidth">
             <thead>{renderDays()}</thead>
             <tbody>{renderCells()}</tbody>
@@ -118,12 +136,14 @@ const Calendar = () => {
 
       <Tooltip id="dayTooltip" />
 
-      <div className="content mt-5 animate__animated animate__fadeInUp">
+      {/* Event List */}
+      <div className="content mt-6">
         <h3 className="title is-4">Upcoming Events</h3>
         <ul>
           {events.map((e, i) => (
             <li key={i}>
-              <strong>{e.title}</strong> on <span className="tag is-info">{e.date}</span>
+              <strong>{e.title}</strong> on{" "}
+              <span className="tag is-info">{e.date}</span>
             </li>
           ))}
         </ul>
