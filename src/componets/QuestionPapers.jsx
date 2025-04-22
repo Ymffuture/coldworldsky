@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
+import { useSpring, animated } from "@react-spring/web";
 import axios from "axios";
+import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
 import Loader from './Loader';
 import Spinner from './Spinner';
-import { useSpring, animated } from "@react-spring/web";
-// Use relative URL path (requires public folder copy)
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+import { Viewer, Worker } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-
-
+const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
 const QuestionPapers = () => {
   const [width, setWidth] = useState(1200);
@@ -25,7 +22,8 @@ const QuestionPapers = () => {
   const [yearFilter, setYearFilter] = useState("");
   const [topicFilter, setTopicFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(8);
-const [exchange ,setExchage]=useState(null)
+  const [exchange, setExchage] = useState(null);
+
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
@@ -53,7 +51,6 @@ const [exchange ,setExchage]=useState(null)
     const matchesSubject = subjectFilter ? doc.name === subjectFilter : true;
     const matchesYear = yearFilter ? doc.yr === yearFilter : true;
     const matchesTopic = topicFilter ? doc.topic === topicFilter : true;
-
     return matchesSearch && matchesSubject && matchesYear && matchesTopic;
   });
 
@@ -68,149 +65,129 @@ const [exchange ,setExchage]=useState(null)
   const handleDownload = (doc) => {
     const link = document.createElement('a');
     link.href = doc.file;
-    setTimeout(()=>{
-      setExchage(null)
-    },3000)
-    setExchage(<Spinner className='position-absolute'/>)
-    // Build a custom file name
+    setTimeout(() => {
+      setExchage(null);
+    }, 3000);
+    setExchage(<Spinner className='position-absolute' />);
     const safeName = doc.name.replace(/\s+/g, '_').toLowerCase();
     const safeTopic = doc.topic.replace(/\s+/g, '_').toLowerCase();
     const safeYear = doc.yr;
-  
     link.download = `Quorvex_Institute-download_QuestionPaper__${safeName}_${safeTopic}_${safeYear}.pdf`;
     link.target = "_blank";
-  
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    console.log(doc.file);
   };
-  
+
   return (
     <div>
-       <header id="header">
-            <div className="intro container-fluid">
-              <div className="overlay d-flex justify-content-center align-items-center vh-100">
-                <div className="container text-center">
-                  <animated.h1 style={introFade} className="display-4 fw-bold">
-                    question <span className="text-primary">papers</span>
-                  </animated.h1>
-                  <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow">Find a Tutor</Link>
+      <header className="hero is-info is-fullheight">
+        <div className="hero-body has-text-centered">
+          <div className="container">
+            <animated.h1 style={introFade} className="title is-1">
+              Question <span className="has-text-primary">Papers</span>
+            </animated.h1>
+            <Link to='/find-a-tutor' className="button is-primary is-rounded is-medium">Find a Tutor</Link>
+          </div>
+        </div>
+      </header>
+
+      <section className="section">
+        <div className="container">
+          <h2 className="title has-text-centered">Question Papers - For Grades 10, 11 and 12</h2>
+          <div className="notification is-warning has-text-centered">
+            <strong><FaExclamationTriangle /> Note:</strong> We take time to upload new question papers. Our focus is on preparation for success.
+          </div>
+
+          {loading ? <Loader /> : (
+            <div>
+              <div className="notification is-danger has-text-centered">
+                <FaExclamationCircle /> <strong>Status:</strong> <small>1/42 files uploaded</small>
+              </div>
+              <div className="columns is-multiline is-mobile mb-4">
+                <div className="column is-3">
+                  <div className="field has-addons">
+                    <p className="control">
+                      <span className="button is-static"><FaSearch /></span>
+                    </p>
+                    <p className="control is-expanded">
+                      <input className="input" type="text" placeholder="Search papers..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                    </p>
+                  </div>
+                </div>
+                <div className="column is-3">
+                  <div className="select is-fullwidth">
+                    <select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value)}>
+                      <option value="">All Subjects</option>
+                      <option value="Mathematics">Mathematics</option>
+                      <option value="Physical Sciences">Physical Sciences</option>
+                      <option value="Life Sciences">Life Sciences</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="column is-3">
+                  <div className="select is-fullwidth">
+                    <select value={yearFilter} onChange={(e) => setYearFilter(e.target.value)}>
+                      <option value="">All Years</option>
+                      {[...new Set(data.map(doc => doc.yr))].map((yr, idx) => (
+                        <option key={idx} value={yr}>{yr}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="column is-3">
+                  <div className="select is-fullwidth">
+                    <select value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)}>
+                      <option value="">All Topics</option>
+                      {[...new Set(data.map(doc => doc.topic))].map((topic, idx) => (
+                        <option key={idx} value={topic}>{topic}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-          </header>
-<h2 className="justify-content-center align-items-center p-4">Question Papers - For Only grade 10 , 11 and 12.</h2>
-<Container className="mt-5">
-        <div className="alert alert-warning text-center shadow-sm rounded p-4">
-          <strong><FaExclamationTriangle className='fs-4'/> Note:</strong> We do <strong>take time to upload new question papers</strong>. Our focus is on <strong>preparation for success</strong> at top coding schools, universities, and job-readiness programs, by trying to get unique files for you.
-        </div>
-      </Container>
-      {loading? <Loader/>: <Container fluid className="QuestionPapers-section">
-        <hr className='hr' />
-        <Container className="mt-5">
-        <div className="alert alert-danger text-center shadow-sm rounded p-2">
-    
-         <div><FaExclamationCircle className='fs-2'/> {""} <strong>Status:</strong> <small>1/42 file uploaded</small></div>
-        </div>
-      </Container>
-        <Row className="mb-4">
-          <Col md={3}>
-            <InputGroup>
-              <InputGroup.Text><FaSearch /></InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Search papers..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </InputGroup>
-          </Col>
 
-          <Col md={3}>
-            <InputGroup>
-              <InputGroup.Text><FaBook /></InputGroup.Text>
-              <Form.Select value={subjectFilter} onChange={(e) => setSubjectFilter(e.target.value)}>
-                <option value="">All Subjects</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Physical Sciences">Physical Sciences</option>
-                <option value="Life Sciences">Life Sciences</option>
-              </Form.Select>
-            </InputGroup>
-          </Col>
-
-          <Col md={3}>
-            <InputGroup>
-              <InputGroup.Text><FaCalendarAlt /></InputGroup.Text>
-              <Form.Select value={yearFilter} onChange={(e) => setYearFilter(e.target.value)}>
-                <option value="">All Years</option>
-                {[...new Set(data.map(doc => doc.yr))].map((yr, idx) => (
-                  <option key={idx} value={yr}>{yr}</option>
+              <div className="columns is-multiline">
+                {filteredData.slice(0, visibleCount).map((doc, index) => (
+                  <div className="column is-3" key={index}>
+                    <div className="box has-text-centered">
+                      <p className='has-background-dark has-text-white p-2 mb-2'>{doc.name}</p>
+                      {doc.file && (
+                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                          <div style={{ height: '500px' }}>
+                            <Viewer fileUrl={doc.file} plugins={[defaultLayoutPluginInstance]} />
+                          </div>
+                        </Worker>
+                      )}
+                      <div className="mt-2">
+                        <p><strong>Topic:</strong> {doc.topic}</p>
+                        <p><strong>Grade:</strong> {doc.grade}</p>
+                        <p><strong>Year:</strong> {doc.yr}</p>
+                      </div>
+                      <button className="button is-primary is-small mt-2" onClick={() => handleDownload(doc)}>
+                        <FaDownload /> &nbsp;Download Paper
+                      </button>
+                      <small className="has-text-danger">{error ? error.message : null}</small>
+                    </div>
+                  </div>
                 ))}
-              </Form.Select>
-            </InputGroup>
-          </Col>
-
-          <Col md={3}>
-            <InputGroup>
-              <InputGroup.Text><FaFilter /></InputGroup.Text>
-              <Form.Select value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)}>
-                <option value="">All Topics</option>
-                {[...new Set(data.map(doc => doc.topic))].map((topic, idx) => (
-                  <option key={idx} value={topic}>{topic}</option>
-                ))}
-              </Form.Select>
-            </InputGroup>
-          </Col>
-        </Row>
-
-        <Row>
-          {filteredData.slice(0, visibleCount).map((doc, index) => (
-            <Col key={index} xs={12} sm={6} md={3} className="mb-4 d-flex flex-column align-items-center">
-              <p className='text-bg-dark p-2 rounded w-100 text-center'>{doc.name}</p>
-              {doc.file && (
-        <Document
-          file={doc.file}
-          className="d-flex justify-content-center"
-          onLoadError={(error) => console.error("Error loading PDF:", error)}
-        >
-        <Page pageNumber={1} scale={width > 786 ? 1 : 0.6} />
-       </Document>
-
-             )}
-
-              <div className="mt-2 text-center">
-                <small><strong>📘 Topic:</strong> {doc.topic}</small><br />
-                <small><strong>🎓 Grade:</strong> {doc.grade}</small><br />
-                <small><strong>📅 Year:</strong> {doc.yr}</small>
+                {exchange}
               </div>
-              <Button
-  variant="primary"
-  className="mt-2"
-  onClick={() => handleDownload(doc)}
->
-<FaDownload /> &nbsp;Download Paper
-</Button>
-<small className="text-danger">{error ? error.message :null}</small>
 
-            </Col>
-          ))}
-          {exchange}
-        </Row>
-
-        {visibleCount < filteredData.length && (
-          <div className="text-center mt-4">
-            <Button variant="dark" onClick={handleLoadMore}>
-              <FaBookOpen /> &nbsp;Load More
-            </Button>
-          </div>
-        )}
-
-        <hr className='hr' />
-      </Container>}    
-     
+              {visibleCount < filteredData.length && (
+                <div className="has-text-centered mt-4">
+                  <button className="button is-dark" onClick={handleLoadMore}>
+                    <FaBookOpen /> &nbsp;Load More
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 };
 
 export default QuestionPapers;
+
