@@ -1,81 +1,107 @@
 import { useState, useRef, useEffect } from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const GoogleAuth = () => {
-    const [user, setUser] = useState(null);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const dropdownRef = useRef();
+  const [user, setUser] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef();
+  const navigate = useNavigate();
 
-    const handleSuccess = (response) => {
-        const decoded = jwtDecode(response.credential);
-        setUser({
-            name: decoded.name,
-            email: decoded.email,
-            picture: decoded.picture,
-        });
-    };
+  const handleSuccess = (response) => {
+    const decoded = jwtDecode(response.credential);
+    setUser({
+      name: decoded.name,
+      email: decoded.email,
+      picture: decoded.picture,
+    });
 
-    const handleLogout = () => {
-        googleLogout();
-        setUser(null);
+    setTimeout(() => {
+      navigate("/"); // Redirect to homepage
+    }, 1000);
+  };
+
+  const handleLogout = () => {
+    googleLogout();
+    setUser(null);
+    setDropdownOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
+      }
     };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
+  return (
+    <div className="section has-text-right">
+      {!user ? (
+        <div className="buttons is-right">
+          <GoogleLogin
+            onSuccess={handleSuccess}
+            onError={() => console.log("Login Failed")}
+            theme="filled_black"
+            size="large"
+          />
 
-    return (
-        <div className="position-relative">
-            {/* Google Sign-In Button */}
-            {!user ? (
-                <div className="position-absolute top-0 end-0 p-3">
-                    <GoogleLogin
-                        onSuccess={handleSuccess}
-                        onError={() => console.log("Login Failed")}
-                        theme="outline"
-                        size="medium"
-                    />
-                </div>
-            ) : (
-                <div className="position-absolute top-0 end-0 p-3" ref={dropdownRef}>
-                    <img
-                        src={user.picture}
-                        alt="Profile"
-                        className="w-40px h-40px rounded-circle cursor-pointer border-2 border-primary hover:scale-105 transition-transform"
-                        onClick={() => setDropdownOpen((prev) => !prev)}
-                    />
-                    {dropdownOpen && (
-                        <div className="position-absolute mt-2 end-0 w-200px bg-white border border-secondary rounded-3 shadow-lg p-3">
-                            <div className="d-flex align-items-center mb-3">
-                                <img src={user.picture} alt="User" className="w-40px h-40px rounded-circle" />
-                                <div className="ms-2">
-                                    <p className="mb-0 fw-bold text-dark">{user.name}</p>
-                                    <p className="mb-0 text-muted">{user.email}</p>
-                                </div>
-                            </div>
-                            <button
-                                onClick={handleLogout}
-                                className="w-100 btn btn-danger btn-sm"
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    )}
-                </div>
-            )}
+          <button className="button is-light is-static" disabled>
+            <span className="icon">
+              <i className="fab fa-facebook"></i>
+            </span>
+            <span>Facebook (Soon)</span>
+          </button>
+
+          <button className="button is-light is-static" disabled>
+            <span className="icon">
+              <i className="fab fa-github"></i>
+            </span>
+            <span>GitHub (Soon)</span>
+          </button>
         </div>
-    );
+      ) : (
+        <div ref={dropdownRef} className="dropdown is-right is-active">
+          <div className="dropdown-trigger">
+            <img
+              src={user.picture}
+              alt="Profile"
+              className="is-rounded"
+              style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            />
+          </div>
+          {dropdownOpen && (
+            <div className="dropdown-menu" role="menu">
+              <div className="dropdown-content has-background-light p-3">
+                <div className="media mb-3">
+                  <figure className="media-left">
+                    <p className="image is-48x48">
+                      <img className="is-rounded" src={user.picture} alt="User" />
+                    </p>
+                  </figure>
+                  <div className="media-content">
+                    <p className="title is-6">{user.name}</p>
+                    <p className="subtitle is-7">{user.email}</p>
+                  </div>
+                </div>
+                <hr />
+                <button
+                  className="button is-danger is-small is-fullwidth"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GoogleAuth;
