@@ -11,6 +11,7 @@ import {
   isToday,
 } from "date-fns";
 import "bulma/css/bulma.min.css";
+import "./Calendar.css"; // custom styles if needed
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -18,7 +19,6 @@ const Calendar = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    // Simulate loading
     setTimeout(() => {
       setEvents([
         {
@@ -78,16 +78,21 @@ const Calendar = () => {
           has-text-centered
           ${isCurrentMonth ? "has-text-primary" : "has-text-grey-light"}
           ${isTodayDate ? "has-background-success has-text-white" : ""}
+          px-1 py-2
         `;
 
         cells.push(
-          <td key={day} className={cellClass}>
+          <td key={day} className={cellClass} style={{ minWidth: '2rem' }}>
             {format(day, "d")}
           </td>
         );
         day = addDays(day, 1);
       }
-      rows.push(<tr key={day}>{cells}</tr>);
+      rows.push(
+        <tr key={day.toString()} className="animate__animated animate__fadeIn">
+          {cells}
+        </tr>
+      );
     }
     return rows;
   };
@@ -97,20 +102,28 @@ const Calendar = () => {
       <section className="section">
         <h1 className="title has-text-centered">School Calendar</h1>
 
-        <div className="buttons is-centered">
-          <button onClick={handlePrevMonth} className="button is-info">Previous</button>
-          <h2 className="subtitle mx-4">{format(currentDate, "MMMM yyyy")}</h2>
-          <button onClick={handleNextMonth} className="button is-info">Next</button>
+        <div className="buttons is-centered is-flex-wrap-wrap">
+          <button onClick={handlePrevMonth} className="button is-info m-2">
+            Previous
+          </button>
+          <h2 className="subtitle is-flex is-align-items-center m-2">
+            {format(currentDate, "MMMM yyyy")}
+          </h2>
+          <button onClick={handleNextMonth} className="button is-info m-2">
+            Next
+          </button>
         </div>
 
         <div className="box">
-          <table className="table is-bordered is-striped is-fullwidth">
-            <thead>{renderDays()}</thead>
-            <tbody>{renderCells()}</tbody>
-          </table>
+          <div className="table-container">
+            <table className="table is-bordered is-striped is-fullwidth is-hoverable">
+              <thead>{renderDays()}</thead>
+              <tbody>{renderCells()}</tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="box">
+        <div className="box animate__animated animate__fadeInUp">
           <h2 className="subtitle">School Terms</h2>
           <ul>
             {schoolTerms.map(({ term, start, end }) => (
@@ -121,14 +134,14 @@ const Calendar = () => {
           </ul>
         </div>
 
-        <div className="box">
+        <div className="box animate__animated animate__fadeInUp animate__delay-1s">
           <h2 className="subtitle">Upcoming Events & Assignments</h2>
           {loading ? (
-            <button className="button is-primary is-loading">Loading</button>
+            <progress className="progress is-small is-info" max="100">Loading</progress>
           ) : (
             <ul>
               {events.map((event) => (
-                <li key={event.title}>
+                <li key={event.title} className="mb-2">
                   <strong>{event.title}</strong> - {event.date}
                   <p>{event.description}</p>
                 </li>
