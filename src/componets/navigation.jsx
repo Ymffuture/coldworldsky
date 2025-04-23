@@ -7,6 +7,7 @@ import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
 import Modal from "react-bootstrap/Modal";
 import IconCloud  from "../custom/IconCloud/IconCloud";
+import Themed from "./ThemeToggle";
 import {
   FaSearch,
   FaCalendarCheck,
@@ -702,7 +703,7 @@ const toggleSwitch = () => {
                 <Tooltip id="my-theme-menu" />
               </label>
             </div>
-
+<Themed/>
           </>
         ) : (
          <CssLoader/>
