@@ -13,5 +13,17 @@ code {
     monospace;
 }
 
+/* index.css or global.css */
+:root.has-background-black {
+  background-color: #121212;
+  color: white;
+}
+
+:root.has-background-white {
+  background-color: white;
+  color: black;
+}
+
+
 
 
