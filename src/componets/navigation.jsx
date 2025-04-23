@@ -686,24 +686,7 @@ const toggleSwitch = () => {
             </div>
 
             {/* Theme Toggle */}
-            <div className="theme-toggle mt-1 p-4 mb-4 d-flex">
-              <label class="switch">
-
-                <input
-                  className="input"
-                  type="checkbox"
-
-                />
-                <span
-                  class="slider round"
-                  data-tooltip-id="my-theme-menu"
-                  data-tooltip-content={`Theme set to: ${darkMode ? "Light Mode" : "Dark Mode"}`}
-                  onClick={handleThemeToggle}
-                ></span>
-                <Tooltip id="my-theme-menu" />
-              </label>
-            </div>
-<Themed/>
+                <Themed/>
           </>
         ) : (
          <CssLoader/>
