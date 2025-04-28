@@ -1,15 +1,13 @@
-
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
 import { FaBan } from "react-icons/fa";
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
-  const toastId = useRef(`unauth-${Math.random().toString(36).substring(2,8)}`).current;
+  const navigate = useNavigate();
+  const toastId = useRef(`unauth-${Math.random().toString(36).substring(2, 8)}`).current;
   const googleCred = localStorage.getItem("google_credential");
   const authOK = isAuthenticated || Boolean(googleCred);
-
-  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
     if (!authOK && !toast.isActive(toastId)) {
@@ -31,27 +29,21 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
       });
       console.info("ProtectedRoute: unauthorized, scheduling redirect...");
 
-      // Delay redirect by 200ms
       setTimeout(() => {
-        setShouldRedirect(true);
-      }, 200);
+        navigate("/user-home-page/sign-in", { replace: true });
+      }, 300); // Delay a bit longer so toast fully shows
     }
-  }, [authOK, toastId]);
+  }, [authOK, navigate, toastId]);
 
-  if (shouldRedirect) {
+  if (!authOK) {
     return (
       <>
         <div role="alert" aria-live="assertive" className="sr-only">
           Unauthorized—redirecting to sign-in
         </div>
-        <Navigate to="/user-home-page/sign-in" replace />
+        {/* Optionally show a loading spinner here if you want */}
       </>
     );
-  }
-
-  if (!authOK) {
-    // While waiting for timeout to finish
-    return null;
   }
 
   return children;
