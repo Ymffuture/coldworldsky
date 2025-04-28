@@ -1,16 +1,15 @@
-// ProtectedRoute.jsx
-import React, { useEffect, useRef } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 import { FaBan } from "react-icons/fa";
 
 const ProtectedRoute = ({ isAuthenticated, children }) => {
-  // Generate a stable toast ID
   const toastId = useRef(`unauth-${Math.random().toString(36).substring(2,8)}`).current;
-
-  // Also allow Google login: store their credential when they sign in
   const googleCred = localStorage.getItem("google_credential");
   const authOK = isAuthenticated || Boolean(googleCred);
+
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
     if (!authOK && !toast.isActive(toastId)) {
@@ -18,7 +17,7 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
         position: "top-right",
         duration: 4000,
         id: toastId,
-        icon: <FaBan aria-hidden="true"/>,
+        icon: <FaBan aria-hidden="true" />,
         ariaLive: "assertive",
         style: {
           background: "#1E2227",
@@ -30,14 +29,18 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
           boxShadow: "0 0 10px rgba(255,215,0,0.3)",
         },
       });
-      console.info("ProtectedRoute: unauthorized, redirecting");
+      console.info("ProtectedRoute: unauthorized, scheduling redirect...");
+
+      // Delay redirect by 200ms
+      setTimeout(() => {
+        setShouldRedirect(true);
+      }, 200);
     }
   }, [authOK, toastId]);
 
-  if (!authOK) {
+  if (shouldRedirect) {
     return (
       <>
-        {/* for screen‐readers */}
         <div role="alert" aria-live="assertive" className="sr-only">
           Unauthorized—redirecting to sign-in
         </div>
@@ -46,8 +49,12 @@ const ProtectedRoute = ({ isAuthenticated, children }) => {
     );
   }
 
+  if (!authOK) {
+    // While waiting for timeout to finish
+    return null;
+  }
+
   return children;
 };
 
 export default ProtectedRoute;
-
