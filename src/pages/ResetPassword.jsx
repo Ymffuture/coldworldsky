@@ -1,137 +1,95 @@
-import { useState } from "react";
+// ResetPassword.jsx
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {
-  Container,
-  Form,
-  Button,
-  Row,
-  Col,
-  Toast,
-  ToastContainer,
-  InputGroup,
-} from "react-bootstrap";
+import "bulma/css/bulma.min.css";
+import "antd/dist/reset.css";
+import { Form, Input, Button, message } from "antd";
 import { URL_BACKEND_HTTPS } from "../../Urls";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // React Icons
-
-// Yup validation schema
-const schema = yup.object().shape({
-  password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Confirm Password is required"),
-});
 
 const ResetPassword = () => {
+  const [loading, setLoading] = useState(false);
   const { token } = useParams();
   const navigate = useNavigate();
-  const [toast, setToast] = useState({ show: false, type: "", message: "" });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [form] = Form.useForm();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const showToast = (type, message) => {
-    setToast({ show: true, type, message });
-    setTimeout(() => setToast({ show: false, type: "", message: "" }), 3500);
-  };
-
-  const onSubmit = async (data) => {
+  const onFinish = async ({ password }) => {
+    setLoading(true);
     try {
       const res = await axios.post(
         `${URL_BACKEND_HTTPS}/api/auth/reset-password/${token}`,
-        { newPassword: data.password }
+        { password }
       );
-      showToast("success", res.data.message);
+      message.success(res.data.message, 3);
       setTimeout(() => navigate("/user-home-page/sign-in"), 3000);
     } catch (err) {
-      showToast("danger", err.response?.data?.message || "Something went wrong");
+      message.error(err.response?.data?.message || "Something went wrong", 3);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center min-vh-100">
-      <Row className="w-100 justify-content-center">
-        <Col xs={12} md={6}>
-          <h3 className="text-center text-primary mb-4">Reset Password</h3>
+    <section className="section">
+      <div className="container">
+        <div className="columns is-centered">
+          <div className="column is-6-tablet is-4-desktop">
+            <h2 className="title has-text-centered has-text-primary">Reset Password</h2>
+            <Form
+              form={form}
+              layout="vertical"
+              onFinish={onFinish}
+              requiredMark={false}
+            >
+              <Form.Item
+                name="password"
+                label="New Password"
+                rules={[
+                  { required: true, message: "Please input your new password" },
+                  { min: 6, message: "Password must be at least 6 characters" },
+                ]}
+                hasFeedback
+              >
+                <Input.Password placeholder="Enter new password" />
+              </Form.Item>
 
-          <Form onSubmit={handleSubmit(onSubmit)} className="p-4 border rounded shadow-sm bg-white">
-            {/* Password */}
-            <Form.Group className="mb-3">
-              <Form.Label>New Password</Form.Label>
-              <InputGroup>
-                <Form.Control
-                  type={showPassword ? "text" : "password"}
-                  {...register("password")}
-                  isInvalid={!!errors.password}
-                />
-                <Button variant="outline-secondary" onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+              <Form.Item
+                name="confirmPassword"
+                label="Confirm Password"
+                dependencies={["password"]}
+                hasFeedback
+                rules={[
+                  { required: true, message: "Please confirm your password" },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(new Error("Passwords do not match"));
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password placeholder="Confirm new password" />
+              </Form.Item>
+
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="is-fullwidth"
+                  loading={loading}
+                >
+                  Reset Password
                 </Button>
-                <Form.Control.Feedback type="invalid">
-                  {errors.password?.message}
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-
-            {/* Confirm Password */}
-            <Form.Group className="mb-3">
-              <Form.Label>Confirm Password</Form.Label>
-              <InputGroup>
-                <Form.Control
-                  type={showConfirmPassword ? "text" : "password"}
-                  {...register("confirmPassword")}
-                  isInvalid={!!errors.confirmPassword}
-                />
-                <Button variant="outline-secondary" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                </Button>
-                <Form.Control.Feedback type="invalid">
-                  {errors.confirmPassword?.message}
-                </Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-
-            <Button variant="primary" type="submit" className="w-100" disabled={isSubmitting}>
-              {isSubmitting ? "Resetting..." : "Reset Password"}
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-
-      {/* Toast Notification */}
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          bg={toast.type}
-          show={toast.show}
-          onClose={() => setToast({ show: false })}
-          delay={5000}
-          autohide
-        >
-          <Toast.Header closeButton>
-            <strong className="me-auto text-capitalize">{toast.type === "success" ? "Success" : "Error"}</strong>
-          </Toast.Header>
-          <Toast.Body className="text-dark">{toast.message}</Toast.Body>
-        </Toast>
-      </ToastContainer>
-    </Container>
+              </Form.Item>
+            </Form>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
 export default ResetPassword;
-
-
 
