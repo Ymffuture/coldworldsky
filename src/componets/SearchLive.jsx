@@ -1,7 +1,7 @@
 // components/LiveSearch.js
 import React, { useState } from 'react';
 import Fuse from 'fuse.js';
-import { Modal, Button, Form, ListGroup } from 'react-bootstrap';
+import { Button, Form, ListGroup } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const data = [
@@ -20,19 +20,12 @@ const fuse = new Fuse(data, {
 export default function LiveSearch() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   const handleChange = (e) => {
     const value = e.target.value;
     setQuery(value);
     const result = fuse.search(value);
     setResults(result.map((r) => r.item));
-  };
-
-  const handleSelect = (item) => {
-    setSelectedItem(item);
-    setShowModal(true);
   };
 
   return (
@@ -57,34 +50,24 @@ export default function LiveSearch() {
                 <ListGroup.Item
                   key={index}
                   action
-                  onClick={() => handleSelect(item)}
                   className="d-flex justify-content-between align-items-center"
                 >
                   <span>
                     <strong>{item.title}</strong> <small className="text-muted">({item.type})</small>
                   </span>
-                  <i className="bi bi-arrow-up-right-circle"></i>
+                  <Button
+                    variant="link"
+                    onClick={() => window.open(item.link, '_blank')}
+                  >
+                    Open
+                  </Button>
                 </ListGroup.Item>
               ))}
             </ListGroup>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedItem?.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p><strong>Type:</strong> {selectedItem?.type}</p>
-          <Button
-            variant="primary"
-            onClick={() => window.open(selectedItem?.link, '_blank')}
-          >
-            Open in new tab
-          </Button>
-        </Modal.Body>
-      </Modal>
     </div>
   );
 }
+
