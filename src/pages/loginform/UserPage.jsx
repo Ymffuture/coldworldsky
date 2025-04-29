@@ -50,18 +50,33 @@ const UserPage = () => {
         <p>
           <strong>Tip:</strong> Double-check your email before logging in.
         </p>
-        <mark className="has-background-warning-light p-1 mt-2 mb-3 is-block">Don’t have an email address?</mark>
+      
 
         <div className="buttons">
-          <motion.button
-            className="button is-link is-rounded"
-            onClick={create}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Create Email Address
-          </motion.button>
-        </div>
+  <motion.button
+    className="button is-rounded"
+    onClick={create}
+    whileHover={{
+      scale: 1.05,
+      boxShadow: "0 0 10px #1E90FF, 0 0 20px #1E90FF",
+    }}
+    whileTap={{ scale: 0.95 }}
+    style={{
+      background: "transparent",
+      border: "none",
+      outline: "2px solid #1E90FF",
+      color: "#1E90FF",
+      padding: "0.75rem 1.5rem",
+      fontSize: "1.1rem",
+      fontWeight: "600",
+      transition: "all 0.3s ease-in-out",
+      cursor: "pointer",
+    }}
+  >
+    Create Email Address
+  </motion.button>
+</div>
+
       </motion.section>
 
       {/* Security Tips */}
