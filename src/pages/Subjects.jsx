@@ -68,61 +68,64 @@ const Subjects = () => {
         />
 
         {/* Horizontal Scroll Cards */}
-        <animated.div
-          style={{ ...fadeSlide }}
-          ref={scrollRef}
-          className="columns is-flex is-flex-direction-row is-flex-wrap-nowrap"
+<div style={{ overflowX: "auto", overflowY: "hidden", maxWidth: "100%", paddingBottom: "1rem" }}>
+  <animated.div
+    style={{ ...fadeSlide }}
+    ref={scrollRef}
+    className="columns is-flex is-flex-direction-row is-flex-wrap-nowrap"
+  >
+    {previousWork.map((subject) => (
+      <div key={subject.id} className="column is-narrow">
+        <Card
+          hoverable
+          style={{
+            width: 280,
+            minHeight: 250,
+            borderRadius: "20px",
+            background: "linear-gradient(135deg, #F0F8FF, #E6F9EC)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+            margin: "0 10px",
+            position: "relative",
+            overflow: "hidden",
+          }}
+          bodyStyle={{ padding: "1.5rem" }}
         >
-          {previousWork.map((subject) => (
-            <div key={subject.id} className="column is-narrow">
-              <Card
-                hoverable
-                style={{
-                  width: 280,
-                  minHeight: 250,
-                  borderRadius: "20px",
-                  background: "linear-gradient(135deg, #F0F8FF, #E6F9EC)",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                  margin: "0 10px",
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-                bodyStyle={{ padding: "1.5rem" }}
-              >
-                <div className="has-text-centered">
-                  <h3 className="title is-5 has-text-primary">{subject.name}</h3>
-                  <p className="is-size-4" style={{ color: "#1E90FF" }}>
-                    {subject.icon}
-                  </p>
-                  <Link to={subject.link} className="button is-link is-light is-small mt-3">
-                    Learn More - R{subject.price}
-                  </Link>
-                </div>
+          <div className="has-text-centered">
+            <h3 className="title is-5 has-text-primary">{subject.name}</h3>
+            <p className="is-size-4" style={{ color: "#1E90FF" }}>
+              {subject.icon}
+            </p>
+            <Link to={subject.link} className="button is-link is-light is-small mt-3">
+              Learn More - R{subject.price}
+            </Link>
+          </div>
 
-                {/* Ribbon */}
-                <span
-                  style={{
-                    position: "absolute",
-                    top: "0.5rem",
-                    right: "-0.5rem",
-                    backgroundColor: "#FFD700",
-                    color: "#000",
-                    padding: "0.3rem 0.8rem",
-                    borderRadius: "1rem",
-                    fontWeight: "bold",
-                    fontSize: "0.75rem",
-                    boxShadow: "0px 2px 6px rgba(0,0,0,0.2)",
-                    transform: "rotate(10deg)",
-                  }}
-                >
-                  <FaStar style={{ marginRight: "4px", color: "#fff" }} />
-                  25% Off
-                </span>
-              </Card>
-            </div>
-          ))}
-        </animated.div>
+          {/* Ribbon */}
+          <span
+            style={{
+              position: "absolute",
+              top: "0.5rem",
+              right: "-0.5rem",
+              backgroundColor: "#FFD700",
+              color: "#000",
+              padding: "0.3rem 0.8rem",
+              borderRadius: "1rem",
+              fontWeight: "bold",
+              fontSize: "0.75rem",
+              boxShadow: "0px 2px 6px rgba(0,0,0,0.2)",
+              transform: "rotate(10deg)",
+            }}
+          >
+            <FaStar style={{ marginRight: "4px", color: "#fff" }} />
+            25% Off
+          </span>
+        </Card>
+      </div>
+    ))}
+  </animated.div>
+</div>
 
+        
         {/* Loader or Outlet */}
         <div className="has-text-centered mt-6">
           {onLoading ? (
