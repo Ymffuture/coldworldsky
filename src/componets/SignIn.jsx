@@ -127,7 +127,7 @@ const SignIn = ({ setIsAuthenticated }) => {
           <i className={!password ? "bi bi-lock-fill text-danger" : "bi bi-unlock-fill text-success slide"}></i> {""}
           Sign In with your Email to get more features.
         </h3>
-
+<br/>
         <div style={{ marginBottom: '.8rem' }} className="form-group">
           <input
             type="email"
