@@ -47,9 +47,9 @@ const Header = (props) => {
                     className="btn btn-lg page-scroll"
                   >
                     <Button
-                      type="primary"
+                    
                       size="large"
-                      className="is-rounded"
+                      
                       style={{ padding: "10px 20px", fontSize: "16px" }}
                     >
                       {isAuthenticated ? "Learn more" : "Get Started"}
