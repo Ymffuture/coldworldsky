@@ -123,7 +123,7 @@ function Register() {
         <i className={password ? "bi bi-lock-fill text-danger slide" : "bi bi-unlock-fill text-success"}></i> {""}
         Create an account and get more features.
       </h3>
-
+<br/>
       <form onSubmit={handleSubmit}>
 
         {/* Full Name input */}
