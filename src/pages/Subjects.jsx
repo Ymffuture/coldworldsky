@@ -68,6 +68,8 @@ const Subjects = () => {
         />
 
         {/* Horizontal Scroll Cards */}
+        <div style={{ overflowX: "auto", overflowY: "hidden", maxWidth: "100%", paddingBottom: "1rem" }}>
+  
         <animated.div
           style={{ ...fadeSlide }}
           ref={scrollRef}
@@ -122,7 +124,7 @@ const Subjects = () => {
             </div>
           ))}
         </animated.div>
-
+</div>
         {/* Loader or Outlet */}
         <div className="has-text-centered mt-6">
           {onLoading ? (
