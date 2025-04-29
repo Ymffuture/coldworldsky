@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Subjects from "../pages/Subjects";
 import { useSpring, animated } from '@react-spring/web';
+import { Collapse } from 'antd';
 import { FaExclamationTriangle, FaUniversity } from "react-icons/fa";
-import Accordion from "react-bootstrap/Accordion";
+import 'bulma/css/bulma.min.css'; // Import Bulma
+import 'antd/dist/reset.css'; // Import Ant Design reset
+
+const { Panel } = Collapse;
 
 const Tutor = () => {
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -63,11 +67,11 @@ const Tutor = () => {
   }, []);
 
   return (
-    <div id="tutor" className="text-center" role="region" aria-labelledby="tutor-section">
-      <div className="container">
-        <div className="section-title" id="tutor-section">
-          <h2>Tutor FUTURE_</h2>
-          <p className="text-note p-4 rounded bg-light shadow-sm">
+    <div id="tutor" className="section has-background-light" role="region" aria-labelledby="tutor-section">
+      <div className="container is-max-desktop">
+        <div className="content has-text-centered" id="tutor-section">
+          <h2 className="title is-2 has-text-weight-bold has-text-primary">Tutor FUTURE_</h2>
+          <p className="notification is-light is-rounded">
             Unlock your potential with our tailored classes! <br />
             <strong>High school learners</strong>: Enroll in <strong>TWO subjects</strong> for only <strong>R400.00</strong> per month. <br />
             Let's shape your future together.
@@ -76,12 +80,12 @@ const Tutor = () => {
         </div>
 
         {isTransitioning && (
-          <div aria-live="polite">
-            <div className="transition-animation"></div>
-            <div className="transition-animation2">
-              <p className="text-secondary">Please wait while we load the content...</p>
-              <p className="rounded text-bg-danger g-3 p-3">
-                <FaExclamationTriangle className="text-warning me-2" />
+          <div aria-live="polite" className="has-text-centered">
+            <div className="loader-wrapper py-6">
+              <Loader />
+              <p className="has-text-grey">Please wait while we load the content...</p>
+              <p className="notification is-danger is-light mt-4">
+                <FaExclamationTriangle className="mr-2" />
                 We’re having trouble showing some Department of Education content.
               </p>
             </div>
@@ -89,100 +93,89 @@ const Tutor = () => {
         )}
 
         <animated.div style={fade}>
-          <div className="mt-5">
-            <p className="text-bg-primary p-4 shadow-sm rounded">
-              <FaUniversity className="me-2" />
-              We assist with bursaries and university applications for current learners.
-              <br />
+          <div className="section">
+            <p className="notification is-primary is-light is-rounded">
+              <FaUniversity className="mr-2" />
+              We assist with bursaries and university applications for current learners. <br />
               <strong>FREE</strong> assistance for up to <strong>TWO school applications</strong>.
             </p>
 
-            <div className="portfolio-items mt-4">
-              <h3 className="text-primary mb-4">
+            <div className="mt-5">
+              <h3 className="title is-4 has-text-primary">
                 Applications Open: June - August (Grade 11), September (Grade 12)
               </h3>
-              <img
-                src="../img/unisa.jpg"
-                alt="UNISA"
-                className="img-fluid rounded shadow-sm"
-                style={{
-                  height: "300px",
-                  width: "100%",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
-              />
+              <figure className="image is-3by1">
+                <img
+                  src="../img/unisa.jpg"
+                  alt="UNISA"
+                  style={{
+                    objectFit: "cover",
+                    borderRadius: "20px",
+                    boxShadow: "0 4px 30px rgba(0,0,0,0.1)",
+                  }}
+                />
+              </figure>
             </div>
-          </div>
 
-          {/* FAQ Section */}
-          <div className="mt-5 text-start">
-            <h4 className="text-primary mb-3">Frequently Asked Questions</h4>
-            <Accordion className="shadow-sm rounded" alwaysOpen>
-  <Accordion.Item eventKey="0" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
-    <Accordion.Header style={{
-      fontWeight: 'bold',
-      backgroundColor: '#f0f8ff',
-      color: '#1e90ff',
-      borderBottom: '1px solid #dcdcdc',
-      padding: '10px',
-    }}>
-      How much does tutoring cost?
-    </Accordion.Header>
-    <Accordion.Body style={{
-      backgroundColor: '#ffffff',
-      padding: '15px',
-      border: '1px solid #dcdcdc',
-      zIndex: 999999,
-      position: 'relative',
-    }}>
-      Tutoring is R400.00 per month for two high school subjects.
-    </Accordion.Body>
-  </Accordion.Item>
+            {/* FAQ Section */}
+            <div className="section pt-6">
+              <h4 className="title is-5 has-text-primary mb-4">Frequently Asked Questions</h4>
 
-  <Accordion.Item eventKey="1" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
-    <Accordion.Header style={{
-      fontWeight: 'bold',
-      backgroundColor: '#f0f8ff',
-      color: '#1e90ff',
-      borderBottom: '1px solid #dcdcdc',
-      padding: '10px',
-    }}>
-      Do you help with university applications?
-    </Accordion.Header>
-    <Accordion.Body style={{
-      backgroundColor: '#ffffff',
-      padding: '15px',
-      border: '1px solid #dcdcdc',
-      zIndex: 99999,
-      position: 'relative',
-    }}>
-      Yes, we offer free help with up to two university applications.
-    </Accordion.Body>
-  </Accordion.Item>
+              <Collapse
+                accordion
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  boxShadow: "0 8px 24px rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                <Panel
+                  header="How much does tutoring cost?"
+                  key="1"
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    backgroundColor: "#f0f8ff",
+                    color: "#1e90ff",
+                  }}
+                >
+                  <p style={{ padding: "15px", background: "#ffffff" }}>
+                    Tutoring is R400.00 per month for two high school subjects.
+                  </p>
+                </Panel>
 
-  <Accordion.Item eventKey="2" style={{ marginBottom: '10px', overflow: 'hidden', zIndex: 2 }}>
-    <Accordion.Header style={{
-      fontWeight: 'bold',
-      backgroundColor: '#f0f8ff',
-      color: '#1e90ff',
-      borderBottom: '1px solid #dcdcdc',
-      padding: '10px',
-    }}>
-      When can I apply?
-    </Accordion.Header>
-    <Accordion.Body style={{
-      backgroundColor: '#ffffff',
-      padding: '15px',
-      border: '1px solid #dcdcdc',
-      zIndex: 99999,
-      position: 'relative',
-    }}>
-      Applications open from June to August (Grade 11) and in September (Grade 12).
-    </Accordion.Body>
-  </Accordion.Item>
-</Accordion>
+                <Panel
+                  header="Do you help with university applications?"
+                  key="2"
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    backgroundColor: "#f0f8ff",
+                    color: "#1e90ff",
+                  }}
+                >
+                  <p style={{ padding: "15px", background: "#ffffff" }}>
+                    Yes, we offer free help with up to two university applications.
+                  </p>
+                </Panel>
 
+                <Panel
+                  header="When can I apply?"
+                  key="3"
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "16px",
+                    backgroundColor: "#f0f8ff",
+                    color: "#1e90ff",
+                  }}
+                >
+                  <p style={{ padding: "15px", background: "#ffffff" }}>
+                    Applications open from June to August (Grade 11) and in September (Grade 12).
+                  </p>
+                </Panel>
+              </Collapse>
+            </div>
           </div>
         </animated.div>
       </div>
@@ -191,3 +184,4 @@ const Tutor = () => {
 };
 
 export default Tutor;
+
