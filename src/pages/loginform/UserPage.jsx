@@ -80,7 +80,7 @@ const UserPage = () => {
       </motion.section>
 
       {/* Security Tips */}
-      <motion.section
+      {/* <motion.section
         className="box mt-5"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -92,7 +92,7 @@ const UserPage = () => {
           <li>• Enable <strong>2FA</strong> for maximum security.</li>
           <li>• Check spam/junk folders for password reset emails.</li>
         </ul>
-      </motion.section>
+      </motion.section> */} 
 
       {/* Route Injection */}
       <Outlet />
