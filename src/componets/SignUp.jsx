@@ -176,20 +176,24 @@ function Register() {
         </div>
 
         {/* Error Section */}
-        <p className={`${color}`}>
-          {handleError ? (
-            <div className="text-start">
-              <i className="bi bi-info-circle-fill text-info"></i> <b className="text-info">Password requirements:</b>
-              <ul className="text-start">
-                <li><i className="bi bi-x"></i> Uppercase</li>
-                <li><i className="bi bi-x"></i> Lowercase</li>
-                <li><i className="bi bi-x"></i> Number</li>
-                <li><i className="bi bi-x"></i> Special character</li>
-                <li><i className="bi bi-x"></i> Minimum 8 characters</li>
-              </ul>
-            </div>
-          ) : null}
-        </p>
+        <p className={`box has-background-light has-text-dark p-4 ${color}`}>
+  {handleError ? (
+    <div className="has-text-left">
+      <span className="icon has-text-info">
+        <i className="bi bi-info-circle-fill"></i>
+      </span>
+      <strong className="has-text-info ml-1">Password requirements:</strong>
+      <ul className="mt-3 ml-4" style={{ listStyleType: 'disc' }}>
+        <li className="mb-1"><i className="bi bi-x-circle has-text-danger mr-2"></i>Uppercase</li>
+        <li className="mb-1"><i className="bi bi-x-circle has-text-danger mr-2"></i>Lowercase</li>
+        <li className="mb-1"><i className="bi bi-x-circle has-text-danger mr-2"></i>Number</li>
+        <li className="mb-1"><i className="bi bi-x-circle has-text-danger mr-2"></i>Special character</li>
+        <li className="mb-1"><i className="bi bi-x-circle has-text-danger mr-2"></i>Minimum 8 characters</li>
+      </ul>
+    </div>
+  ) : null}
+</p>
+
 
         {/* Confirm Password input */}
         <div style={{ marginBottom: "1rem" }} className="formreg form-group">
