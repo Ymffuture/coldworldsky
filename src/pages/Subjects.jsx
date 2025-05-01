@@ -40,7 +40,7 @@ const Subjects = () => {
   };
 
   return (
-    <section className="section has-background-light" style={{ position: "relative", overflow: "hidden" }}>
+    <section className="section has-background-light">
       <div className="container">
         <div className="has-text-centered mb-5">
           <h1 className="title is-3 has-text-primary">Our Subjects</h1>
