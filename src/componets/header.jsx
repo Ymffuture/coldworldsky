@@ -61,7 +61,7 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-<a href="https://www.classmarker.com/online-test/start/?quiz=jt3613735100bace&cm_user_id=12048850820&cm_e=futurekgomotso@gmail.com&cm_access_list_item=204830463940" >wethinkcode_</a>
+
       {/* Animated Background */}
       <animated.div
         style={{
