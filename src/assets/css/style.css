@@ -286,8 +286,8 @@ a:focus,
 }
 
 .intro .overlay {
-  background: linear-gradient(-117deg, #000 0%, #0e1013bb 100%);
-  /* background: #23272E ; */
+
+   background: #333 ; 
 }
 
 .intro h1 {
