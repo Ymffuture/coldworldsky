@@ -183,7 +183,7 @@ const toggleSwitch = () => {
       icon: <FaLocationArrow className="icon-bottom" />,
     },
     {
-      path: "/tutoring/ApplicationForm",
+      path: "/Application-form",
       label: "Apply to be a Tutor",
       icon: <FaRegAddressCard className="icon-bottom" />,
     },
