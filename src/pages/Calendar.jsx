@@ -1,4 +1,3 @@
-// Calendar.jsx
 import React, { useState, useEffect } from "react";
 import {
   format, startOfMonth, endOfMonth, startOfWeek, endOfWeek,
@@ -104,7 +103,7 @@ const Calendar = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="hero-body has-text-white" style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: "8px", height:"20vh"}}>
+        <div className="hero-body has-text-white" style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: "8px", height:"100vh"}}>
           <div className="container has-text-centered">
             <h1 className="title is-2 has-text-white">
               <FaCalendarAlt /> School Calendar
@@ -137,17 +136,31 @@ const Calendar = () => {
       <Tooltip id="dayTooltip" />
 
       {/* Event List */}
-      <div className="content mt-6">
-        <h3 className="title is-4">Upcoming Events</h3>
-        <ul>
-          {events.map((e, i) => (
-            <li key={i}>
-              <strong>{e.title}</strong> on{" "}
-              <span className="tag is-info">{e.date}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="content mt-6" style={{ background: '#fff', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
+  <h3 className="title is-4" style={{ textAlign: 'center', color: '#1E90FF', marginBottom: '1.5rem' }}>
+    Upcoming Events
+  </h3>
+  <ul style={{ listStyle: 'none', padding: 0 }}>
+    {events.map((e, i) => (
+      <li key={i} style={{ marginBottom: '1.25rem', display: 'flex', alignItems: 'center' }}>
+        <span
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            backgroundColor: '#FFD700',
+            marginRight: '10px',
+          }}
+        ></span>
+        <div>
+          <strong style={{ fontSize: '1.1rem', color: '#363636' }}>{e.title}</strong> on{" "}
+          <span className="tag is-info" style={{ fontSize: '0.9rem', padding: '0.4em 0.7em' }}>{e.date}</span>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
     </div>
   );
 };
