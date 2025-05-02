@@ -9,7 +9,7 @@ const Counter = () => {
 
   useEffect(() => {
     const fetchCount = async () => {
-      const counterRef = doc(db, "stats", "pageVisits");
+      const counterRef = doc(app, "stats", "pageVisits");
 
       try {
         const counterSnap = await getDoc(counterRef);
