@@ -25,35 +25,84 @@ const Tutor = () => {
   });
 
   const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much does tutoring cost?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tutoring is R400.00 per month for two high school subjects.",
-        },
-      },
-      {
-        "@type": "Question",
-        "name": "Do you help with university applications?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we offer free help with up to two university applications.",
-        },
-      },
-      {
-        "@type": "Question",
-        "name": "When can I apply?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Applications open from June to August (Grade 11) and in September (Grade 12).",
-        },
-      },
-    ],
-  };
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does tutoring cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutoring is R400.00 per month for two high school subjects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you help with university applications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we offer free help with up to two university applications."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When can I apply?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Applications open from June to August (Grade 11) and in September (Grade 12)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which subjects are covered?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We cover Mathematics, Physical Sciences, Life Sciences, Accounting, English, and Computer Applications Technology."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is tutoring available online or in-person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer both online and in-person tutoring depending on your location and preferences."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer extra lessons for Grade 12?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we provide focused revision and exam preparation for Grade 12 learners."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get feedback on my academic progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we provide monthly progress reports and feedback for each learner."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your tutors qualified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All tutors are vetted, trained, and qualified in their respective subjects with strong academic records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I contact Quorvex Institute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can reach us via email at info@quorvexinstitute.vercel.app or use the contact form on our website."
+      }
+    }
+  ]
+};
+
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -70,7 +119,7 @@ const Tutor = () => {
     <div id="tutor" className="section has-background-light" role="region" aria-labelledby="tutor-section">
       <div className="container is-max-desktop">
         <div className="content has-text-centered" id="tutor-section">
-          <h2 className="title is-2 has-text-weight-bold has-text-primary">Tutor FUTURE_</h2>
+          <h2 className="title is-2 has-text-weight-bold">Tutor FUTURE_</h2>
           <p className="notification is-light is-rounded">
             Unlock your potential with our tailored classes! <br />
             <strong>High school learners</strong>: Enroll in <strong>TWO subjects</strong> for only <strong>R400.00</strong> per month. <br />
