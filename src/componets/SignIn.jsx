@@ -10,7 +10,7 @@ import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from './Spinner'
 import { GoogleLogin } from "@react-oauth/google"; // Google login import
 import { jwtDecode } from "jwt-decode";
-
+import {Helmet} from "react-helmet" 
 const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,7 +71,14 @@ const SignIn = ({ setIsAuthenticated }) => {
       });
     }
   };
-
+  
+  function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
+    });
+  }
+  
   const handleToggle = () => {
     if (type === 'password') {
       setIcon('');
@@ -121,6 +128,12 @@ const SignIn = ({ setIsAuthenticated }) => {
   return (
     <div style={{ maxWidth: '600px', margin: 'auto', height: '130vh', padding: '1rem', textAlign: 'center' }} className='signin container containerAB'>
       <form onSubmit={handleLogin}>
+        <Helmet>
+        <head>
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo"></script>
+  <!-- Your code -->
+</head>
+        </Helmet>
         <h3 className=' text-bg-dark p-2 rounded-1'>
           <i className={!password ? "bi bi-lock-fill text-danger" : "bi bi-unlock-fill text-success slide"}></i> {""}
           Sign In with your Email to get more features.
