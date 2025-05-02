@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Button, Upload, Select, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { db } from '../firebase';
+import { db } from './firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 
