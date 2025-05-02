@@ -98,6 +98,7 @@ const path = window.location.pathname;
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/application-form" element={<TutorApplyForm />} />
             <Route path="/form-admin" element={<AdminPanel />} />
             <Route path="/post-ads" element={<Post />} />
             <Route path="/location" element={<Location />} />
