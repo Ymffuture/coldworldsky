@@ -104,7 +104,7 @@ const Calendar = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className="hero-body has-background-black-bis has-text-white" style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: "8px" }}>
+        <div className="hero-body has-text-white" style={{ backgroundColor: "rgba(0,0,0,0.4)", borderRadius: "8px" }}>
           <div className="container has-text-centered">
             <h1 className="title is-2">
               <FaCalendarAlt /> School Calendar
