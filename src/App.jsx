@@ -8,7 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
-import Admin from "./pages/AdminPanel"
+import AdminPanel from "./pages/AdminPanel"
 // import Layout from "./Layout";
 import Loader from './componets/PageLoader';
 // Lazy-loaded Pages
