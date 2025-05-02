@@ -6,7 +6,7 @@
  */
 :root,
 [data-bs-theme=light] {
-  --bs-blue: #FF5001;
+  --bs-blue: #000000;
   --bs-indigo: #ff5101d5;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
@@ -93,7 +93,7 @@
   --bs-tertiary-bg: #f8f9fa;
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: inherit;
-  --bs-link-color: #FF5001;
+  --bs-link-color: #000000;
   --bs-link-color-rgb: 13, 110, 253;
   --bs-link-decoration: underline;
   --bs-link-hover-color: #ff5101d5;
