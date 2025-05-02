@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { app } from "./firebaseConfig";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const Counter = () => {
   const [count, setCount] = useState(null);
+  const db = getFirestore(app); // ✅ initialize Firestore with the app
 
   useEffect(() => {
     const fetchCount = async () => {
-      const counterRef = doc(app, "stats", "pageVisits");
+      const counterRef = doc(db, "stats", "pageVisits"); // ✅ use Firestore instance
 
       try {
         const counterSnap = await getDoc(counterRef);
@@ -47,3 +48,4 @@ const Counter = () => {
 };
 
 export default Counter;
+
