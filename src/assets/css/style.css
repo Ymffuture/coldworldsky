@@ -52,9 +52,7 @@ h4 {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  color:black !important;
 }
 
 h2 {
