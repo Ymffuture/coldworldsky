@@ -287,7 +287,7 @@ a:focus,
 
 .intro .overlay {
 
-   background: #333 ; 
+   background: black; 
 }
 
 .intro h1 {
@@ -316,7 +316,7 @@ a:focus,
 
 .intro p {
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 30px;
   margin: 0 auto;
