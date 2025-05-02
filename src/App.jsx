@@ -8,6 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
+import Admin from "./pages/AdminPanel"
 // import Layout from "./Layout";
 import Loader from './componets/PageLoader';
 // Lazy-loaded Pages
@@ -97,6 +98,7 @@ const path = window.location.pathname;
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<About />} />
+            <Route path="/form-admin" element={<AdminPanel />} />
             <Route path="/post-ads" element={<Post />} />
             <Route path="/location" element={<Location />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
