@@ -10,8 +10,8 @@ const SideButton = () => {
     <motion.div
       style={{
         position: 'fixed',
-        left: '1rem',
-        top: '50%',
+        right: '1rem',
+        top: '25%',
         transform: 'translateY(-50%)',
         zIndex: 1000,
       }}
@@ -21,7 +21,7 @@ const SideButton = () => {
     >
       <Tooltip
         title="Visit Blog"
-        placement="right"
+        placement="left"
         overlayInnerStyle={{ fontSize: '0.85rem' }}
         overlayStyle={{
           animation: 'fadeIn 0.5s ease-in-out',
