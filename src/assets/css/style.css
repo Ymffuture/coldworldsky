@@ -60,14 +60,14 @@ h2 {
   margin: 0 0 20px !important;
   font-weight: 800 !important;
   font-size: 2.5rem !important; /* Responsive sizing */
-  color: #FF5001 !important; /* Vibrant call-to-action color */
+  color: black !important; /* Vibrant call-to-action color */
   letter-spacing: -0.02em;
 }
 
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #222;
+  color: #555;
   letter-spacing: -0.01em;
 }
 
@@ -311,7 +311,7 @@ a:focus,
 
 .intro h1 span {
   font-weight: 800;
-  color: #5ca9fb !important;
+  color: #ffffff !important;
 }
 
 .intro p {
@@ -368,7 +368,7 @@ header .intro-text {
   width: 100%;
   padding: 50px 0;
   margin-top: 5px;
-  /* color: whitesmoke !important; */
+  color: black !important; 
 }
 
 #features i.fa:hover {
@@ -385,7 +385,7 @@ header .intro-text {
   height: 100px;
   padding: 30px 0;
   border-radius: 50%;
-  background:#222;
+  background:black;
   box-shadow: 10px 10px 10px #0000001e;
 }
 
@@ -414,6 +414,7 @@ header .intro-text {
   position: relative;
   margin-bottom: 15px;
   padding-bottom: 15px;
+  color:black !important;
 }
 
 #about h2::after {
@@ -468,7 +469,7 @@ header .intro-text {
 }
 
 #services h2 {
-  color: #FF5001 !important;
+  color: black !important;
 }
 
 #services .section-title h2::after {
