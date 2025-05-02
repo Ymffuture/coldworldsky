@@ -39,7 +39,7 @@ const About = (props) => {
               </h2>
               <p className="lead">{props.data?.paragraph || "Loading..."}</p>
 
-              <h3 className="mt-4 mb-2 text-success fw-semibold">☰ Why Choose Us?</h3>
+              <h3 className="mt-4 mb-2 text-dark fw-semibold">☰ Why Choose Us?</h3>
               <animated.div style={fadeIn} className="row">
                 <div className="col-sm-6">
                   <ul className="list-unstyled">
@@ -54,7 +54,7 @@ const About = (props) => {
                   <ul className="list-unstyled">
                     {props.data?.Why2.map((item, i) => (
                       <li key={i} className="mb-2">
-                        <i className="fa fa-check-circle text-success me-2" aria-hidden="true"></i>{item}
+                        <i className="fa fa-check-circle text-dark me-2" aria-hidden="true"></i>{item}
                       </li>
                     ))}
                   </ul>
