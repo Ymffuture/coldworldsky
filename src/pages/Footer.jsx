@@ -164,7 +164,7 @@ const Footer = () => {
           <div className="col-lg-12 text-center">
             <div className="social">
               <FaVials   data-tooltip-id="my-tooltip-icons-socials" data-tooltip-content={`? Number of people visited this website a day per user/visitor`}/>
-            {/* <Counter/> */}
+             <Counter/> 
             <Subscription/>
 <ul className='list-inline'>
 {social.map((iconLink, index)=>(
