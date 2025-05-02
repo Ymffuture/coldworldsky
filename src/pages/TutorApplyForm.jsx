@@ -46,63 +46,126 @@ const ApplicationForm = () => {
               <div className="columns is-multiline">
                 <div className="column is-half">
                   <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-                    <Input placeholder="Enter your name" />
+                    <Input
+                      placeholder="Enter your name"
+                      className="input is-rounded"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="surname" label="Surname" rules={[{ required: true }]}>
-                    <Input placeholder="Enter your surname" />
+                    <Input
+                      placeholder="Enter your surname"
+                      className="input is-rounded"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="dob" label="Date of Birth" rules={[{ required: true }]}>
-                    <Input type="date" />
+                    <Input
+                      type="date"
+                      className="input is-rounded"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="race" label="Race" rules={[{ required: true }]}>
-                    <Input />
+                    <Input
+                      placeholder="Enter your race"
+                      className="input is-rounded"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="grade" label="Grade" rules={[{ required: true }]}>
-                    <Select placeholder="Select your grade">
+                    <Select
+                      placeholder="Select your grade"
+                      className="is-rounded"
+                      style={{
+                        borderRadius: '25px',
+                        padding: '10px',
+                        width: '100%',
+                      }}
+                    >
                       {[8, 9, 10, 11, 12].map((g) => (
-                        <Option key={g} value={g.toString()}>Grade {g}</Option>
+                        <Option key={g} value={g.toString()}>
+                          Grade {g}
+                        </Option>
                       ))}
                     </Select>
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="subjects" label="Subjects to Enroll" rules={[{ required: true }]}>
-                    <Input placeholder="e.g. Maths, Physical Sciences" />
+                    <Input
+                      placeholder="e.g. Maths, Physical Sciences"
+                      className="input is-rounded"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-full">
                   <Form.Item name="document" label="Upload Document" rules={[{ required: true }]}>
                     <Upload beforeUpload={() => false}>
-                      <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                      <Button
+                        icon={<UploadOutlined />}
+                        style={{
+                          borderRadius: '25px',
+                          backgroundColor: '#4CAF50',
+                          color: 'white',
+                        }}
+                      >
+                        Click to Upload
+                      </Button>
                     </Upload>
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="cell" label="Cell Phone Number" rules={[{ required: true }]}>
-                    <Input />
+                    <Input
+                      className="input is-rounded"
+                      placeholder="Cell phone number"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-half">
                   <Form.Item name="whatsapp" label="WhatsApp Number" rules={[{ required: true }]}>
-                    <Input />
+                    <Input
+                      className="input is-rounded"
+                      placeholder="WhatsApp number"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
                 <div className="column is-full">
-                  <Form.Item name="moyaLink" label="Link to Moya App" rules={[{ required: true }]}>
-                    <Input placeholder="Paste your Moya profile/app link" />
+                  <Form.Item name="moyaLink" label="Moya App Link" rules={[{ required: true }]}>
+                    <Input
+                      className="input is-rounded"
+                      placeholder="Paste your Moya profile/app link"
+                      style={{ borderRadius: '25px', padding: '10px' }}
+                    />
                   </Form.Item>
                 </div>
               </div>
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="is-fullwidth">Submit Application</Button>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="is-fullwidth"
+                  style={{
+                    backgroundColor: '#4CAF50',
+                    borderRadius: '25px',
+                    padding: '12px 20px',
+                    color: 'white',
+                  }}
+                >
+                  Submit Application
+                </Button>
               </Form.Item>
             </Form>
           </div>
@@ -113,3 +176,4 @@ const ApplicationForm = () => {
 };
 
 export default ApplicationForm;
+
