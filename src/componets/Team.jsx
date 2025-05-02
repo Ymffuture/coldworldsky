@@ -29,7 +29,7 @@ const Team = (props) => {
               <div key={`${d.name}-${i}`} className="col-lg-5 col-md-6 col-sm-10">
                 <div 
                   className="team-card position-relative overflow-hidden shadow-lg rounded-4 p-4 h-100"
-                  style={{ background: "#ffffff", transition: "transform 0.3s", border: "2px solid #333" }}
+                  style={{ background: "#000000", transition: "transform 0.3s", border: "2px solid #333", color:"white"}}
                   onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-8px)"}
                   onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
                 >
@@ -50,12 +50,12 @@ const Team = (props) => {
                     />
 
                     <div className="caption text-center">
-                      <h5 className="fw-bold">
+                      <h5 className="fw-bold text-white">
                         {d.name} <i className={d.icon} style={{ color: "royalblue" }}></i>
                       </h5>
-                      <p className="text-muted">{d.job}</p>
-                      <p className="text-secondary small">
-                        Passionate about coding and education, {d.name} brings expertise in {d.job.toLowerCase()} to drive Quorvex's mission forward.
+                      <p className="text-gray">{d.job}</p>
+                      <p className="text-white small">
+                        Passionate about education, {d.name} brings expertise in {d.job.toLowerCase()} to drive Quorvex's mission forward.
                       </p>
 
                       {/* Social Icons */}
@@ -64,7 +64,7 @@ const Team = (props) => {
                           href="https://facebook.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-primary fs-4"
+                          className="text-primary fs-3"
                         >
                           <FaFacebookF />
                         </a>
@@ -72,7 +72,7 @@ const Team = (props) => {
                           href="https://linkedin.com"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-info fs-4"
+                          className="text-info fs-3"
                         >
                           <FaLinkedinIn />
                         </a>
@@ -80,7 +80,7 @@ const Team = (props) => {
                           href="https://wa.me/yourNumberHere"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-success fs-4"
+                          className="text-success fs-3"
                         >
                           <FaWhatsapp />
                         </a>
