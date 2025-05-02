@@ -180,7 +180,7 @@ const Tutor = () => {
                 }}
               >
                 <Panel
-                  header="How much does tutoring cost?"
+                  header="How much does tutoring cost per subject?"
                   key="1"
                   style={{
                     fontWeight: "600",
@@ -190,7 +190,7 @@ const Tutor = () => {
                   }}
                 >
                   <p style={{ padding: "15px", background: "#ffffff" }}>
-                    Tutoring is R400.00 per month for two high school subjects.
+                    Tutoring is R200.00 per month for two high school subjects.
                   </p>
                 </Panel>
 
