@@ -22,7 +22,7 @@ const QuestionPapers = () => {
   const [yearFilter, setYearFilter] = useState("");
   const [topicFilter, setTopicFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(8);
-  const [exchange, setExchage] = useState(null);
+  const [exchange, setExchange] = useState(null);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -32,9 +32,11 @@ const QuestionPapers = () => {
     const getData = async () => {
       try {
         const res = await axios.get("/papers.json");
+        console.log("Fetched data:", res.data.papers); // Log fetched data
         setData(res.data.papers || []);
       } catch (err) {
-        setError(err);
+        console.error("Error fetching data:", err); // Log error
+        setError(err.message);
       } finally {
         setTimeout(() => {
           setLoading(false);
@@ -66,9 +68,9 @@ const QuestionPapers = () => {
     const link = document.createElement('a');
     link.href = doc.file;
     setTimeout(() => {
-      setExchage(null);
+      setExchange(null);
     }, 3000);
-    setExchage(<Spinner className='position-absolute' />);
+    setExchange(<Spinner className='position-absolute' />);
     const safeName = doc.name.replace(/\s+/g, '_').toLowerCase();
     const safeTopic = doc.topic.replace(/\s+/g, '_').toLowerCase();
     const safeYear = doc.yr;
@@ -77,6 +79,11 @@ const QuestionPapers = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handlePdfError = (e) => {
+    console.error("PDF Viewer Error:", e); // Log PDF-specific errors
+    setError("Failed to load PDF");
   };
 
   return (
@@ -147,17 +154,29 @@ const QuestionPapers = () => {
                 </div>
               </div>
 
+              {error && (
+                <div className="notification is-danger has-text-centered">
+                  <FaExclamationCircle /> {error}
+                </div>
+              )}
+
               <div className="columns is-multiline">
                 {filteredData.slice(0, visibleCount).map((doc, index) => (
                   <div className="column is-3" key={index}>
                     <div className="box has-text-centered">
                       <p className='has-background-dark has-text-white p-2 mb-2'>{doc.name}</p>
-                      {doc.file && (
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                          <div style={{ height: '500px' }}>
-                            <Viewer fileUrl={doc.file} plugins={[defaultLayoutPluginInstance]} />
+                      {doc.file ? (
+                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                          <div style={{ height: '500px', border: '1px solid #ddd' }}>
+                            <Viewer 
+                              fileUrl={doc.file} 
+                              plugins={[defaultLayoutPluginInstance]} 
+                              onError={handlePdfError}
+                            />
                           </div>
                         </Worker>
+                      ) : (
+                        <p className="has-text-danger">No PDF available</p>
                       )}
                       <div className="mt-2">
                         <p><strong>Topic:</strong> {doc.topic}</p>
@@ -165,9 +184,8 @@ const QuestionPapers = () => {
                         <p><strong>Year:</strong> {doc.yr}</p>
                       </div>
                       <button className="button is-primary is-small mt-2" onClick={() => handleDownload(doc)}>
-                        <FaDownload /> &nbsp;Download Paper
+                        <FaDownload />  Download Paper
                       </button>
-                      <small className="has-text-danger">{error ? error.message : null}</small>
                     </div>
                   </div>
                 ))}
@@ -177,7 +195,7 @@ const QuestionPapers = () => {
               {visibleCount < filteredData.length && (
                 <div className="has-text-centered mt-4">
                   <button className="button is-dark" onClick={handleLoadMore}>
-                    <FaBookOpen /> &nbsp;Load More
+                    <FaBookOpen />  Load More
                   </button>
                 </div>
               )}
@@ -190,4 +208,3 @@ const QuestionPapers = () => {
 };
 
 export default QuestionPapers;
-
