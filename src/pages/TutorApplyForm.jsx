@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Input, Button, Upload, Select, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { db, storage } from './firebase';
@@ -10,8 +10,10 @@ const { Option } = Select;
 
 const ApplicationForm = () => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false); // state to control loading animation
 
   const onFinish = async (values) => {
+    setLoading(true); // Start loading animation
     try {
       const docId = uuidv4();
       const file = values.document.file.originFileObj;
@@ -33,6 +35,8 @@ const ApplicationForm = () => {
     } catch (error) {
       console.error(error);
       message.error('Failed to submit application');
+    } finally {
+      setLoading(false); // Stop loading animation
     }
   };
 
@@ -73,11 +77,21 @@ const ApplicationForm = () => {
                 </div>
                 <div className="column is-half">
                   <Form.Item name="race" label="Race" rules={[{ required: true }]}>
-                    <Input
-                      placeholder="Enter your race"
-                      className="input is-rounded"
-                      style={{ borderRadius: '25px', padding: '10px' }}
-                    />
+                    <Select
+                      placeholder="Select your race"
+                      className="is-rounded"
+                      style={{
+                        borderRadius: '25px',
+                        padding: '10px',
+                        width: '100%',
+                      }}
+                    >
+                      <Option value="Black">Black</Option>
+                      <Option value="White">White</Option>
+                      <Option value="Colored">Colored</Option>
+                      <Option value="Indian">Indian</Option>
+                      <Option value="Other">Other</Option>
+                    </Select>
                   </Form.Item>
                 </div>
                 <div className="column is-half">
@@ -156,7 +170,7 @@ const ApplicationForm = () => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="is-fullwidth"
+                  className={`is-fullwidth ${loading ? 'is-loading' : ''}`}
                   style={{
                     backgroundColor: '#4CAF50',
                     borderRadius: '25px',
@@ -164,7 +178,7 @@ const ApplicationForm = () => {
                     color: 'white',
                   }}
                 >
-                  Submit Application
+                  {loading ? 'Submitting...' : 'Submit Application'}
                 </Button>
               </Form.Item>
             </Form>
