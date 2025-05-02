@@ -29,7 +29,7 @@ const Team = (props) => {
               <div key={`${d.name}-${i}`} className="col-lg-5 col-md-6 col-sm-10">
                 <div 
                   className="team-card position-relative overflow-hidden shadow-lg rounded-4 p-4 h-100"
-                  style={{ background: "#ffffff", transition: "transform 0.3s", border: "2px solid #FFD700" }}
+                  style={{ background: "#ffffff", transition: "transform 0.3s", border: "2px solid #333" }}
                   onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-8px)"}
                   onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
                 >
