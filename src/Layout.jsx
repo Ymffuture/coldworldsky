@@ -1,8 +1,13 @@
-import { useLocation } from 'react-router-dom';
+
+
+
+
+M
+  import { useLocation } from 'react-router-dom';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideLayout = /^\/(404|500|error)/.test(location.pathname);
+  const hideLayoutOn = ['/not-found', '/status-500'];
 
   const hideLayout = hideLayoutOn.includes(location.pathname);
 
