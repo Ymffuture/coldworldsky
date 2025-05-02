@@ -8,7 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
-import Layout from "./Layout";
+// import Layout from "./Layout";
 import Loader from './componets/PageLoader';
 // Lazy-loaded Pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -93,7 +93,7 @@ const path = window.location.pathname;
     
       <div className="container-fluid error-con">
         <Suspense fallback={<Loader/>}>
-          <Layout>
+          
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/about" element={<About />} />
@@ -142,7 +142,7 @@ const path = window.location.pathname;
             <Route path="/not-found" element={<NotFound/>} />
             <Route path="*" element={<Navigate to="/not-found" />} />
           </Routes>
-            </Layout>
+            
         </Suspense>
         <ToastContainer />
         <Toaster />
