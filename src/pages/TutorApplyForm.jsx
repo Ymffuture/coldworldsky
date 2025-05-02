@@ -37,7 +37,7 @@ const ApplicationForm = () => {
   };
 
   return (
-    <div className="section">
+    <div className="section bg-white w-100">
       <h2 className="title">Application Form</h2>
       <Form
         form={form}
