@@ -1,110 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+// ApplicationForm.jsx
+import React, { useState } from 'react';
+import { db, storage } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
+import { Form, Input, Button, Upload, message } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
 
-// Validation schema
-const schema = Yup.object().shape({
-  firstName: Yup.string().required("First name is required"),
-  lastName: Yup.string().required("Last name is required"),
-  email: Yup.string().email("Invalid email address").required("Email is required"),
-  jobRole: Yup.string().required("Please select a job role"),
-});
+const ApplicationForm = () => {
+  const [form] = Form.useForm();
+  const [file, setFile] = useState(null);
 
-const TutorApplyForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const handleUploadChange = ({ file }) => {
+    setFile(file.originFileObj);
+  };
 
-  const [applications, setApplications] = useState([]);
-
-  useEffect(() => {
-    const savedApps = JSON.parse(localStorage.getItem("applications")) || [];
-    setApplications(savedApps);
-  }, []);
-
-  const genId = crypto.randomUUID().replace(/-/g, "").slice(0, 12);
-
-  const onSubmit = async (data) => {
-    const newApplication = { id: genId, ...data, status: "Pending" };
-    const updatedApps = [...applications, newApplication];
-    localStorage.setItem("applications", JSON.stringify(updatedApps));
-    setApplications(updatedApps);
-
-    try {
-      await axios.post("http://localhost:5000/api/applications", newApplication);
-      toast.success("Application submitted! Your ID: " + genId);
-      reset();
-    } catch (err) {
-      toast.error("Failed to send data to server.");
+  const handleSubmit = async (values) => {
+    if (!file) {
+      message.error('Please upload your document.');
+      return;
     }
+
+    const docRef = ref(storage, `documents/${uuidv4()}`);
+    await uploadBytes(docRef, file);
+    const documentURL = await getDownloadURL(docRef);
+
+    await addDoc(collection(db, 'applications'), {
+      ...values,
+      documentURL,
+      status: 'pending',
+    });
+
+    message.success('Application submitted successfully!');
+    form.resetFields();
+    setFile(null);
   };
 
   return (
-    <div className="container mt-5">
-      <div className="card shadow-lg p-4">
-        <h1 className="text-center text-primary mb-4">Tutor Application Form</h1>
-        <div className="text-end mb-3">
-          <Link to="/track-application" className="btn btn-outline-primary btn-sm">Track Application</Link>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-3">
-            <input
-              className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
-              placeholder="First Name"
-              {...register("firstName")}
-            />
-            <div className="invalid-feedback">{errors.firstName?.message}</div>
-          </div>
+    <div className="section">
+      <h2 className="title">Application Form</h2>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+        className="box"
+      >
+        <Form.Item label="Name" name="name" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="Surname" name="surname" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="Date of Birth" name="dob" rules={[{ required: true }]}> <Input type="date" /> </Form.Item>
+        <Form.Item label="Race" name="race" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="Grade" name="grade" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="Subjects" name="subjects" rules={[{ required: true }]}> <Input.TextArea /> </Form.Item>
+        <Form.Item label="Phone Number" name="phone" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="WhatsApp Number" name="whatsapp" rules={[{ required: true }]}> <Input /> </Form.Item>
+        <Form.Item label="Moya App Link" name="moyaLink" rules={[{ required: true }]}> <Input /> </Form.Item>
 
-          <div className="mb-3">
-            <input
-              className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
-              placeholder="Last Name"
-              {...register("lastName")}
-            />
-            <div className="invalid-feedback">{errors.lastName?.message}</div>
-          </div>
+        <Form.Item label="Upload Document" rules={[{ required: true }]}> 
+          <Upload.Dragger beforeUpload={() => false} onChange={handleUploadChange} showUploadList={true}>
+            <p className="ant-upload-drag-icon"><InboxOutlined /></p>
+            <p>Click or drag file to this area to upload</p>
+          </Upload.Dragger>
+        </Form.Item>
 
-          <div className="mb-3">
-            <input
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-              placeholder="Email"
-              {...register("email")}
-            />
-            <div className="invalid-feedback">{errors.email?.message}</div>
-          </div>
-
-          <div className="mb-4">
-            <select
-              className={`form-select ${errors.jobRole ? "is-invalid" : ""}`}
-              {...register("jobRole")}
-            >
-              <option value="">Select Job Role</option>
-              <option value="frontend">Frontend Developer</option>
-              <option value="backend">Backend Developer</option>
-              <option value="physical_science">Physical Science</option>
-              <option value="mathematics">Mathematics</option>
-            </select>
-            <div className="invalid-feedback">{errors.jobRole?.message}</div>
-          </div>
-
-          <button type="submit" className="btn btn-primary w-100">Apply Now</button>
-        </form>
-      </div>
-      <ToastContainer />
+        <Button type="primary" htmlType="submit" className="mt-4 is-fullwidth">Submit Application</Button>
+      </Form>
     </div>
   );
 };
 
-export default TutorApplyForm;
+export default ApplicationForm;
 
