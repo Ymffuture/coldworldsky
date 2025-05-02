@@ -8,6 +8,7 @@ import ProtectedRoute from "./componets/ProtectedRoute";
 import Greet from './componets/Greet';
 import './index.css';
 import './App.css';
+import { Helmet } from 'react-helmet';
 import AdminPanel from "./pages/AdminPanel"
 // import Layout from "./Layout";
 import Loader from './componets/PageLoader';
@@ -86,7 +87,36 @@ const App = () => {
   }, []);
 const path = window.location.pathname;
  const show= "/not-found";
-
+  
+const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'Quorvex Institute',
+    url: 'https://quorvexinstitute.vercel.app',
+    description:
+      'Join Quorvex Institute to learn software development, full stack web, Python, React, mathematics, physics and more. Master coding with expert-led, career-ready training.',
+    founder: {
+      '@type': 'Person',
+      name: 'Kgomotso Nkosi (Future_)',
+    },
+    offers: {
+      '@type': 'Offer',
+      category: 'Educational Services',
+      itemOffered: [
+        {
+          '@type': 'Course',
+          name: 'Software Development',
+          description: 'Learn full stack web development, Python, React, and more.',
+        },
+        {
+          '@type': 'Course',
+          name: 'Mathematics and Physics',
+          description: 'Master mathematics and physics for grades 10-12.',
+        },
+      ],
+    },
+  };
+  
   return (
     <Router>
      {path ==! show ? "":<Navigation />}
@@ -151,6 +181,28 @@ const path = window.location.pathname;
         <Toaster />
       </div>
       <Footer />
+      <Helmet>
+        <title>Quorvex Institute - Learn Coding & More</title>
+        <meta
+          name="description"
+          content="Join Quorvex Institute to learn software development, full stack web, Python, React, mathematics, physics and more. Master coding with expert-led, career-ready training."
+        />
+        <meta name="author" content="Kgomotso Nkosi (Future_)" />
+        <meta
+          name="keywords"
+          content="Quorvex, coding school, online courses, software engineering, HTML, CSS, JavaScript, React, Python, Full Stack, Mathematics, Physics Future"
+        />
+        <meta property="og:title" content="Quorvex Institute" />
+        <meta
+          property="og:description"
+          content="Join Quorvex Institute to learn software development, full stack web, Python, React, mathematics, physics and more."
+        />
+        <meta property="og:url" content="https://quorvexinstitute.vercel.app" />
+        <meta property="og:site_name" content="Quorvex Institute" />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
+      </Helmet>
     </Router>
   );
 };
@@ -186,4 +238,3 @@ const StructuredData = () => {
 };
 
 export default App;
-
