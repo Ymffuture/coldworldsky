@@ -25,7 +25,6 @@ const Subjects = () => {
   const previousWork = [
     { id: "1", name: "Mathematics", link: "/tutoring/subjects/Mathematics", icon: <FaCalculator />, price: 340 },
     { id: "2", name: "Physical science", link: "/tutoring/subjects/Physical-science", icon: <FaBrain />, price: 300 },
-    { id: "3", name: "Life sciences", link: "/tutoring/subjects/Life-sciences", icon: <FaBacterium />, price: 250 },
     
   ];
 
