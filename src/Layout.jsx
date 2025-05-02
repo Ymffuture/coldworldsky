@@ -7,7 +7,7 @@ M
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideLayoutOn = ['/not-found', '/500'];
+  const hideLayoutOn = ['/not-found'];
 
   const hideLayout = hideLayoutOn.includes(location.pathname);
 
