@@ -173,7 +173,7 @@ const SignIn = ({ setIsAuthenticated }) => {
         <div className="text1">
           Do not have an account? <span className=" text-info"> <Link to="/user-home-page/sign-up">Register</Link></span>
         </div>
-        <div className="text2">
+        <div className="text">
           Forgot? <span className=" text-info"> <Link to="/forgot-password">Password</Link></span>
         </div>
       </div>
