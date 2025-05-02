@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { Link } from 'react-router-dom';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
-import Counter from './Counter';
+// import Counter from './Counter';
 import {FaCat, FaCogs, FaEnvelope, FaFacebookF, FaGithub, FaLinkedinIn,FaPhoneAlt,FaVials, FaWhatsapp, FaYahoo, FaYoutube } from 'react-icons/fa';
 import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
 import Subscription from './Subscription';
