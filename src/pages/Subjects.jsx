@@ -26,9 +26,7 @@ const Subjects = () => {
     { id: "1", name: "Mathematics", link: "/tutoring/subjects/Mathematics", icon: <FaCalculator />, price: 340 },
     { id: "2", name: "Physical science", link: "/tutoring/subjects/Physical-science", icon: <FaBrain />, price: 300 },
     { id: "3", name: "Life sciences", link: "/tutoring/subjects/Life-sciences", icon: <FaBacterium />, price: 250 },
-    { id: "4", name: "Geography", link: "/tutoring/subjects/Geography", icon: <FaBacterium />, price: 200 },
-    { id: "5", name: "Mathematics lit", link: "/tutoring/subjects/Mathematics-lit", icon: <FaBacterium />, price: 280 },
-    { id: "6", name: "History", link: "/tutoring/subjects/History", icon: <FaBacterium />, price: 280 },
+    
   ];
 
   const fadeSlide = useSpring({
