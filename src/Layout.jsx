@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {!hideLayout && <Sidebar />}
+      {!hideLayout && <Navigation /> }
       
       <main>{children}</main>
 
