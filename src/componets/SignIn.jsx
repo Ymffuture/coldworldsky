@@ -68,7 +68,7 @@ try {
   }
 } catch (err) {
   toast.error("Network error. Please check your connection.");
-
+} 
 
     // Initialize 
     
@@ -201,15 +201,21 @@ try {
         />
       </div>
       <Helmet>
-      <script>
-  function onClick(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
-    });
-  }
-</script>
-      </Helmet>
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `
+        function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
+            // You can now use the token here
+          });
+        }
+      `
+    }}
+  />
+</Helmet>
+
     </div>
   );
 };
