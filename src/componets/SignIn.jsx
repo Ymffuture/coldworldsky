@@ -201,14 +201,14 @@ try {
         />
       </div>
       <Helmet>
-      <script >
-        function onClick(e) {
+      <script>
+  function onClick(e) {
     e.preventDefault();
     grecaptcha.enterprise.ready(async () => {
       const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
     });
   }
-      </script >
+</script>
       </Helmet>
     </div>
   );
