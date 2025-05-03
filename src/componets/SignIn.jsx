@@ -27,9 +27,10 @@ const SignIn = ({ setIsAuthenticated }) => {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 
     if (!password || !emailRegex.test(email)) {
+      return ;
       toast.dark('Both input fields are required.', {
         position: "top-center",
-        duration: 3000,
+        autoClose: 3000,
         icon: <FaTimesCircle className="text-danger" />,
       })
     }
@@ -39,25 +40,20 @@ const SignIn = ({ setIsAuthenticated }) => {
       setNoneInput(true);
       setTimeout(() => {
         setIsdisabled(false);
-      }, 30000);
+      }, 5000);
     }
 
     // Call the backend login API
-    const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-in`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+try {
+  const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-in`);
+  const data = await response.json();
 
-    const data = await response.json();
-
-    if (response.ok) {
-      // Save token to localStorage
-      localStorage.setItem("token", data.token);
-      setIsAuthenticated(true); 
-      navigate("/");
-    } else {
-      toast.error(data.error || "No internet Connection", {
+  if (response.ok) {
+    localStorage.setItem("token", data.token);
+    setIsAuthenticated(true);
+    navigate("/");
+  } else {
+    toast.error(data.error || "No internet Connection", {
         position: "top-center",
         duration: 8000,
         icon: <svg xmlns="http://www.w3.org/2000/svg" fill="#FF4C4C" viewBox="0 0 24 24" width="48" height="48">
@@ -69,8 +65,13 @@ const SignIn = ({ setIsAuthenticated }) => {
           color: 'whitesmoke',
         }
       });
-    }
-  };
+  }
+} catch (err) {
+  toast.error("Network error. Please check your connection.");
+
+
+    // Initialize 
+    
   
   
   const handleToggle = () => {
@@ -123,9 +124,9 @@ const SignIn = ({ setIsAuthenticated }) => {
     <div style={{ maxWidth: '600px', margin: 'auto', height: '130vh', padding: '1rem', textAlign: 'center' }} className='signin container containerAB'>
       <form onSubmit={handleLogin}>
         <Helmet>
-        <head>
+        
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo"></script>
-</head>
+
         </Helmet>
         <h3 className=' text-bg-dark p-2 rounded-1'>
           <i className={!password ? "bi bi-lock-fill text-danger" : "bi bi-unlock-fill text-success slide"}></i> {""}
@@ -134,6 +135,8 @@ const SignIn = ({ setIsAuthenticated }) => {
 <br/>
         <div style={{ marginBottom: '.8rem' }} className="form-group">
           <input
+
+            name="email" 
             type="email"
             placeholder=" "
             value={email}
@@ -148,6 +151,7 @@ const SignIn = ({ setIsAuthenticated }) => {
 
         <div style={{ marginBottom: '1rem' }} className="form-group">
           <input
+            name="password" 
             onClick={() => setIcon('fa-eye-slash')}
             type={type}
             placeholder=""
