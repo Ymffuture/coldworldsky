@@ -131,7 +131,6 @@ const SignIn = ({ setIsAuthenticated }) => {
         <Helmet>
         <head>
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo"></script>
-  <!-- Your code -->
 </head>
         </Helmet>
         <h3 className=' text-bg-dark p-2 rounded-1'>
