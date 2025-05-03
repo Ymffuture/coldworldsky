@@ -72,12 +72,6 @@ const SignIn = ({ setIsAuthenticated }) => {
     }
   };
   
-  function onClick(e) {
-    e.preventDefault();
-    grecaptcha.enterprise.ready(async () => {
-      const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
-    });
-  }
   
   const handleToggle = () => {
     if (type === 'password') {
@@ -202,6 +196,16 @@ const SignIn = ({ setIsAuthenticated }) => {
           size="large"
         />
       </div>
+      <Helmet>
+      <script >
+        function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
+    });
+  }
+      </script >
+      </Helmet>
     </div>
   );
 };
