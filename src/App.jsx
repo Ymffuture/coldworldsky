@@ -182,7 +182,7 @@ const schemaData = {
       </div>
       <Footer />
       <Helmet>
-        <title>Quorvex Institute - Learn Coding & More|Code the Future. Together </title>
+        <title>Quorvex Institute - Learn Coding & More | Code the Future. Together </title>
         <meta
           name="description"
         
@@ -327,7 +327,7 @@ const schemaData = {
         "priceCurrency": "ZAR",
         "price": "689",
         "availability": "https://schema.org/InStock",
-        "url": "https://quorvexinstitute.vercel.app/apply"
+        "url": "https://quorvexinstitute.vercel.app"
       }
     }
   },
@@ -401,7 +401,7 @@ const schemaData = {
         "priceCurrency": "ZAR",
         "price": "300",
         "availability": "https://schema.org/InStock",
-        "url": "https://quorvexinstitute.vercel.app/apply"
+        "url": "https://quorvexinstitute.vercel.app/"
       }
     }
   },
