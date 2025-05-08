@@ -185,23 +185,21 @@ const schemaData = {
         <title>Quorvex Institute - Learn Coding & More | Code the Future. Together </title>
         <meta
           name="description"
-        
-  <!-- Basic Meta -->
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2722864790738174" />
   <meta name="robots" content="index, follow" /> <!-- Change to 'index, follow' to allow search engines -->
   <meta name="google-site-verification" content="xXWElQQdEb1YSMqAy524N-B58KqSZqsf5zc0O8fWg3A" />
-  <!-- SEO Meta -->
+  
   
   <meta name="description" content="Join Quorvex Institute to learn software development, full stack web, Python, React, mathematics, physics and more. Master coding with expert-led, career-ready training." />
   <meta name="author" content="Kgomotso Nkosi (Future_)" />
   <meta name="keywords" content="Quorvex, coding school, online courses, software engineering, HTML, CSS, JavaScript, React, Python, Full Stack, Mathematics, Physics Future" />
 
-  <!-- Canonical URL -->
+  
   <link rel="canonical" href="https://quorvexinstitute.vercel.app/" />
 
-  <!-- Open Graph Meta (Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Quorvex Institute" />
   <meta property="og:title" content="Quorvex Institute - Code the Future  Together " />
@@ -209,32 +207,30 @@ const schemaData = {
   <meta property="og:image" content="https://quorvexinstitute.vercel.app/img/Logo.jpg" />
   <meta property="og:url" content="https://quorvexinstitute.vercel.app/" />
 
-  <!-- Twitter Card Meta -->
+  
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Quorvex Institute - Code the Future  Together" />
   <meta name="twitter:description" content="Future-ready coding education: Full Stack, Python, React, HTML, CSS, JavaScript." />
   <meta name="twitter:image" content="https://quorvexinstitute.vercel.app/img/Logo.jpg" />
   <meta name="twitter:url" content="https://quorvexinstitute.vercel.app/" />
-
-  <!-- Favicon and Icons -->
+ 
   <link rel="icon" href="img/favicon.png" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/logosk.png" />
   <link rel="apple-touch-icon" sizes="114x114" href="img/logosk.png" />
 
-  <!-- Google Fonts -->
+ 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Raleway:wght@200;400&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&display=swap" rel="stylesheet" />
 
-  <!-- CSS Stylesheets -->
+  
   <link rel="stylesheet" href="./src/assets/css/bootstrap.css" />
   <link rel="stylesheet" href="./src/assets/fonts/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" href="./src/assets/css/style.css" />
   <link rel="stylesheet" href="./src/assets/css/nivo-lightbox/nivo-lightbox.css" />
   <link rel="stylesheet" href="./src/assets/css/nivo-lightbox/default.css" />
-
-  <!-- Structured Data (Schema for Google) -->
+ 
   <script type="application/ld+json">
 [
   {
@@ -435,7 +431,7 @@ const schemaData = {
 </script>
 
 
-  <!-- Google AdSense -->
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2722864790738174"
     crossorigin="anonymous"></script>
         <script type="application/ld+json">{JSON.stringify(schemaData)}</script>
