@@ -220,7 +220,8 @@ const StructuredData = () => {
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://quorvexinstitute.vercel.app/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+        "query-input": "required name=search_term_string optional name=subject optional name=level"
+      }
       }
     };
 
