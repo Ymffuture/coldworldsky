@@ -9,7 +9,7 @@ import { URL_BACKEND_HTTP, URL_BACKEND_HTTPS } from "../../Urls";
 import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from './Spinner';
 import { GoogleLogin } from '@react-oauth/google'; // Added
-import jwt_decode from 'jwt-decode'; // Needed to decode Google credential
+import {jwt_decode} from 'jwt-decode'; // Needed to decode Google credential
 
 const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
