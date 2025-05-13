@@ -256,7 +256,7 @@ const StructuredData = () => {
         "query-input": "required name=search_term_string optional name=subject optional name=level"
       }
       }
-    });
+    
 
     const script = document.createElement("script");
     script.type = "application/ld+json";
