@@ -1,223 +1,203 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaTimesCircle } from "react-icons/fa";
+import { FaTimesCircle} from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import SocialLogin from "./SocialLogin";
-import { URL_BACKEND_HTTP, URL_BACKEND_HTTPS } from "../../Urls";
+import { URL_BACKEND_HTTP , URL_BACKEND_HTTPS } from "../../Urls";
 import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from './Spinner'
-import { GoogleLogin } from "@react-oauth/google"; // Google login import
-import { jwtDecode } from "jwt-decode";
-import {Helmet} from "react-helmet" 
 const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isdisabled, setIsdisabled] = useState(false);
+  const [isdisabled , setIsdisabled] = useState(false);
   const [type, setType] = useState('password');
-  const [eye, setEye] = useState('');
-  const [icon, setIcon] = useState('');
-  const [isCapsLockOn, setIsCapsLockOn] = useState(false);
-  const [noneInput, setNoneInput] = useState(false);
+  const [eye, setEye]= useState('');
+  const [icon , setIcon] = useState('');
+  const [isCapsLockOn ,setIsCapsLockOn] = useState(false);
+  const [noneInput , setNoneInput] = useState(false)
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 
-    if (!password || !emailRegex.test(email)) {
-      return ;
-      toast.dark('Both input fields are required.', {
+    if(!password || !emailRegex.test(email)){
+      toast.dark('Both input field are required.', {
         position: "top-center",
-        autoClose: 3000,
-        icon: <FaTimesCircle className="text-danger" />,
+        duration: 3000,
+        icon:<FaTimesCircle className="text-danger"/>,
+       
       })
     }
-
-    if (password && emailRegex.test(email)) {
-      setIsdisabled(true);
-      setNoneInput(true);
-      setTimeout(() => {
-        setIsdisabled(false);
-      }, 5000);
+    if(!emailRegex.test(email)){
+      toast.dark('Email input field are required.', {
+        position: "top-center",
+        duration: 3000,
+        icon:<FaTimesCircle className="text-danger"/>,
+       
+      })
     }
-
+    
+    if(!password && !emailRegex.test(email)){
+      toast.dark('Password input field are required.', {
+        position: "top-center",
+        duration: 3000,
+        icon:<FaTimesCircle className="text-danger"/>,
+       
+      })
+     
+    }
+    if(password && emailRegex.test(email)){
+      setIsdisabled(true)
+      setNoneInput(true)
+      setTimeout(()=>{
+        setIsdisabled(false)
+        
+      },30000)
+    }else{
+    
+    pass
+    }
     // Call the backend login API
-try {
-  const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-in`);
-  const data = await response.json();
+    const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/user-home-page/sign-in`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (response.ok) {
-    localStorage.setItem("token", data.token);
-    setIsAuthenticated(true);
-    navigate("/");
-  } else {
-    toast.error(data.error || "No internet Connection", {
+    const data = await response.json();
+
+    if (response.ok) {
+      // Save token to localStorage
+      localStorage.setItem("token", data.token);
+      setIsAuthenticated(true); 
+      navigate("/");
+      
+      
+    } else {
+      
+      toast.error(data.error || "No internet Connection", {
         position: "top-center",
         duration: 8000,
-        icon: <svg xmlns="http://www.w3.org/2000/svg" fill="#FF4C4C" viewBox="0 0 24 24" width="48" height="48">
-  <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm1 17h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-</svg>, 
-        style: {
-          background: '#1E2227',
-          borderRadius: '8px',
-          color: 'whitesmoke',
+        icon:<IconCloud/>,
+       
+        style:{
+          background:'#1E2227',
+          borderRadius:'8px',
+          color:'whitesmoke',
         }
       });
+    }
+   
+  };
+  const handleToggle=()=>{
+  
+    if(type==='password'){
+      setIcon('')
+      setEye('eye')
+      setType('text')
+    }else{
+      setIcon('')
+      setEye('eye-slash')
+      setType('password')
+    }
   }
-} catch (err) {
-  toast.error("Network error. Please check your connection.");
-} 
-
-    // Initialize 
-    
-  
-  
-  const handleToggle = () => {
-    if (type === 'password') {
-      setIcon('');
-      setEye('eye');
-      setType('text');
-    } else {
-      setIcon('');
-      setEye('eye-slash');
-      setType('password');
+  const handleKeyPress =(event)=>{
+    if(event.getModifierState('CapsLock')){
+setIsCapsLockOn(true)
     }
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.getModifierState('CapsLock')) {
-      setIsCapsLockOn(true);
-    } else {
-      setIsCapsLockOn(false);
+    else{
+      setIsCapsLockOn(false)
     }
-  };
-
-  const handleChar = (event) => {
+  } 
+   const handleChar =(event)=>{
     const charCode = event.which || event.keyCode;
-    const charater = String.fromCharCode(charCode);
-    if (charater.toUpperCase() === charater && charater.toLowerCase() !== charater && event.shiftKey) {
-      if (!isCapsLockOn) {
-        setIsCapsLockOn(true);
-      }
-    } else {
-      setIsCapsLockOn(false);
+    const charater = String.fromCharCode(charCode)
+    if(charater.toUpperCase()=== charater&& charater.toLowerCase() !== charater && event.shiftKey){
+if(!isCapsLockOn){
+  setIsCapsLockOn(true)
+}
     }
-  };
-
-  const handleGoogleSuccess = (response) => {
-    const decoded = jwtDecode(response.credential);
-    const { name, email, picture } = decoded;
-    
-    // You can call your backend API here to check if the user already exists.
-    localStorage.setItem("googleUser", JSON.stringify({ name, email, picture }));
-    setIsAuthenticated(true);
-    navigate("/");
-  };
-
-  const handleGoogleFailure = () => {
-    toast.error("Google Login failed. Please try again.");
-  };
-
+    else{
+      setIsCapsLockOn(false)
+    }
+  }
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto', height: '130vh', padding: '1rem', textAlign: 'center' }} className='signin container containerAB'>
-      <form onSubmit={handleLogin}>
-        <Helmet>
-        
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo"></script>
+    <div style={{maxWidth:'600px',margin:'auto',height:'130vh',padding:'1rem',textAlign:'center'}} className='signin container containerAB  '>
+    
+    <form onSubmit={handleLogin}>
+    {/* <img src='/img/logosk.jpg' width='20%' alt='LOGO' className=" rounded-4 p-2"  /> */}
+    <h3 className=' text-bg-dark p-2 rounded-1'>
+    <i className={!password? "bi bi-lock-fill text-danger":"bi bi-unlock-fill text-success slide"}></i> {""}
+      Sign In with your Email to get more features.</h3>
+      
 
-        </Helmet>
-        <h3 className=' text-bg-dark p-2 rounded-1'>
-          <i className={!password ? "bi bi-lock-fill text-danger" : "bi bi-unlock-fill text-success slide"}></i> {""}
-          Sign In with your Email to get more features.
-        </h3>
-<br/>
-        <div style={{ marginBottom: '.8rem' }} className="form-group">
-          <input
-
-            name="email" 
-            type="email"
-            placeholder=" "
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ padding: '.5rem', width: '100%' }}
-            className="form-control"
-            autoComplete='on'
-            readOnly={noneInput}
-          />
-          <label htmlFor="email"><i className={!email ? 'bi bi-envelope-open' : "bi bi-envelope"}></i> Email</label>
-        </div>
-
-        <div style={{ marginBottom: '1rem' }} className="form-group">
-          <input
-            name="password" 
-            onClick={() => setIcon('fa-eye-slash')}
-            type={type}
-            placeholder=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ padding: '.5rem', width: '100%' }}
-            className=" form-control"
-            onKeyUp={handleKeyPress}
-            maxLength='16'
-            autoComplete='on'
-            readOnly={noneInput}
-          />
-          <label htmlFor="email"><i className={!password ? "bi bi-lock" : "bi bi-unlock"}></i>Password</label>
-
-          <span className="flex justify-content-around align-items-center eye" onClick={handleToggle} data-tooltip-id="passtooltip" data-tooltip-content={eye === 'eye-slash' ? 'show' : 'Hide'}>
-            <i className={`fa ${icon} fa-${eye} position-absolute eye`}></i>
-          </span>
-        </div>
-
-        {isCapsLockOn && (<p className="p-2 text-bg-danger rounded mt-2"><i className="bi bi-exclamation-circle fs-8"></i> Caps Lock is ON</p>)}
-        <button className="btn btn-primary mb-3 px-4 position-relative" style={{ padding: '.5rem 1rem', width: '100%' }} type="submit" disabled={isdisabled}>
-          {!isdisabled ? 'Sign In' : <Spinner />}
-        </button>
-        <Tooltip id="passtooltip" />
-      </form>
-
-      <div className="text">
-        <div className="text1">
-          Do not have an account? <span className=" text-info"> <Link to="/user-home-page/sign-up">Register</Link></span>
-        </div>
-        <div className="text">
-          Forgot? <span className=" text-info"> <Link to="/forgot-password">Password</Link></span>
-        </div>
-      </div>
-
-      <ToastContainer />
-      <br />
-      <hr className='hr' />
-
-      {/* Google Login Integration */}
-      <div className="social-login">
-        <GoogleLogin
-          onSuccess={handleGoogleSuccess}
-          onError={handleGoogleFailure}
-          theme="filled_black"
-          size="large"
+      <div style={{marginBottom:'.8rem'}} 
+       className="form-group"
+      >
+        <input
+        //  onKeyUp={handleKeyPress}
+        onKeyDown={handleChar}
+          type="email"
+          placeholder=" "
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{padding:'.5rem',width:'100%'}}
+          className="form-control"
+          autocomplete='on'
+        readOnly={noneInput}
         />
+          <label for="email"><i className={!email? 'bi bi-envelope-open' :"bi bi-envelope"}></i> Email</label>
       </div>
-      <Helmet>
-  <script
-    dangerouslySetInnerHTML={{
-      __html: `
-        function onClick(e) {
-          e.preventDefault();
-          grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LcfpSsrAAAAAFbALlBdPvcZf832tzPx_TIgawPo', {action: 'LOGIN'});
-            // You can now use the token here
-          });
-        }
-      `
-    }}
-  />
-</Helmet>
+      <div style={{marginBottom:'1rem'}}
+       className="form-group"
+      >
+        <input
+          onClick={()=>setIcon('fa-eye-slash')}
+          type={type}
+          placeholder=""
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{padding:'.5rem',width:'100%'}}
+          className=" form-control"
+          onKeyUp={handleKeyPress}
+          // onKeyDown={handleChar}
+          maxLength='16'
+          autocomplete='on'
+          readOnly={noneInput}
+        />
+        <label for="email"><i className={!password? "bi bi-lock":"bi bi-unlock"}></i>Password</label>
+      
+        <span className="flex justify-content-around align-items-center eye" onClick={handleToggle}
+            data-tooltip-id="passtooltip"
+            data-tooltip-content={eye==='eye-slash'? 'show':'Hide'}>
+           <i className={`fa ${icon} fa-${eye} position-absolute eye`}></i>
+           </span>
+      </div>
+      {isCapsLockOn && (<p className="p-2 text-bg-danger rounded mt-2"><i className="bi bi-exclamation-circle fs-8"></i> Caps Lock is ON</p>)}
+      <button className="btn btn-primary mb-3 px-4 position-relative" style={{padding:'.5rem 1rem', width:'100%'}} type="submit" disabled={isdisabled}> {!isdisabled? 'Sign In': <Spinner/>}</button>
+      <Tooltip id="passtooltip" />
+    </form>
+    <div className="text">
+    <div className="text1">
+        Do not have an account? <span className=" text-info"> <Link to="/user-home-page/sign-up">Register</Link></span>
+        </div>
+        <div className="text2">
+       Forgot? <span className=" text-info"> <Link to="/forgot-password">Password</Link></span>
+        </div>
 
     </div>
+    <ToastContainer />
+    <br/>
+    <hr className='hr'/>
+        <SocialLogin/>
+    </div>
+
   );
 };
 
 export default SignIn;
+

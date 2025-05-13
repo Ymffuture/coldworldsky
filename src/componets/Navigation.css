@@ -274,7 +274,7 @@
 }
 .bottom-icons{
   cursor: pointer;
-  width: 99%;
+  width: 100%;
   background: #000000 !important;
 }
 .bottom-icons li{
@@ -283,7 +283,7 @@
 }
 .bottom-icons li a{
   cursor: pointer;
-  /* color:#F0C401; */
+  font-size: 10px !important;
 }
 .bottom-icons:hover{
   background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%) !important;
@@ -291,10 +291,10 @@
   width: 100%;
 }
 .icon-bottom{
-  font-size: 24px;
+  font-size: 10px !important;
   padding: 2px;
   margin: 5px;
-  width: 80% !important;
+  width: 40% !important;
  
 }
 .icon-body{
@@ -310,7 +310,7 @@
   transition: .6s all !important;
   /* background: #2b2a2a; */
   /* padding: 1px; */
-  border-radius: 5px;
+  border-radius: 1px;
 }
 
 .search-results{
@@ -378,7 +378,7 @@ display: none;
 }
 
 .social-media a {
-  font-size: 1.5rem;
+  font-size: 1rem !important;
   color: #007bff;
   transition: color 0.3s;
 }
@@ -405,7 +405,10 @@ display: none;
 .show:hover{
   color: #b38773 !important;
 }
-
+.sideIcons{
+  font-size:12px;
+  padding:8px;
+}
 #closesidebar,
 #my-tooltip-dm,
 #my-tooltip,
@@ -421,6 +424,7 @@ display: none;
   border: 5px #1E2227 solid;
   padding: 4px;
   box-shadow: #16191d 2px 2px 4px;
+  font-size:14px;
 }
 #Facebook{
   background: #1877F2 !important;

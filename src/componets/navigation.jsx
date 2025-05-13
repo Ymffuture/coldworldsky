@@ -5,11 +5,10 @@ import Badge from "react-bootstrap/Badge";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
-import Modal from "react-bootstrap/Modal";
 import IconCloud  from "../custom/IconCloud/IconCloud";
 import Themed from "./ThemeToggle";
+import SearchLive from './SearchLive';
 import {
-  FaSearch,
   FaCalendarCheck,
   FaBookOpen,
   FaFacebook,
@@ -22,18 +21,11 @@ import {
   FaPaintBrush,
   FaAddressBook,
   FaGithub,
-  FaLink,
-
   FaSignInAlt,
   FaBookReader,
-  FaTimes,
   FaSignOutAlt,
   FaWhatsapp,
-  FaCog,
   FaRegAddressCard,
-
-  FaShareAlt,
-  FaShare,
   FaRegCopy,
   FaLocationArrow,
   FaCloud,
@@ -42,6 +34,7 @@ import {
 } from "react-icons/fa";
 import imgLoad from '../assets/css/nivo-lightbox/loading.gif'
 import CssLoader from "../pages/Cloader";
+import AIShow from './AIShow';
 const Navigation = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -71,7 +64,6 @@ const Navigation = () => {
   }
 
   const toastId = crypto.randomUUID().slice(0, 24);
-
 
   // scroll down effect
   const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
@@ -183,7 +175,7 @@ const toggleSwitch = () => {
       icon: <FaLocationArrow className="icon-bottom" />,
     },
     {
-      path: "/Application-form",
+      path: "/tutoring/ApplicationForm",
       label: "Apply to be a Tutor",
       icon: <FaRegAddressCard className="icon-bottom" />,
     },
@@ -199,44 +191,6 @@ const toggleSwitch = () => {
      } 
   ];
 
-  const demoSearchData = [
-    {
-      searchname: "Mathematics Course",
-      pathlink: "/tutoring",
-      Badge: <Badge bg="success">Available</Badge>,
-    },
-    {
-      searchname: "Physical Sciences",
-      pathlink: "/tutoring/subjects/Physical-science",
-      Badge: <Badge bg="success">Available</Badge>,
-    },
-    {
-      searchname: "Life Sciences",
-      pathlink: "/tutoring",
-      Badge: <Badge bg="success">Available</Badge>,
-    },
-    {
-      searchname: "Online Tutoring",
-      pathlink: "/tutoring",
-      Badge: <Badge bg="danger">Not available</Badge>,
-    },
-    {
-      searchname: "Affordable Bursaries",
-      pathlink: "/tutoring",
-      Badge: <Badge bg="success">Available</Badge>,
-    },
-    {
-      searchname: "Career Guidance",
-      pathlink: "/find-a-tutor",
-      Badge: <Badge bg="success">Available</Badge>,
-    },
-  ];
-
-  const closeSearch = () => {
-    setSearchResults([])
-    searchResults('')
-    searchQuery('')
-  }
   useEffect(() => {
     function updateConnectionStatus() {
       if (navigator.onLine) {
@@ -285,25 +239,10 @@ const toggleSwitch = () => {
           });
         }, 5000);
 
-        // setTimeout(() => {
-        //   toast.loading("Reconnecting attempt::2.", {
-        //     duration: 4200,
-        //     style: {
-        //       background: "#f6f6f675",
-        //       borderRadius: "8px",
-        //       color: "black",
-        //     },
-        //     position: "bottom-center",
-        //   });
-        // }, 8500);
-
         setTimeout(() => {
           toast.error("Failed to conntect to Internet.", {
             duration: 3000,
-            icon:  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-slash" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M3.112 5.112a3 3 0 0 0-.17.613C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13H11l-1-1H3.781C2.231 12 1 10.785 1 9.318c0-1.365 1.064-2.513 2.46-2.666l.446-.05v-.447q0-.113.018-.231zm2.55-1.45-.725-.725A5.5 5.5 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773a3.2 3.2 0 0 1-1.516 2.711l-.733-.733C14.498 11.378 15 10.626 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3c-.875 0-1.678.26-2.339.661z"/>
-  <path d="m13.646 14.354-12-12 .708-.708 12 12z"/>
-</svg> ,
+            icon: <IconCloud/>  ,
             toastId: toastId,
             style: {
               background: "#1E2227",
@@ -313,50 +252,8 @@ const toggleSwitch = () => {
             position: "bottom-left",
           });
         }, 20000);
-
-        // setTimeout(() => {
-        //   const buttonStyle = {
-        //     backgroundColor: "#ff3838",
-        //     color: "whitesmoke",
-
-        //     border: "none",
-        //     borderRadius: "4px",
-        //     cursor: "pointer",
-        //     marginLeft: "8px",
-        //     fontWeight: 800,
-        //     padding: "5px 10px",
-        //   };
-        //   const pageStyle = {
-        //     cursor: "pointer",
-        //   };
-        //   const page = () => {
-        //     window.location.reload();
-        //   };
-        //   toast(
-        //     (t) => (
-        //       <span className="text-light d-flex ">
-        //         <span onClick={page} style={pageStyle} title="Reload the page.">
-        //           You can browse offline with some limited features.
-        //         </span>
-        //         <button style={buttonStyle} onClick={() => toast.dismiss(t.id)}>
-        //           Dismiss
-        //         </button>
-        //       </span>
-        //     ),
-        //     {
-        //       duration: 20000,
-        //       style: {
-        //         background: "#333",
-        //         borderRadius: "7px",
-        //         color: "whitesmoke",
-        //       },
-        //       position: "bottom-right",
-        //     }
-        //   );
-        // }, 30000);
       }
     }
-    
 
     // Initial check
     updateConnectionStatus();
@@ -370,27 +267,7 @@ const toggleSwitch = () => {
       window.removeEventListener("online", updateConnectionStatus);
       window.removeEventListener("offline", updateConnectionStatus);
     };
-  }, []); // Empty dependency array ensures this runs only on mount/unmount
-  const notWorkingBtn = () => {
-    toast.loading("This feature is under constraction.", {
-      duration: 5000,
-      style: {
-        borderRadius: "50px",
-        background: "#fff34b",
-        opacity: 0.6,
-        boxShadow: "1px 4px 6px gray",
-      },
-      position: "bottom-center",
-    });
-  };
-  // notwoking
-  useEffect(() => {
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 8000);
   }, []);
-
-
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -479,8 +356,6 @@ const toggleSwitch = () => {
         className={`sidebar ${isSidebarOpen ? "open" : ""} ${darkMode ? "dark" : "light"}`}
       >
 
-
-
         <div className="sidebar-header">
           <div className="d-flex">
             <button
@@ -534,56 +409,10 @@ const toggleSwitch = () => {
               {""} {statusMessage || (isOnline ? "Online" : "Offline")}
             </p>
             {/* Search Section */}
-            <div className="search-section">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input form-control"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSearch();
-                  }
-                }}
-              />
-              
-              {searchQuery === '' ? <button
-                data-tooltip-id="my-tooltip-dm"
-                data-tooltip-content="Search"
-                onClick={handleSearch}
-                className="search-btn btn btn-info m-1"
-              >
-                <FaSearch />
-              </button> : <button
-                data-tooltip-id="my-tooltip-dm"
-                data-tooltip-content="Close search results"
-                onClick={closeSearch}
-                className="search-btn btn btn-info m-1"
-              >
-                <FaTimes />
-              </button>}
-
-
-              {searchResults.length > 0 && (
-                <div className="search-results">
-                  <ul>
-                    {searchResults.map((result, index) => (
-                      <li key={index} title={result.searchname}>
-                        <Link
-                          to={result.pathlink}
-                          onClick={() => setSearchQuery("")}
-                        >
-                          <FaLink className="linkIcon" /> {result.searchname}
-                        </Link>
-                        {result.Badge}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
+          <div className='p-2'>
+          <SearchLive/>
+          </div>
+            
 
 
             {/* Navigation Links */}
@@ -629,14 +458,14 @@ const toggleSwitch = () => {
                 </li>
               ))}
 
-              <div className="d-flex bg-dark-subtle rounded bottom-icons">
+              <div className="d-flex bg-dark-subtle rounded bottom-icons fs-2">
                 {buttonLinks.map((base, index) => (
                   <li key={index}>
                     <Link
                       data-tooltip-id="tooltip-base"
                       data-tooltip-content={base.label}
                       to={base.path}
-                      className="icon-body"
+                      className="icon-body fs-3"
                       onClick={handleToggleSidebar}
 
                     >
@@ -684,12 +513,57 @@ const toggleSwitch = () => {
               <Tooltip id="Facebook" />
               <Tooltip id="Whatsapp" />
               <Tooltip id="GitHub" />
-
-
             </div>
+         
+<hr/>
 
             {/* Theme Toggle */}
                 <Themed/>
+                <div className="flex p-4">
+                <div className="p-2">
+                <Link
+              to="/privacy-policy"
+              rel="nofollow"
+              className="font-bold"
+            >
+         Privacy Policy
+            </Link>
+            
+                </div>
+                <div className="p-2">
+                <Link
+              to="/terms-of-serveces"
+              rel="nofollow"
+              className="font-bold"
+            >
+         Terms Of Service
+            </Link>
+            
+                </div>
+                <div className="p-2">
+                <Link
+              to="/about"
+              rel="nofollow"
+              className="font-bold"
+            >
+       FAQ
+            </Link>
+            
+                </div>
+                </div>
+                <br/>
+                <p className='position-raletive bottom-0 mt-4 p-4 text-bg-light'>
+          &copy; {new Date().getFullYear()} Quorvex Institute. {" "} Powered by {''}
+            <Link
+              to="https://webpy-7tcd.onrender.com/views/Privacy-Policy"
+              rel="nofollow"
+              className="font-bold"
+            >
+         Quorvex
+            </Link> {""}
+            
+          </p>
+          <AIShow/>
           </>
         ) : (
          <CssLoader/>
@@ -712,24 +586,6 @@ const toggleSwitch = () => {
         <Tooltip id="my-tooltip-menu" />
       </button>}
 
-
-
-
-      <Modal show={show} onHide={handleClose} className='bg-danger-subtle'>
-        <Modal.Header closeButton>
-          <Modal.Title><i className='fa fa-google-plus-square'></i>Google</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className='d-flex mt-4 bg-warning-subtle p-3'>
-            <input className='form-control' type='text' placeholder='Google Search...' value={userQuery} onChange={(e) => { setUserQuery(e.target.value) }} />
-            <button className='btn btn-outline-info m-2' onClick={serachUserQuery}><FaSearch /></button>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <span><i className='fa fa-link'></i> {''} {openGoogle}</span>
-          <p className='bg text-bg-success fw-bolder p-2'>Open GOOGLE</p>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };

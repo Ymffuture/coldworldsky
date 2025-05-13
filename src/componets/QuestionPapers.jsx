@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "@react-spring/web";
 import axios from "axios";
-import { FaDownload, FaSearch, FaBook, FaFilter, FaCalendarAlt, FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
+import { FaDownload, FaSearch,FaBookOpen, FaExclamationCircle, FaExclamationTriangle } from "react-icons/fa";
 import Loader from './Loader';
 import Spinner from './Spinner';
 import { Viewer, Worker } from '@react-pdf-viewer/core';
@@ -10,7 +10,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const defaultLayoutPluginInstance = defaultLayoutPlugin();
+// const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
 const QuestionPapers = () => {
   const [width, setWidth] = useState(1200);
@@ -21,8 +21,8 @@ const QuestionPapers = () => {
   const [subjectFilter, setSubjectFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
   const [topicFilter, setTopicFilter] = useState("");
-  const [visibleCount, setVisibleCount] = useState(8);
-  const [exchange, setExchange] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(4);
+  const [exchange, setExchage] = useState(null);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -32,11 +32,9 @@ const QuestionPapers = () => {
     const getData = async () => {
       try {
         const res = await axios.get("/papers.json");
-        console.log("Fetched data:", res.data.papers); // Log fetched data
         setData(res.data.papers || []);
       } catch (err) {
-        console.error("Error fetching data:", err); // Log error
-        setError(err.message);
+        setError(err);
       } finally {
         setTimeout(() => {
           setLoading(false);
@@ -68,9 +66,9 @@ const QuestionPapers = () => {
     const link = document.createElement('a');
     link.href = doc.file;
     setTimeout(() => {
-      setExchange(null);
+      setExchage(null);
     }, 3000);
-    setExchange(<Spinner className='position-absolute' />);
+    setExchage(<Spinner className='position-absolute' />);
     const safeName = doc.name.replace(/\s+/g, '_').toLowerCase();
     const safeTopic = doc.topic.replace(/\s+/g, '_').toLowerCase();
     const safeYear = doc.yr;
@@ -79,11 +77,6 @@ const QuestionPapers = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const handlePdfError = (e) => {
-    console.error("PDF Viewer Error:", e); // Log PDF-specific errors
-    setError("Failed to load PDF");
   };
 
   return (
@@ -154,29 +147,17 @@ const QuestionPapers = () => {
                 </div>
               </div>
 
-              {error && (
-                <div className="notification is-danger has-text-centered">
-                  <FaExclamationCircle /> {error}
-                </div>
-              )}
-
               <div className="columns is-multiline">
                 {filteredData.slice(0, visibleCount).map((doc, index) => (
                   <div className="column is-3" key={index}>
                     <div className="box has-text-centered">
                       <p className='has-background-dark has-text-white p-2 mb-2'>{doc.name}</p>
-                      {doc.file ? (
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                          <div style={{ height: '500px', border: '1px solid #ddd' }}>
-                            <Viewer 
-                              fileUrl={doc.file} 
-                              plugins={[defaultLayoutPluginInstance]} 
-                              onError={handlePdfError}
-                            />
+                      {doc.file && (
+                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                          <div style={{ height: '500px' }}>
+                            <Viewer fileUrl={doc.file} />
                           </div>
                         </Worker>
-                      ) : (
-                        <p className="has-text-danger">No PDF available</p>
                       )}
                       <div className="mt-2">
                         <p><strong>Topic:</strong> {doc.topic}</p>
@@ -184,8 +165,9 @@ const QuestionPapers = () => {
                         <p><strong>Year:</strong> {doc.yr}</p>
                       </div>
                       <button className="button is-primary is-small mt-2" onClick={() => handleDownload(doc)}>
-                        <FaDownload />  Download Paper
+                        <FaDownload /> &nbsp;Download Paper
                       </button>
+                      <small className="has-text-danger">{error ? error.message : null}</small>
                     </div>
                   </div>
                 ))}
@@ -195,7 +177,7 @@ const QuestionPapers = () => {
               {visibleCount < filteredData.length && (
                 <div className="has-text-centered mt-4">
                   <button className="button is-dark" onClick={handleLoadMore}>
-                    <FaBookOpen />  Load More
+                    <FaBookOpen /> &nbsp;Load More
                   </button>
                 </div>
               )}
@@ -208,3 +190,4 @@ const QuestionPapers = () => {
 };
 
 export default QuestionPapers;
+
