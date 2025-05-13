@@ -183,9 +183,6 @@ const schemaData = {
       <Footer />
       <Helmet>
         <title>Quorvex Institute - Learn Coding & More | Code the Future. Together </title>
-        <meta
-          name="description"
-
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2722864790738174" />
