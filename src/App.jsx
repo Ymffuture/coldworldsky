@@ -189,7 +189,7 @@ const schemaData = {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-2722864790738174" />
-  <meta name="robots" content="index, follow" /> <!-- Change to 'index, follow' to allow search engines -->
+  <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="xXWElQQdEb1YSMqAy524N-B58KqSZqsf5zc0O8fWg3A" />
   
   
