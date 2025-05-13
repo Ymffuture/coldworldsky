@@ -242,7 +242,10 @@ const toggleSwitch = () => {
         setTimeout(() => {
           toast.error("Failed to conntect to Internet.", {
             duration: 3000,
-            icon: <IconCloud/>  ,
+            icon:  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48" viewBox="0 0 24 24">
+  <path d="M3 3l18 18M19 19H8a5 5 0 01-5-5 5 5 0 014.38-4.94A6 6 0 0116 7a5.8 5.8 0 012.58.6" />
+</svg>
+ ,
             toastId: toastId,
             style: {
               background: "#1E2227",
