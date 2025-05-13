@@ -82,7 +82,12 @@ const SignIn = ({ setIsAuthenticated }) => {
       toast.error(data.error || "No internet Connection", {
         position: "top-center",
         duration: 8000,
-        icon:<IconCloud/>,
+        icon:<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="red" stroke-width="2" width="48" height="48" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" />
+  <line x1="12" y1="8" x2="12" y2="12" />
+  <circle cx="12" cy="16" r="1" fill="red"/>
+</svg>
+ ,
        
         style:{
           background:'#1E2227',
