@@ -56,7 +56,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       setTimeout(()=>{
         setIsdisabled(false)
         
-      },30000)
+      },3000)
     }else{
     
     pass
