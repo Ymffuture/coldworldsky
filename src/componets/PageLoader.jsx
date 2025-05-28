@@ -45,7 +45,7 @@ const Loader = () => {
         style={{
           color: '#FFFFFF',
           fontFamily: 'Arial Black, sans-serif',
-          fontSize: '1.2rem',
+          fontSize: '1rem',
           letterSpacing: '0.2em',
           textShadow: '0 0 10px #1E90FF',
         }}

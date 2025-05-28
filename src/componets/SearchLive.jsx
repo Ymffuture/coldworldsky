@@ -10,11 +10,25 @@ const data = [
   { title: 'Intro to Python', type: 'Course', link: '/courses/python' },
   { title: 'Science & Chemistry Help', type: 'Topic', link: '/tutoring/chemistry' },
   { title: 'JavaScript Mastery', type: 'Course', link: '/courses/js' },
+  { title: 'Data Structures & Algorithms', type: 'Course', link: '/courses/dsa' },
+  { title: 'SAT & NBT Prep Program', type: 'Service', link: '/services/sat-prep' },
+  { title: 'Advanced Calculus Tutoring', type: 'Tutor', link: '/tutoring/calculus' },
+  { title: 'UI/UX Design Fundamentals', type: 'Course', link: '/courses/uiux' },
+  { title: 'Mobile App Development with React Native', type: 'Course', link: '/courses/react-native' },
+  { title: 'Career Coaching: Tech & IT Jobs', type: 'Service', link: '/services/career-coaching' },
+  { title: 'Cybersecurity Essentials', type: 'Course', link: '/courses/cybersecurity' },
+  { title: 'Physics for Grade 10-12', type: 'Tutor', link: '/tutoring/physics' },
+  { title: 'HTML, CSS & TailwindCSS Crash Course', type: 'Course', link: '/courses/html-css-tailwind' },
+  { title: 'What is AI in Education?', type: 'Topic', link: '/topics/ai-in-education' },
+  { title: 'Study Tips for High School Learners', type: 'Topic', link: '/topics/study-tips' },
+  { title: 'Moya App Setup for Students', type: 'Topic', link: '/topics/moya-app' },
+  { title: 'Free Coding Workshop – July 2025', type: 'Event', link: '/events/free-coding-workshop' },
+  { title: 'Quorvex Institute Orientation 2025', type: 'Event', link: '/events/orientation' }
 ];
 
 const fuse = new Fuse(data, {
   keys: ['title', 'type'],
-  threshold: 0.3,
+  threshold: 0.6,
 });
 
 export default function LiveSearch() {
@@ -35,7 +49,7 @@ export default function LiveSearch() {
         placeholder="Search courses, tutors, topics..."
         value={query}
         onChange={handleChange}
-        className="shadow-sm rounded-pill"
+        className="shadow-sm rounded-2"
       />
       <AnimatePresence>
         {query && results.length > 0 && (
