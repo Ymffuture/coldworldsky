@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { Button, Tooltip } from "antd";
-import { FaArrowAltCircleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "antd/dist/reset.css"; // Ant Design styles
 import "react-tooltip/dist/react-tooltip.css"; // React Tooltip

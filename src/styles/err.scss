@@ -17,13 +17,20 @@
   animation: shake 4s linear infinite;
   transition: .6s ease-in-out;
   font-size: 70px;
+  
+}
+.page404{
+  font-size: 80px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @keyframes shake {
  from{
   transform: translateY(0);
+  color:#ffae00;
  }
 to{
   transform: translateY(10%);
+ 
 }
 }

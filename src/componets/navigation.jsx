@@ -5,7 +5,6 @@ import Badge from "react-bootstrap/Badge";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import "./Navigation.css";
-import IconCloud  from "../custom/IconCloud/IconCloud";
 import Themed from "./ThemeToggle";
 import SearchLive from './SearchLive';
 import {
@@ -30,11 +29,9 @@ import {
   FaLocationArrow,
   FaCloud,
   FaShareAltSquare,
-  FaLock,
 } from "react-icons/fa";
 import imgLoad from '../assets/css/nivo-lightbox/loading.gif'
 import CssLoader from "../pages/Cloader";
-import AIShow from './AIShow';
 const Navigation = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,24 +41,8 @@ const Navigation = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showIcon, setShowIcon] = useState("");
-  const [show, setShow] = useState(false);
-  const [userQuery, setUserQuery] = useState()
-  const [openGoogle, setOpenGoogle] = useState('')
   const sidemenuRef = useRef();
-
-  const serachUserQuery = () => {
-    window.open(`https://google.com/search?q=${userQuery}`)
-
-    setOpenGoogle(`https://google.com/search?q=${userQuery}`)
-  }
-
-  // have to fix this 
-  const Siginpage = () => {
-    window.open(`https://skyfordcci.vercel.app/user-home-page/sign-in`)
-
-  }
 
   const toastId = crypto.randomUUID().slice(0, 24);
 
@@ -86,10 +67,6 @@ const Navigation = () => {
   }, [prevScrollPos]);
 
   // end here
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // true if token exists
-  }, []);
 
 
   const copyText = (text) => {
@@ -119,15 +96,6 @@ const Navigation = () => {
       });
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-const toggleSwitch = () => {
-        localStorage.removeItem("token"); // Clear token
-        setIsAuthenticated(false);
-  setTimeout(() =>{
-    window.location.reload()
-           },3000) 
-      }
   const navLinks = [
     { path: "/", label: "Home", icon: <FaHome /> },
     { path: "/about", label: "About", icon: <FaInfoCircle /> },
@@ -158,8 +126,7 @@ const toggleSwitch = () => {
     },
     { path: "/contact", label: "Contact", icon: <FaAddressBook /> },
     {
-      path: "#", label: isAuthenticated ? 'SignOut' : 'Share Page', icon: isAuthenticated ? <FaSignOutAlt className="text-danger" onClick={toggleSwitch} /> : <FaShareAltSquare className="text-secondary" onClick={() => copyText(window.location.href)} />
-   
+      path: "#", label: 'SHARE', icon:<FaShareAltSquare className="text-secondary" onClick={() => copyText(window.location.href)} />
     },
   ];
 
@@ -185,9 +152,10 @@ const toggleSwitch = () => {
       icon: <FaBookOpen className="icon-bottom" />,
     },
     {
-      path:isAuthenticated? "#" :"/user-home-page/sign-in" ,
-      label:isAuthenticated? "Can't sign out here! " :"Sign in",
-      icon: isAuthenticated? <FaSignOutAlt className="text-danger icon-bottom" /> :<FaSignInAlt className="icon-bottom" />,
+      path:"/user-home-page/sign-in" ,
+      label:"Sign in",
+      icon: <FaSignInAlt className="icon-bottom" />,
+      applytobeatutor: <Badge><Link to='/tutoring/ApplicationForm-for-a-tutor/'></Link></Badge>
      } 
   ];
 
@@ -449,10 +417,10 @@ const toggleSwitch = () => {
                                 } `}
                               data-tip={link.label}
                             >
-                              <i className={isAuthenticated? null : 'dropdown'} disabled>{sub.icon}</i>
+                              <i>{sub.icon}</i>
                             </span>{" "}
                            
-                            <span className={isAuthenticated? null : 'dropdown'}> {sub.label}</span> {""} {isAuthenticated? null : <FaLock className="fs-6 lockColor"/>}
+                            <span > {sub.label}</span> {""}
                           </Link>
                         </li>
                       ))}
@@ -522,39 +490,32 @@ const toggleSwitch = () => {
 
             {/* Theme Toggle */}
                 <Themed/>
-                <div className="flex p-4">
-                <div className="p-2">
-                <Link
-              to="/privacy-policy"
-              rel="nofollow"
-              className="font-bold"
-            >
-         Privacy Policy
-            </Link>
-            
-                </div>
-                <div className="p-2">
-                <Link
-              to="/terms-of-serveces"
-              rel="nofollow"
-              className="font-bold"
-            >
-         Terms Of Service
-            </Link>
-            
-                </div>
-                <div className="p-2">
-                <Link
-              to="/about"
-              rel="nofollow"
-              className="font-bold"
-            >
-       FAQ
-            </Link>
-            
-                </div>
-                </div>
-                <br/>
+                <div className="menu p-4 has-background-light" style={{ minWidth: '200px' }}>
+  <p className="menu-label has-text-weight-semibold has-text-grey-dark">
+    Legal & Info
+  </p>
+
+  <ul className="menu-list">
+    <li>
+      <Link to="/privacy-policy" rel="nofollow" className="has-text-weight-bold">
+        Privacy Policy
+      </Link>
+    </li>
+    <li>
+      <Link to="/terms-of-serveces" rel="nofollow" className="has-text-weight-bold">
+        Terms of Service
+      </Link>
+    </li>
+    <li>
+      <Link to="/about" rel="nofollow" className="has-text-weight-bold">
+        FAQ
+      </Link>
+    </li>
+  </ul>
+</div>
+
+
+
                 <p className='position-raletive bottom-0 mt-4 p-4 text-bg-light'>
           &copy; {new Date().getFullYear()} Quorvex Institute. {" "} Powered by {''}
             <Link
@@ -566,7 +527,7 @@ const toggleSwitch = () => {
             </Link> {""}
             
           </p>
-          <AIShow/>
+         
           </>
         ) : (
          <CssLoader/>

@@ -146,7 +146,7 @@ const schemaData = {
               <Route path="applicationForm/track-application" element={<TrackApplication />} />
               <Route
                 path="subjects"
-                element={<ProtectedRoute isAuthenticated={isAuthenticated}><Subjects /></ProtectedRoute>}
+                element={<Subjects />}
               >
                 <Route path="life-sciences" element={<LifeSciences />} />
                 <Route path="life-sciences/clip-overview" element={<VidLfs />} />
@@ -156,8 +156,8 @@ const schemaData = {
                 <Route path="mathematics/clip-overview" element={<VidMath />} />
               </Route>
             </Route>
-            <Route path="/find-a-tutor" element={<ProtectedRoute isAuthenticated={isAuthenticated}><FindTutor /></ProtectedRoute>} />
-            <Route path="/courses" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Courses /></ProtectedRoute>}>
+            <Route path="/find-a-tutor" element={<FindTutor />} />
+            <Route path="/courses" element={<Courses />}>
               <Route path="web-dev" element={<WebDev />} />
               <Route path="data-science" element={<DataScience />} />
               <Route path="ui-ux" element={<UxUi />} />
