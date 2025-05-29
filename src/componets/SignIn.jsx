@@ -8,8 +8,7 @@ import SocialLogin from "./SocialLogin";
 import { URL_BACKEND_HTTP, URL_BACKEND_HTTPS } from "../../Urls";
 import IconCloud from "../custom/IconCloud/IconCloud";
 import Spinner from './Spinner';
-import { GoogleLogin } from '@react-oauth/google'; // Added
-import jwt_decode from 'jwt-decode'; // Needed to decode Google credential
+
 
 const SignIn = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
@@ -111,32 +110,7 @@ const SignIn = ({ setIsAuthenticated }) => {
     }
   };
 
-  const handleGoogleLoginSuccess = async (credentialResponse) => {
-    try {
-      const decoded = jwt_decode(credentialResponse.credential);
-      const { email, name } = decoded;
-
-      // Send to backend or directly authenticate
-      const response = await fetch(`${URL_BACKEND_HTTPS}/api/auth/google-login`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, credential: credentialResponse.credential })
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setIsAuthenticated(true);
-        navigate("/");
-      } else {
-        toast.error(data.error || "Google login failed", {
-          position: "top-center"
-        });
-      }
-    } catch (err) {
-      toast.error("Google login error", { position: "top-center" });
-    }
-  };
+ 
 
   return (
     <div style={{ maxWidth: '600px', margin: 'auto', height: '130vh', padding: '1rem', textAlign: 'center' }} className='signin container containerAB'>
@@ -207,12 +181,7 @@ const SignIn = ({ setIsAuthenticated }) => {
       <SocialLogin />
 
       {/* Google Login Added */}
-      <div style={{ marginTop: "1rem" }}>
-        <GoogleLogin
-          onSuccess={handleGoogleLoginSuccess}
-          onError={() => toast.error("Google login failed")}
-        />
-      </div>
+     
 
     </div>
   );
