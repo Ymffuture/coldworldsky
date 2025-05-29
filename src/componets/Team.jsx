@@ -26,10 +26,10 @@ const Team = (props) => {
         <div id="row" className="row g-4 justify-content-center">
           {props.data ? (
             props.data.map((d, i) => (
-              <div key={`${d.name}-${i}`} className="col-lg-5 col-md-6 col-sm-10">
+              <div key={`${d.name}-${i}`} className="col-lg-8 col-md-6 col-sm-10">
                 <div 
-                  className="team-card position-relative overflow-hidden shadow-lg rounded-4 p-4 h-100"
-                  style={{ background: "#000000", transition: "transform 0.3s", border: "2px solid #333", color:"white"}}
+                  className="team-card position-relative overflow-hidden shadow-lg w-100 rounded-4 p-4 h-100"
+                  style={{ background: "#000", transition: "transform 0.3s", border: "2px solid #555", color:"white"}}
                   onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-8px)"}
                   onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
                 >
@@ -45,7 +45,7 @@ const Team = (props) => {
                     <img
                       src={d.img}
                       alt={d.name}
-                      className="team-img img-fluid rounded-circle mb-3 border border-3 border-primary"
+                      className="team-img img-fluid rounded-circle mb-3 border-3 border-primary"
                       style={{ width: "120px", height: "120px", objectFit: "cover" }}
                     />
 

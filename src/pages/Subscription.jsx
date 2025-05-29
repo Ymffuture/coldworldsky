@@ -49,7 +49,7 @@ const SubscribePage = () => {
           <div className="invalid-feedback">{errors.email?.message}</div>
         </Form.Group>
 
-        <Button type="submit" variant="primary" disabled={isSubmitting}>
+        <Button type="submit" variant="secondary" disabled={isSubmitting}>
           {isSubmitting ? 'Subscribing...' : 'Subscribe'}
         </Button>
       </Form>

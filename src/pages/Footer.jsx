@@ -14,7 +14,7 @@ const Footer = () => {
   
   // wait...
   const social = [
-    {openlink:"https://www.facebook.com/QuorvexInstitute" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-4'
+    {openlink:"https://www.facebook.com/QuorvexInstitute" , label:'Facebook' , icon:<FaFacebookF className='fa-facebook fa fs-5'
     />},
 
     // {openlink:"https://yahoo.com/skyfordCCI" , label:'Yahoo' , icon:<FaYahoo
@@ -32,13 +32,13 @@ const Footer = () => {
   //  className='fa-youtube fa fs-4 '
  //   />},
     {openlink:"https://github.com/ymffuture" , label:'GitHub' , icon:<FaGithub
-    className='fa-github fa fs-4'
+    className='fa-github fa fs-5'
     />},
     {openlink:'https://www.linkedin.com/in/kgomotsonkosi-l' , label:'Linkedin' , icon:<FaLinkedinIn
-    className='fa-linkedin fa fs-4'
+    className='fa-linkedin fa fs-5'
     />},
     {openlink:'https://wa.me/27653935339' , label:'Whatsapp' , icon:<FaWhatsapp
-    className='fa-whatsapp fa fs-4'
+    className='fa-whatsapp fa fs-5'
     />},
     // {openlink:'https://Instagram.com/ymffuture' , label:'Instagram' , icon:<FaInstagram
     //   className='fa-instagram fa fs-4'
