@@ -13,7 +13,7 @@ const Loader = () => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#000', // Tesla black
+        backgroundColor: '#00000057', // Tesla black
         zIndex: 9999,
         flexDirection: 'column',
       }}

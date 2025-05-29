@@ -502,7 +502,7 @@ const Navigation = () => {
       </Link>
     </li>
     <li>
-      <Link to="/terms-of-serveces" rel="nofollow" className="has-text-weight-bold">
+      <Link to="/terms-of-services" className="has-text-weight-bold">
         Terms of Service
       </Link>
     </li>
