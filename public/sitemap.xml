@@ -43,19 +43,32 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://quorvexinstitute.vercel.app/user-home-page/sign-in</loc>
+    <loc>https://quorvexinstitute.vercel.app/courses/web-dev</loc>
     <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
+  </url
   <url>
-    <loc>https://quorvexinstitute.vercel.app/user-home-page/sign-up</loc>
+    <loc>https://quorvexinstitute.vercel.app/courses/data-science</loc>
     <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://quorvexinstitute.vercel.app/find-a-tutor</loc>
+    <lastmod>2025-05-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://quorvexinstitute.vercel.app/tutoring/subjects</loc>
+    <lastmod>2025-05-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tasksassgn.vercel.app/</loc>
     <lastmod>2025-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
