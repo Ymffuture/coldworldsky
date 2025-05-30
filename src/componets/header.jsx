@@ -6,12 +6,7 @@ import "antd/dist/reset.css"; // Ant Design styles
 import "react-tooltip/dist/react-tooltip.css"; // React Tooltip
 
 const Header = (props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // true if token exists
-  }, []);
 
   // Background fade animation
   const fadeIn = useSpring({
@@ -31,7 +26,7 @@ const Header = (props) => {
         <div className="overlay d-flex justify-content-center align-items-center vh-100">
           <div className="container">
             <div className="row">
-              <div className="col-md-8 col-md-offset-2 intro-text">
+              <div className="col-md-16 col-md-offset-2 intro-text">
                 <h1>
                   {props.data ? props.data.title : <span id="p">QUORVEXIN</span>}
                 </h1>
@@ -42,7 +37,7 @@ const Header = (props) => {
                   <br />
                   <Link
                     style={style}
-                    to={isAuthenticated ? "/about" : "/user-home-page/sign-up"}
+                    to="/about"
                     className="btn btn-lg page-scroll"
                   >
                     <Button
@@ -51,7 +46,7 @@ const Header = (props) => {
                       
                       style={{ padding: "10px 20px", fontSize: "16px" }}
                     >
-                      {isAuthenticated ? "Learn more" : "Get Started"}
+                     Learn more
                     </Button>
                   </Link>
                 </div>
