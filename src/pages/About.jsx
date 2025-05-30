@@ -44,7 +44,7 @@ const About = () => {
             <div className="column is-6">
               <figure className="image is-4by3">
                 <img
-                  src="/img/about-03.jpg"
+                  src="/img/mission.jpeg"
                   alt="Quorvex mission illustration"
                   className="is-rounded has-shadow"
                   loading="lazy"

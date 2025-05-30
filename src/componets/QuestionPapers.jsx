@@ -153,7 +153,7 @@ const QuestionPapers = () => {
                     <div className="box has-text-centered">
                       <p className='has-background-dark has-text-white p-2 mb-2'>{doc.name}</p>
                       {doc.file && (
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
                           <div style={{ height: '500px' }}>
                             <Viewer fileUrl={doc.file} />
                           </div>
