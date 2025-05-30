@@ -10,7 +10,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-// const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
 
 const QuestionPapers = () => {
   const [width, setWidth] = useState(1200);
@@ -151,14 +151,16 @@ const QuestionPapers = () => {
                 {filteredData.slice(0, visibleCount).map((doc, index) => (
                   <div className="column is-3" key={index}>
                     <div className="box has-text-centered">
-                      <p className='has-background-dark has-text-white p-2 mb-2'>{doc.name}</p>
-                      {doc.file && (
-                        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                          <div style={{ height: '500px' }}>
-                            <Viewer fileUrl={doc.file} />
-                          </div>
-                        </Worker>
-                      )}
+                      <p className='has-background-dark has-text-white p-3 mb-2'>{doc.name}</p>
+                      {doc.file ? (
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                      <div style={{ height: '600px' }}>
+                        <Viewer fileUrl={doc.file} />
+                      </div>
+                    </Worker>
+                  ) : (
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="PDF not available" />
+                  )}
                       <div className="mt-2">
                         <p><strong>Topic:</strong> {doc.topic}</p>
                         <p><strong>Grade:</strong> {doc.grade}</p>
