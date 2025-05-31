@@ -102,13 +102,13 @@ const QuestionPapers = () => {
           {loading ? <Loader /> : (
             <div>
               <div className="notification is-danger has-text-centered">
-                <FaExclamationCircle /> <strong>Status:</strong> <small>1/42 files uploaded</small>
+                <FaExclamationCircle /> <strong>Status:</strong> <small>7/42 files uploaded</small>
               </div>
               <div className="columns is-multiline is-mobile mb-4">
                 <div className="column is-3">
                   <div className="field has-addons">
                     <p className="control">
-                      <span className="button is-static"><FaSearch /></span>
+                      {/* <span className="button is-static"><FaSearch /></span> */}
                     </p>
                     <p className="control is-expanded">
                       <input className="input" type="text" placeholder="Search papers..." value={search} onChange={(e) => setSearch(e.target.value)} />
@@ -125,7 +125,7 @@ const QuestionPapers = () => {
                     </select>
                   </div>
                 </div>
-                <div className="column is-3">
+                <div className="column is-4">
                   <div className="select is-fullwidth">
                     <select value={yearFilter} onChange={(e) => setYearFilter(e.target.value)}>
                       <option value="">All Years</option>
@@ -135,7 +135,7 @@ const QuestionPapers = () => {
                     </select>
                   </div>
                 </div>
-                <div className="column is-3">
+                <div className="column is-4">
                   <div className="select is-fullwidth">
                     <select value={topicFilter} onChange={(e) => setTopicFilter(e.target.value)}>
                       <option value="">All Topics</option>
@@ -148,13 +148,13 @@ const QuestionPapers = () => {
               </div>
 
               <div className="columns is-multiline">
-                {filteredData.slice(0, visibleCount).map((doc, index) => (
-                  <div className="column is-3" key={index}>
+                {filteredData.slice(1, visibleCount).map((doc, index) => (
+                  <div className="column is-4" key={index}>
                     <div className="box has-text-centered">
                       <p className='has-background-dark has-text-white p-3 mb-2'>{doc.name}</p>
                       {doc.file ? (
                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                      <div style={{ height: '600px' }}>
+                      <div style={{ height: '300px' }}>
                         <Viewer fileUrl={doc.file} />
                       </div>
                     </Worker>
