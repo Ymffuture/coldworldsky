@@ -33,7 +33,7 @@ const SubscribePage = () => {
   };
 
   return (
-    <Container className="p-4 mt-3 rounded shadow" style={{ backgroundColor: 'transparent' }}>
+    <Container className="p-4 mt-3 mainBox" style={{ backgroundColor: 'transparent' }}>
       <ToastContainer position="top-right" autoClose={5000} />
       <h4 className="mb-2 text-light">Stay Updated with Quorvex</h4>
       <p className="text-light opacity-50 mb-1">Enter your email to receive our latest updates.</p>
@@ -49,7 +49,7 @@ const SubscribePage = () => {
           <div className="invalid-feedback">{errors.email?.message}</div>
         </Form.Group>
 
-        <Button type="submit" variant="secondary" disabled={isSubmitting}>
+        <Button type="submit" variant="secondary" disabled={isSubmitting} className='float-btn'>
           {isSubmitting ? 'Subscribing...' : 'Subscribe'}
         </Button>
       </Form>

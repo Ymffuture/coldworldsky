@@ -179,7 +179,7 @@ const QuestionPapers = () => {
               {visibleCount < filteredData.length && (
                 <div className="has-text-centered mt-4">
                   <button className="button is-dark" onClick={handleLoadMore}>
-                    <FaBookOpen /> &nbsp;Load More
+                    <FaBookOpen /> &nbsp;Load More QP
                   </button>
                 </div>
               )}

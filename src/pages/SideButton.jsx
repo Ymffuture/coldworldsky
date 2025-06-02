@@ -33,10 +33,10 @@ const SideButton = () => {
           rel="noopener noreferrer"
           className="button is-rounded"
           style={{
-            backgroundColor: '#000',
+            backgroundColor: '#333',
             padding: '0.75rem',
             border: 'none',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.56)',
           }}
           whileHover={{
             scale: [1, 1.1, 1],
