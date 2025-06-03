@@ -60,7 +60,6 @@ const Footer = () => {
   return (
     <AntFooter className="text-center" id="footer" style={{ background: '#001529', color: '#fff' }}>
       {[...Array(5)].map((_, index) => <div className='mainer' key={index}></div>)}
-<br/>
       <Row gutter={[24, 24]} className="p-3">
         <Col xs={24} sm={12} md={8}>
           <Logo />
