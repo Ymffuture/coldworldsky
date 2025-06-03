@@ -209,7 +209,7 @@
   color: rgb(109, 109, 109);
   padding: 7px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 14px;
   display: block;
   font-weight: 400;
   /* text-transform: uppercase; */
@@ -274,12 +274,14 @@
 }
 .bottom-icons{
   cursor: pointer;
+
   width: 100%;
-  background: #000000 !important;
+  background: transparent !important;
 }
 .bottom-icons li{
   cursor: pointer;
   width: 100%;
+  
 }
 .bottom-icons li a{
   cursor: pointer;
@@ -550,7 +552,12 @@ font-weight: 600;
   color:rgb(125, 153, 176);
   
 }
-
+.size{
+  font-size:10px !important;
+}
+.list{
+  display: flex;
+}
 
 
 

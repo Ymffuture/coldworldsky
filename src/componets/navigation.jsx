@@ -429,14 +429,14 @@ const Navigation = () => {
                 </li>
               ))}
 
-              <div className="d-flex bg-dark-subtle rounded bottom-icons fs-2">
+              <div className="d-flex bg-dark-subtle rounded bottom-icons fs-5">
                 {buttonLinks.map((base, index) => (
                   <li key={index}>
                     <Link
                       data-tooltip-id="tooltip-base"
                       data-tooltip-content={base.label}
                       to={base.path}
-                      className="icon-body fs-3"
+                      className="icon-body fs-5"
                       onClick={handleToggleSidebar}
 
                     >
@@ -447,46 +447,7 @@ const Navigation = () => {
                 <Tooltip id="tooltip-base" />
               </div>
             </ul>
-
-            {/* Social Media Icons */}
-            <div className="social-media d-flex justify-content-around mt-2">
-              <a
-                data-tooltip-id="Facebook"
-                data-tooltip-content="Facebook"
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-tip="Facebook"
-              >
-                <FaFacebook className="sideIcons facebook" />
-              </a>
-
-              <a
-                data-tooltip-id="GitHub"
-                data-tooltip-content="Github"
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-tip="Github"
-              >
-                <FaGithub className="sideIcons" />
-              </a>
-              <a
-                data-tooltip-id="Whatsapp"
-                data-tooltip-content="Whatsapp"
-                href="https://Whatsapp.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-tip="Whatsapp"
-              >
-                <FaWhatsapp className="sideIcons inst" />
-              </a>
-              <Tooltip id="Facebook" />
-              <Tooltip id="Whatsapp" />
-              <Tooltip id="GitHub" />
-            </div>
          
-<hr/>
 
             {/* Theme Toggle */}
                 <Themed/>
@@ -495,28 +456,26 @@ const Navigation = () => {
     Legal & Info
   </p>
 
-  <ul className="menu-list">
+  <ul className="menu-list list">
     <li>
-      <Link to="/privacy-policy" rel="nofollow" className="has-text-weight-bold">
+      <Link to="/privacy-policy" rel="nofollow" className="has-text-gray">
         Privacy Policy
       </Link>
     </li>
     <li>
-      <Link to="/terms-of-services" className="has-text-weight-bold">
+      <Link to="/terms-of-services" className="has-text-gray">
         Terms of Service
       </Link>
     </li>
     <li>
-      <Link to="/about" rel="nofollow" className="has-text-weight-bold">
+      <Link to="/about" rel="nofollow" className="has-text-gray">
         FAQ
       </Link>
     </li>
   </ul>
 </div>
 
-
-
-                <p className='position-raletive bottom-0 mt-4 p-4 text-bg-light'>
+                <p className='position-raletive bottom-0 mt-4 p-4 text-bg-light size'>
           &copy; {new Date().getFullYear()} Quorvex Institute. {" "} Powered by {''}
             <Link
               to="https://webpy-7tcd.onrender.com/views/Privacy-Policy"

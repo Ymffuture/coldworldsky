@@ -42,6 +42,7 @@ const SubscribePage = () => {
         <Form.Group className="mb-2">
           <Form.Control
             type="email"
+            name="email"
             placeholder="yourname@gmail.com"
             {...register('email')}
             className={`form-control ${errors.email ? 'is-invalid' : ''}`}

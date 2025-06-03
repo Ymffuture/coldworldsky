@@ -73,6 +73,7 @@ const ResetPassword = () => {
                 <Input.Password placeholder="Confirm new password" />
               </Form.Item>
 
+
               <Form.Item>
                 <Button
                   type="primary"
