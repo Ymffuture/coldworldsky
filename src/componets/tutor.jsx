@@ -155,7 +155,7 @@ const Tutor = () => {
               </h3>
               <figure className="image is-3by1">
                 <img
-                  src="../img/unisa.jpg"
+                  src="../img/8074800.png"
                   alt="UNISA"
                   style={{
                     objectFit: "cover",

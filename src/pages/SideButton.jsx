@@ -16,7 +16,7 @@ const SideButton = () => {
         zIndex: 1000,
       }}
       initial={{ x: -100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
+      animate={{ x: 0, opacity: .6 }}
       transition={{ duration: 0.8 }}
     >
       <Tooltip
