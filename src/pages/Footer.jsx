@@ -60,7 +60,7 @@ const Footer = () => {
   return (
     <AntFooter className="text-center" id="footer" style={{ background: '#001529', color: '#fff' }}>
       {[...Array(5)].map((_, index) => <div className='mainer' key={index}></div>)}
-
+<br/>
       <Row gutter={[24, 24]} className="p-3">
         <Col xs={24} sm={12} md={8}>
           <Logo />
@@ -69,9 +69,9 @@ const Footer = () => {
         <Col xs={24} sm={12} md={8}>
           <Title level={5} className='th text-white'>Quick Links</Title>
           <Space direction="vertical" size="small">
-            <Link to="/" className={style_.a}>Home</Link>
+            
             <Link to="/tic-tac-toe" className="text-white">Game</Link>
-            <Link to="/calendar" className="text-white">Calendar</Link>
+           
             <Link to="/quotes" className="text-white">Quotes</Link>
             <Link to="/location" className="text-white">Coverage radius</Link>
             <Link to="/cbp/pricing" className="text-white">Choose best prices</Link>

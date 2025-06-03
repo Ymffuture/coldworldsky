@@ -31,7 +31,7 @@ const LandingPage = () => {
       <AnimatedSection><About data={landingPageData.About} /></AnimatedSection>
       <AnimatedSection><Services data={landingPageData.Services} /></AnimatedSection>
       <AnimatedSection><Tutor data={landingPageData.Tutor} /></AnimatedSection>
-      <AnimatedSection><Team data={landingPageData.Team} /></AnimatedSection>
+      <Team data={landingPageData.Team} />
       <SideButton />
     </div>
   );
