@@ -11,7 +11,7 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import ChatBot from '../componets/ChatBot';
 import { useSpring, animated } from '@react-spring/web';
-
+import pic from '../assets/img/vec.png';
 const Tutoring = () => {
   const [onLoading, setOnLoading] = useState(true);
   const [copyNow, setCopyNow] = useState(<FaCopy data-tooltip-id="tooltip" data-tooltip-content="Copy" />);
@@ -129,17 +129,20 @@ export default Navbar;`;
         <div className="intro container-fluid">
           <div className="overlay d-flex justify-content-center align-items-center vh-100">
             <div className="container text-center">
+ <img src={pic} className='avatar top-0'/>
+
               <animated.h1 style={introFade} className="display-4 fw-bold">
+               
                 Tutoring <span className="text-primary">@QI</span>
               </animated.h1>
-              <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow">Find a Tutor</Link>
+              <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow btn-lg">Find a Tutor</Link>
             </div>
           </div>
         </div>
       </header>
 
       <div className="content services-page p-4" id="features">
-        <h2 className="fw-bold text-secondary">Tutoring Coding Level 0</h2>
+        <h2 className="fw-bold text-secondary">Tutoring Code&more</h2>
         <ul className="list-unstyled text-danger">
           <li>Starting late is not an option.</li>
         </ul>

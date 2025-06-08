@@ -164,13 +164,14 @@
   height: 100vh;
   background: whitesmoke !important;
   z-index: 1;
-  margin: 10px;
+  margin-left: 18px;
   overflow-y: auto;
   transition: left 0.8s ease;
   z-index: 1000;
   padding: 8px;
   -webkit-overflow-scrolling: none;
-  border-radius: 4px;
+  border-radius: 40px;
+  box-shadow: 2px 3px 2px #d8d8d8;
 
 }
 .sidebar::-webkit-scrollbar{
@@ -185,12 +186,12 @@
 .sidebar-header {
   display: flex;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 40px;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
   border-left: 8px solid #1f1e1e;
-  background: rgb(240, 240, 240) !important;
+  background: rgb(104, 235, 240);
   
 }
 .close-btn {
@@ -244,7 +245,7 @@
   position: fixed;
   top: 10px;
   left: 10px;
-  background: #ffffff53;
+  background: #ffffff;
   -webkit-backdrop-filter: blur(2px) !important;
   backdrop-filter: blur(4px) !important;
   color: rgb(29, 28, 28) !important;
@@ -397,15 +398,16 @@ display: none;
 .show{
   position: fixed;
   left:0.5%;
+  border-radius: 40px;
   color: #494961 !important;
   transition: 1.9s all;
   border-radius: 0;
-  background: #ffffff !important;
-  padding: 5px;
+  background: transparent !important;
+  padding: 8px;
   backdrop-filter: blur(2px) !important;
 }
 .show:hover{
-  color: #b38773 !important;
+  color: #f7f7f7 !important;
 }
 .sideIcons{
   font-size:12px;

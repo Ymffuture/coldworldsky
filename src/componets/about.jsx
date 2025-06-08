@@ -20,14 +20,14 @@ const About = (props) => {
   });
 
   return (
-    <section id="about" className="py-5 bg-light" aria-labelledby="about-heading">
+    <section id="about" className="py-5" aria-labelledby="about-heading">
       <div className="container">
         <div className="row align-items-center g-4">
           <div className="col-md-6">
             <animated.img
               style={fadeIn}
-              src={isVisible ? "img/about-01.jpg" : "img/intro.jpg"}
-              className="img-fluid rounded-4 shadow-lg"
+              src={isVisible ? "img/laptop.png" : "img/male.png"}
+              className="img-fluid rounded-4"
               alt="Students learning coding at Quorvex"
               loading="lazy"
             />
@@ -45,7 +45,7 @@ const About = (props) => {
                   <ul className="list-unstyled">
                     {props.data?.Why.map((item, i) => (
                       <li key={i} className="mb-2">
-                        <i className="fa fa-check-circle text-success me-2" aria-hidden="true"></i>{item}
+                        <i className=" text-success me-2" aria-hidden="true"></i>{item}
                       </li>
                     ))}
                   </ul>
@@ -54,7 +54,7 @@ const About = (props) => {
                   <ul className="list-unstyled">
                     {props.data?.Why2.map((item, i) => (
                       <li key={i} className="mb-2">
-                        <i className="fa fa-check-circle text-dark me-2" aria-hidden="true"></i>{item}
+                        <i className=" text-dark me-2" aria-hidden="true"></i>{item}
                       </li>
                     ))}
                   </ul>
