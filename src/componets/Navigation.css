@@ -162,7 +162,7 @@
   left: -420px;
   width: 400px;
   height: 100vh;
-  background: whitesmoke !important;
+  background: rgba(245, 245, 245, 0.952) !important;
   z-index: 1;
   margin-left: 18px;
   overflow-y: auto;

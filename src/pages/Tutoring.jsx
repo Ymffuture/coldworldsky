@@ -127,15 +127,15 @@ export default Navbar;`;
     <>
       <header id="header">
         <div className="intro container-fluid">
-          <div className="overlay d-flex justify-content-center align-items-center vh-100">
+          <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="container text-center">
  <img src={pic} className='avatar top-0'/>
 
-              <animated.h1 style={introFade} className="display-4 fw-bold">
+              <animated.h1 style={introFade} className="display-2 fw-bold">
                
                 Tutoring <span className="text-primary">@QI</span>
               </animated.h1>
-              <Link to='/find-a-tutor' className="btn btn-primary rounded-pill shadow btn-lg">Find a Tutor</Link>
+              <Link to='/find-a-tutor' className="btn btn-primary rounded shadow btn-lg">Find a Tutor</Link>
             </div>
           </div>
         </div>

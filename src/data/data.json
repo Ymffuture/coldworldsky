@@ -47,11 +47,7 @@
     "name": "Web Development",
     "text": "Master the art of creating responsive, user-friendly websites using HTML, CSS, JavaScript, and modern frameworks."
   },
-  {
-    "icon": "fa fa-database",
-    "name": "Data Science",
-    "text": "Gain hands-on experience with data analysis, visualisation, and machine learning using Python, R, and SQL."
-  },
+ 
   {
     "icon": "fa fa-calculator",
     "name": "Mathematics",

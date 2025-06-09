@@ -21,11 +21,11 @@ const Header = (props) => {
   };
 
   return (
-    <header id="header" className="text-center position-relative">
+    <header id="header" className="text-center position-relative w-100">
       
     
       <div className="intro">
-        <div className="overlay d-flex justify-content-center align-items-center vh-100">
+        <div className="overlay d-flex justify-content-center align-items-center vh-100 w-auto">
           <div className="container">
             <div className="row">
               <div className="col-md-16 col-md-offset-2 intro-text">
@@ -53,7 +53,7 @@ const Header = (props) => {
                   {props.data ? props.data.title : <span id="p">Loading..</span>}
                 </h1>
 
-                <p className="headcard3 card">
+                <p className="headcard3">
                   {[...Array(3)].map((_,index)=>(
                     <div key={index} className=' position-absolute top-0 left-0'>
  <FaWater className='fs-3 icon'/>

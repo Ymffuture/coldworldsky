@@ -34,7 +34,7 @@ const Services = () => {
   return (
     <main className="services-page1">
       {/* Hero Section */}
-      <section className="hero is-info is-fullheight-with-navbar">
+      <section className="hero intro is-info is-fullheight-with-navbar">
         <div className="hero-body has-text-centered">
           <div className="container">
             <animated.h1 style={introFade} className="title is-1 has-text-white">

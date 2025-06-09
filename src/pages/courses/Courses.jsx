@@ -33,7 +33,7 @@ const Courses = () => {
   return (
     <div className="section p-tags">
       {/* Hero */}
-      <section className="hero is-info is-bold is-medium">
+      <section className="hero intro is-info is-bold is-medium">
         <div className="hero-body has-text-centered">
           <p className="title is-1">Courses</p>
           <p className="subtitle is-4">Empowering education through innovation and excellence.</p>

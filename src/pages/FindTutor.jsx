@@ -64,7 +64,7 @@ const FindTutor = () => {
     <div>
  <header id="header">
         <div className="intro container-fluid ">
-          <div className="overlay d-flex justify-content-center align-items-center vh-20">
+          <div className="d-flex justify-content-center align-items-center vh-20">
             <div className="container">
               <div className="row ">
                 <div className="col-md-8 col-md-offset-2 intro-text ">
