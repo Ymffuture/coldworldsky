@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { FaLaptopCode, FaDatabase, FaPaintBrush } from "react-icons/fa";
 import axios from "axios";
+import {Helmet} from "react-helmet" ;
 import "bulma/css/bulma.min.css";
 const Courses = () => {
   const [images, setImages] = useState({
@@ -32,6 +33,9 @@ const Courses = () => {
 
   return (
     <div className="section p-tags">
+      <Helmet>
+        <title>Courses</title>
+      </Helmet>
       {/* Hero */}
       <section className="hero intro is-info is-bold is-medium">
         <div className="hero-body has-text-centered">
