@@ -30,24 +30,6 @@ const Header = (props) => {
             <div className="row">
               <div className="col-md-16 col-md-offset-2 intro-text">
                 
-              
-<div>
-
-     <div className='card headcard'>
-        
-        <FaArrowAltCircleRight className="icon icon-card"/>
-      </div>
-           <div className='card headcard2'>
-        <p className="cardtext">Question papers now avaiable to download</p>
-        <Link 
-        to='/'
-        className="text-white"
-        >
-        <FaArrowAltCircleRight className="icon icon-card"/>
-        </Link>
-        <FaBook className="book"/>
-      </div>
-</div>
             <img src='img/vecteezy.png' className='avatar'/>
                 <h1>
                   {props.data ? props.data.title : <span id="p">Loading..</span>}
