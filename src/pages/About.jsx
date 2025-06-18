@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSpring, animated } from "@react-spring/web";
 import "bulma/css/bulma.min.css";
-
+import {Helmet} from "react-helmet" ;
 const About = () => {
   const introFade = useSpring({
     from: { opacity: 0, transform: "translateY(-30px)" },
@@ -11,8 +11,14 @@ const About = () => {
   });
 
   return (
+    <>
+      <Helmet>
+        <title>About Us</title>
+      </Helmet>
+    
     <main className="about-page has-background-light">
       {/* Hero Section */}
+      
       <section className="hero intro is-info is-fullheight-with-navbar">
         <div className="hero-body has-text-centered">
           <div className="container">
@@ -98,6 +104,7 @@ const About = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 
