@@ -3,6 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link} from 'react-router-dom';
+import {Helmet} from "react-helmet" ;
 const FindTutor = () => {
   const [selectedTutor, setSelectedTutor] = useState(null);
   const [showRules, setShowRules] = useState(false);
@@ -62,6 +63,9 @@ const FindTutor = () => {
   return (
 
     <div>
+<Helmet>
+        <title>Find The Tutor</title>
+      </Helmet>
  <header id="header">
         <div className="intro container-fluid ">
           <div className="d-flex justify-content-center align-items-center vh-20">
