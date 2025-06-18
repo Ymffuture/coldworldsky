@@ -54,14 +54,7 @@ const Header = (props) => {
                 </h1>
 
                 <p className="headcard3">
-                  {[...Array(3)].map((_,index)=>(
-                    <div key={index} className=' position-absolute top-0 left-0'>
- <FaWater className='fs-3 icon'/>
-                  {/* <FaWaveSquare className='fs-3 icon'/> */}
-                    </div>
-
-
-                  ))}
+                  
                   
                   {props.data ? props.data.paragraph : <span>Loading...</span>}
                     <div className="g-2 d-block lee">
