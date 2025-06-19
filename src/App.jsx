@@ -11,6 +11,7 @@ import './App.css';
 // import { Helmet } from 'react-helmet';
 import AdminPanel from "./pages/AdminPanel"
 // import Layout from "./Layout";
+import Logoanime from "./componets/Logoanime" ;
 import Loader from './componets/PageLoader';
 // Lazy-loaded Pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -123,7 +124,7 @@ const schemaData = {
       <StructuredData />
     
       <div className="container-fluid error-con">
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Logoanime />}>
           
           <Routes>
             <Route path="/" element={<LandingPage />} />
