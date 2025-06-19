@@ -124,7 +124,7 @@ const schemaData = {
       <StructuredData />
     
       <div className="container-fluid error-con">
-        <Suspense fallback={<Logoanime />}>
+        <Suspense fallback={<Loader />}>
           
           <Routes>
             <Route path="/" element={<LandingPage />} />
