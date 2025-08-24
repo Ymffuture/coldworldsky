@@ -9,7 +9,7 @@ import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
 import Subscription from './Subscription';
 import style_ from '../styles/__style.module.css'
 import Button from './button/Button';
-import Logo from './logo.svg';
+// import Logo from './logo.svg';
 const Footer = () => {
   
   // wait...
@@ -92,7 +92,7 @@ const Footer = () => {
 <Row className='p-1'>
   
   <Col>
-  <Logo/>
+<img src="/logo.svg" />
   </Col>
  
   <Col>
