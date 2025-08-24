@@ -9,7 +9,7 @@ import { Container,Row ,Col,Image,Stack ,Nav} from 'react-bootstrap';
 import Subscription from './Subscription';
 import style_ from '../styles/__style.module.css'
 import Button from './button/Button';
-import Logo from './logo/Logo';
+import Logo from './logo.svg';
 const Footer = () => {
   
   // wait...
