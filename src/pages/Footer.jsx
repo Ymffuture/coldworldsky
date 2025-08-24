@@ -98,14 +98,7 @@ const Footer = () => {
   <Col>
   <Nav className='flex-column fs-6' >
   <h1 className='th'>Quick Links</h1>
-  <Link
-              to="/"
-              
-              className={style_.a}
-            >
-             Home
-           
-            </Link>
+  
 
 
             <Link
@@ -115,13 +108,7 @@ const Footer = () => {
             >
          Game
             </Link>
-            <Link
-            to="/calendar"
-              rel="nofollow"
-              className="text-white"
-            >
-          Calendar
-            </Link>
+            
            
          
             <Link
@@ -132,13 +119,7 @@ const Footer = () => {
            Quotes
             </Link>
             
-            <Link
-         to="/location"
-              rel="nofollow"
-              className="text-white"
-            >
-            Coverage radius
-            </Link>
+            
             <Link
               to="cbp/pricing"
               rel="nofollow"
